@@ -1,0 +1,217 @@
+<template>
+<section class="pluses">
+    <h2>Приемущества</h2>
+    <div class="row">
+        <div class="plus plus-1">
+            <div class="img"></div>
+            <p>Благодаря онлайн-курсам «ChilDo» вы сможете создавать шедевры в любое удобное время из любой точки земного шара. </p>
+        </div>
+        <div class="plus plus-2">
+            <div class="img"></div>
+            <p>Мамы и папы, мы дарим вам удивительную возможность уделить больше драгоценного времени семье и провести вечер с пользой! </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="plus plus-3">
+            <div class="img"></div>
+            <p>Рисуя волшебные картины, ребенок развивает творческое мышление и мелкую моторику. </p>
+        </div>
+        <div class="plus plus-4">
+            <div class="img"></div>
+            <p>Занятия выстроены по принципу «от простого к сложному», поэтому будут интересны начинающим и опытным, взрослым и детям.</p>
+        </div>
+    </div>
+</section>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style lang="scss" scoped>
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 105px;
+}
+
+.plus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p {
+        font-size: 20px;
+        line-height: 24px;
+        text-align: center;
+        max-width: 520px;
+        padding: 53px 14px 40px;
+        border-radius: 20px;
+    }
+}
+
+.plus:first-child {
+    margin-right: 68px;
+}
+
+.plus-1 {
+    .img {
+        background: url('/img/pluses/1.svg');
+        position: relative;
+         height: 100px;
+        width: 100px;
+    }
+
+    .img::after {
+        content: '';
+        position: absolute;
+        border-bottom: 4px solid #FBB263;
+        width: 200px;
+        bottom: -20px;
+        left: -50px;
+       
+    }
+
+    p {
+        background: linear-gradient(99.38deg, rgba(252, 176, 59, 0.03) 0%, rgba(246, 106, 22, 0.05) 100%);
+    }
+}
+
+.plus-2 {
+    .img {
+        background: url('/img/pluses/2.svg');
+        position: relative;
+        height: 93.89px;
+        width: 90.12px;
+    }
+
+    .img::after {
+        content: '';
+        position: absolute;
+        border-bottom: 4px solid #C2DD72;
+        width: 200px;
+        bottom: -20px;
+        left: -50px;
+    }
+
+    p {
+        background: linear-gradient(99.38deg, rgba(192, 231, 81, 0.03) 0%, rgba(109, 134, 18, 0.05) 100%);
+    }
+}
+
+.plus-3 {
+    .img {
+        background: url('/img/pluses/3.svg');
+        position: relative;
+        height: 110px;
+        width: 110px;
+    }
+
+    .img::after {
+        content: '';
+        position: absolute;
+        border-bottom: 4px solid #68C2D3;
+        width: 200px;
+        bottom: -20px;
+        left: -50px;
+    }
+
+    p {
+        background: linear-gradient(99.38deg, rgba(125, 215, 231, 0.03) 0%, rgba(69, 198, 221, 0.05) 100%);
+    }
+}
+
+.plus-4 {
+    .img {
+        background: url('/img/pluses/4.svg');
+        position: relative;
+        height: 160px;
+        width: 100px;
+    }
+
+    .img::after {
+        content: '';
+        position: absolute;
+        border-bottom: 4px solid #EE85BE;
+        width: 200px;
+        bottom: -20px;
+        left: -50px;
+    }
+
+    p {
+        background: linear-gradient(99.38deg, rgba(245, 116, 186, 0.03) 0%, rgba(205, 35, 127, 0.05) 100%);
+    }
+}
+
+.img {
+
+    margin-bottom: -23px;
+}
+
+.pluses {
+    padding-top: 189px;
+    padding-bottom: 195px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    
+}
+
+h2 {
+    font-family: Intro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 70px;
+    line-height: 70px;
+    /* identical to box height */
+    color: #515151;
+    text-align: center;
+    position: relative;
+    
+    margin-bottom: 45px;
+
+}
+
+h2::first-letter {
+    opacity: 0;
+}
+
+h2::before {
+    content: '';
+    background: url('/img/п.svg') no-repeat center center / contain;
+    width: 42.28px;
+    height: 54.04px;
+    position: absolute;
+    z-index: 2;
+    top: 7px;
+    left: 4px;
+}
+
+.pluses::before {
+    content: "";
+    background: url('/img/starOrange.svg') no-repeat left center / contain;
+    height: 350px;
+    width: 450px;
+    left: 0;
+    bottom: 90px;
+    position: absolute;
+    z-index: -3;
+
+}
+
+.pluses::after {
+    content: "";
+    background: url('/img/starBlue.png') no-repeat right center / contain;
+    height: 342px;
+    width: 465px;
+    right: 0;
+    position: absolute;
+    top: 109px;
+    z-index: -3;
+}
+</style>
