@@ -338,7 +338,17 @@ export default {
     height: 54.04px;
     position: absolute;
     z-index: 2;
-    top: 7px;
+    top: 10px;
     left: 4px;
+}
+.k::after {
+    content: '';
+    background: white;
+    width: 50.28px;
+    height: 55.04px;
+    position: absolute;
+ 
+    top: 5px;
+    left: 0px;
 }
 </style>

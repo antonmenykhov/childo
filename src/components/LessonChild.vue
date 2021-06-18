@@ -50,7 +50,7 @@ export default {
                 'ch-12',
                 'ch-13',
             ],
-            style: 'ch-2',
+            style: 'ch-1',
             lessonData: {
                 upheader: 'урок 1',
                 header: '“привет из антарктики”',
@@ -77,10 +77,12 @@ export default {
 
 <style lang="scss" scoped>
 .superSelect {
-    position: absolute;
-    z-index: 9999;
-    top:0
+    top: 50px;
+    position: absolute!important;
+    z-index: 1000;
+    
 }
+
 
 .lesson {
     background: white;

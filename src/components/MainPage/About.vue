@@ -142,9 +142,19 @@ h2::before {
     width: 50.26px;
     height: 57.08px;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top: 7px;
     left: 4px;
+}
+h2::after {
+    content: '';
+    background: white;
+    width: 52.26px;
+    height: 57.08px;
+    position: absolute;
+   
+    top:5px;
+    left: 3px;
 }
 
 .about::before {

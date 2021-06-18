@@ -19,7 +19,7 @@ export default {
     data() {
         return {
             courseData: {
-                style: 'cs-1',
+                style: 'cs-2',
                 lessons: [{
                         img: '/courses/1/prog/prog1.png',
                         smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
@@ -112,7 +112,7 @@ export default {
 }
 
 h2 {
-    margin-top: 495px;
+    margin-top: 358px;
     margin-bottom: 165px;
     font-family: Intro;
     font-style: normal;
@@ -132,7 +132,7 @@ h2::first-letter {
 
 h2::before {
     left: -10px;
-    top: 8px;
+    top: 10px;
     content: '';
     background: url('/img/courses/1/prog/п.svg') no-repeat center center / contain;
     height: 56.72px;
@@ -140,7 +140,21 @@ h2::before {
     z-index: 2;
     position: absolute;
 }
-
+h2::after {
+    left: -15px;
+    top: 10px;
+    content: '';
+    background: white;
+    height: 56.72px;
+    width: 70.5px;
+    
+    position: absolute;
+}
+.cs-2{
+    h2::before{
+        background: url('/img/courses/2/prog/п.svg') no-repeat center center / contain;
+    }
+}
 .program-holder {
     display: flex;
     flex-wrap: wrap;
@@ -249,6 +263,36 @@ p {
     content: '';
     background: url('/img/courses/1/prog/right.svg') no-repeat right bottom / contain;
     height: 735px;
+    width: 488px;
+    bottom: 92px;
+    right: 0;
+}
+.cs-2 {
+    position: relative;
+
+    .left {
+        position: absolute;
+        background: url('/img/courses/2/prog/left.png') no-repeat left bottom / contain;
+        height: 435px;
+        width: 228px;
+        top: 650px;
+    }
+
+    .left::after {
+        position: absolute;
+        content: '';
+        background: url('/img/courses/2/prog/leftbottom.svg') no-repeat left top / contain;
+        height: 455px;
+        width: 288px;
+        bottom: -300px;
+    }
+}
+
+.cs-2::after {
+    position: absolute;
+    content: '';
+    background: url('/img/courses/2/prog/right.svg') no-repeat right bottom / contain;
+    height: 505px;
     width: 488px;
     bottom: 92px;
     right: 0;

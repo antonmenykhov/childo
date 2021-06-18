@@ -17,9 +17,9 @@ export default {
     data() {
         return {
             courseData: {
-                style: 'cs-1',
+                style: 'cs-2',
                 features: [{
-                        name: 'Курс состоит 13 уроков.',
+                        name: 'Курс состоит 13 уроков',
                         description: 'Их сложность повышается постепенно, поэтому приступать к занятиям можно «с нуля», без навыков рисования. С каждым новым уроком, будто поднимаясь по творческим ступенькам, ребенок будет узнавать все больше информации о различных изобразительных техниках и в итоге научится применять их в любой работе.',
                         img: '/1/features/1.png',
 
@@ -56,14 +56,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section{
+section {
     margin-top: -100px;
 }
-.cs-1{
+
+section {
     position: relative;
     z-index: 20;
 }
-.cs-1::before{
+
+.cs-1::before {
     content: '';
     position: absolute;
     height: 700px;
@@ -72,7 +74,8 @@ section{
     top: 200px;
     left: 0;
 }
-.cs-1::after{
+
+.cs-1::after {
     content: '';
     position: absolute;
     height: 700px;
@@ -81,9 +84,30 @@ section{
     bottom: 200px;
     right: 0;
 }
+
+.cs-2::before {
+    content: '';
+    position: absolute;
+    height: 700px;
+    width: 700px;
+    background: url('/img/courses/2/features/left.svg') no-repeat left top / contain;
+    top: 200px;
+    left: 0;
+}
+
+.cs-2::after {
+    content: '';
+    position: absolute;
+    height: 700px;
+    width: 700px;
+    background: url('/img/courses/2/features/right.svg') no-repeat right bottom / contain;
+    bottom: 200px;
+    right: 0;
+}
+
 .container {
     flex-direction: column;
-    
+
 }
 
 .feature {
@@ -91,17 +115,21 @@ section{
     display: flex;
     align-items: center;
 }
-.feature:nth-child(even){
+
+.feature:nth-child(even) {
     flex-direction: row-reverse;
-    .img{
+
+    .img {
         margin-left: 40px;
     }
 }
-.feature:nth-child(odd){
-    .img{
+
+.feature:nth-child(odd) {
+    .img {
         margin-right: 40px;
     }
 }
+
 .img {
     height: 206px;
     width: 260px;
@@ -118,9 +146,20 @@ section{
         font-size: 35px;
         line-height: 43px;
         /* identical to box height */
-
+        display: inline-block;
         color: #000000;
+        position: relative;
     }
+
+    h4::after {
+        border-top: 1px solid;
+        position: absolute;
+        content: '';
+        width: 100%;
+        left: 0;
+        bottom: -6px;
+    }
+   
 
     p {
         font-size: 25px;
@@ -129,5 +168,26 @@ section{
         color: #000000;
     }
 }
+ .feature:nth-child(1) h4::after {
+        border-color: #F66A16;
+    }
 
+  .feature:nth-child(2)  h4::after {
+        border-color: #A5C73C;
+    }
+
+   .feature:nth-child(3) h4::after {
+        border-color: #EF6AB2;
+    }
+
+   .feature:nth-child(4) h4::after {
+        border-color: #99D3DF;
+    }
+
+    .feature:nth-child(5) h4::after {
+        border-color: #F66A16;
+    }
+     .feature:nth-child(6)  h4::after {
+        border-color: #A5C73C;
+    }
 </style>

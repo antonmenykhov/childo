@@ -17,6 +17,7 @@
             </button>
         </div>
     </div>
+
 </header>
 </template>
 
@@ -25,17 +26,24 @@ export default {
     data() {
         return {
             courseData: {
-                header: 'курс 1',
+                header: 'курс 2',
                 description: 'Онлайн-курс по рисованию «ChilDo»для детей — это увлекательное путешествие в мир ярких красок, креатива и творчества.',
-                girl: 'masha',
-                style: 'cs-1'
-            }
+                girl: 'tanya',
+                style: 'cs-2'
+            },
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
+.superSelect {
+    top: 50px;
+    position: absolute !important;
+    z-index: 1000;
+
+}
+
 .gradient {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
     transform: rotate(90deg);
@@ -86,8 +94,19 @@ header {
             position: absolute;
             height: 122px;
             width: 91px;
-            top: 17px;
-            left: 8px
+            top: 23px;
+            left: 8px;
+            z-index: 2;
+        }
+
+        .title::after {
+            background: white;
+            content: "";
+            position: absolute;
+            height: 122px;
+            width: 100px;
+            top: 20px;
+            left: 6px
         }
 
         .title::first-letter {
@@ -155,10 +174,27 @@ header::before {
     content: '';
     top: 0%;
     position: absolute;
-    right: 3%;
+    right: 9%;
     width: 40%;
-    height: 60%;
+    height: 35%;
     z-index: -1;
+}
+
+.cs-2::after {
+    background: url('/img/courses/2/top.svg') no-repeat center top / contain;
+    content: '';
+    top: 0%;
+    position: absolute;
+    right: 8.5%;
+    width: 40%;
+    height: 25%;
+    z-index: -1;
+}
+
+.cs-2 {
+    .title::before {
+        background: url('/img/courses/2/к.svg') no-repeat center center / contain !important;
+    }
 }
 
 .cs-1 {
@@ -174,12 +210,24 @@ header::before {
     }
 }
 
+.cs-2 {
+    .left {
+        background: linear-gradient(94.82deg, #FBAD3A 0%, #F66A16 100%);
+        box-shadow: 0px 4px 60px #F66C17;
+    }
+
+    .right {
+        background: linear-gradient(94.82deg, #84DEEF 0%, #65A5B5 100%);
+        box-shadow: 0px 4px 60px #45C6DD;
+    }
+}
+
 .masha {
     background: url('/img/courses/1/girl.png') no-repeat right center / contain;
     height: 1158px;
     position: absolute;
     width: 775px;
-    right: -60px;
+    right: 35px;
     top: 169px;
 
 }
@@ -193,5 +241,14 @@ header::before {
     bottom: 40px;
     left: -40px;
     z-index: -1;
+}
+
+.tanya {
+    background: url('/img/courses/2/girl.png') no-repeat center center / contain;
+    height: 1104px;
+    position: absolute;
+    width: 934px;
+    right: -74px;
+    top: 0px;
 }
 </style>

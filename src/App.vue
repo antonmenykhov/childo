@@ -1,5 +1,8 @@
 <template>
 <div id="app">
+    <el-select class="selectt" @change="$router.push({path: select})" v-model="select">
+        <el-option :label="item.label" :value="item.value" v-for="item in routes" :key="item.value"></el-option>
+    </el-select>
     <div class="top-line">
         <div class="container">
             <div class="logo">
@@ -21,6 +24,33 @@ export default {
     name: 'app',
     data() {
         return {
+            select: '/',
+            routes: [
+                {
+                    value: '/',
+                    label: 'Главная'
+                },
+                {
+                    value: '/course',
+                    label: 'Курс'
+                },
+                {
+                    value: '/lessonchild',
+                    label: 'Урок детский'
+                },
+                {
+                    label: 'Урок взрослый',
+                    value: '/lessongrow'
+                },
+                {
+                    label: 'Урок бесплатный',
+                    value: '/lessonfree'
+                },
+                {
+                    label: 'Личный кабинет',
+                    value: '/lk'
+                },
+            ],
             menu: [{
                     name: 'Курсы',
                     route: ''
@@ -44,11 +74,17 @@ export default {
 </script>
 
 <style lang="scss">
+.selectt{
+    
+    position: absolute!important;
+    z-index: 3550;
+
+}
 @font-face {
     font-family: "Intro";
-    src: url("/fonts/IntroDemo-BlackCAPS.eot") format("eot"),
-        url("/fonts/IntroDemo-BlackCAPS.woff") format("woff"),
-        url("/fonts/IntroDemo-BlackCAPS.woff2") format("woff2");
+    src: url("/fonts/Intro-Black-Caps.eot") format("eot"),
+        url("/fonts/Intro-Black-Caps.woff") format("woff"),
+        url("/fonts/Intro-Black-Caps.woff2") format("woff2");
 }
 
 * {
@@ -74,10 +110,11 @@ section{
         background: url('/img/logo.png') no-repeat center center / contain;
         height: 46px;
         width: 100px;
+        margin-right: 40px;
     }
 
     .container {
-        justify-content: space-between;
+        
         align-items: center;
 
         .main-menu {

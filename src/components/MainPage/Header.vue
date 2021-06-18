@@ -139,7 +139,17 @@ header {
             position: absolute;
             height: 112px;
             width: 108px;
-            top: 12px;
+            top: 18px;
+            left: 8px;
+            z-index: 2;
+        }
+        .title::after {
+            background: white;
+            content: "";
+            position: absolute;
+            height: 112px;
+            width: 108px;
+            top: 17px;
             left: 8px
         }
 

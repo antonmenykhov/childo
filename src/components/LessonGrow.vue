@@ -45,9 +45,10 @@ export default {
 
 <style lang="scss" scoped>
 .superSelect {
-    position: absolute;
-    z-index: 9999;
-    top: 0
+    top: 50px!important;
+    position: absolute!important;
+    z-index: 1000;
+    
 }
 
 .lesson {

@@ -125,13 +125,23 @@ h2::first-letter {
 }
 
 h2::before {
-    left: -15px;
-    top: 6px;
+    left: -11px;
+    top: 7px;
     content: '';
     background: url('/img/courses/1/speaker/с.svg') no-repeat center center / contain;
     height: 70.72px;
     width: 70.5px;
     z-index: 2;
+    position: absolute;
+}
+h2::after {
+    left: -11px;
+    top: 7px;
+    content: '';
+    background: white;
+    height: 70.72px;
+    width: 65.5px;
+    
     position: absolute;
 }
 

@@ -185,11 +185,21 @@ h2::before {
     content: '';
     background: url('/img/п.svg') no-repeat center center / contain;
     width: 42.28px;
-    height: 54.04px;
+    height: 60.04px;
     position: absolute;
     z-index: 2;
-    top: 7px;
+    top: 8px;
     left: 4px;
+}
+h2::after {
+    content: '';
+    background: white;
+    width: 42.28px;
+    height: 60.04px;
+    position: absolute;
+   
+    top: 8px;
+    left: 5px;
 }
 
 .pluses::before {

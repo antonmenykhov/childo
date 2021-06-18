@@ -4,10 +4,32 @@
         ИНСТРУМЕНТЫ И МАТЕРИАЛЫ ДЛЯ КУРСА
     </h2>
     <div class="tools">
-        <ul>
+        <ul v-if="courseData.style=='cs-1'">
             <li v-for="item in courseData.tools" :key="item">{{item}}</li>
         </ul>
+        <div v-if="courseData.style=='cs-2'">
+            <ul class="apple">
+                <li v-for="item in courseData.apple" :key="item" v-html="item"></li>
+            </ul>
+            <h4>
+                Программы для планшетов под Android
+            </h4>
+            <ul class="progs">
+                <li v-for="item in courseData.progs" :key="item" v-html="item">
+
+                </li>
+            </ul>
+            <h4>В качестве бонуса, так же вам предоставляем:
+            </h4>
+            <ul class="bonuses">
+                <li v-for="item in courseData.bonuses" :key="item">
+                    <p>{{item.name}}</p>
+                    <button>Скачать</button>
+                </li>
+            </ul>
+        </div>
         <div class="image" :style="'background: url(\'/img'+courseData.image+'\') no-repeat center center / cover'"></div>
+
     </div>
 </section>
 </template>
@@ -21,8 +43,32 @@ export default {
                     'Набор акриловых красок', 'Белая краска (белила титановые) — стоит приобрести отдельно, так как она используется в каждом рисунке', 'Палитра', 'Карандаш простой', 'Точилка', 'Ластик', 'Набор бумаги для рисования (для акрила, гуаши) плотность от 150 гр/м2, размер 30х40 см или холст на картоне 30х40 см', 'Тонированная бумага (черная)', 'Кисть синтетика круглая №2, №5, №10', 'Кисть синтетика плоская №5, №18', 'Кисть щетина №10', 'Ватные палочки', 'Губка поролоновая бытовая', 'Черный фломастер или тонкий маркер', 'Воздушный шарик', 'Сухие и влажные салфетки', 'Лист плотного картона'
 
                 ],
-                image: '/courses/1/tools.jpg',
-                style: 'cs-1'
+                apple: [
+                    'Планшет iPad Pro (рекомендовано) или iPad с поддержкой Apple Pencil',
+
+                    ' Стилуc Apple Pencil — подробнее о совместимости планшета и стилуса >>>',
+
+                    'Программа Procreate для iPad (примерная цена 900 рублей) <br>На занятиях мы будем использовать эти устройства и программное обеспечение, но вы можете подобрать аналогичные варианты других производителей.'
+                ],
+                progs: [
+                    'Adobe Photoshop Sketch',
+                    'Adobe Illustrator Draw',
+                    'MediBang Paint',
+                    'Autodesk SketchBook',
+                    'ArtFlow'
+
+                ],
+                bonuses: [{
+                        name: 'Чек лист основы Procreate- ',
+                        link: ''
+                    },
+                    {
+                        name: 'Каталог кистей для программы Procreate- ',
+                        link: ''
+                    }
+                ],
+                image: '/courses/2/tools/tools.jpg',
+                style: 'cs-2'
             }
         }
     },
@@ -51,13 +97,24 @@ h2::first-letter {
 }
 
 h2::before {
-    left: 190px;
-    top: 7px;
+    left: 194px;
+    top: 9px;
     content: '';
     background: url('/img/courses/1/prog/и.svg') no-repeat center center / contain;
     height: 57.72px;
     width: 70.5px;
     z-index: 2;
+    position: absolute;
+}
+
+h2::after {
+    left: 194px;
+    top: 9px;
+    content: '';
+    background: white;
+    height: 57.72px;
+    width: 64.5px;
+
     position: absolute;
 }
 
@@ -96,6 +153,12 @@ li {
     position: relative;
 }
 
+.cs-2 .image {
+    height: 814px;
+    margin: unset;
+    align-self: center;
+}
+
 .image::after {
     position: absolute;
     background: linear-gradient(89.98deg, rgba(255, 255, 255, 0.8) 0.02%, rgba(255, 255, 255, 0) 99.98%);
@@ -119,7 +182,7 @@ li {
     z-index: -1;
 }
 
-.cs-1 {
+section {
     position: relative;
 }
 
@@ -134,12 +197,22 @@ li {
     content: '';
 
 }
+.cs-2::before {
+    position: absolute;
+    background: url('/img/courses/2/tools/left.svg') no-repeat left top / contain;
 
+    height: 600px;
+    width: 600px;
+    left: 0;
+    top: 250px;
+    content: '';
+
+}
 li {
     font-size: 20px;
     line-height: 24px;
     max-width: 481px;
-    color: #000000;
+    color: #1f1f1f;
     list-style: none;
     position: relative;
 }
@@ -156,10 +229,11 @@ li::before {
     top: 3px
 }
 
-li:hover::before{
-        transform: scale(1.2);
-    
+li:hover::before {
+    transform: scale(1.2);
+
 }
+
 ul {
     padding-left: 25px;
 }
@@ -202,5 +276,118 @@ ul {
         background: #45C6DD;
     }
 
+}
+
+.cs-2 {
+    .certs{
+        justify-content: center;
+        
+        p{
+            flex: 1 1 300px;
+        }
+        button{
+            flex: 1 1 300px;
+        }
+    }
+    .tools{
+        margin-bottom: 152px;
+    }
+    button {
+        background: linear-gradient(94.07deg, #F574BA 0%, #CD237F 100%);
+        box-shadow: 0px 0px 40px #D6358C;
+        border-radius: 25px;
+        font-size: 25px;
+        line-height: 160.2%;
+        /* identical to box height, or 40px */
+
+        text-align: center;
+
+        color: #FFFFFF;
+        padding: 20px 99px;
+        border: none;
+        outline: none;
+        margin: 40px 0;
+        margin-left: -25px;
+    }
+
+    h4 {
+        font-weight: 600;
+        font-size: 50px;
+        line-height: 61px;
+        margin-top: 74px;
+        margin-bottom: 21px;
+        color: #515151;
+        max-width: 673px;
+    }
+    
+    li {
+        font-size: 30px;
+        line-height: 37px;
+        max-width: 673px;
+    }
+    li::before{
+        top: 8px;
+    }
+    .progs{
+        li:nth-child(1)::before, li:nth-child(5)::before{
+            background: #A7CA3E;
+        }
+         li:nth-child(2)::before, li:nth-child(6)::before{
+            background: #45C6DD;
+        }
+         li:nth-child(3)::before, li:nth-child(7)::before{
+            background: #E757A5;
+        }
+        li:nth-child(4)::before, li:nth-child(8)::before{
+            background: #F66C17;
+        }
+    }
+
+    .bonuses{
+        padding: 0;
+        li{
+            text-indent: 25px;
+        }
+        li::before{
+            left: 0;
+            top: 8px;
+        }
+         li:nth-child(1)::before, li:nth-child(4)::before{
+            background: #45C6DD;
+        }
+         li:nth-child(2)::before, li:nth-child(5)::before{
+            background: #F66C17;
+        }
+         li:nth-child(3)::before, li:nth-child(6)::before{
+            background: #A7CA3E;
+        }
+    }
+    .apple {
+        margin-right: 0;
+        padding-left: 0;
+        li {
+            text-indent: 25px;
+            margin-right: 0;
+            max-width: 673px;
+            margin-bottom: 37px;
+        }
+        li:last-child{
+            margin-bottom: 0;
+        }
+        li::before{
+            left: 0;
+            top: 8px;
+        }
+        li:nth-child(1)::before, li:nth-child(4)::before{
+            background: #E757A5;
+        }
+         li:nth-child(2)::before, li:nth-child(5)::before{
+            background: #F66C17;
+        }
+         li:nth-child(3)::before, li:nth-child(6)::before{
+            background: #A7CA3E;
+        }
+
+    }
 }
 </style>
