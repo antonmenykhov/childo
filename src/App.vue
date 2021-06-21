@@ -8,6 +8,7 @@
             <div class="logo">
 
             </div>
+            <div class="burger-button">+++</div>
             <div class="main-menu">
                 <div class="menu-item" v-for="item,i in menu" :key="i">
                     {{item.name}}
@@ -25,8 +26,7 @@ export default {
     data() {
         return {
             select: '/',
-            routes: [
-                {
+            routes: [{
                     value: '/',
                     label: 'Главная'
                 },
@@ -74,12 +74,13 @@ export default {
 </script>
 
 <style lang="scss">
-.selectt{
-    
-    position: absolute!important;
+.selectt {
+
+    position: absolute !important;
     z-index: 3550;
 
 }
+
 @font-face {
     font-family: "Intro";
     src: url("/fonts/Intro-Black-Caps.eot") format("eot"),
@@ -94,10 +95,20 @@ export default {
     margin: 0;
     box-sizing: border-box;
 }
-section{
-  width: 100%;
-  overflow-x: hidden;
+
+section {
+    width: 100%;
+    overflow-x: hidden;
 }
+
+section::after {
+    z-index: -1;
+}
+
+section::before {
+    z-index: -1;
+}
+
 .top-line {
     position: absolute;
     top: 0;
@@ -114,7 +125,7 @@ section{
     }
 
     .container {
-        
+
         align-items: center;
 
         .main-menu {
@@ -130,11 +141,13 @@ section{
                 color: black;
                 cursor: pointer;
             }
-            .menu-item:last-child{
-              margin-right: 0;
+
+            .menu-item:last-child {
+                margin-right: 0;
             }
-            .menu-item:hover{
-              color: #F66F18;
+
+            .menu-item:hover {
+                color: #F66F18;
             }
         }
     }
@@ -144,5 +157,80 @@ section{
     max-width: 1160px;
     margin: 0 auto;
     display: flex;
+}
+
+.burger-button {
+    display: none;
+}
+
+@media (max-width: 1500px) {
+    .container {
+        max-width: 1000px;
+    }
+
+    .top-line .container .main-menu .menu-item {
+        font-size: 24px;
+        margin: 0
+    }
+
+    .top-line .container .main-menu {
+        flex: 1;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 1250px) {
+    header .header-container {
+        padding-bottom: 64px;
+    }
+
+    .container {
+        max-width: 700px;
+    }
+
+    .top-line {
+        .container {
+            max-width: 586px;
+
+            .main-menu {
+                .menu-item {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+
+            .logo {
+                height: 34px;
+                width: 74px;
+            }
+        }
+    }
+
+    .top-line .container {
+        max-width: 586px;
+    }
+}
+
+.top-line .container .main-menu {
+    flex: 1;
+    justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+    .top-line {
+        .container {
+            justify-content: space-between;
+            .burger-button {
+                display: flex;
+            }
+
+            .main-menu {
+                display: none;
+            }
+
+            ;
+        }
+    }
+
 }
 </style>

@@ -32,7 +32,7 @@ export default {
     align-items: center;
     padding-top: 125px;
     padding-bottom: 194px;
-  
+
 }
 
 .about-holder {
@@ -127,8 +127,6 @@ h2 {
     color: #515151;
     text-align: center;
     position: relative;
-   
-    
 
 }
 
@@ -146,14 +144,15 @@ h2::before {
     top: 7px;
     left: 4px;
 }
+
 h2::after {
     content: '';
     background: white;
     width: 52.26px;
     height: 57.08px;
     position: absolute;
-   
-    top:5px;
+
+    top: 5px;
     left: 3px;
 }
 
@@ -176,5 +175,87 @@ h2::after {
     right: 0;
     position: absolute;
     top: 0;
+}
+
+@media (max-width: 1500px) {
+    h5 {
+        font-size: 24px;
+    }
+
+    .about-holder {
+        max-width: 1000px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 1250px) {
+    h2 {
+        font-size: 40px;
+        line-height: 40px;
+
+    }
+
+    h2::before {
+        height: 36px;
+        width: 36px;
+        left: -5px;
+        top: 4px
+    }
+
+    h2::after {
+        left: -7px;
+        height: 40px;
+        width: 40px;
+    }
+
+    .about::after {
+        height: 500px;
+        bottom: 0;
+        top: unset;
+    }
+
+    .about::before {
+        height: 500px;
+        bottom: unset;
+        top: 100px
+    }
+
+    h5 {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .about-holder {
+        max-width: 640px;
+        .about-w {
+            font-size: 16px;
+            line-height: 20px;
+        }
+        .about-1{
+            max-width: 300px;
+            margin-bottom: 121px;
+        }
+        .about-2{
+            max-width: 331px;
+            margin-bottom: 121px;
+        }
+        .about-3{
+            max-width: 552px;
+            
+        }
+        .about-1::before, .about-2::before, .about-3::before{
+            height: 150px;
+            width: 150px;
+        }
+        .about-1::before{
+            top: -50px
+        }
+        .about-2::before{
+            top: -35px
+        }
+        .about-3::before{
+            top: -25px
+        }
+    }
 }
 </style>

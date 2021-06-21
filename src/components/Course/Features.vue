@@ -14,52 +14,13 @@
 
 <script>
 export default {
-    data() {
-        return {
-            courseData: {
-                style: 'cs-2',
-                features: [{
-                        name: 'Курс состоит 13 уроков',
-                        description: 'Их сложность повышается постепенно, поэтому приступать к занятиям можно «с нуля», без навыков рисования. С каждым новым уроком, будто поднимаясь по творческим ступенькам, ребенок будет узнавать все больше информации о различных изобразительных техниках и в итоге научится применять их в любой работе.',
-                        img: '/1/features/1.png',
-
-                    },
-                    {
-                        name: 'Весь материал подается очень просто',
-                        description: 'Юные художники узнают, как правильно расположить предмет на формате, что такое художественное пространство картины и для чего нужна линия горизонта. Педагог расскажет, как нужно смешивать краски и познакомит детей с понятиями света, тени, фактуры, градиента и цветовой гаммы. ',
-                        img: '/1/features/2.png',
-
-                    },
-                    {
-                        name: 'Дополнительные позновательные рассказы',
-                        description: 'А еще в каждом уроке есть небольшой рассказ об изображаемом животном, предмете или явлении. Любознательным деткам точно будет интересно узнать о жизни диких животных и птиц, о космосе и природе.',
-                        img: '/1/features/3.png',
-
-                    },
-                    {
-                        name: 'Домашние задания после уроков',
-                        description: 'В конце каждого урока юных художников будет ждать домашнее задание: сфотографировать получившийся рисунок и отправить его на проверку. После этого откроется доступ к следующему занятию.',
-                        img: '/1/features/4.png',
-
-                    },
-                    {
-                        name: 'Необычные материалы',
-                        description: 'В работе над картинами ребята смогут использовать как традиционные кисти, так и необычные инструменты: воздушные шарики, поролоновые губки, ватные палочки и многое другое. Необычный подход помогает ребенку развить творческое мышление и фантазию. А главное, именно так дети учатся видеть красоту в самых обычных вещах. Похоже на настоящее волшебство, правда?',
-                        img: '/1/features/5.png',
-
-                    },
-                ]
-            }
-        }
-    },
+    props: {
+        courseData: Object
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-section {
-    margin-top: -100px;
-}
-
 section {
     position: relative;
     z-index: 20;
@@ -159,7 +120,6 @@ section {
         left: 0;
         bottom: -6px;
     }
-   
 
     p {
         font-size: 25px;
@@ -168,26 +128,113 @@ section {
         color: #000000;
     }
 }
- .feature:nth-child(1) h4::after {
-        border-color: #F66A16;
+
+.feature:nth-child(1) h4::after {
+    border-color: #F66A16;
+}
+
+.feature:nth-child(2) h4::after {
+    border-color: #A5C73C;
+}
+
+.feature:nth-child(3) h4::after {
+    border-color: #EF6AB2;
+}
+
+.feature:nth-child(4) h4::after {
+    border-color: #99D3DF;
+}
+
+.feature:nth-child(5) h4::after {
+    border-color: #F66A16;
+}
+
+.feature:nth-child(6) h4::after {
+    border-color: #A5C73C;
+}
+
+@media (max-width: 1500px) {
+    .cs-1::after{
+        height: 300px;
+        bottom: 0;
+        right: -10px;
+    }
+    .cs-1::before{
+        height: 400px;
+        left: -60px;
+        top:60px;
+    }
+    .cs-2::after{
+        height: 300px;
+        bottom: 0;
+        right: -10px;
+    }
+    .cs-2::before{
+        height: 400px;
+        left: -60px;
+        top:60px;
+    }
+    .text {
+        h4 {
+            font-size: 30px;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    }
+}
+
+@media (max-width: 1250px) {
+    .container{
+        max-width: 820px;
+    }
+    .feature {
+        margin-bottom: 70px;
     }
 
-  .feature:nth-child(2)  h4::after {
-        border-color: #A5C73C;
-    }
+    .text {
+        max-width: 612px;
+        h4 {
+            font-size: 22px;
+            line-height: 27px;
+        }
 
-   .feature:nth-child(3) h4::after {
-        border-color: #EF6AB2;
-    }
+        p {
+            font-size: 16px;
+            line-height: 20px;
+        }
 
-   .feature:nth-child(4) h4::after {
-        border-color: #99D3DF;
     }
-
-    .feature:nth-child(5) h4::after {
-        border-color: #F66A16;
+    .img{
+        height: 152px;
+        width: 192px;
     }
-     .feature:nth-child(6)  h4::after {
-        border-color: #A5C73C;
+    .cs-1::after{
+        height: 300px;
+        bottom: 0;
+        right: -10px;
     }
+    .cs-1::before{
+        height: 400px;
+        left: -60px;
+        top:60px;
+    }
+    .cs-2::after{
+        height: 300px;
+        bottom: 0;
+        right: -10px;
+    }
+    .cs-2::before{
+        height: 400px;
+        left: -60px;
+        top:60px;
+    }
+}
+@media (max-width: 950px){
+    .container{
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+}
 </style>

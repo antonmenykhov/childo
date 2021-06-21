@@ -60,9 +60,9 @@ export default {
 
 .plus-1 {
     .img {
-        background: url('/img/pluses/1.svg');
+        background: url('/img/pluses/1.svg') no-repeat center center / contain;
         position: relative;
-         height: 100px;
+        height: 100px;
         width: 100px;
     }
 
@@ -73,7 +73,7 @@ export default {
         width: 200px;
         bottom: -20px;
         left: -50px;
-       
+
     }
 
     p {
@@ -83,7 +83,7 @@ export default {
 
 .plus-2 {
     .img {
-        background: url('/img/pluses/2.svg');
+        background: url('/img/pluses/2.svg') no-repeat center center / contain;
         position: relative;
         height: 93.89px;
         width: 90.12px;
@@ -105,7 +105,7 @@ export default {
 
 .plus-3 {
     .img {
-        background: url('/img/pluses/3.svg');
+        background: url('/img/pluses/3.svg') no-repeat center center / contain;
         position: relative;
         height: 110px;
         width: 110px;
@@ -127,7 +127,7 @@ export default {
 
 .plus-4 {
     .img {
-        background: url('/img/pluses/4.svg');
+        background: url('/img/pluses/4.svg') no-repeat center center / contain;
         position: relative;
         height: 160px;
         width: 100px;
@@ -159,7 +159,7 @@ export default {
     flex-direction: column;
     position: relative;
     align-items: center;
-    
+
 }
 
 h2 {
@@ -172,7 +172,7 @@ h2 {
     color: #515151;
     text-align: center;
     position: relative;
-    
+
     margin-bottom: 45px;
 
 }
@@ -191,13 +191,14 @@ h2::before {
     top: 8px;
     left: 4px;
 }
+
 h2::after {
     content: '';
     background: white;
     width: 42.28px;
     height: 60.04px;
     position: absolute;
-   
+
     top: 8px;
     left: 5px;
 }
@@ -223,5 +224,68 @@ h2::after {
     position: absolute;
     top: 109px;
     z-index: -3;
+}
+
+@media (max-width:1500px) {
+    .plus {
+        z-index: 222;
+    }
+
+    .plus p {
+        max-width: 400px;
+    }
+
+    .plus .img {
+        height: 70px;
+        width: 70px !important;
+        left: 0px;
+    }
+
+    .plus .img::after {
+        left: -65px;
+    }
+}
+
+@media (max-width: 1250px) {
+    h2 {
+        font-size: 40px;
+        line-height: 40px;
+
+    }
+
+    h2::before {
+        height: 36px;
+        width: 36px;
+        left: -5px;
+        top: 5px
+    }
+
+    h2::after {
+        left: -7px;
+        height: 40px;
+        width: 40px;
+    }
+    .pluses{
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .row{
+        padding: 0 100px;
+    }
+    .plus p{
+        font-size: 16px;
+        line-height: 20px;
+    }
+    .plus{
+        max-width: 300px;
+    }
+    .pluses::after{
+        height: 200px;
+    }
+
+    .pluses::before{
+        height: 200px;
+    }
+
 }
 </style>

@@ -2,9 +2,9 @@
 <section :class="courseData.style">
     <div class="container">
         <h2>Тарифы</h2>
-        <p v-if="courseData.style=='cs-1'" class="subheader">{{courseData.description}}</p>
+        <p v-if="courseData.style=='cs-1'" class="subheader">{{courseData.priceDescription}}</p>
         <ul v-if="courseData.style=='cs-1'">
-            <li v-for="item in courseData.secondDescription" :key="item">{{item}}</li>
+            <li v-for="item in courseData.priceSecondDescription" :key="item">{{item}}</li>
         </ul>
         <div class="prices" v-if="courseData.style=='cs-1'">
             <div class="price-w" v-for="item in courseData.tarifs" :key="item.name">
@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="prices" v-if="courseData.style=='cs-2'">
-            <div class="price-w" v-for="item in cs2Tarif" :key="item.name">
+            <div class="price-w" v-for="item in courseData.tarifs" :key="item.name">
                 <h4>{{item.name}}</h4>
                 <h4>{{item.time}}</h4>
                 <p class="price">{{item.price}}</p>
@@ -35,51 +35,10 @@
 
 <script>
 export default {
-    data() {
-        return {
-            cs2Tarif: [{
-                    name: 'Самостоятельно',
-                    time: '(100 дней)',
-                    price: '2 900 рублей',
-                    description: 'Самостоятельное обучение: <br>- полный объём видео, заданий и дополнительных референсов;<br>- отсутствие оценок за выполнение домашних заданий.'
-                },
-                {
-                    name: 'С куратором',
-                    time: '(130 дней)',
-                    price: '4 900 рублей',
-                    description: 'Обучение с куратором: <br>- увеличенное время доступа к видео, заданиям и дополнительным референсам;<br>- ежедневная проверка домашних заданий;<br>- ответы на вопросы;<br>- персональные рекомендации для улучшения результатов.'
-                },
-            ],
+    props: {
+        courseData: Object
+    }
 
-            courseData: {
-                description: 'Проанализируйте свое свободное время и подумайте, как часто вы сможете заниматься рисованием? ',
-                secondDescription: [
-                    'Если у вас достаточно свободного времени и вы можете много заниматься, вам подойдет тариф на 3 месяца',
-                    'Если у вас мало времени и у вас нет возможности часто заниматься, то мы предлагаем взять вам тариф на 6 или 12 месяцев'
-                ],
-                style: 'cs-2',
-                tarifs: [{
-                        name: 'Доступ на 3 месяца',
-                        price: '3000 рублей',
-                        pricePerM: '(1000 рублей/ месяц)',
-
-                    },
-                    {
-                        name: 'Доступ на 6 месяцев',
-                        price: '4200 рублей',
-                        pricePerM: '(700 рублей/ месяц)',
-
-                    },
-                    {
-                        name: 'Доступ на 1 год',
-                        price: '6000 рублей',
-                        pricePerM: '(500 рублей/ месяц)',
-
-                    },
-                ]
-            }
-        }
-    },
 }
 </script>
 
@@ -319,7 +278,7 @@ section {
     bottom: 100px;
     height: 600px;
     width: 600px;
-    background: url('/img/courses/1/prices/left.svg') no-repeat left bottom;
+    background: url('/img/courses/1/prices/left.svg') no-repeat left bottom / contain;
 }
 
 .cs-1::after {
@@ -329,7 +288,7 @@ section {
     top: 100px;
     height: 600px;
     width: 600px;
-    background: url('/img/courses/1/prices/right.svg') no-repeat right top;
+    background: url('/img/courses/1/prices/right.svg') no-repeat right top / contain;
 }
 
 .cs-2::before {
@@ -339,7 +298,7 @@ section {
     bottom: 100px;
     height: 600px;
     width: 600px;
-    background: url('/img/courses/2/prices/left.svg') no-repeat left bottom;
+    background: url('/img/courses/2/prices/left.svg') no-repeat left bottom / contain;
 }
 
 .cs-2::after {
@@ -349,22 +308,26 @@ section {
     top: 100px;
     height: 600px;
     width: 600px;
-    background: url('/img/courses/2/prices/right.svg') no-repeat right top;
+    background: url('/img/courses/2/prices/right.svg') no-repeat right top /contain;
 }
+
 .cs-2 {
-    .certs{
+    .certs {
         max-width: 1070px;
-        p{
+
+        p {
             max-width: 550px;
             font-size: 25px;
             line-height: 30px;
             padding-left: 75px;
-        
+
         }
-        button{
+
+        button {
             margin-right: 100px;
         }
     }
+
     .price-w {
         height: 663px;
         max-width: 500px;
@@ -398,15 +361,151 @@ section {
         text-align: left;
         padding: 0;
     }
-    .price{
+
+    .price {
         text-align: left;
         width: 100%;
-        
+
     }
-    
-    button{
+
+    button {
         top: 753px;
         width: 300px;
+    }
+}
+
+@media (max-width:1500px) {
+    h4 {
+        font-size: 25px;
+    }
+
+    p {
+        font-size: 22px;
+    }
+
+    .price-w button {
+        font-size: 20px;
+    }
+
+    .certs {
+        padding: 0 35px;
+    }
+
+    .certs p {
+        font-size: 20px;
+    }
+
+    .certs button {
+        font-size: 16px;
+        width: auto;
+        padding: 20px 35px;
+    }
+}
+
+@media (max-width: 1250px) {
+    h2 {
+        margin-top: 41px;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 16px;
+    }
+
+    h2::before {
+        height: 35px;
+        width: 35px;
+        top: 6px;
+        left: -5px;
+    }
+
+    h2::after {
+        height: 35px;
+        width: 35px;
+    }
+
+    li {
+        font-size: 16px;
+        line-height: 20px;
+        max-width: 555px;
+    }
+
+    li:nth-child(2) {
+        max-width: 585px;
+    }
+
+    li::before {
+        height: 40px;
+        width: 40px;
+        left: -55px;
+    }
+
+    h4 {
+        font-size: 22px;
+        line-height: 27px;
+        margin-top: 26px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 22px;
+    }
+
+    .price-w {
+        margin: 0 17px;
+        height: 230px;
+        background: white;
+
+        button {
+            font-size: 16px;
+            line-height: 160.2%;
+            padding: 17px 57px;
+            top: 272px;
+        }
+
+    }
+    .cs-1::after{
+        height: 350px;
+        right: -20px;
+        top: 20px;
+    }
+    .cs-1::before{
+        height: 400px;
+        left: -20px;
+        bottom: 20px;
+    }
+    .cs-2::after{
+        height: 350px;
+        right: -20px;
+        top: 20px;
+    }
+    .cs-2::before{
+        height: 400px;
+        left: -20px;
+        bottom: 20px;
+    }
+    .certs {
+        margin-top: 171px;
+        padding: 0 17px;
+        p {
+            font-size: 16px;
+            line-height: 20px;
+            padding-right: 100px;
+            padding-left: 70px;
+        }
+
+        p::before {
+            height: 40px;
+            width: 40px;
+            top: 9px;
+            left: 10px;
+        }
+
+        button {
+            font-size: 16px;
+            line-height: 160.2%;
+            padding: 0;
+            height: unset;
+            width: 199.33px;
+        }
     }
 }
 </style>

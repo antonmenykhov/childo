@@ -1,13 +1,15 @@
 <template>
 <section class="raskraska">
-    <div class="images">
-        <div class="img">
+    <div class="container">
+        <div class="images">
+            <div class="img">
 
+            </div>
+            <div class="img2"></div>
+            <div class="circle"></div>
         </div>
-        <div class="img2"></div>
-        <div class="circle"></div>
+        <div class="text">Мы любим дарить подарки! Поэтому подготовили для вас небольшой бонус — фантазийную раскраску с веселыми героями: совушкой, жирафиком, зеброй, слоненком, бегемотиком и обезьянкой. Скачайте и распечатайте раскраску и создайте свою сказку с забавными персонажами мира «ChilDo»!</div>
     </div>
-    <div class="text">Мы любим дарить подарки! Поэтому подготовили для вас небольшой бонус — фантазийную раскраску с веселыми героями: совушкой, жирафиком, зеброй, слоненком, бегемотиком и обезьянкой. Скачайте и распечатайте раскраску и создайте свою сказку с забавными персонажами мира «ChilDo»!</div>
 </section>
 </template>
 
@@ -18,6 +20,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    max-width: 1588px;
+    align-items: center;
+}
+
 .images {
     position: relative;
 }
@@ -48,7 +55,7 @@ export default {
         width: 100px;
         border-radius: 50%;
         right: 30px;
-        top:0;
+        top: 0;
         position: absolute;
     }
 
@@ -74,5 +81,30 @@ export default {
     line-height: 30px;
     flex: 1 1;
     max-width: 889px;
+}
+
+@media (max-width: 1500px) {
+    .images {
+        transform: scale(0.7);
+        margin-left: -100px;
+    }
+
+    .text {
+        flex: 1 0 500px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .text {
+        font-size: 12px;
+        line-height: 15px;
+        max-width: 480px;
+        width: unset;
+        flex: 1 1 300px;
+    }
+    .raskraska{
+        padding: 0;
+    }
 }
 </style>

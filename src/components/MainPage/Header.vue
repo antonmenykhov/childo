@@ -41,13 +41,13 @@ export default {
     width: 277px;
     z-index: 1;
     left: 0;
-    bottom: -25vh;
+    bottom: -250px;
     position: absolute;
 }
 
 header {
-    overflow: hidden;
-    height: 100vh;
+
+    padding-top: 323px;
     width: 100%;
     position: relative;
     background: url('/img/HeaderPens.png') no-repeat left center /contain;
@@ -79,7 +79,7 @@ header {
         padding-bottom: 5%;
 
         .title {
-            width: 1047px;
+            max-width: 1047px;
             font-family: Intro;
             font-style: normal;
             font-weight: normal;
@@ -143,6 +143,7 @@ header {
             left: 8px;
             z-index: 2;
         }
+
         .title::after {
             background: white;
             content: "";
@@ -223,21 +224,173 @@ header {
 header::before {
     content: "";
     position: absolute;
-    width: 10%;
+    width: 15%;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
-    left: 211px;
+    left: 220px;
     height: 100%;
     top: 0;
 
 }
 
 header::after {
-    background: url('/img/VectorBlue.png') no-repeat center center / contain;
+    background: url('/img/VectorBlue.png') no-repeat top center / contain;
     content: '';
-    top: -10%;
+    top: 0;
     position: absolute;
     right: 1%;
     width: 35%;
     height: 60%;
+}
+
+@media (max-width: 1500px) {
+    header .jiraff {
+        top: 120px;
+    }
+
+    header {
+        padding-top: 225px;
+
+        .header-container {
+            max-width: 1000px;
+
+            .button-holder {
+                button {
+                    font-size: 20px;
+                }
+
+                .button-description {
+                    font-size: 16px;
+                    max-width: 300px;
+                }
+            }
+
+            .title {
+                font-size: 90px;
+                line-height: 90px;
+
+                .play-button-holder {
+                    left: 395px;
+                    top: 16px;
+
+                    .play-button {
+                        height: 60px;
+                        width: 60px;
+
+                        img {
+                            height: 25px;
+                            width: 25px;
+                        }
+                    }
+                }
+            }
+
+            .title::before {
+                height: 90px;
+                width: 80px;
+                top: 10px;
+                left: 6px;
+            }
+
+            .title::after {
+                height: 90px;
+                width: 80px;
+                top: 10px;
+                left: 6px;
+            }
+
+            .description {
+                font-size: 24px;
+                line-height: 28px;
+                margin-top: 25px;
+            }
+        }
+    }
+
+    header::before {
+        left: 180px;
+    }
+}
+
+@media (max-width:1250px) {
+    header::before {
+        left: 100px;
+    }
+    header {
+        .header-container {
+            max-width: 586px;
+
+            .button-holder {
+                margin-top: 30px;
+
+                button {
+                    font-size: 16px;
+                    padding: 17px 48px;
+                }
+
+                .button-description {
+                    font-size: 16px;
+                    max-width: 300px;
+                }
+
+                .button-description {
+                    font-size: 10px;
+                    line-height: 140.2%;
+                    max-width: 140px;
+                }
+            }
+
+            .title {
+                font-size: 65px;
+                line-height: 65px;
+                margin-bottom: 25px;
+
+                .play-button-holder {
+                    left: 282px;
+                    top: 10px;
+
+                    .play-button {
+                        height: 50px;
+                        width: 50px;
+
+                        img {
+                            height: 25px;
+                            width: 25px;
+                        }
+                    }
+
+                    .play-button-text {
+                        font-size: 10px;
+                        line-height: 160.2%;
+                    }
+                }
+            }
+
+            .title::before {
+                height: 60px;
+                width: 60px;
+                top: 10px;
+                left: 6px;
+            }
+
+            .title::after {
+                height: 60px;
+                width: 60px;
+                top: 10px;
+                left: 6px;
+            }
+
+            .description {
+                font-size: 18px;
+                line-height: 22px;
+                max-width: 440px;
+
+            }
+        }
+    }
+}
+@media (max-width: 1000px){
+    header::before {
+        left: 120px;
+    }
 }
 </style>

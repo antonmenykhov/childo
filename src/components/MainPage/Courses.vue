@@ -66,10 +66,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .about {
     position: relative;
     padding-bottom: 195px;
+
     .container {
         flex-direction: column;
         align-items: center;
@@ -94,7 +94,7 @@ export default {
 
     .img-text2 {
         .text {
-            width: 567px;
+            max-width: 567px;
         }
     }
 
@@ -115,7 +115,7 @@ export default {
     }
 
     .text {
-        width: 505px;
+        max-width: 505px;
         font-size: 25px;
         line-height: 30px;
     }
@@ -149,7 +149,7 @@ export default {
         padding: 20px 39px;
         font-size: 25px;
         line-height: 160.2%;
-        border:none;
+        border: none;
         outline: none;
         text-align: center;
 
@@ -229,9 +229,10 @@ export default {
                 transform: translateY(-5px);
             }
         }
-        .child{
-            .image::after{
-                content:'';
+
+        .child {
+            .image::after {
+                content: '';
                 background: url('/img/jirafCourses.png') no-repeat right center / contain;
                 height: 216px;
                 width: 144px;
@@ -240,6 +241,7 @@ export default {
                 top: 15px;
             }
         }
+
         .course-wrapper:first-child {
             margin-right: 23px;
 
@@ -308,6 +310,7 @@ export default {
     position: absolute;
     bottom: 160px;
 }
+
 .about::before {
     content: "";
     background: url('/img/coursesGreen.svg') no-repeat right center / contain;
@@ -328,7 +331,7 @@ export default {
     right: 0;
     position: absolute;
     bottom: 160px;
-    
+
 }
 
 .k::before {
@@ -341,14 +344,217 @@ export default {
     top: 10px;
     left: 4px;
 }
+
 .k::after {
     content: '';
     background: white;
     width: 50.28px;
     height: 55.04px;
     position: absolute;
- 
+
     top: 5px;
     left: 0px;
+}
+
+@media (max-width: 1500px) {
+    .courses-wrapper .courses-holder .course-wrapper {
+        flex: 1 1 350px;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper h3 {
+        font-size: 24px;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper p {
+        font-size: 20px;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper button {
+        font-size: 20px;
+    }
+
+    .about {
+        h4 {
+            font-size: 28px;
+            line-height: 32px;
+        }
+
+        .text {
+            font-size: 20px;
+        }
+
+        button {
+            font-size: 20px;
+        }
+
+        .quote {
+            font-size: 20px;
+            width: 455px;
+        }
+
+        .connect {
+            font-size: 20px;
+            width: 655px;
+        }
+
+    }
+}
+
+@media (max-width: 1250px) {
+    .courses-wrapper::before {
+        height: 400px;
+        left: -40px;
+        top: 0;
+        transform: rotate(-10deg);
+    }
+
+    .courses-wrapper::after {
+        height: 300px;
+        transform: rotate(-10deg);
+        right: -30px;
+        bottom: 20px;
+    }
+
+    .courses-wrapper {
+        padding-bottom: 128px;
+    }
+
+    .courses-wrapper {
+        .k {
+            margin-top: 50px;
+            font-size: 40px;
+            line-height: 40px;
+        }
+
+        .k::before {
+            content: '';
+            background: url('/img/к.svg') no-repeat center center / contain;
+            width: 30.28px;
+            height: 32.04px;
+            position: absolute;
+            z-index: 2;
+            top: 6px;
+            left: 0px;
+        }
+
+        .k::after {
+            content: '';
+            background: white;
+            width: 30px;
+            height: 32px;
+            position: absolute;
+
+            top: 5px;
+            left: 0px;
+        }
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper .image {
+        height: 187px;
+        width: 100%;
+        margin-bottom: 10px;
+
+        max-width: 280px;
+    }
+
+    .courses-wrapper .courses-holder .child .image::after {
+        height: 80%;
+        right: -68px;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper {
+        flex: 1 1 250px;
+
+        h3 {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            text-align: center;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        button {
+            margin-top: 35px;
+            font-size: 20px;
+            padding: 15px 49px;
+        }
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper:first-child {
+        margin-right: 10px;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper:last-child {
+        margin-left: 10px;
+    }
+
+    .about {
+        padding-bottom: 76px;
+        h4 {
+            margin-top: 69px;
+            font-size: 24px;
+            line-height: 29px;
+            max-width: 673px;
+        }
+
+        .img-text,
+        .img-text2 {
+            padding: 0 55px;
+        }
+
+        .img1 {
+            max-width: 240px;
+            margin-right: 20px;
+            height: 134px;
+        }
+
+        .img2 {
+            max-width: 240px;
+            margin-left: 20px;
+            height: 134px;
+        }
+
+        .text {
+            font-size: 16px;
+            line-height: 20px;
+            flex: 1 1 300px;
+        }
+
+        .quote {
+            margin-bottom: 81px;
+            margin-top: 81px;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        .connect {
+            font-size: 18px;
+            line-height: 22px;
+            padding: 0 20px;
+            height: auto;
+            margin-bottom: 54px;
+            margin-top: 81px;
+        }
+
+        button {
+            font-size: 16px;
+            line-height: 160.2%;
+            padding: 17px 39px;
+        }
+    }
+    .about::after{
+        height: 400px;
+        top: 230px;
+    }
+    .about::before{
+        top: unset;
+        
+        height: 300px;
+        bottom: 100px;
+    }
 }
 </style>

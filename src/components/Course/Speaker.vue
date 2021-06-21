@@ -25,36 +25,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-            speakerData: {
-                img: '/img/teachers/2.png',
-                name: 'Мария',
-                description: 'Я Мария, ваш наставник и проводник в страну живописи!<br><br> Хочу вам показать  огромный  мир  цветной и яркий, <br>О самом главном,  интересном рассказать, <br>Мы мир раскрасим красочной палитрой <br>Научимся  его любить и понимать!',
-                univer: [
-                    'Художественное отделение МБОУ ДОД города Кургана «Детская  школа  искусств им.  В. А. Громова», свидетельство об окончании с отличием',
-                    'МБОУДО города Кургана «ДХШ им. В. Ф. Илюшина» свидетельство об окончании с отличием ',
-                    'Студентка Тюменского государственного института культуры, факультет: «Дизайн». '
-
-                ],
-                quotes: [
-                    'В каждой  краске найдётся цветов понемногу,<br> Каждая  нам    раскрасит  дорогу,<br>Небо и звёзды, и солнечный свет – <br>Наш  разноцветный скуке ответ!',
-
-                    'Наберу на кисть поярче краски - <br>Желтой, розовой, зеленой, голубой… <br>И таким прекрасным, словно в сказке,<br>Разноцветный мир хочу я видеть свой!'
-                ],
-                achiv: [
-                    'Премия «Юные таланты Кургана» за творческие достижения   от руководителя Администрации города Кургана.',
-                    'Диплом Администрации города Кургана за 1 место в городском конкурсе в сфере экологической безопасности и охраны окружающей среды ',
-                    'Диплом лауреата I областной научно - практической конференции« Я– исследователь» в рамках областного педагогического Арт - форума« Культура и образование в современном обществе», посвященном Году культуры в России.',
-                    'Диплом лауреата III степени II областной научно - практической конференции« Я– исследователь».',
-                    'Грамоты ФГБОУДО ВДЦ« Смена», ФГБОУ« МДЦ« Артек», ФГБОУ ВДЦ« Океан» за творческие успехи в период реализации тематических смен.',
-                    'Участие в проекте Курганского областного интернет - портала« Очевидец Медиа» на присуждение региональной общественной премии« Персона года 2014», номинация« Искусство.Творчество.Живопись» 2014 г.', 'Дипломы победителя и лауреата международных и всероссийских конкурсов декоративно - прикладного искусства '
-
-                ],
-                style: 'cs-1'
-            }
-        }
-    },
+    props: {
+        speakerData: Object
+    }
 }
 </script>
 
@@ -134,6 +107,7 @@ h2::before {
     z-index: 2;
     position: absolute;
 }
+
 h2::after {
     left: -11px;
     top: 7px;
@@ -141,7 +115,7 @@ h2::after {
     background: white;
     height: 70.72px;
     width: 65.5px;
-    
+
     position: absolute;
 }
 
@@ -185,6 +159,7 @@ ul {
     padding-top: 30px;
     padding-bottom: 51px;
     padding-left: 0;
+    max-width: 1027px;
 }
 
 .quote-1,
@@ -193,7 +168,7 @@ ul {
     border-radius: 20px;
     padding: 19px 30px;
     margin-left: -29px;
-
+    max-width: 676px;
     color: white;
 
     font-size: 25px;
@@ -232,25 +207,195 @@ button {
 
     color: #FFFFFF;
 }
-section{
+
+section {
     position: relative;
 }
-.cs-1::before{
+
+.cs-1::before {
     position: absolute;
     content: '';
     left: 0;
     bottom: 100px;
     height: 600px;
     width: 600px;
-    background: url('/img/courses/1/speaker/left.svg') no-repeat left bottom;
+    background: url('/img/courses/1/speaker/left.svg') no-repeat left bottom / contain;
 }
-.cs-1::after{
+
+.cs-1::after {
     position: absolute;
     content: '';
     right: 0;
     top: 100px;
     height: 600px;
     width: 600px;
-    background: url('/img/courses/1/speaker/right.svg') no-repeat right top;
+    background: url('/img/courses/1/speaker/right.svg') no-repeat right top / contain;
+}
+
+.cs-2::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    bottom: 100px;
+    height: 600px;
+    width: 600px;
+    background: url('/img/courses/2/speaker/left.svg') no-repeat left bottom / contain;
+}
+
+.cs-2::after {
+    position: absolute;
+    content: '';
+    right: 0;
+    top: 100px;
+    height: 600px;
+    width: 600px;
+    background: url('/img/courses/2/speaker/right.svg') no-repeat right top / contain;
+}
+
+.cs-2 {
+    button {
+        background: linear-gradient(93.43deg, #F574BA 0%, #C9287F 100%);
+        box-shadow: 0px 0px 60px #F574BA;
+    }
+
+    .description {
+        max-width: 676px;
+    }
+}
+
+@media (max-width: 1500px) {
+    h3 {
+        font-size: 30px;
+    }
+
+    .description {
+        font-size: 20px;
+    }
+
+    li {
+        font-size: 20px;
+    }
+
+    .quote-1,
+    .quote-2 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1250px) {
+    h3 {
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 35px;
+        margin-bottom: 15px;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 0;
+    }
+
+    ul {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    li {
+        font-size: 14px;
+        line-height: 17px;
+        max-width: 536px;
+        text-indent: 20px;
+    }
+
+    li::before {
+        height: 12px;
+        width: 12px;
+        top: 4px;
+        left: 2px;
+    }
+
+    .quote-1,
+    .quote-2 {
+        margin-top: 37px;
+        margin-bottom: 0;
+        margin-left: -12px;
+        font-size: 14px;
+        line-height: 17px;
+        max-width: 371px;
+        padding: 13px;
+
+    }
+
+    .go {
+        margin-top: 48px;
+        margin-bottom: 38px;
+    }
+
+    button {
+        font-size: 16px;
+        line-height: 160.2%;
+        padding: 17px 66px;
+        height: unset;
+        width: unset;
+        max-width: 260px;
+    }
+
+    .container {
+        margin-bottom: 108px;
+        margin-top: 40px;
+    }
+
+    h2 {
+        font-weight: normal;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 40px;
+    }
+
+    h2::before {
+        height: 40px;
+        width: 40px;
+        top: 5px;
+        left: -6px;
+    }
+
+    h2::after {
+        height: 40px;
+        width: 40px;
+    }
+
+    .image {
+        height: 175px;
+        width: 175px;
+        margin-bottom: 0;
+    }
+
+    .image::before {
+        height: 150px;
+        bottom: -20px;
+        right: -70px;
+    }
+
+    .name {
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 40px;
+        margin-bottom: 0;
+    }
+    .cs-1::before{
+        height: 300px;
+        left: -30px;
+    }
+    .cs-2::before{
+        height: 300px;
+        left: -30px;
+    }
+    .cs-1::after{
+        height: 300px;
+    }
+    .cs-2::after{
+        height: 300px;
+    }
 }
 </style>

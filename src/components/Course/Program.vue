@@ -16,92 +16,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-            courseData: {
-                style: 'cs-2',
-                lessons: [{
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'orange'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'green'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'pink'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'blue'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'pink'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'orange'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'orange'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'green'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'blue'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'blue'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'pink'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'orange'
-                    },
-                    {
-                        img: '/courses/1/prog/prog1.png',
-                        smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                        name: 'УРОК 1 “ПРИВЕТ ИЗ АНТАРКТИКИ”',
-                        color: 'green'
-                    },
-                ]
-            }
-        }
-    },
+    props: {
+        courseData: Object
+    }
 }
 </script>
 
@@ -140,6 +57,7 @@ h2::before {
     z-index: 2;
     position: absolute;
 }
+
 h2::after {
     left: -15px;
     top: 10px;
@@ -147,14 +65,16 @@ h2::after {
     background: white;
     height: 56.72px;
     width: 70.5px;
-    
+
     position: absolute;
 }
-.cs-2{
-    h2::before{
+
+.cs-2 {
+    h2::before {
         background: url('/img/courses/2/prog/п.svg') no-repeat center center / contain;
     }
 }
+
 .program-holder {
     display: flex;
     flex-wrap: wrap;
@@ -267,6 +187,7 @@ p {
     bottom: 92px;
     right: 0;
 }
+
 .cs-2 {
     position: relative;
 
@@ -296,5 +217,109 @@ p {
     width: 488px;
     bottom: 92px;
     right: 0;
+}
+
+@media (max-width: 1500px) {
+    .program {
+        flex: 1 1 225px;
+        background: white;
+    }
+
+    h4 {
+        font-size: 22px;
+    }
+
+}
+
+@media (max-width: 1250px) {
+    h2 {
+        font-size: 40px;
+        line-height: 40px;
+        margin-top: 207px;
+        margin-bottom: 100px;
+    }
+
+    h2::before {
+        height: 35px;
+        width: 43px;
+        top: 6px;
+        left: -6px;
+    }
+
+    h2::after {
+        height: 35px;
+        width: 35px;
+        top: 6px;
+        left: -6px;
+
+    }
+
+    .program {
+        flex: 1 1 150px;
+        width: unset;
+        min-height: 192px;
+        margin: 29px 20px;
+        max-width: 175px;
+    }
+
+    .program-holder {
+        margin-bottom: 192px;
+    }
+
+    h4 {
+        font-size: 15px;
+        line-height: 15px;
+    }
+
+    p {
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .image {
+        height: 58px;
+        width: 58px;
+        top: -29px
+    }
+
+    .cs-1 {
+        .left {
+            height: 300px;
+            top: 0;
+        }
+
+        .left::after {
+            height: 350px;
+            top: 120px;
+        }
+    }
+
+    .cs-2 {
+        .left {
+            height: 300px;
+            top: 0;
+        }
+
+        .left::after {
+            height: 250px;
+            top: 160px;
+        }
+    }
+
+    .cs-1::after {
+
+        height: 400px;
+        right: -60px;
+        transform: rotate(6deg);
+    }
+
+    .cs-2::after {
+
+        height: 350px;
+        right: -60px;
+        transform: rotate(6deg);
+    }
+
+    
 }
 </style>

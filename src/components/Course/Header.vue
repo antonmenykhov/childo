@@ -23,41 +23,34 @@
 
 <script>
 export default {
+    props: {
+        courseData: Object
+    },
     data() {
         return {
-            courseData: {
-                header: 'курс 2',
-                description: 'Онлайн-курс по рисованию «ChilDo»для детей — это увлекательное путешествие в мир ярких красок, креатива и творчества.',
-                girl: 'tanya',
-                style: 'cs-2'
-            },
+
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-.superSelect {
-    top: 50px;
-    position: absolute !important;
-    z-index: 1000;
-
-}
-
 .gradient {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
     transform: rotate(90deg);
     height: 712px;
+    
     width: 277px;
     z-index: 1;
     left: 0;
-    bottom: -25vh;
+    bottom: -250px;
     position: absolute;
 }
 
 header {
-    overflow: hidden;
-    height: 120vh;
+
+    padding-top: 322px;
+    padding-bottom: 280px;
     width: 100%;
     position: relative;
     background: url('/img/HeaderPens.png') no-repeat left center /contain;
@@ -244,11 +237,142 @@ header::before {
 }
 
 .tanya {
-    background: url('/img/courses/2/girl.png') no-repeat center center / contain;
+    background: url('/img/courses/2/girl.png') no-repeat right center / contain;
     height: 1104px;
     position: absolute;
     width: 934px;
-    right: -74px;
+    right: 0;
     top: 0px;
+    z-index: 2;
+}
+
+@media (max-width: 1500px) {
+header::before {
+        left: 120px;
+    }
+    header {
+        overflow: hidden;
+        padding-top: 225px;
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+
+            .button-holder {
+                button {
+                    font-size: 20px;
+                }
+
+                .button-description {
+                    font-size: 16px;
+                    max-width: 300px;
+                }
+            }
+
+            .title {
+                font-size: 90px;
+                line-height: 90px;
+
+            }
+
+            .title::before {
+                height: 70px;
+                width: 70px;
+                top: 14px;
+                left: 2px;
+            }
+
+            .title::after {
+                height: 80px;
+                width: 60px;
+                top: 10px;
+                left: 6px;
+                opacity: 0;
+            }
+
+            .description {
+                font-size: 24px;
+                line-height: 28px;
+                margin-top: 25px;
+            }
+        }
+    }
+
+    header::before {
+        left: 180px;
+    }
+
+    .masha {
+        height: 900px;
+    }
+
+    .tanya {
+        height: 700px;
+        top: 100px;
+        right: 0;
+    }
+}
+
+@media (max-width: 1250px) {
+    header::before {
+        left: 150px;
+    }
+    .masha{
+        height: 700px;
+        width: 500px;
+        right: -50px;
+        top: 100px;
+    }
+    .masha::after{
+        height: 350px;
+        left: -120px;
+    }
+    .tanya{
+        top: 0;
+        height: 700px;
+        width: 50%;
+    }
+    header {
+        padding-top: 219px;
+        padding-bottom: 87px;
+
+        .header-container {
+            max-width: 586px;
+
+            .title {
+                font-size: 80px;
+                line-height: 80px;
+            }
+
+            .title::after {
+                height: 65px;
+                left: -5px;
+                top: 12px;
+            }
+
+            .title::before {
+                height: 65px;
+                left: -5px;
+                top: 12px;
+            }
+
+            .description {
+                font-size: 16px;
+                line-height: 20px;
+                max-width: 320px;
+            }
+
+            .button-holder {
+                margin-top: 62px;
+
+                button {
+                    font-size: 16px;
+                    line-height: 160.2%;
+                    padding: 17px 65px;
+                }
+            }
+
+        }
+    }
 }
 </style>

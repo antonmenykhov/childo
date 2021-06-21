@@ -55,6 +55,7 @@ export default {
     background: white;
     position: relative;
     z-index: 900;
+    min-height: 100vh;
 
     .container {
         flex-direction: column;
@@ -344,5 +345,15 @@ box-shadow: 0px 0px 60px #F69B91;
 
 .gr-9::after {
     background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
+}
+@media (max-width: 1300px){
+    section::before{
+        left: -50px!important;
+        bottom: -100px!important;
+    }
+    section::after{
+        
+        height: 700px!important;
+    }
 }
 </style>

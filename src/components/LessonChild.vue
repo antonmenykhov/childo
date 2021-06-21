@@ -26,7 +26,7 @@
         </div>
     </div>
     <el-select class="superSelect" v-model="style">
-        <el-option v-for="item in listStyle"  :value="item" :key="item"></el-option>
+        <el-option v-for="item in listStyle" :value="item" :key="item"></el-option>
     </el-select>
 </section>
 </template>
@@ -78,11 +78,10 @@ export default {
 <style lang="scss" scoped>
 .superSelect {
     top: 50px;
-    position: absolute!important;
+    position: absolute !important;
     z-index: 1000;
-    
-}
 
+}
 
 .lesson {
     background: white;
@@ -182,9 +181,9 @@ export default {
         transition: all .2s;
         position: relative;
 
-       
     }
-    .play::before{
+
+    .play::before {
         border-radius: 50%;
         content: '';
         position: absolute;
@@ -198,8 +197,9 @@ export default {
         opacity: 0;
 
     }
-    .thumb:hover{
-        .play::before{
+
+    .thumb:hover {
+        .play::before {
             opacity: 1;
         }
     }
@@ -595,6 +595,7 @@ export default {
     right: 0;
     z-index: -1;
 }
+
 .ch-9 {
     padding: 125px 0 92px;
 
@@ -615,7 +616,7 @@ export default {
 
     .dz-button {
         background: linear-gradient(93.58deg, #F3B013 0%, #FC3939 100%);
-box-shadow: 0px 0px 60px #F6921D;
+        box-shadow: 0px 0px 60px #F6921D;
         color: white;
     }
 }
@@ -661,7 +662,7 @@ box-shadow: 0px 0px 60px #F6921D;
 
     .dz-button {
         background: linear-gradient(93.58deg, #F3B013 0%, #FA7518 100%);
-box-shadow: 0px 0px 60px #F6921D;
+        box-shadow: 0px 0px 60px #F6921D;
         color: white
     }
 }
@@ -707,7 +708,7 @@ box-shadow: 0px 0px 60px #F6921D;
 
     .dz-button {
         background: linear-gradient(93.58deg, #B04E1A 0%, #12473C 100%);
-box-shadow: 0px 0px 60px #C08413;
+        box-shadow: 0px 0px 60px #C08413;
         color: white;
     }
 }
@@ -732,6 +733,7 @@ box-shadow: 0px 0px 60px #C08413;
     right: 0;
     z-index: -1;
 }
+
 .ch-12 {
     padding: 125px 0 92px;
 
@@ -752,7 +754,7 @@ box-shadow: 0px 0px 60px #C08413;
 
     .dz-button {
         background: linear-gradient(93.58deg, #8E9CCA 0%, #984260 100%);
-box-shadow: 0px 0px 60px #AB819B;
+        box-shadow: 0px 0px 60px #AB819B;
         color: white
     }
 }
@@ -777,6 +779,7 @@ box-shadow: 0px 0px 60px #AB819B;
     right: 0;
     z-index: -1;
 }
+
 .ch-13 {
     padding: 125px 0 92px;
 
@@ -797,7 +800,7 @@ box-shadow: 0px 0px 60px #AB819B;
 
     .dz-button {
         background: linear-gradient(93.58deg, #A7CA3E 0%, #FCB03B 100%);
-box-shadow: 0px 0px 60px #5981AB;
+        box-shadow: 0px 0px 60px #5981AB;
         color: white;
     }
 }
@@ -821,5 +824,102 @@ box-shadow: 0px 0px 60px #5981AB;
     top: 0;
     right: 0;
     z-index: -1;
+}
+
+@media (max-width: 1700px) {
+
+    .ch-1 .jiraf,
+    .ch-3 .jiraf,
+    .ch-5 .jiraf,
+    .ch-7 .jiraf,
+    .ch-9 .jiraf,
+    .ch-11 .jiraf,
+    .ch-13 .jiraf {
+        width: 350px;
+        top: unset;
+        bottom: 100px;
+        height: 600px;
+        right: 0;
+    }
+
+    .ch-2 .jiraf,
+    .ch-4 .jiraf,
+    .ch-6 .jiraf,
+    .ch-8 .jiraf,
+    .ch-10 .jiraf,
+    .ch-12 .jiraf,
+    .ch-14 .jiraf {
+        width: 350px;
+        top: unset;
+        bottom: 100px;
+        height: 600px;
+        right: 0;
+        left: unset;
+        transform: rotateY(180deg);
+    }
+}
+
+@media (max-width: 1300px) {
+    .lesson {
+        h4 {
+            font-size: 50px;
+            line-height: 50px;
+        }
+
+        h2 {
+            font-size: 70px;
+            line-height: 70px;
+        }
+
+        .description {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+    }
+
+    .ch-1::before,
+    .ch-3::before,
+    .ch-5::before,
+    .ch-7::before,
+    .ch-9::before,
+    .ch-11::before,
+    .ch-13::before{
+        left: -20px;
+    }
+    .ch-1::after,
+    .ch-3::after,
+    .ch-5::after,
+    .ch-7::after,
+    .ch-9::after,
+    .ch-11::after,
+    .ch-13::after{
+        right: -200px;
+    }
+    .ch-2::before,
+    .ch-4::before,
+    .ch-6::before,
+    .ch-8::before,
+    .ch-10::before,
+    .ch-12::before,
+    .ch-14::before{
+        left: -100px;
+    }
+    .ch-2::after,
+    .ch-4::after,
+    .ch-6::after,
+    .ch-8::after,
+    .ch-10::after,
+    .ch-12::after,
+    .ch-14::after{
+        right: -00px;
+    }
+}
+@media (max-width: 950px){
+    .lesson{
+        li{
+             max-width: 300px;
+        }
+    }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
 <section :class="courseData.style">
     <h2>
-        ИНСТРУМЕНТЫ И МАТЕРИАЛЫ ДЛЯ КУРСА
+        ИНСТРУМЕНТЫ <br> И МАТЕРИАЛЫ ДЛЯ КУРСА
     </h2>
     <div class="tools">
         <ul v-if="courseData.style=='cs-1'">
@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-        <div class="image" :style="'background: url(\'/img'+courseData.image+'\') no-repeat center center / cover'"></div>
+        <div class="image" :style="'background: url(\'/img'+courseData.toolsimage+'\') no-repeat center center / cover'"></div>
 
     </div>
 </section>
@@ -36,42 +36,9 @@
 
 <script>
 export default {
-    data() {
-        return {
-            courseData: {
-                tools: [
-                    'Набор акриловых красок', 'Белая краска (белила титановые) — стоит приобрести отдельно, так как она используется в каждом рисунке', 'Палитра', 'Карандаш простой', 'Точилка', 'Ластик', 'Набор бумаги для рисования (для акрила, гуаши) плотность от 150 гр/м2, размер 30х40 см или холст на картоне 30х40 см', 'Тонированная бумага (черная)', 'Кисть синтетика круглая №2, №5, №10', 'Кисть синтетика плоская №5, №18', 'Кисть щетина №10', 'Ватные палочки', 'Губка поролоновая бытовая', 'Черный фломастер или тонкий маркер', 'Воздушный шарик', 'Сухие и влажные салфетки', 'Лист плотного картона'
-
-                ],
-                apple: [
-                    'Планшет iPad Pro (рекомендовано) или iPad с поддержкой Apple Pencil',
-
-                    ' Стилуc Apple Pencil — подробнее о совместимости планшета и стилуса >>>',
-
-                    'Программа Procreate для iPad (примерная цена 900 рублей) <br>На занятиях мы будем использовать эти устройства и программное обеспечение, но вы можете подобрать аналогичные варианты других производителей.'
-                ],
-                progs: [
-                    'Adobe Photoshop Sketch',
-                    'Adobe Illustrator Draw',
-                    'MediBang Paint',
-                    'Autodesk SketchBook',
-                    'ArtFlow'
-
-                ],
-                bonuses: [{
-                        name: 'Чек лист основы Procreate- ',
-                        link: ''
-                    },
-                    {
-                        name: 'Каталог кистей для программы Procreate- ',
-                        link: ''
-                    }
-                ],
-                image: '/courses/2/tools/tools.jpg',
-                style: 'cs-2'
-            }
-        }
-    },
+    props: {
+        courseData: Object
+    }
 }
 </script>
 
@@ -121,11 +88,12 @@ h2::after {
 section {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
 }
 
 .tools {
-    margin-left: 380px;
+    margin-left: 22vw;
     margin-bottom: 219px;
     display: flex;
     align-items: stretch;
@@ -197,6 +165,7 @@ section {
     content: '';
 
 }
+
 .cs-2::before {
     position: absolute;
     background: url('/img/courses/2/tools/left.svg') no-repeat left top / contain;
@@ -208,6 +177,7 @@ section {
     content: '';
 
 }
+
 li {
     font-size: 20px;
     line-height: 24px;
@@ -279,19 +249,22 @@ ul {
 }
 
 .cs-2 {
-    .certs{
+    .certs {
         justify-content: center;
-        
-        p{
+
+        p {
             flex: 1 1 300px;
         }
-        button{
+
+        button {
             flex: 1 1 300px;
         }
     }
-    .tools{
+
+    .tools {
         margin-bottom: 152px;
     }
+
     button {
         background: linear-gradient(94.07deg, #F574BA 0%, #CD237F 100%);
         box-shadow: 0px 0px 40px #D6358C;
@@ -319,75 +292,221 @@ ul {
         color: #515151;
         max-width: 673px;
     }
-    
+
     li {
         font-size: 30px;
         line-height: 37px;
         max-width: 673px;
     }
-    li::before{
+
+    li::before {
         top: 8px;
     }
-    .progs{
-        li:nth-child(1)::before, li:nth-child(5)::before{
+
+    .progs {
+
+        li:nth-child(1)::before,
+        li:nth-child(5)::before {
             background: #A7CA3E;
         }
-         li:nth-child(2)::before, li:nth-child(6)::before{
+
+        li:nth-child(2)::before,
+        li:nth-child(6)::before {
             background: #45C6DD;
         }
-         li:nth-child(3)::before, li:nth-child(7)::before{
+
+        li:nth-child(3)::before,
+        li:nth-child(7)::before {
             background: #E757A5;
         }
-        li:nth-child(4)::before, li:nth-child(8)::before{
+
+        li:nth-child(4)::before,
+        li:nth-child(8)::before {
             background: #F66C17;
         }
     }
 
-    .bonuses{
+    .bonuses {
         padding: 0;
-        li{
+
+        li {
             text-indent: 25px;
         }
-        li::before{
+
+        li::before {
             left: 0;
             top: 8px;
         }
-         li:nth-child(1)::before, li:nth-child(4)::before{
+
+        li:nth-child(1)::before,
+        li:nth-child(4)::before {
             background: #45C6DD;
         }
-         li:nth-child(2)::before, li:nth-child(5)::before{
+
+        li:nth-child(2)::before,
+        li:nth-child(5)::before {
             background: #F66C17;
         }
-         li:nth-child(3)::before, li:nth-child(6)::before{
+
+        li:nth-child(3)::before,
+        li:nth-child(6)::before {
             background: #A7CA3E;
         }
     }
+
     .apple {
         margin-right: 0;
         padding-left: 0;
+
         li {
             text-indent: 25px;
             margin-right: 0;
             max-width: 673px;
             margin-bottom: 37px;
         }
-        li:last-child{
+
+        li:last-child {
             margin-bottom: 0;
         }
-        li::before{
+
+        li::before {
             left: 0;
             top: 8px;
         }
-        li:nth-child(1)::before, li:nth-child(4)::before{
+
+        li:nth-child(1)::before,
+        li:nth-child(4)::before {
             background: #E757A5;
         }
-         li:nth-child(2)::before, li:nth-child(5)::before{
+
+        li:nth-child(2)::before,
+        li:nth-child(5)::before {
             background: #F66C17;
         }
-         li:nth-child(3)::before, li:nth-child(6)::before{
+
+        li:nth-child(3)::before,
+        li:nth-child(6)::before {
             background: #A7CA3E;
         }
 
+    }
+}
+
+@media (max-width: 1500px) {
+    li {
+        font-size: 18px;
+
+    }
+
+    li::before {
+        height: 16px;
+        width: 16px;
+        top: 5px
+    }
+}
+
+@media (max-width: 1250px) {
+    h2 {
+        font-size: 40px;
+        line-height: 40px;
+        margin-top: 40px;
+        margin-bottom: 90px;
+        max-width: 1020px;
+    }
+
+    h2::before {
+        top: 5.5px;
+        height: 35px;
+        width: 37px;
+        left: 112px;
+    }
+
+    h2::after {
+        top: 5.5px;
+        height: 35px;
+        width: 37px;
+        left: 112px;
+    }
+
+    ul {
+        max-width: 392px;
+        margin-right: 92px;
+    }
+
+    li {
+        font-size: 16px;
+        line-height: 20px;
+        max-width: 392px;
+    }
+
+    li::before {
+        height: 14px;
+        width: 14px;
+        top: 3px;
+        left: -18px;
+    }
+
+    .image::before {
+        height: 200px;
+        bottom: -100px;
+        left: -150px;
+    }
+
+    .tools {
+        margin-left: 162px;
+        margin-bottom: 179px;
+    }
+
+    .cs-1::before {
+        height: 400px;
+        top: 50px;
+    }
+     .cs-2::before {
+        height: 400px;
+        top: 50px;
+    }
+
+    .cs-2 {
+        .tools{
+            margin-bottom: 0;
+        }
+        button {
+            font-size: 16px;
+            line-height: 160.2%;
+            padding: 17px 65px;
+        }
+
+        .image {
+            height: 467px;
+        }
+
+        h4 {
+            font-size: 25px;
+            line-height: 30px;
+            margin-top: 30px;
+            margin-bottom: 12px;
+            max-width: 343px;
+        }
+
+        .apple {
+            li {
+                font-size: 16px;
+                line-height: 20px;
+                max-width: 398px;
+                text-indent: 20px;
+            }
+            li::before{
+                top: 3px;
+            }
+        }
+
+        li {
+            font-size: 16px;
+            line-height: 20px;
+        }
+        li::before{
+            top: 3px;
+        }
     }
 }
 </style>

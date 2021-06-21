@@ -1,7 +1,9 @@
 <template>
 <section class="cert">
-    <div class="img"></div>
-    <div class="text">Не знаете, что подарить? Выбирайте подарочный сертификат на онлайн-курс по рисованию «ChilDo»! Оформить сертификат можно *** (здесь в зависимости от того, как можно приобрести сертификат: написав в WhatsApp по номеру, перейдя по ссылке, нажав кнопку, в блоке “тарифы”)</div>
+    <div class="container">
+        <div class="img"></div>
+        <div class="text">Не знаете, что подарить? Выбирайте подарочный сертификат на онлайн-курс по рисованию «ChilDo»! Оформить сертификат можно *** (здесь в зависимости от того, как можно приобрести сертификат: написав в WhatsApp по номеру, перейдя по ссылке, нажав кнопку, в блоке “тарифы”)</div>
+    </div>
 </section>
 </template>
 
@@ -12,13 +14,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    max-width: 1200px;
+    align-items: center;
+}
+
 .img {
     position: relative;
     border-radius: 10px;
     width: 308px;
     height: 218px;
     background: url('/img/cert.jpg') no-repeat center center / cover;
-    
+
 }
 
 .text {
@@ -43,11 +50,45 @@ export default {
 
 .cert {
     position: relative;
-    padding: 132px 360px;
+    padding: 132px 0;
     width: 100%;
     display: flex;
     align-items: center;
     background: #EBEBEB;
     z-index: -2;
+}
+
+@media (max-width: 1500px) {
+    .text {
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width: 1250px) {
+    .cert{
+        padding: 41px 0;
+    }
+    .container {
+        max-width: 798px;
+    }
+
+    .img {
+        height: 130px;
+        width: 180px;
+    }
+
+    .img::before {
+        height: 60px;
+        width: 60px;
+        right: -30px;
+        top: -30px
+    }
+
+    .text {
+        font-size: 12px;
+        line-height: 15px;
+        max-width: 480px;
+    }
 }
 </style>

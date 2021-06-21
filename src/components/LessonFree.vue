@@ -7,15 +7,15 @@
         <p class="description" v-html="lessonData.description">
         </p>
         <div>
-        <div class="thumb" :style="'background: url(\'/img/lessons/free/'+lessonData.thumb+'\') no-repeat center top / cover'">
-        <div class="play"></div>
-        </div>
-        <div class="req">
-            <h6>Для урока потребуется:</h6>
-            <ul>
-                <li v-for="item in lessonData.req" :key="item">{{item}}</li>
-            </ul>
-        </div>
+            <div class="thumb" :style="'background: url(\'/img/lessons/free/'+lessonData.thumb+'\') no-repeat center top / cover'">
+                <div class="play"></div>
+            </div>
+            <div class="req">
+                <h6>Для урока потребуется:</h6>
+                <ul>
+                    <li v-for="item in lessonData.req" :key="item">{{item}}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </section>
@@ -105,7 +105,8 @@ export default {
         z-index: 1;
         cursor: pointer;
     }
-     .play {
+
+    .play {
         background: url('/img/lessons/play.svg') no-repeat center center / contain;
         height: 68px;
         width: 68px;
@@ -113,9 +114,9 @@ export default {
         transition: all .2s;
         position: relative;
 
-       
     }
-    .play::before{
+
+    .play::before {
         border-radius: 50%;
         content: '';
         position: absolute;
@@ -129,8 +130,9 @@ export default {
         opacity: 0;
 
     }
-    .thumb:hover{
-        .play::before{
+
+    .thumb:hover {
+        .play::before {
             opacity: 1;
         }
     }
@@ -153,8 +155,9 @@ export default {
         list-style: none;
         position: relative;
     }
-    li::before{
-        content:'';
+
+    li::before {
+        content: '';
         background: black;
         border-radius: 50%;
         width: 18px;
@@ -164,10 +167,11 @@ export default {
         top: 3px
     }
 
-    ul{
+    ul {
         padding-left: 25px;
     }
-    .play{
+
+    .play {
         background: url('/img/lessons/play.svg') no-repeat center center / contain;
         height: 68px;
         width: 68px;
@@ -177,10 +181,12 @@ export default {
 
 .free {
     padding: 112px 0 249px;
-    .thumb{
+
+    .thumb {
         box-shadow: 0px 0px 20px rgba(182, 64, 184, 0.8);
     }
-    .jiraf{
+
+    .jiraf {
         position: absolute;
         background: url('/img/lessons/free/jiraff.png') no-repeat center center / contain;
         top: 456px;
@@ -191,6 +197,7 @@ export default {
 
     }
 }
+
 .free::before {
     content: '';
     position: absolute;
@@ -208,6 +215,27 @@ export default {
     height: 650px;
     width: 440px;
     top: 0;
-    right:  0;
+    right: 0;
+}
+
+@media (max-width:1700px) {
+    .free {
+        .jiraf {
+            width: 250px;
+            top: unset;
+            bottom: 100px;
+            height: 500px;
+            right: 0;
+        }
+    }
+    .free::before{
+        height: 500px;
+    }
+    .free::after{
+        top: -80px;
+        right: -70px;
+        height: 600px;
+        transform: rotate(12deg);
+    }
 }
 </style>
