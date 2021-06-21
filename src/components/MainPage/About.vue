@@ -227,34 +227,126 @@ h2::after {
 
     .about-holder {
         max-width: 640px;
+
         .about-w {
             font-size: 16px;
             line-height: 20px;
         }
-        .about-1{
+
+        .about-1 {
             max-width: 300px;
             margin-bottom: 121px;
         }
-        .about-2{
+
+        .about-2 {
             max-width: 331px;
             margin-bottom: 121px;
         }
-        .about-3{
+
+        .about-3 {
             max-width: 552px;
-            
+
         }
-        .about-1::before, .about-2::before, .about-3::before{
+
+        .about-1::before,
+        .about-2::before,
+        .about-3::before {
             height: 150px;
             width: 150px;
         }
-        .about-1::before{
+
+        .about-1::before {
             top: -50px
         }
-        .about-2::before{
+
+        .about-2::before {
             top: -35px
         }
-        .about-3::before{
+
+        .about-3::before {
             top: -25px
+        }
+    }
+}
+
+@media (max-width:800px) {
+    h2 {
+        font-size: 20px;
+        line-height: 20px;
+    }
+
+    h2::before {
+        height: 20px;
+        width: 18px;
+        top: 1px;
+    }
+
+    h2::after {
+        height: 20px;
+        width: 18px;
+        top: 1px;
+    }
+
+    h5 {
+        font-size: 8px;
+        line-height: 10px;
+        margin-bottom: 61px;
+    }
+    .about::after{
+        width: 100px;
+        top: 0;
+        height: 200px;
+    }
+    .about::before{
+        top: unset;
+        bottom: 50px;
+        width: 100px;
+        height: 200px;
+    }
+    .about{
+        padding: 0 0 86px 0;
+    }
+    .about-holder {
+        max-width: 300px;
+        padding: 0;
+
+        .about-w {
+            font-size: 10px;
+            line-height: 12px;
+
+        }
+        
+        .about-1{
+            max-width: 183px;
+            margin-bottom: 0;
+        }
+        .about-2{
+            max-width: 201px;
+            margin-left: 182px;
+            margin-bottom: 51px;
+            margin-top: 63px;
+        }
+        .about-3{
+            max-width: 314px;
+            margin-top: 0;
+        }
+        .about-1::before{
+            height: 80px;
+            width: 80px;
+            top: -25px;
+            left: -30px;
+        }
+        .about-2::before{
+            height: 80px;
+            width: 80px;
+            top: -20px;
+            left: -30px;
+        }
+        .about-3::before{
+            height: 80px;
+            width: 80px;
+            top: -10px;
+            left: -30px;
         }
     }
 }

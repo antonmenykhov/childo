@@ -103,8 +103,47 @@ export default {
         width: unset;
         flex: 1 1 300px;
     }
-    .raskraska{
+
+    .raskraska {
         padding: 0;
+    }
+}
+
+@media (max-width : 800px) {
+    .text {
+        font-size: 7px;
+        line-height: 9px;
+        max-width: 249px;
+    }
+
+    .images {
+        margin-top: 10px;
+        transform: unset;
+        margin-left: -20px;
+    }
+
+    .raskraska {
+        height: unset;
+        overflow: hidden;
+
+        .img {
+            height: 100px;
+            width: 150px;
+        }
+
+        .img2 {
+            height: 60px;
+            width: 42px;
+            left: 30px;
+            top: 15px;
+        }
+
+        .circle {
+            height: 40px;
+            width: 40px;
+            background: linear-gradient(135deg, #FBAA38 0%, #F66F19 100%);
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
     }
 }
 </style>

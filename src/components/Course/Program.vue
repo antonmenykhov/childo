@@ -320,6 +320,81 @@ p {
         transform: rotate(6deg);
     }
 
-    
+}
+
+@media (max-width: 800px) {
+    .cs-1 {
+        .left {
+            display: none;
+        }
+    }
+
+    .cs-2 {
+        .left {
+            display: none;
+        }
+    }
+    .cs-2::after{
+        height: 200px;
+        transform: unset;
+        bottom: 100px;
+        right: 0;
+        background: url('/img/mobileProgram.svg') no-repeat right  center / contain;
+    }
+    .cs-1::after{
+        height: 200px;
+        transform: unset;
+        bottom: 100px;
+        right: 0;
+        background: url('/img/mobileProgram.svg') no-repeat right  center / contain;
+    }
+
+    h2 {
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 40px;
+        margin-bottom: 72px;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    h2::before {
+        left: -2px;
+        top: 3px;
+        height: 17px;
+        width: 19px;
+    }
+
+    h2::after {
+        left: -2px;
+        top: 3px;
+        height: 17px;
+        width: 19px;
+    }
+    .program-holder{
+        margin-bottom: 67px;
+    }
+    .program {
+        min-height: 143px;
+        max-width: 131px;
+        margin: 0 17px 66px;
+        padding: 38px 5px 0;
+        .image{
+            height: 43px;
+            width: 43px;
+            top: -21px
+        }
+
+        h4 {
+            font-size: 12px;
+            line-height: 12px;
+            max-width: 115px;
+        }
+
+        p {
+            font-size: 8px;
+            line-height: 10px;
+        }
+    }
 }
 </style>

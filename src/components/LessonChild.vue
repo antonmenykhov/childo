@@ -76,6 +76,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section{
+    overflow: hidden
+}
 .superSelect {
     top: 50px;
     position: absolute !important;
@@ -884,42 +887,182 @@ export default {
     .ch-7::before,
     .ch-9::before,
     .ch-11::before,
-    .ch-13::before{
+    .ch-13::before {
         left: -20px;
     }
+
     .ch-1::after,
     .ch-3::after,
     .ch-5::after,
     .ch-7::after,
     .ch-9::after,
     .ch-11::after,
-    .ch-13::after{
+    .ch-13::after {
         right: -200px;
     }
+
     .ch-2::before,
     .ch-4::before,
     .ch-6::before,
     .ch-8::before,
     .ch-10::before,
     .ch-12::before,
-    .ch-14::before{
+    .ch-14::before {
         left: -100px;
     }
+
     .ch-2::after,
     .ch-4::after,
     .ch-6::after,
     .ch-8::after,
     .ch-10::after,
     .ch-12::after,
-    .ch-14::after{
+    .ch-14::after {
         right: -00px;
     }
 }
-@media (max-width: 950px){
-    .lesson{
-        li{
-             max-width: 300px;
+
+@media (max-width: 950px) {
+    .lesson {
+        li {
+            max-width: 300px;
         }
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 307px;
+    }
+
+    .lesson {
+        .play {
+            height: 50px;
+            width: 50px;
+        }
+        .play::before{
+            top: -15px;
+            left: -20px;
+            height: 80px;
+            width: 80px;
+        }
+        padding-top: 35px!important;
+        padding-bottom: 77px!important;
+        h4 {
+            font-size: 25px;
+            line-height: 25px;
+        }
+
+        h2 {
+            max-width: 284px;
+            font-size: 35px;
+            line-height: 35px;
+            margin-top: 15px;
+            margin-bottom: 6px;
+        }
+
+        .description {
+            font-size: 12px;
+            line-height: 15px;
+            max-width: 373px;
+        }
+
+        .thumb {
+            margin-top: 36px;
+            margin-bottom: 20px;
+            max-width: 307px;
+            max-height: 193px;
+            margin-right: 0;
+        }
+
+        h6 {
+            font-size: 20px;
+            line-height: 24px;
+
+        }
+
+        li {
+            font-size: 15px;
+            line-height: 18px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li::before {
+            left: -20px;
+            height: 13px;
+            width: 13px;
+        }
+
+        .dz-button {
+            height: 50px;
+            width: 202px;
+            padding: unset;
+            font-size: 12px;
+            line-height: 160.2%;
+        }
+
+        .jiraf {
+            display: none;
+        }
+
+    }
+
+    .ch-1::before,
+    .ch-3::before,
+    .ch-5::before,
+    .ch-7::before,
+    .ch-9::before,
+    .ch-11::before,
+    .ch-13::before {
+        transform: rotateY(180deg);
+        right: 0;
+        left: unset;
+        height: 300px;
+    }
+
+    .ch-1::after,
+    .ch-3::after,
+    .ch-5::after,
+    .ch-7::after,
+    .ch-9::after,
+    .ch-11::after,
+    .ch-13::after {
+        right: unset;
+        left: -60px;
+        transform: rotateY(180deg);
+        height: 300px;
+
+    }
+
+    .ch-2::before,
+    .ch-4::before,
+    .ch-6::before,
+    .ch-8::before,
+    .ch-10::before,
+    .ch-12::before,
+    .ch-14::before {
+        transform: rotateY(180deg);
+        right: -20px;
+        left: unset;
+        top: -50px;
+        height: 300px;
+    }
+
+    .ch-2::after,
+    .ch-4::after,
+    .ch-6::after,
+    .ch-8::after,
+    .ch-10::after,
+    .ch-12::after,
+    .ch-14::after {
+       right: unset;
+       bottom: -40px;
+        left: -60px;
+        transform: rotateY(180deg);
+        height: 300px;
     }
 }
 </style>

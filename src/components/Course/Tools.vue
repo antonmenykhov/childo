@@ -461,15 +461,17 @@ ul {
         height: 400px;
         top: 50px;
     }
-     .cs-2::before {
+
+    .cs-2::before {
         height: 400px;
         top: 50px;
     }
 
     .cs-2 {
-        .tools{
+        .tools {
             margin-bottom: 0;
         }
+
         button {
             font-size: 16px;
             line-height: 160.2%;
@@ -495,7 +497,8 @@ ul {
                 max-width: 398px;
                 text-indent: 20px;
             }
-            li::before{
+
+            li::before {
                 top: 3px;
             }
         }
@@ -504,8 +507,69 @@ ul {
             font-size: 16px;
             line-height: 20px;
         }
-        li::before{
+
+        li::before {
             top: 3px;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    h2 {
+        width: fit-content;
+        height: fit-content;
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 38px;
+    }
+
+    h2::before {
+        top: 3px;
+        left: 57px;
+        height: 17px;
+        width: 17px;
+    }
+
+    h2::after {
+        top: 3px;
+        left: 57px;
+        height: 17px;
+        width: 17px;
+    }
+    .cs-1::before{
+        height: 250px;
+        left: -24px;
+        bottom: 0;
+        transform: rotate(10deg);
+    }
+    .tools {
+        margin-left: 38px;
+        margin-bottom: 51px;
+        align-items: center;
+
+        ul {
+            margin-right: 10px;
+            max-width: 250px;
+        }
+
+        li {
+            font-size: 12px;
+            line-height: 15px;
+        }
+        li::before{
+            height: 10px;
+            width: 10px;
+            top: 2px;
+        }
+
+        .image {
+            height: 225px;
+            margin-right: -170px;
+        }
+        .image::before{
+            height: 150px;
+            bottom: -60px;
+            left: -140px;
         }
     }
 }

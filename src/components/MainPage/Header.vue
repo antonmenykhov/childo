@@ -216,7 +216,6 @@ header {
                 transition: all .2s ease-in-out;
             }
 
-            button:hover {}
         }
     }
 }
@@ -315,6 +314,7 @@ header::after {
     header::before {
         left: 100px;
     }
+
     header {
         .header-container {
             max-width: 586px;
@@ -388,9 +388,114 @@ header::after {
         }
     }
 }
-@media (max-width: 1000px){
+
+@media (max-width: 1000px) {
     header::before {
         left: 120px;
     }
+}
+
+@media (max-width: 800px) {
+    header::after {
+        transform: rotateY(180deg) rotateZ(-12deg);
+        height: 350px;
+        width: 350px;
+        top: -20px;
+        right: -100px;
+
+    }
+
+    header {
+
+        padding-top: 127px;
+
+        padding-bottom: 50px;
+        overflow: hidden;
+
+        .jiraff {
+            opacity: 0;
+        }
+
+        .header-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 500px;
+
+            .title {
+                font-size: 35px;
+                line-height: 35px;
+                margin-bottom: 14px;
+                text-align: center;
+
+                .play-button-holder {
+                    top: 300px;
+                    left: 60px;
+                    .play-button{
+                        height: 41px;
+                        width: 41px;
+                        img{
+                            height: 13px;
+                            width: 13px;
+                        }
+                    }
+                    .play-button-text {
+                        font-size: 8px;
+                        line-height: 160.2%;
+                        max-width: 55px;
+                        margin-left: 8px;
+                    }
+                }
+
+            }
+
+            .title::before {
+                height: 32px;
+                width: 32px;
+                top: 5px;
+                left: 48px;
+            }
+
+            .title::after {
+                height: 32px;
+                width: 32px;
+                top: 5px;
+                left: 48px;
+            }
+
+            .description {
+                font-size: 12px;
+                line-height: 15px;
+                max-width: 245px;
+                text-align: center;
+                margin-top: 0;
+            }
+
+            .button-holder {
+                margin-top: 32px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                button {
+                    padding: 12px 37px;
+                    border-radius: 10px;
+                    margin-bottom: 14px;
+                    font-size: 10px;
+                    line-height: 160.2%;
+                }
+
+                .button-description {
+                    margin-left: 0;
+                    text-decoration-color: transparent;
+                    text-align: center;
+                    font-size: 8px;
+                    line-height: 140.2%;
+                }
+            }
+        }
+
+    }
+
 }
 </style>

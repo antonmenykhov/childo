@@ -462,29 +462,35 @@ section {
         }
 
     }
-    .cs-1::after{
+
+    .cs-1::after {
         height: 350px;
         right: -20px;
         top: 20px;
     }
-    .cs-1::before{
+
+    .cs-1::before {
         height: 400px;
         left: -20px;
         bottom: 20px;
     }
-    .cs-2::after{
+
+    .cs-2::after {
         height: 350px;
         right: -20px;
         top: 20px;
     }
-    .cs-2::before{
+
+    .cs-2::before {
         height: 400px;
         left: -20px;
         bottom: 20px;
     }
+
     .certs {
         margin-top: 171px;
         padding: 0 17px;
+
         p {
             font-size: 16px;
             line-height: 20px;
@@ -507,5 +513,141 @@ section {
             width: 199.33px;
         }
     }
+}
+
+@media (max-width: 800px) {
+    h2 {
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 39px;
+        margin-bottom: 10px;
+    }
+
+    h2::before {
+        top: 3px;
+        height: 17px;
+        width: 17px;
+    }
+
+    h2::after {
+        height: 17px;
+        width: 17px;
+    }
+
+    .subheader {
+        max-width: 177px;
+        font-size: 6px;
+        line-height: 7px;
+        margin-bottom: 0;
+    }
+
+    ul {
+        margin-top: 41px;
+        margin-bottom: 56px;
+    }
+
+    li {
+        margin-bottom: 30px;
+        margin-top: 0;
+        font-size: 8px;
+        line-height: 10px;
+        max-width: 284px;
+    }
+
+    li:nth-child(2) {
+        max-width: 284px;
+    }
+
+    li::before {
+        height: 25px;
+        width: 25px;
+        left: -35px;
+        top: -2px;
+    }
+
+    .prices {
+        flex-wrap: wrap;
+
+        .price-w {
+            flex: unset;
+            width: 178px;
+            height: 160px;
+            margin: 0 75px 150px
+        }
+
+        h4 {
+            font-size: 14px;
+            line-height: 17px;
+            max-width: 100px;
+        }
+
+        p {
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .price {
+            margin-bottom: 15px;
+        }
+
+        button {
+            height: 40px;
+            width: 150px;
+            padding: unset;
+            border-radius: 10px;
+            top: 208px;
+            font-size: 10px;
+            line-height: 160.2%;
+        }
+    }
+
+    .certs {
+        margin-top: -34px;
+        margin-bottom: 69px;
+        flex-direction: column;
+        align-items: center;
+
+        p {
+            max-width: 217px;
+            padding: unset;
+            font-size: 8px;
+            line-height: 10px;
+        }
+
+        p::before {
+            height: 25px;
+            width: 25px;
+            left: -35px;
+            top: -2px;
+        }
+
+        button {
+            font-size: 10px;
+            line-height: 160.2%;
+            height: 40px;
+            width: 150px;
+            border-radius: 10px;
+            margin-top: 43px;
+        }
+    }
+    .cs-1::before{
+        height: 200px;
+        bottom: 300px;
+        transform: rotate(10deg);
+    }
+    .cs-1::after{
+        height: 200px;
+        top: 400px;
+    }
+    .cs-2::before{
+        height: 200px;
+        bottom: 300px;
+        transform: rotate(10deg);
+    }
+    .cs-2::after{
+        height: 200px;
+        top: 400px;
+    }
+
 }
 </style>

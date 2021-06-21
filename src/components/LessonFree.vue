@@ -6,7 +6,7 @@
         <h2>{{lessonData.header}}</h2>
         <p class="description" v-html="lessonData.description">
         </p>
-        <div>
+        <div style="max-width: 307px">
             <div class="thumb" :style="'background: url(\'/img/lessons/free/'+lessonData.thumb+'\') no-repeat center top / cover'">
                 <div class="play"></div>
             </div>
@@ -228,14 +228,111 @@ export default {
             right: 0;
         }
     }
-    .free::before{
+
+    .free::before {
         height: 500px;
     }
-    .free::after{
+
+    .free::after {
         top: -80px;
         right: -70px;
         height: 600px;
         transform: rotate(12deg);
+    }
+}
+
+@media (max-width: 800px) {
+    .jiraf {
+        display: none;
+    }
+
+    .lesson {
+        .container {
+            padding-bottom: 101px;
+            padding-top: 31px;
+        }
+
+        padding-top: 35px !important;
+        padding-bottom: 77px !important;
+
+        h4 {
+            font-size: 25px;
+            line-height: 25px;
+        }
+
+        h2 {
+            max-width: 327px;
+            font-size: 35px;
+            line-height: 35px;
+            margin-top: 15px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            font-size: 12px;
+            line-height: 15px;
+            max-width: 373px;
+        }
+
+        .thumb {
+            margin-top: 60px;
+            margin-bottom: 50px;
+            max-width: 307px;
+            max-height: 193px;
+            margin-right: 0;
+        }
+
+        h6 {
+            font-size: 20px;
+            line-height: 24px;
+
+        }
+
+        li {
+            font-size: 15px;
+            line-height: 18px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li::before {
+            left: -20px;
+            height: 13px;
+            width: 13px;
+        }
+    }
+
+    .free::after {
+        top: unset;
+        bottom: 0;
+        height: 300px;
+        right: unset;
+        left: 0;
+        transform: rotateZ(180deg);
+    }
+
+    .free::before {
+        bottom: unset;
+        height: 200px;
+        left: unset;
+        right: 0;
+        top: 0;
+        transform: rotateZ(180deg);
+    }
+
+    .lesson {
+        .play {
+            height: 50px;
+            width: 50px;
+        }
+        .play::before{
+            top: -15px;
+            left: -20px;
+            height: 80px;
+            width: 80px;
+        }
     }
 }
 </style>

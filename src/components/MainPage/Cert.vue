@@ -66,9 +66,10 @@ export default {
 }
 
 @media (max-width: 1250px) {
-    .cert{
+    .cert {
         padding: 41px 0;
     }
+
     .container {
         max-width: 798px;
     }
@@ -89,6 +90,33 @@ export default {
         font-size: 12px;
         line-height: 15px;
         max-width: 480px;
+    }
+}
+
+@media (max-width:800px) {
+    .container{
+        max-width: 366px;
+    }
+    .text {
+        font-size: 7px;
+        line-height: 9px;
+        width: unset;
+        flex: unset;
+        margin-left: 15px;
+        color: #000;
+        max-width: 246px;
+    }
+    .img{
+        height: 70px;
+        width: 99px;
+        border-radius: 10px;
+        
+    }
+    .img::before{
+        height: 40px;
+        width: 40px;
+        right: 0;
+        top: -30px;
     }
 }
 </style>

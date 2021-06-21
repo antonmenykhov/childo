@@ -494,6 +494,7 @@ export default {
 
     .about {
         padding-bottom: 76px;
+
         h4 {
             margin-top: 69px;
             font-size: 24px;
@@ -546,15 +547,215 @@ export default {
             padding: 17px 39px;
         }
     }
-    .about::after{
+
+    .about::after {
         height: 400px;
         top: 230px;
     }
-    .about::before{
+
+    .about::before {
         top: unset;
-        
+
         height: 300px;
         bottom: 100px;
+    }
+}
+
+@media (max-width: 800px) {
+    .courses-wrapper::after {
+        left: 0;
+        right: unset;
+        transform: rotate(180deg);
+        top: 0;
+        bottom: unset;
+        width: 100px;
+    }
+
+    .courses-wrapper::before {
+        right: 0;
+        left: unset;
+        transform: rotate(180deg);
+        bottom: 271px;
+        top: unset;
+        width: 150px;
+    }
+
+    .courses-wrapper {
+        padding-bottom: 0;
+
+        .k {
+            font-size: 20px;
+            line-height: 20px;
+            margin-bottom: 48px;
+        }
+
+        .k::before {
+            height: 17px;
+            width: 20px;
+            left: -3px;
+            top: 3px;
+        }
+
+        .k::after {
+            height: 17px;
+            width: 20px;
+            left: -5px;
+            top: 3px;
+        }
+
+        .courses-holder {
+            flex-direction: column;
+
+            .parent {
+                margin-left: 0 !important;
+            }
+
+            .child {
+                margin-right: 0 !important;
+            }
+
+            .course-wrapper {
+                position: relative;
+
+                .image {
+                    height: 100px;
+                    width: 179px;
+                    border-radius: 10px;
+
+                }
+
+                .image::after {
+                    right: -35px;
+                }
+
+                h3 {
+                    font-size: 12px;
+                    line-height: 15px;
+                    max-width: 220px;
+                    position: relative;
+                    z-index: 10;
+                }
+
+                p {
+                    max-width: 220px;
+                    font-size: 8px;
+                    line-height: 10px;
+                    position: relative;
+                    z-index: 10;
+                    color: black;
+                }
+
+                button {
+                    margin-bottom: 80px;
+                    margin-top: 21px;
+                    border-radius: 10px;
+                    padding: 12px 44px;
+                    font-size: 10px;
+                    line-height: 160.2%;
+                }
+            }
+        }
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper:last-child button {
+        box-shadow: 0px 0px 40px #F98923;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper:first-child button {
+        box-shadow: 0px 0px 40px #D6358C;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper:last-child .image {
+        filter: drop-shadow(0px 4px 40px #F98923);
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper:first-child .image {
+        filter: drop-shadow(0px 0px 40px rgba(214, 53, 140, 0.8));
+    }
+    .about::after{
+        width: 100px;
+        top: 70px;
+    }
+    .about::before{
+        width: 100px;
+        bottom: 100px;
+    }
+    .about {
+        h4 {
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 15px;
+            max-width: 213px;
+            text-align: left;
+            position: relative;
+            margin-left: 80px;
+            margin-top: 30px;
+            margin-bottom: 71px;
+        }
+
+        h4::before {
+            content: '';
+            position: absolute;
+            height: 226px;
+            width: 160px;
+            background: url('/img/HeaderJiraf.png') no-repeat center center / contain;
+            transform: rotateY(180deg);
+            left: -160px;
+            top: -30px;
+        }
+
+        .img-text,
+        .img-text2 {
+            flex-direction: column;
+
+        }
+
+        .img1,
+        .img2 {
+            width: 127px;
+            height: 71px;
+            margin-bottom: 15px;
+            margin: 0 0 15px 0;
+        }
+
+        .text {
+            font-size: 8px;
+            line-height: 10px;
+            max-width: 208px;
+            text-align: center;
+            flex: unset
+        }
+
+        .quote {
+            font-size: 10px;
+            line-height: 12px;
+            max-width: 240px;
+            margin: 30px 0;
+        }
+
+        .img-text2 {
+            flex-direction: column-reverse;
+
+            .text {
+                max-width: 208px;
+            }
+        }
+
+        .connect {
+            font-size: 10px;
+            line-height: 12px;
+            max-width: 332px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        button {
+            font-size: 10px;
+            line-height: 160.2%;
+            padding: 12px 30px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 20px #F66C17;
+        }
     }
 }
 </style>

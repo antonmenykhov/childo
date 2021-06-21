@@ -3,7 +3,7 @@
     <div class="container">
         <h2>Доступные уроки</h2>
         <div class="lessons">
-            <div class="lesson" v-for="i in lessonNums" :key="i">
+            <div class="lesson" v-for="i in worksNum" :key="i">
                 <div class="image" :style="'background: url(\''+lessons[i-1].img+'\') no-repeat center center / cover'">
                     <div class="play" v-if="lessons[i-1].status==1">
 
@@ -28,9 +28,28 @@
 
 <script>
 export default {
+    computed: {
+        worksNum: function () {
+            let width = window.innerWidth;
+            let num = 0;
+            if (width >= 1250) {
+                num = 5
+            }
+            if (width < 1250 && width > 800) {
+                num = 5
+            }
+            if (width <= 800) {
+                num = 4
+            }
+            if (width <= 500) {
+                num = 2
+            }
+            return num
+        }
+    },
     data() {
         return {
-            lessonNums: 5,
+
             style: 'grow',
             lessons: [{
                     name: '“Привет из антарктики”',
@@ -268,7 +287,8 @@ p {
 
     }
 }
-.child::before{
+
+.child::before {
     position: absolute;
     content: '';
     left: 0;
@@ -277,16 +297,18 @@ p {
     height: 800px;
     width: 500px;
 }
-.child::after{
+
+.child::after {
     position: absolute;
     content: '';
-    right:  0;
+    right: 0;
     top: 0px;
     background: url('/img/lklessons/right.svg') no-repeat right top / contain;
     height: 800px;
     width: 500px;
 }
-.grow::before{
+
+.grow::before {
     position: absolute;
     content: '';
     left: 0;
@@ -295,13 +317,103 @@ p {
     height: 800px;
     width: 500px;
 }
-.grow::after{
+
+.grow::after {
     position: absolute;
     content: '';
-    right:  0;
+    right: 0;
     top: 0px;
     background: url('/img/lklessons/right2.svg') no-repeat right top / contain;
     height: 800px;
     width: 500px;
+}
+
+@media (max-width: 1500px) {
+    .child::before {
+        width: 200px;
+    }
+
+    .child::after {
+        width: 200px;
+    }
+
+    .grow::after {
+        width: 200px;
+    }
+
+    .grow::before {
+        width: 200px;
+    }
+}
+
+@media (max-width: 800px) {
+    section {
+        overflow: hidden;
+    }
+
+    .lessons {
+        margin: 0 auto;
+        width: 100%;
+        justify-content: center;
+
+        .lesson {
+            .image {
+                height: 152px;
+                width: 230px;
+            }
+        }
+
+        .more-button {
+            width: 300px;
+            margin-bottom: 30px;
+
+            p {
+                max-width: 56px;
+            }
+        }
+    }
+
+    h2 {
+        font-size: 30px;
+        line-height: 30px;
+        margin-top: 60px;
+        margin-bottom: 79px;
+    }
+
+    h2::before,
+    h2::after {
+        height: 28px;
+        width: 26px;
+        top: 4px;
+        left: -2px;
+    }
+
+    .child::after {
+        top: 250px;
+        right: -200px;
+        width: 200px;
+        transform: rotate(-30deg);
+    }
+
+    .child::before {
+        left: -150px;
+        width: 400px;
+        bottom: -150px;
+        transform: rotate(-30deg);
+    }
+
+    .grow::after {
+        top: 250px;
+        right: -200px;
+        width: 200px;
+        transform: rotate(-30deg);
+    }
+
+    .grow::before {
+        left: -150px;
+        width: 400px;
+        bottom: -150px;
+        transform: rotate(-30deg);
+    }
 }
 </style>

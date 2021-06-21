@@ -265,27 +265,92 @@ h2::after {
         height: 40px;
         width: 40px;
     }
-    .pluses{
+
+    .pluses {
         padding-top: 70px;
         padding-bottom: 70px;
     }
-    .row{
+
+    .row {
         padding: 0 100px;
     }
-    .plus p{
+
+    .plus p {
         font-size: 16px;
         line-height: 20px;
     }
-    .plus{
+
+    .plus {
         max-width: 300px;
     }
-    .pluses::after{
+
+    .pluses::after {
         height: 200px;
     }
 
-    .pluses::before{
+    .pluses::before {
         height: 200px;
     }
+
+}
+
+@media (max-width: 800px) {
+     .pluses::after {
+        width: 100px;
+        right: -30px;
+    }
+
+    .pluses::before {
+         width: 100px;
+         left: -50px;
+    }
+    h2 {
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 60px;
+    }
+
+    h2::before {
+        height: 17px;
+        width: 18px;
+        top: 3px;
+        left: -2px;
+    }
+
+    h2::after {
+        height: 18px;
+        width: 18px;
+        height: 17px;
+        width: 18px;
+        top: 3px;
+        left: -2px;
+    }
+
+    .row {
+        margin: 0;
+        flex-direction: column;
+
+        .plus {
+            .img{
+                height: 40px;
+                width: 40px;
+            }
+            .img::after{
+                width: 100px;
+                left: -15px;
+            }
+            margin: 20px 0;
+            max-width: 257px;
+
+            p {
+                font-size: 7px;
+                line-height: 9px;
+                text-align: center;
+            }
+        }
+    }
+
+    ;
 
 }
 </style>

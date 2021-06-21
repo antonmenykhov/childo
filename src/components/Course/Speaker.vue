@@ -383,19 +383,125 @@ section {
         margin-top: 40px;
         margin-bottom: 0;
     }
-    .cs-1::before{
+
+    .cs-1::before {
         height: 300px;
         left: -30px;
     }
-    .cs-2::before{
+
+    .cs-2::before {
         height: 300px;
         left: -30px;
+    }
+
+    .cs-1::after {
+        height: 300px;
+    }
+
+    .cs-2::after {
+        height: 300px;
+    }
+}
+
+@media (max-width: 800px) {
+    .container{
+        margin-bottom: 58px;
+    }
+    h2 {
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 18px;
+    }
+
+    h2::before,
+    h2::after {
+        height: 20px;
+        width: 20px;
+        top: 2px;
+        left: -3px;
+    }
+
+    .image {
+        height: 90px;
+        width: 90px;
+    }
+
+    .image::before {
+        height: 70px;
+        right: -100px;
+        bottom: -10px;
+    }
+
+    .name {
+        margin-top: 10px;
+
+    }
+
+    h3 {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        margin-left: 60px;
+    }
+
+    ul {
+        margin-left: 60px;
+        margin-right: 38px;
+    }
+
+    li {
+        font-size: 8px;
+        line-height: 10px;
+        text-indent: 10px;
+    }
+
+    li::before {
+        height: 6px;
+        width: 6px;
+        top: 2px;
+    }
+    .go{
+        margin-top: 33px;
+        margin-bottom: 25px;
+    }
+
+    .description {
+        font-size: 8px;
+        line-height: 10px;
+        margin-left: 60px;
+        max-width: 249px;
+        margin-top: 33px;
+    }
+
+    .quote-1,
+    .quote-2 {
+        margin-left: 52px;
+        max-width: 213px;
+        font-size: 8px;
+        line-height: 10px;
+        border-radius: 8px;
+        margin-top: 15px;
+        margin-bottom: 0;
+    }
+
+    button {
+      
+        margin-left: 60px;
+        border-radius: 10px;
+        font-size: 10px;
+        line-height: 160.2%;
+        width: 150px;
+        height: 40px;
+        padding: unset;
+    }
+    .cs-1::before{
+        height: 150px;
+        left: -20px;
+        bottom: 50px;
     }
     .cs-1::after{
-        height: 300px;
+        height: 150px;
+        top: 0;
     }
-    .cs-2::after{
-        height: 300px;
-    }
+
 }
 </style>

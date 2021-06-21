@@ -8,7 +8,7 @@
             <div class="logo">
 
             </div>
-            <div class="burger-button">+++</div>
+            <div class="burger-button"></div>
             <div class="main-menu">
                 <div class="menu-item" v-for="item,i in menu" :key="i">
                     {{item.name}}
@@ -161,6 +161,23 @@ section::before {
 
 .burger-button {
     display: none;
+    width: 25px;
+    border-bottom: 5px solid #515151 ;
+    position: relative;
+}
+.burger-button::before{
+    width: 25px;
+    border-bottom: 5px solid #515151 ;
+    position: absolute;
+    content: '';
+    top: -10px
+}
+.burger-button::after{
+    width: 25px;
+    border-bottom: 5px solid #515151 ;
+    position: absolute;
+    content: '';
+    top: -20px
 }
 
 @media (max-width: 1500px) {
@@ -218,12 +235,16 @@ section::before {
 
 @media (max-width: 800px) {
     .top-line {
+        padding: 40px;
         .container {
             justify-content: space-between;
             .burger-button {
                 display: flex;
             }
-
+            .logo{
+                margin-left: 70px;
+                opacity: 0;
+            }
             .main-menu {
                 display: none;
             }

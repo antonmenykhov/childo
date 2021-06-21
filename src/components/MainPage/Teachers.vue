@@ -220,7 +220,8 @@ export default {
     .teachers {
         margin-top: 0;
         margin-bottom: 128px;
-        .teacher{
+
+        .teacher {
             max-width: 310px;
         }
 
@@ -252,14 +253,17 @@ export default {
             right: -65px;
             top: -20px
         }
-        .green{
+
+        .green {
             height: 160px;
             bottom: -25px;
         }
-        .orange{
+
+        .orange {
             height: 160px;
         }
-        .blue{
+
+        .blue {
             height: 100px;
             left: -120px;
         }
@@ -276,5 +280,71 @@ export default {
         }
     }
 
+}
+
+@media (max-width:800px) {
+    .teachers {
+        margin-bottom: 89px;
+        h3 {
+            max-width: 249px;
+            font-size: 12px;
+            line-height: 15px;
+        }
+
+        .span-blue::before {
+            width: 55px;
+            bottom: 1px;
+            border-top: 2px solid #5FC0D3;
+        }
+
+        .span-orange::before {
+            border-top: 2px solid #FA952D;
+            width: 71px;
+            bottom: 1px;
+        }
+
+        .image {
+            margin-top: 45px;
+            height: 90px;
+            width: 90px;
+        }
+
+        .name {
+            font-size: 12px;
+            line-height: 12px;
+            max-width: 100px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 8px;
+            line-height: 10px;
+            max-width: 230px;
+        }
+        .teacher{
+            margin: 0;
+        }
+
+        .pink {
+            height: 75px;
+            top: -15px;
+            right: -55px;
+        }
+        .green{
+            height: 75px;
+            right: -85px;
+            bottom: -5px;
+        }
+        .orange{
+            height: 75px;
+            top: -10px;
+            left: -130px;
+            right: unset;
+        }
+        .blue{
+            height: 75px;
+        }
+    }
 }
 </style>

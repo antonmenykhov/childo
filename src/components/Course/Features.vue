@@ -154,26 +154,30 @@ section {
 }
 
 @media (max-width: 1500px) {
-    .cs-1::after{
+    .cs-1::after {
         height: 300px;
         bottom: 0;
         right: -10px;
     }
-    .cs-1::before{
+
+    .cs-1::before {
         height: 400px;
         left: -60px;
-        top:60px;
+        top: 60px;
     }
-    .cs-2::after{
+
+    .cs-2::after {
         height: 300px;
         bottom: 0;
         right: -10px;
     }
-    .cs-2::before{
+
+    .cs-2::before {
         height: 400px;
         left: -60px;
-        top:60px;
+        top: 60px;
     }
+
     .text {
         h4 {
             font-size: 30px;
@@ -186,15 +190,17 @@ section {
 }
 
 @media (max-width: 1250px) {
-    .container{
+    .container {
         max-width: 820px;
     }
+
     .feature {
         margin-bottom: 70px;
     }
 
     .text {
         max-width: 612px;
+
         h4 {
             font-size: 22px;
             line-height: 27px;
@@ -206,35 +212,101 @@ section {
         }
 
     }
-    .img{
+
+    .img {
         height: 152px;
         width: 192px;
     }
-    .cs-1::after{
+
+    .cs-1::after {
         height: 300px;
         bottom: 0;
         right: -10px;
     }
-    .cs-1::before{
+
+    .cs-1::before {
         height: 400px;
         left: -60px;
-        top:60px;
+        top: 60px;
     }
-    .cs-2::after{
+
+    .cs-2::after {
         height: 300px;
         bottom: 0;
         right: -10px;
     }
-    .cs-2::before{
+
+    .cs-2::before {
         height: 400px;
         left: -60px;
-        top:60px;
+        top: 60px;
     }
 }
-@media (max-width: 950px){
-    .container{
+
+@media (max-width: 950px) {
+    .container {
         padding-left: 40px;
         padding-right: 40px;
+    }
+}
+
+@media (max-width: 800px) {
+    .feature {
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        margin-bottom: 50px;
+    }
+
+    .img {
+        margin-right: 0 !important;
+        margin-left: 0 !important;
+        height: 105px;
+        width: 133px;
+    }
+    .cs-1::before{
+        height: 250px;
+        left: -30px;
+        top: 300px
+    }
+    .cs-1::after{
+        bottom: 200px;
+        right: -30px;
+    }
+    .cs-2::before{
+        height: 250px;
+        left: -30px;
+        top: 300px
+    }
+    .cs-2::after{
+        bottom: 200px;
+        right: -30px;
+    }
+    .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        h4 {
+            margin-top: 20px;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 17px;
+            text-align: center;
+
+        }
+
+        h4::after {
+            display: none;
+        }
+
+        p {
+            font-size: 8px;
+            line-height: 10px;
+            margin-top: 0;
+            max-width: 231px;
+            text-align: center;
+        }
     }
 }
 </style>

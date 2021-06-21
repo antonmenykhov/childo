@@ -45,10 +45,10 @@ export default {
 
 <style lang="scss" scoped>
 .superSelect {
-    top: 50px!important;
-    position: absolute!important;
+    top: 50px !important;
+    position: absolute !important;
     z-index: 1000;
-    
+
 }
 
 .lesson {
@@ -115,7 +115,7 @@ export default {
         cursor: pointer;
     }
 
-     .play {
+    .play {
         background: url('/img/lessons/play.svg') no-repeat center center / contain;
         height: 68px;
         width: 68px;
@@ -123,9 +123,9 @@ export default {
         transition: all .2s;
         position: relative;
 
-       
     }
-    .play::before{
+
+    .play::before {
         border-radius: 50%;
         content: '';
         position: absolute;
@@ -139,8 +139,9 @@ export default {
         opacity: 0;
 
     }
-    .thumb:hover{
-        .play::before{
+
+    .thumb:hover {
+        .play::before {
             opacity: 1;
         }
     }
@@ -297,7 +298,7 @@ export default {
 
     .dz-button {
         background: linear-gradient(93.58deg, #E2B0FC 0%, #E54D56 100%);
-box-shadow: 0px 0px 60px #F574BA;
+        box-shadow: 0px 0px 60px #F574BA;
     }
 }
 
@@ -316,7 +317,7 @@ box-shadow: 0px 0px 60px #F574BA;
 
     .dz-button {
         background: linear-gradient(93.58deg, #CAD1EB 0%, #7C76A2 100%);
-box-shadow: 0px 0px 60px #C6CFE8;
+        box-shadow: 0px 0px 60px #C6CFE8;
     }
 }
 
@@ -335,7 +336,7 @@ box-shadow: 0px 0px 60px #C6CFE8;
 
     .dz-button {
         background: linear-gradient(93.58deg, #FFCAC4 0%, #DA6354 100%);
-box-shadow: 0px 0px 60px #F69B91;
+        box-shadow: 0px 0px 60px #F69B91;
     }
 }
 
@@ -346,14 +347,107 @@ box-shadow: 0px 0px 60px #F69B91;
 .gr-9::after {
     background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
 }
-@media (max-width: 1300px){
-    section::before{
-        left: -50px!important;
-        bottom: -100px!important;
+
+@media (max-width: 1300px) {
+    section::before {
+        left: -50px !important;
+        bottom: -100px !important;
+    }
+
+    section::after {
+
+        height: 700px !important;
+    }
+}
+
+@media (max-width: 900px) {
+    section{
+        overflow: hidden
+    }
+    section::before {
+        height: 400px !important;
+        bottom: 0px!important;
     }
     section::after{
-        
-        height: 700px!important;
+        height: 300px!important;
+        right: -30px!important;
+    }
+
+    .lesson {
+        .play {
+            height: 50px;
+            width: 50px;
+        }
+        .play::before{
+            top: -15px;
+            left: -20px;
+            height: 80px;
+            width: 80px;
+        }
+        .container {
+            padding-bottom: 101px;
+            padding-top: 31px;
+        }
+
+        padding-top: 35px !important;
+        padding-bottom: 77px !important;
+
+        h4 {
+            font-size: 25px;
+            line-height: 25px;
+        }
+
+        h2 {
+            max-width: 327px;
+            font-size: 35px;
+            line-height: 35px;
+            margin-top: 15px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            font-size: 12px;
+            line-height: 15px;
+            max-width: 290px;
+        }
+
+        .thumb {
+            margin-top: 60px;
+            margin-bottom: 50px;
+            max-width: 307px;
+            max-height: 193px;
+            margin-right: 0;
+        }
+
+        h6 {
+            font-size: 20px;
+            line-height: 24px;
+
+        }
+
+        li {
+            font-size: 15px;
+            line-height: 18px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li::before {
+            left: -20px;
+            height: 13px;
+            width: 13px;
+        }
+
+        .dz-button {
+            font-size: 12px;
+            line-height: 160.2%;
+            padding: unset;
+            height: 50px;
+            width: 202px;
+            border-radius: 10px;
+        }
     }
 }
 </style>

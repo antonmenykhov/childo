@@ -73,11 +73,14 @@ export default {
         worksNum: function () {
             let width = window.innerWidth;
             let num = 0;
-            if (width > 1250) {
+            if (width >= 1250) {
                 num = 3
             }
             if (width < 1250 && width > 800) {
                 num = 2
+            }
+            if (width <= 800) {
+                num = 6
             }
             return num
         }
@@ -398,7 +401,7 @@ section {
     }
 
     .works {
-        margin-top: -50px;
+        margin-top: 50px;
 
         .works-wrapper {
             .work {
@@ -506,6 +509,194 @@ section {
 
     .grow::before {
         height: 300PX;
+    }
+}
+
+@media (max-width:900px) {
+    .child::after {}
+
+    .child::before {
+        transform: rotateY(180deg) rotateZ(-30deg);
+        height: 300px;
+        right: -80px;
+        width: 300px;
+        left: unset;
+        top: 300px;
+
+    }
+
+    .child::after {
+        transform: rotateY(180deg);
+        height: 200px;
+        left: -80px;
+        width: 300px;
+        right: unset;
+
+    }
+
+    .container {
+        grid-template-areas:
+            'main main'
+            'works sidebar'
+        ;
+        grid-template-columns: 50% 50%;
+    }
+
+    .main-info {
+        margin-top: 0;
+
+        .info {
+            margin-bottom: 26px;
+
+            .avatar {
+                height: 80px;
+                width: 80px;
+            }
+
+            .fullName {
+                padding-left: 15px;
+                font-size: 12px;
+                line-height: 15px;
+            }
+
+            button {
+                font-size: 14px;
+                line-height: 160.2%;
+                height: 38px;
+                width: 142px;
+                padding: unset;
+                box-shadow: 0px 0px 10px #F66C17;
+                border-radius: 15px;
+            }
+        }
+
+        .description {
+            font-size: 8px;
+            line-height: 10px;
+            margin-left: 43px;
+            margin-right: 30px;
+            padding: 28px 23px;
+        }
+    }
+
+    .info {
+        padding: 30px;
+    }
+
+    .sidebar {
+        padding-left: 20px;
+        max-width: 100%;
+
+        button {
+            font-size: 12px;
+            line-height: 160.2%;
+            height: 38px;
+            width: 142px;
+            border-radius: 10px;
+            padding: unset;
+            margin-top: 17px;
+            background: linear-gradient(94.82deg, #9EDFEB 0%, #5CC0D8 100%);
+            box-shadow: 0px 0px 10px #45C6DD;
+        }
+
+        .progressbar {
+            width: 142px;
+        }
+
+        .cert {
+            height: 97px;
+            width: 137px;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 16px;
+            line-height: 16px;
+            margin-top: 29px;
+            margin-bottom: 14px;
+        }
+
+        li {
+            font-size: 8px;
+            line-height: 160.2%;
+        }
+
+        li::before {
+            height: 6px;
+            width: 6px;
+            top: 4px;
+            left: -10px;
+        }
+
+        ul {
+            padding-left: 10px;
+        }
+    }
+
+    .works {
+        margin-top: 29px;
+
+        h3 {
+            margin-left: 30px;
+            font-size: 16px;
+            line-height: 16px;
+        }
+
+        .support-wrapper {
+            margin-left: 30px;
+            padding-left: 3px;
+            margin-right: 8px;
+            border-radius: 5px;
+
+            p {
+                font-size: 6px;
+                line-height: 7px;
+                padding: unset;
+                margin: 10px 0;
+            }
+
+            button {
+                font-size: 6px;
+                line-height: 7px;
+                border-radius: 5px;
+                height: 17px;
+                width: 57px;
+                margin-right: 3px;
+                padding: unset;
+            }
+        }
+
+        .works-wrapper {
+            margin-right: 13px;
+            padding-left: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .more-button {
+                .icon {
+                    height: 17px;
+                    width: 17px;
+                    font-size: 20px;
+                }
+            }
+
+            .work {
+                height: 41px;
+                flex: 1 1 50px;
+                margin-right: 9px;
+                margin-bottom: 17px;
+                border-radius: 10px;
+            }
+        }
+
+    }
+}
+
+@media (max-width: 387px) {
+    .main-info {
+        .info {
+            padding-right: 10px;
+        }
     }
 }
 </style>

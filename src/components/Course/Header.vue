@@ -39,7 +39,7 @@ export default {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
     transform: rotate(90deg);
     height: 712px;
-    
+
     width: 277px;
     z-index: 1;
     left: 0;
@@ -154,11 +154,12 @@ header {
 header::before {
     content: "";
     position: absolute;
-    width: 13%;
+    width: 15%;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
-    left: 211px;
+    left: 220px;
     height: 100%;
     top: 0;
+    z-index: -1;
 
 }
 
@@ -247,9 +248,10 @@ header::before {
 }
 
 @media (max-width: 1500px) {
-header::before {
+    header::before {
         left: 120px;
     }
+
     header {
         overflow: hidden;
         padding-top: 225px;
@@ -315,23 +317,27 @@ header::before {
 
 @media (max-width: 1250px) {
     header::before {
-        left: 150px;
+        left: 130px;
     }
-    .masha{
+
+    .masha {
         height: 700px;
         width: 500px;
         right: -50px;
         top: 100px;
     }
-    .masha::after{
+
+    .masha::after {
         height: 350px;
         left: -120px;
     }
-    .tanya{
+
+    .tanya {
         top: 0;
         height: 700px;
         width: 50%;
     }
+
     header {
         padding-top: 219px;
         padding-bottom: 87px;
@@ -372,6 +378,104 @@ header::before {
                 }
             }
 
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    header::before {
+        left: 120px;
+        width: 130px;
+    }
+
+    .cs-1::after {
+        height: 400px;
+        width: 400px;
+        top: -70px;
+        right: -50px;
+        left: unset;
+        bottom: unset;
+        transform: rotate(45deg);
+    }
+
+    .cs-2::after {
+        height: 400px;
+        width: 400px;
+        top: -70px;
+        right: -50px;
+        left: unset;
+        bottom: unset;
+        transform: rotate(45deg);
+    }
+
+    .tanya,
+    .masha {
+        display: none;
+    }
+
+    header {
+        padding-top: 127px;
+        padding-bottom: 80px;
+
+        .header-container {
+            padding-bottom: 0;
+            flex-direction: column;
+            display: flex;
+            align-items: center;
+
+            .title {
+                font-size: 35px;
+                line-height: 35px;
+                max-width: 400px;
+                width: fit-content;
+                height: fit-content;
+                text-align: center;
+            }
+
+            .title::after {
+                height: 30px;
+                width: 32px;
+                top: 5px;
+                left: -3px;
+            }
+
+            .title::before {
+                height: 30px;
+                width: 32px;
+                top: 5px;
+                left: -3px;
+            }
+
+            .description {
+                margin-top: 14px;
+                font-size: 12px;
+                line-height: 15px;
+                max-width: 194px;
+                text-align: center;
+            }
+
+            .button-holder {
+                margin-top: 17px;
+                align-items: center;
+                flex-direction: column;
+
+                button {
+                    font-size: 10px;
+                    line-height: 160.2%;
+                    border-radius: 10px;
+                    height: 40px;
+                    width: 150px;
+                    padding: unset;
+                    margin-right: 0;
+                    margin-bottom: 20px;
+                }
+                .left{
+                    box-shadow: 0px 4px 20px #F66C17
+                }
+                .right{
+                    box-shadow: 0px 4px 20px #AACD40;
+                }
+            }
         }
     }
 }
