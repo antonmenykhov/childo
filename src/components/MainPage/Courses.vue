@@ -758,4 +758,17 @@ export default {
         }
     }
 }
+.mobile{
+     .k::before {
+        left: -3px!important;
+        top: 0.5px!important;
+       
+    }
+
+    .k::after {
+        left: -6px!important;
+        top: 0px!important;
+       
+    }
+}
 </style>

@@ -22,6 +22,13 @@
 
 <script>
 export default {
+    mounted() {
+        let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
+        if (isMobile){
+            document.body.classList.add('mobile')
+        }
+
+    },
     name: 'app',
     data() {
         return {

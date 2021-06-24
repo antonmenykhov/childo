@@ -530,6 +530,7 @@ section {
     }
 
     h2::after {
+        top:3px;
         height: 17px;
         width: 17px;
     }
@@ -649,5 +650,18 @@ section {
         top: 400px;
     }
 
+}
+.mobile{
+     h2::before {
+        left: -3px!important;
+        top: 1px!important;
+       
+    }
+
+    h2::after {
+        left: -6px!important;
+        top: 1px!important;
+       
+    }
 }
 </style>

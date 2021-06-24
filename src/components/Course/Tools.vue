@@ -573,4 +573,17 @@ ul {
         }
     }
 }
+.mobile{
+     h2::before {
+        left: 57px!important;
+        top: 1px!important;
+       
+    }
+
+    h2::after {
+        left: 57px!important;
+        top: 1px!important;
+       
+    }
+}
 </style>

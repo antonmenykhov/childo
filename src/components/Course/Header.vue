@@ -428,8 +428,10 @@ header::before {
                 line-height: 35px;
                 max-width: 400px;
                 width: fit-content;
-                height: fit-content;
+                height: 40px;
+
                 text-align: center;
+
             }
 
             .title::after {
@@ -469,14 +471,30 @@ header::before {
                     margin-right: 0;
                     margin-bottom: 20px;
                 }
-                .left{
+
+                .left {
                     box-shadow: 0px 4px 20px #F66C17
                 }
-                .right{
+
+                .right {
                     box-shadow: 0px 4px 20px #AACD40;
                 }
             }
         }
+    }
+}
+
+.mobile {
+    .title::after {
+       
+        top: 1px!important;
+        
+    }
+
+    .title::before {
+        
+        top: 1px!important;
+        
     }
 }
 </style>

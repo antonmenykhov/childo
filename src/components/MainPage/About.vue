@@ -292,20 +292,24 @@ h2::after {
         line-height: 10px;
         margin-bottom: 61px;
     }
-    .about::after{
+
+    .about::after {
         width: 100px;
         top: 0;
         height: 200px;
     }
-    .about::before{
+
+    .about::before {
         top: unset;
         bottom: 50px;
         width: 100px;
         height: 200px;
     }
-    .about{
+
+    .about {
         padding: 0 0 86px 0;
     }
+
     .about-holder {
         max-width: 300px;
         padding: 0;
@@ -315,39 +319,58 @@ h2::after {
             line-height: 12px;
 
         }
-        
-        .about-1{
+
+        .about-1 {
             max-width: 183px;
             margin-bottom: 0;
         }
-        .about-2{
+
+        .about-2 {
             max-width: 201px;
             margin-left: 182px;
             margin-bottom: 51px;
             margin-top: 63px;
         }
-        .about-3{
+
+        .about-3 {
             max-width: 314px;
             margin-top: 0;
         }
-        .about-1::before{
+
+        .about-1::before {
             height: 80px;
             width: 80px;
             top: -25px;
             left: -30px;
         }
-        .about-2::before{
+
+        .about-2::before {
             height: 80px;
             width: 80px;
             top: -20px;
             left: -30px;
         }
-        .about-3::before{
+
+        .about-3::before {
             height: 80px;
             width: 80px;
             top: -10px;
             left: -30px;
         }
+    }
+}
+
+.mobile {
+    h2::before {
+        left: -3px !important;
+        top: 1px !important;
+
+    }
+
+    h2::after {
+        left: -3px !important;
+        top: 1px !important;
+
     }
 }
 </style>

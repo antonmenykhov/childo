@@ -353,4 +353,17 @@ h2::after {
     ;
 
 }
+.mobile{
+     h2::before {
+        left: -2px!important;
+        top: 1px!important;
+       
+    }
+
+    h2::after {
+        left: -3px!important;
+        top: 1px!important;
+       
+    }
+}
 </style>

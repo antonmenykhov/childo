@@ -498,4 +498,17 @@ header::after {
     }
 
 }
+.mobile{
+     .title::before {
+        left: 48px!important;
+        top: 1px!important;
+       
+    }
+
+    .title::after {
+        left: 48px!important;
+        top: 1px!important;
+       
+    }
+}
 </style>

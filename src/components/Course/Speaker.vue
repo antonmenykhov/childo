@@ -434,6 +434,7 @@ section {
 
     .name {
         margin-top: 10px;
+        margin-left: 0;
 
     }
 
@@ -503,5 +504,18 @@ section {
         top: 0;
     }
 
+}
+.mobile{
+     h2::before {
+        left: -3px!important;
+        top: 0px!important;
+       
+    }
+
+    h2::after {
+        left: -4px!important;
+        top: 1px!important;
+       
+    }
 }
 </style>
