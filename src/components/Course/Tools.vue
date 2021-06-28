@@ -1,44 +1,56 @@
 <template>
-<section :class="courseData.style">
+<section :class="courseData.teacher.style">
     <h2>
         ИНСТРУМЕНТЫ <br> И МАТЕРИАЛЫ ДЛЯ КУРСА
     </h2>
     <div class="tools">
-        <ul v-if="courseData.style=='cs-1'">
-            <li v-for="item in courseData.tools" :key="item">{{item}}</li>
+        <ul v-if="courseData.teacher.style=='cs-1'">
+            <li v-for="item in tools" :key="item">{{item}}</li>
         </ul>
-        <div v-if="courseData.style=='cs-2'">
+        <div v-if="courseData.teacher.style=='cs-2'">
             <ul class="apple">
-                <li v-for="item in courseData.apple" :key="item" v-html="item"></li>
+                <li v-for="item in apple" :key="item" v-html="item"></li>
             </ul>
             <h4>
                 Программы для планшетов под Android
             </h4>
             <ul class="progs">
-                <li v-for="item in courseData.progs" :key="item" v-html="item">
+                <li v-for="item in android" :key="item" v-html="item">
 
                 </li>
             </ul>
             <h4>В качестве бонуса, так же вам предоставляем:
             </h4>
             <ul class="bonuses">
-                <li v-for="item in courseData.bonuses" :key="item">
+                <li v-for="item in courseData.bonus" :key="item">
                     <p>{{item.name}}</p>
                     <button>Скачать</button>
                 </li>
             </ul>
         </div>
-        <div class="image" :style="'background: url(\'/img'+courseData.toolsimage+'\') no-repeat center center / cover'"></div>
+        <div class="image" :style="'background: url(\''+url+courseData.toolsImage.formats.large.url+'\') no-repeat center center / cover'"></div>
 
     </div>
 </section>
 </template>
 
 <script>
+import api from '../../constants'
 export default {
     props: {
         courseData: Object
-    }
+    },
+    data() {
+        return {
+            tools: this.courseData.tools.split('\n'),
+            android: this.courseData.android.split('\n'),
+            apple: this.courseData.apple.split('\n-'),
+            url: api.url
+        }
+    },
+    mounted() {
+        
+    },
 }
 </script>
 

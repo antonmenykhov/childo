@@ -4,12 +4,12 @@
         <div class="container">
             <h2 class="k">Курсы</h2>
             <div class="courses-holder">
-                <div class="course-wrapper" :class="course.class" v-for="course,i in courses" :key="i">
-                    <div class="image" :style="'background: url(\'/img/'+course.img+'\') no-repeat center center / cover'"></div>
-                    <h3>{{course.name}}</h3>
+                <div class="course-wrapper" :class="course.style" v-for="course,i in courses" :key="i">
+                    <div class="image" :style="'background: url(\''+url+course.image.formats.small.url+'\') no-repeat center center / cover'"></div>
+                    <h3>{{course.Name}}</h3>
                     <div class="space">
-                        <p>{{course.desc}}</p>
-                        <button>Подробнее</button>
+                        <p>{{course.description}}</p>
+                        <button @click="$router.push({path: '/course/'+i})">Подробнее</button>
                     </div>
                 </div>
             </div>
@@ -42,24 +42,16 @@
 </template>
 
 <script>
+import api from '../../constants'
 export default {
+    computed:{
+        courses: function (){
+            return this.$store.state.mainData.courses
+        }
+    },
     data() {
         return {
-            courses: [{
-                    name: 'Онлайн-курс по рисованию «ChilDo» для детей от 4 до 10 лет ',
-                    desc: ' состоит из 13 творческих уроков с профессиональным художником. На занятиях ребенок с нуля научится рисовать акриловыми красками в разных техниках при помощи кистей и некоторых нетрадиционных инструментов. В результате у юного художника получится 13 вдохновляющих картин, которые он сможет подарить близким или повесить на стену.',
-                    img: 'course1.jpg',
-                    link: '',
-                    class: 'child'
-                },
-                {
-                    name: 'Онлайн-курс «Знакомство с графической иллюстрацией» рассчитан на детей от 9 лет и взрослых',
-                    desc: 'За 10 занятий профессиональный художник-иллюстратор доступно расскажет о тонкостях графического дизайна и научит вас пользоваться цифровыми инструментами в специальной программе. К концу курса ваших навыков будет достаточно, чтобы создавать собственные креативные digital-иллюстрации».',
-                    img: 'course2.jpg',
-                    link: '',
-                    class: 'parent'
-                },
-            ]
+            url: api.url
         }
     },
 }

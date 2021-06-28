@@ -1,11 +1,11 @@
 <template>
-<section :class="courseData.style">
+<section :class="courseData.teacher.style">
     <div class="container">
-        <div class="feature" v-for="item,i in courseData.features" :key="i">
-            <div class="img" :style="'background: url(\'/img/courses'+item.img+'\') no-repeat center center / cover'"></div>
+        <div class="feature" v-for="item,i in courseData.fetures" :key="i">
+            <div class="img" :style="'background: url(\''+url+item.image.formats.small.url+'\') no-repeat center center / cover'"></div>
             <div class="text">
-                <h4>{{item.name}}</h4>
-                <p>{{item.description}}</p>
+                <h4>{{item.title}}</h4>
+                <p>{{item.text}}</p>
             </div>
         </div>
     </div>
@@ -13,7 +13,13 @@
 </template>
 
 <script>
+import api from '../../constants'
 export default {
+    data() {
+        return {
+            url: api.url
+        }
+    },
     props: {
         courseData: Object
     }

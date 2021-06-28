@@ -1,22 +1,23 @@
 <template>
-<section :class="speakerData.style">
+<section :class="courseData.teacher.style">
     <div class="container">
         <div class="center">
             <h2>Спикер</h2>
-            <div class="image" :style="'background: url(\''+speakerData.img+'\') no-repeat center center / cover'"></div>
-            <h3 class="name">{{speakerData.name}}</h3>
+            <div class="image" :style="'background: url(\''+url+courseData.teacher.Avatar.formats.medium.url+'\') no-repeat center center / cover'"></div>
+            <h3 class="name">{{courseData.teacher.Name}}</h3>
         </div>
-        <p class="description" v-html="speakerData.description"></p>
-        <h3>Мое образование:</h3>
+        <p class="description" v-html="courseDescription"></p>
+        <h3  v-if="courseData.teacher.style=='cs-1'">Мое образование:</h3>
+        <h3  v-if="courseData.teacher.style=='cs-2'">Пройдены курсы:</h3>
         <ul>
-            <li v-for="item in speakerData.univer" :key="item">{{item}}</li>
+            <li v-for="item in univer" :key="item">{{item}}</li>
         </ul>
-        <div class="quote-1" v-if="speakerData.quotes[0]" v-html="speakerData.quotes[0]"></div>
-        <h3>мои достижения:</h3>
-        <ul>
-            <li v-for="item in speakerData.achiv" :key="item">{{item}}</li>
+        <div class="quote-1" v-if="quote1" v-html="quote1"></div>
+        <h3 v-if="courseData.teacher.style=='cs-1'">мои достижения:</h3>
+        <ul  v-if="courseData.teacher.style=='cs-1'">
+            <li v-for="item in achives" :key="item">{{item}}</li>
         </ul>
-        <div class="quote-2" v-if="speakerData.quotes[1]" v-html="speakerData.quotes[1]"></div>
+        <div class="quote-2" v-if="courseData.teacher.quote2" v-html="quote2"></div>
         <h3 class="go">Присоединяйтесь!</h3>
         <button>Выбрать тариф</button>
     </div>
@@ -24,10 +25,21 @@
 </template>
 
 <script>
+import api from '../../constants'
 export default {
     props: {
-        speakerData: Object
-    }
+        courseData: Object
+    },
+    data() {
+        return {
+            url: api.url,
+            achives: this.courseData.teacher.achives.split('\n'),
+            univer: this.courseData.teacher.school.split('\n'),
+            quote1:  this.courseData.teacher.quote1.split('\n').join('<br>'),
+            quote2:  this.courseData.teacher.quote2.split('\n').join('<br>'),
+            courseDescription: this.courseData.teacher.courseDescription.split('\n').join('<br>'),
+        }
+    },
 }
 </script>
 
@@ -251,7 +263,9 @@ section {
     width: 600px;
     background: url('/img/courses/2/speaker/right.svg') no-repeat right top / contain;
 }
-
+.name{
+    max-width: 350px;
+}
 .cs-2 {
     button {
         background: linear-gradient(93.43deg, #F574BA 0%, #C9287F 100%);
@@ -382,6 +396,7 @@ section {
         line-height: 20px;
         margin-top: 40px;
         margin-bottom: 0;
+        
     }
 
     .cs-1::before {
@@ -435,6 +450,7 @@ section {
     .name {
         margin-top: 10px;
         margin-left: 0;
+        
 
     }
 

@@ -1,12 +1,12 @@
 <template>
-<header :class="courseData.style">
+<header :class="courseData.teacher.style">
     <div :class="courseData.girl"></div>
     <div class="gradient"></div>
     <div class="header-container">
-        <div class="title">{{courseData.header}}
+        <div class="title">Курс
 
         </div>
-        <div class="description">{{courseData.description}}
+        <div class="description">{{courseData.smallDescription}}
         </div>
         <div class="button-holder">
             <button class="left">

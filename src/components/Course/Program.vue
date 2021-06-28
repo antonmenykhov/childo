@@ -1,12 +1,12 @@
 <template>
-<section :class="courseData.style">
+<section :class="courseData.teacher.style">
     <div class="left"></div>
     <div class="container">
         <h2>Программа курса</h2>
         <div class="program-holder">
-            <div class="program" :class="item.color" v-for="item,i in courseData.lessons" :key="i">
-                <div class="image" :style="'background: url(\'/img'+item.img+'\') no-repeat center center / cover'"></div>
-                <h4>{{item.name}}</h4>
+            <div @click="goLesson(i)" class="program" :class="item.color" v-for="item,i in courseData.lessons" :key="i">
+                <div class="image" :style="'background: url(\''+url+item.img.formats.thumbnail.url+'\') no-repeat center center / cover'"></div>
+                <h4>{{item.Name}}</h4>
                 <p>{{item.smallDescription}}</p>
             </div>
         </div>
@@ -15,7 +15,13 @@
 </template>
 
 <script>
+import api from '../../constants'
 export default {
+    data() {
+        return {
+            url: api.url
+        }
+    },
     props: {
         courseData: Object
     }

@@ -1,24 +1,25 @@
 <template>
-<section :class="courseData.style">
+<section :class="courseData.teacher.style">
     <div class="container">
         <h2>Тарифы</h2>
-        <p v-if="courseData.style=='cs-1'" class="subheader">{{courseData.priceDescription}}</p>
-        <ul v-if="courseData.style=='cs-1'">
-            <li v-for="item in courseData.priceSecondDescription" :key="item">{{item}}</li>
+        <p v-if="courseData.teacher.style=='cs-1'" class="subheader">Проанализируйте свое свободное время и подумайте, как часто вы сможете заниматься рисованием? </p>
+        <ul v-if="courseData.teacher.style=='cs-1'">
+            <li >Если у вас достаточно свободного времени и вы можете много заниматься, вам подойдет тариф на 3 месяца</li>
+            <li>Если у вас мало времени и у вас нет возможности часто заниматься, то мы предлагаем взять вам тариф на 6 или 12 месяцев</li>
         </ul>
-        <div class="prices" v-if="courseData.style=='cs-1'">
-            <div class="price-w" v-for="item in courseData.tarifs" :key="item.name">
+        <div class="prices" v-if="courseData.teacher.style=='cs-1'">
+            <div class="price-w" v-for="item in courseData.prices" :key="item.name">
                 <h4>{{item.name}}</h4>
-                <p class="price">{{item.price}}</p>
-                <p class="pricePerM">{{item.pricePerM}}</p>
+                <p class="price">{{item.price}} рублей</p>
+                <p class="pricePerM">{{item.pricePerM}} рублей/ месяц</p>
                 <button>Оплатить</button>
             </div>
         </div>
-        <div class="prices" v-if="courseData.style=='cs-2'">
-            <div class="price-w" v-for="item in courseData.tarifs" :key="item.name">
+        <div class="prices" v-if="courseData.teacher.style=='cs-2'">
+            <div class="price-w" v-for="item in courseData.prices" :key="item.name">
                 <h4>{{item.name}}</h4>
                 <h4>{{item.time}}</h4>
-                <p class="price">{{item.price}}</p>
+                <p class="price">{{item.price}} рублей</p>
                 <p class="description" v-html="item.description"></p>
                 <button>Оплатить</button>
             </div>

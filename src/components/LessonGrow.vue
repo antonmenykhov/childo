@@ -10,9 +10,6 @@
         </div>
         <button class="dz-button">Загрузить дз</button>
     </div>
-    <el-select class="superSelect" v-model="style">
-        <el-option v-for="item in listStyle" :label="value" :value="item" :key="item"></el-option>
-    </el-select>
 </section>
 </template>
 
@@ -348,6 +345,25 @@ export default {
     background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
 }
 
+.gr-10 {
+    .thumb {
+        box-shadow: 0px 0px 20px #EC9489;
+    }
+
+    .dz-button {
+        background: linear-gradient(93.58deg, #FBC2BD 0%, #D27FE7 100%);
+        box-shadow: 0px 0px 60px #F69B91;
+    }
+}
+
+.gr-10::before {
+    background: url('/img/lessons/gr/9/left.svg') no-repeat left bottom / contain;
+}
+
+.gr-10::after {
+    background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
+}
+
 @media (max-width: 1300px) {
     section::before {
         left: -50px !important;
@@ -361,16 +377,18 @@ export default {
 }
 
 @media (max-width: 900px) {
-    section{
+    section {
         overflow: hidden
     }
+
     section::before {
         height: 400px !important;
-        bottom: 0px!important;
+        bottom: 0px !important;
     }
-    section::after{
-        height: 300px!important;
-        right: -30px!important;
+
+    section::after {
+        height: 300px !important;
+        right: -30px !important;
     }
 
     .lesson {
@@ -378,12 +396,14 @@ export default {
             height: 50px;
             width: 50px;
         }
-        .play::before{
+
+        .play::before {
             top: -15px;
             left: -20px;
             height: 80px;
             width: 80px;
         }
+
         .container {
             padding-bottom: 101px;
             padding-top: 31px;

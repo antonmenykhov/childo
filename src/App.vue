@@ -1,8 +1,6 @@
 <template>
 <div id="app">
-    <el-select class="selectt" @change="$router.push({path: select})" v-model="select">
-        <el-option :label="item.label" :value="item.value" v-for="item in routes" :key="item.value"></el-option>
-    </el-select>
+    
     <div class="top-line">
         <div class="container">
             <div class="logo">
@@ -21,7 +19,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+import constants from './constants'
 export default {
+    beforeMount() {
+        axios.get(constants.getData).then(response => {
+            this.$store.commit('setMainData', response.data)
+        })
+    },
     mounted() {
         let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
         if (isMobile){
