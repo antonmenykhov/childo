@@ -1,12 +1,15 @@
 <template>
 <section class="lesson" :class="style">
+     <div class="back-button" @click="$router.go(-1)">
+        <div class="back-arrow"></div>
+    </div>
     <div class="jiraf"></div>
     <div class="container">
         <h4>{{lessonData.upheader}}</h4>
         <h2>{{lessonData.header}}</h2>
         <p class="description" v-html="lessonData.description">
         </p>
-        <div style="max-width: 307px">
+        <div class="q800">
             <div class="thumb" :style="'background: url(\'/img/lessons/free/'+lessonData.thumb+'\') no-repeat center top / cover'">
                 <div class="play"></div>
             </div>
@@ -23,6 +26,9 @@
 
 <script>
 export default {
+    mounted() {
+      window.scrollTo(0,0);
+    },
     data() {
         return {
             style: 'free',
@@ -50,6 +56,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.back-button{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    height: 50px;
+    width: 50px;
+    background: rgb(212, 212, 212);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all .2s;
+    .back-arrow{
+        background: url('/img/back.svg') no-repeat center center / contain;
+        height: 30px;
+        width: 30px;
+        margin-left: -5px;
+    }
+}
+.back-button:hover{
+    opacity: 1;
+}
 .lesson {
     background: white;
     position: relative;
@@ -245,7 +275,9 @@ export default {
     .jiraf {
         display: none;
     }
-
+    .q800{
+        max-width: 307px
+    }
     .lesson {
         .container {
             padding-bottom: 101px;

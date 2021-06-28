@@ -1,9 +1,9 @@
 <template>
 <div>
    
-    <Header v-bind:courseData="courseData" />
+    <Header v-bind:courseData="courseData" v-bind:id="id"/>
     <Features v-bind:courseData="courseData" />
-    <Program v-bind:courseData="courseData" />
+    <Program v-bind:courseData="courseData" v-bind:id="id"/>
     <Tools v-bind:courseData="courseData" />
     <Prices v-bind:courseData="courseData" />
     <Speaker v-bind:courseData="courseData" />
@@ -29,10 +29,13 @@ export default {
     },
     computed:{
         courseData: function (){
-            let data = this.$store.state.mainData.courses[this.id]
+            let data = this.$store.state.mainData.courses[this.id-1]
             return data
         }
-    }
+    },
+    mounted() {
+      window.scrollTo(0,0);
+    },
 }
 </script>
 

@@ -3,14 +3,23 @@
     
     <div class="top-line">
         <div class="container">
-            <div class="logo">
+            <div class="logo" @click="$router.push({path: '/'})">
 
             </div>
             <div class="burger-button"></div>
             <div class="main-menu">
-                <div class="menu-item" v-for="item,i in menu" :key="i">
-                    {{item.name}}
-                </div>
+                <a href="#" @click="$router.push({path: '/'})"  v-scroll-to="'#courses'" class="menu-item"  >
+                    Курсы
+                </a>
+                <a href="#" @click="$router.push({path: '/'})"  v-scroll-to="'#about'" class="menu-item"  >
+                    О нас
+                </a>
+                <a  @click="$router.push({path: '/lessonFree'})"  class="menu-item"  >
+                    Попробуй бесплатно
+                </a>
+                <a href="#" @click="$router.push({path: '/'})"  v-scroll-to="'#plus'" class="menu-item"  >
+                    Приемущества
+                </a>
             </div>
         </div>
     </div>
@@ -33,51 +42,30 @@ export default {
             document.body.classList.add('mobile')
         }
 
+      window.scrollTo(0,0);
+  
     },
     name: 'app',
     data() {
         return {
             select: '/',
-            routes: [{
-                    value: '/',
-                    label: 'Главная'
-                },
-                {
-                    value: '/course',
-                    label: 'Курс'
-                },
-                {
-                    value: '/lessonchild',
-                    label: 'Урок детский'
-                },
-                {
-                    label: 'Урок взрослый',
-                    value: '/lessongrow'
-                },
-                {
-                    label: 'Урок бесплатный',
-                    value: '/lessonfree'
-                },
-                {
-                    label: 'Личный кабинет',
-                    value: '/lk'
-                },
-            ],
+            
             menu: [{
                     name: 'Курсы',
-                    route: ''
+                    route: '#courses',
+                   
                 },
                 {
                     name: 'О нас',
-                    route: ''
+                    route: '#about'
                 },
                 {
                     name: 'Попробуй бесплатно',
-                    route: ''
+                    route: '#free'
                 },
                 {
                     name: 'Преимущества',
-                    route: ''
+                    route: '#plus'
                 },
             ]
         }
@@ -152,6 +140,7 @@ section::before {
                 transition: all .2s;
                 color: black;
                 cursor: pointer;
+                text-decoration: none;
             }
 
             .menu-item:last-child {

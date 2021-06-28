@@ -3,16 +3,16 @@
     <div :class="courseData.girl"></div>
     <div class="gradient"></div>
     <div class="header-container">
-        <div class="title">Курс
+        <div class="title">Курс {{id*1}}
 
         </div>
         <div class="description">{{courseData.smallDescription}}
         </div>
         <div class="button-holder">
-            <button class="left">
+            <button class="left" v-scroll-to="'#prices'">
                 К тарифам
             </button>
-            <button class="right">
+            <button class="right" v-scroll-to="'#more'">
                 Подробнее
             </button>
         </div>
@@ -24,7 +24,8 @@
 <script>
 export default {
     props: {
-        courseData: Object
+        courseData: Object,
+        id : null
     },
     data() {
         return {

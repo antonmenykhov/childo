@@ -1,39 +1,100 @@
 <template>
-<header>
-    <div class="jiraff"></div>
-    <div class="gradient"></div>
-    <div class="header-container">
-        <div class="title">Школа <br> рисования <br> childo
-            <div class="play-button-holder">
-                <div class="play-button">
-                    <img src="/img/play.svg" alt="play">
+<div>
+    <header>
+        <div class="jiraff"></div>
+        <div class="gradient"></div>
+        <div class="header-container">
+            <div class="title">Школа <br> рисования <br> childo
+                <div @click="aboutVideo=true" class="play-button-holder">
+                    <div class="play-button">
+                        <img src="/img/play.svg" alt="play">
+                    </div>
+                    <div class="play-button-text">
+                        Посмотрите видео о нас
+                    </div>
                 </div>
-                <div class="play-button-text">
-                    Посмотрите видео о нас
+            </div>
+            <div class="description">Привет! Приглашаем вас отправиться в увлекательное путешествие в мир творчества с онлайн-курсами рисования от «ChilDo»
+            </div>
+            <div class="button-holder" @click="$router.push({path: 'lessonFree'})">
+                <button>
+                    Пробный урок
+                </button>
+                <div class="button-description">
+                    Попробуйте бесплатный урок прямо сейчас!
                 </div>
             </div>
         </div>
-        <div class="description">Привет! Приглашаем вас отправиться в увлекательное путешествие в мир творчества с онлайн-курсами рисования от «ChilDo»
-        </div>
-        <div class="button-holder">
-            <button>
-                Пробный урок
-            </button>
-            <div class="button-description">
-                Попробуйте бесплатный урок прямо сейчас!
+    </header>
+    <transition name="fade">
+
+        <div v-if="aboutVideo" class="video-wrapper">
+            <div class="video">
+                <div @click="aboutVideo = false" class="close-button">
+                    +
+                </div>
             </div>
         </div>
-    </div>
-</header>
+    </transition>
+</div>
 </template>
 
 <script>
 export default {
-
+    data() {
+        return {
+            aboutVideo: false
+        }
+    },
 }
 </script>
 
 <style lang="scss" scoped>
+.fade-enter-active, .fade-leave-active {
+    
+  transition: all .3s ease-in-out;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+    transition: all .3s;
+  opacity: 0;
+  transform: translateY(-150vh);
+}
+.video-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.623);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .video {
+        position: relative;
+        height: 60vh;
+        width: 100vh;
+        background: grey;
+        border-radius: 20px;
+
+        .close-button {
+            right: -30px;
+            top: -50px;
+            color: white;
+            position: absolute;
+            font-size: 50px;
+            transform: rotate(45deg);
+            transition: all .2s;
+            cursor: pointer
+        }
+
+        .close-button:hover {
+            color: orangered;
+        }
+    }
+}
+
 .gradient {
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
     transform: rotate(90deg);
@@ -431,14 +492,17 @@ header::after {
                 .play-button-holder {
                     top: 300px;
                     left: 60px;
-                    .play-button{
+
+                    .play-button {
                         height: 41px;
                         width: 41px;
-                        img{
+
+                        img {
                             height: 13px;
                             width: 13px;
                         }
                     }
+
                     .play-button-text {
                         font-size: 8px;
                         line-height: 160.2%;
@@ -498,17 +562,18 @@ header::after {
     }
 
 }
-.mobile{
-     .title::before {
-        left: 48px!important;
-        top: 1px!important;
-       
+
+.mobile {
+    .title::before {
+        left: 48px !important;
+        top: 1px !important;
+
     }
 
     .title::after {
-        left: 48px!important;
-        top: 1px!important;
-       
+        left: 48px !important;
+        top: 1px !important;
+
     }
 }
 </style>

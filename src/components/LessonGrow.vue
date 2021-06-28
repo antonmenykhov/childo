@@ -1,11 +1,14 @@
 <template>
-<section class="lesson" :class="style">
+<section class="lesson" :class="lessonData.styleGrow">
+     <div class="back-button" @click="$router.go(-1)">
+        <div class="back-arrow"></div>
+    </div>
     <div class="container">
-        <h4>{{lessonData.upheader}}</h4>
-        <h2>{{lessonData.header}}</h2>
-        <p class="description" v-html="lessonData.description">
+        <h4>Урок {{id+1}}</h4>
+        <h2>{{lessonData.Name}}</h2>
+        <p class="description" v-html="lessonData.Description">
         </p>
-        <div class="thumb" :style="'background: url(\'/img/lessons'+lessonData.thumb+'\') no-repeat center center / cover'">
+        <div class="thumb" :style="'background: url(\''+url+lessonData.img.formats.medium.url+'\') no-repeat center center / cover'">
             <div class="play"></div>
         </div>
         <button class="dz-button">Загрузить дз</button>
@@ -14,33 +17,52 @@
 </template>
 
 <script>
+import api from '../constants'
 export default {
+    computed:{
+        lessonData: function (){
+            let data = this.$store.state.mainData.courses[this.cid].lessons[this.id]
+            return data
+        }
+    },
     data() {
         return {
-            listStyle: [
-                'gr-1',
-                'gr-2',
-                'gr-3',
-                'gr-4',
-                'gr-5',
-                'gr-6',
-                'gr-7',
-                'gr-8',
-                'gr-9',
-            ],
-            lessonData: {
-                upheader: 'урок 1',
-                header: '“отправляемся в путешествие”',
-                description: 'Научимся создавать свою цветовую палитру в программе Procreate и использовать в работе слои и инструмент «заливка».',
-                thumb: '/1/thumb.jpg'
-            },
-            style: 'gr-1'
+            id: this.$route.params.id-1,
+            cid: this.$route.params.cid-1,
+            url: api.url
         }
+    },
+    mounted() {
+      window.scrollTo(0,0);
     },
 }
 </script>
 
 <style lang="scss" scoped>
+.back-button{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    height: 50px;
+    width: 50px;
+    background: rgb(212, 212, 212);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all .2s;
+    .back-arrow{
+        background: url('/img/back.svg') no-repeat center center / contain;
+        height: 30px;
+        width: 30px;
+        margin-left: -5px;
+    }
+}
+.back-button:hover{
+    opacity: 1;
+}
 .superSelect {
     top: 50px !important;
     position: absolute !important;

@@ -1,5 +1,5 @@
 <template>
-<section :class="courseData.teacher.style">
+<section id="prices" :class="courseData.teacher.style">
     <div class="container">
         <h2>Тарифы</h2>
         <p v-if="courseData.teacher.style=='cs-1'" class="subheader">Проанализируйте свое свободное время и подумайте, как часто вы сможете заниматься рисованием? </p>
@@ -20,7 +20,7 @@
                 <h4>{{item.name}}</h4>
                 <h4>{{item.time}}</h4>
                 <p class="price">{{item.price}} рублей</p>
-                <p class="description" v-html="item.description"></p>
+                <p class="description" v-html="item.description.split('\n').join('<br>')"></p>
                 <button>Оплатить</button>
             </div>
         </div>
@@ -38,7 +38,9 @@
 export default {
     props: {
         courseData: Object
-    }
+    },
+
+
 
 }
 </script>
@@ -330,10 +332,11 @@ section {
     }
 
     .price-w {
-        height: 663px;
+        height: auto;
+        background: white;
         max-width: 500px;
         flex: 1;
-        padding: 0 32px;
+        padding: 0 32px 20px;
         margin-top: 146px;
     }
 
@@ -370,7 +373,7 @@ section {
     }
 
     button {
-        top: 753px;
+        top: 783px;
         width: 300px;
     }
 }

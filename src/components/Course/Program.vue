@@ -23,8 +23,19 @@ export default {
         }
     },
     props: {
-        courseData: Object
-    }
+        courseData: Object,
+        id: null
+    },
+    methods: {
+        goLesson(i){
+            if (this.courseData.style == 'child'){
+                this.$router.push({ path: '/lessonChild/'+this.id+'/'+(i*1+1)})
+            }
+            if (this.courseData.style == 'grow'){
+                this.$router.push({ path: '/lessonGrow/'+this.id+'/'+(i*1+1)})
+            }
+        }
+    },
 }
 </script>
 

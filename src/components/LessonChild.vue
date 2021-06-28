@@ -1,81 +1,86 @@
 <template>
-<section class="lesson" :class="style">
+<section class="lesson" :class="lessonData.styleChild">
+    <div class="back-button" @click="$router.go(-1)">
+        <div class="back-arrow"></div>
+    </div>
     <div class="jiraf"></div>
     <div class="container">
-        <h4>{{lessonData.upheader}}</h4>
-        <h2>{{lessonData.header}}</h2>
-        <p class="description" v-html="lessonData.description">
+        <h4>Урок {{id+1}}</h4>
+        <h2>{{lessonData.Name}}</h2>
+        <p class="description" v-html="lessonData.Description">
         </p>
         <div>
-            <div class="thumb" :style="'background: url(\'/img/lessons'+lessonData.thumb+'\') no-repeat center center / cover'">
+            <div class="thumb" :style="'background: url(\''+url+lessonData.img.formats.medium.url+'\') no-repeat center center / cover'">
                 <div class="play"></div>
             </div>
             <div class="req">
                 <h6>Для урока потребуется:</h6>
                 <ul>
-                    <li v-for="item in lessonData.req" :key="item">{{item}}</li>
+                    <li v-for="item in lessonData.tools.split('\n')" :key="item">{{item}}</li>
                 </ul>
                 <h6 class="dz-header">Домашнее задание</h6>
                 <ul class="dz">
-                    <li class="dz-li" v-for="item,i in lessonData.dz" :key="i">
-                        {{item}}
+                    <li class="dz-li" >
+                        {{lessonData.dz}}
                     </li>
                 </ul>
                 <button class="dz-button">Загрузить дз</button>
             </div>
         </div>
     </div>
-    <el-select class="superSelect" v-model="style">
-        <el-option v-for="item in listStyle" :value="item" :key="item"></el-option>
-    </el-select>
+ 
 </section>
 </template>
 
 <script>
+import api from '../constants'
 export default {
     data() {
         return {
-            listStyle: [
-                'ch-1',
-                'ch-2',
-                'ch-3',
-                'ch-4',
-                'ch-5',
-                'ch-6',
-                'ch-7',
-                'ch-8',
-                'ch-9',
-                'ch-10',
-                'ch-11',
-                'ch-12',
-                'ch-13',
-            ],
-            style: 'ch-1',
-            lessonData: {
-                upheader: 'урок 1',
-                header: '“привет из антарктики”',
-                description: 'Сегодня мы нарисуем забавного пингвина! В процессе узнаем интересные факты об особенностях внешнего вида этого животного и месте его обитания — холодной Антарктиде. Также мы разберем понятие «художественное пространство картины».',
-                thumb: '/1/thumb.jpg',
-                req: [
-                    'Акриловые краски, цвета: синий, белый, черный, оранжевый',
-                    'Лист бумаги (для акрила и гуаши) плотность от 150гр/м2, размер 30х40 см',
-                    'Палочки для краски',
-                    'Стаканчик',
-                    'Палитра',
-                    'Карандаш',
-                    'Ластик',
-                    'Кисть синтетика круглая №2, №5, №10',
-                ],
-                dz: [
-                    '-выполнить рисунок, который был показан в уроке'
-                ]
-            }
+            cid: this.$route.params.cid-1,
+            id: this.$route.params.id-1,
+            url: api.url,
+            
         }
     },
+    computed:{
+        lessonData: function (){
+            let data = this.$store.state.mainData.courses[this.cid].lessons[this.id]
+            return data
+        }
+    },
+    mounted() {
+      window.scrollTo(0,0);
+    },
+    
 }
 </script>
 
 <style lang="scss" scoped>
+.back-button{
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    height: 50px;
+    width: 50px;
+    background: rgb(212, 212, 212);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all .2s;
+    .back-arrow{
+        background: url('/img/back.svg') no-repeat center center / contain;
+        height: 30px;
+        width: 30px;
+        margin-left: -5px;
+    }
+}
+.back-button:hover{
+    opacity: 1;
+}
 section{
     overflow: hidden
 }

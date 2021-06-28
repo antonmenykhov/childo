@@ -20,6 +20,9 @@ import About from '../components/MainPage/About.vue'
 import Teachers from '../components/MainPage/Teachers.vue'
 import Raskras from '../components/MainPage/Raskras.vue'
 export default {
+  mounted() {
+      window.scrollTo(0,0);
+    },
   components:{
     Header,
     Courses,

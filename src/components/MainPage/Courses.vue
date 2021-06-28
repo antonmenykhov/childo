@@ -1,15 +1,15 @@
 <template>
 <div class="courses">
-    <section class="courses-wrapper">
+    <section id="courses" class="courses-wrapper">
         <div class="container">
-            <h2 class="k">Курсы</h2>
+            <h2  class="k">Курсы</h2>
             <div class="courses-holder">
-                <div class="course-wrapper" :class="course.style" v-for="course,i in courses" :key="i">
+                <div class="course-wrapper" :class="course.style" v-for="course,i in courses.sort((a, b) => a.num > b.num ? 1: -1)" :key="i">
                     <div class="image" :style="'background: url(\''+url+course.image.formats.small.url+'\') no-repeat center center / cover'"></div>
                     <h3>{{course.Name}}</h3>
                     <div class="space">
                         <p>{{course.description}}</p>
-                        <button @click="$router.push({path: '/course/'+i})">Подробнее</button>
+                        <button @click="$router.push({path: '/course/'+(i*1+1)})">Подробнее</button>
                     </div>
                 </div>
             </div>

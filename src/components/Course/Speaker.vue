@@ -19,7 +19,7 @@
         </ul>
         <div class="quote-2" v-if="courseData.teacher.quote2" v-html="quote2"></div>
         <h3 class="go">Присоединяйтесь!</h3>
-        <button>Выбрать тариф</button>
+        <button v-scroll-to="'#prices'">Выбрать тариф</button>
     </div>
 </section>
 </template>

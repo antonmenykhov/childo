@@ -1,5 +1,5 @@
 <template>
-<section class="pluses">
+<section class="pluses" id="plus">
     <h2>Приемущества</h2>
     <div class="row">
         <div class="plus plus-1">

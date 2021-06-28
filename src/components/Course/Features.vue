@@ -1,5 +1,5 @@
 <template>
-<section :class="courseData.teacher.style">
+<section id="more" :class="courseData.teacher.style">
     <div class="container">
         <div class="feature" v-for="item,i in courseData.fetures" :key="i">
             <div class="img" :style="'background: url(\''+url+item.image.formats.small.url+'\') no-repeat center center / cover'"></div>
