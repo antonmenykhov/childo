@@ -2,9 +2,9 @@
 <div class="courses">
     <section id="courses" class="courses-wrapper">
         <div class="container">
-            <h2  class="k">Курсы</h2>
+            <h2 class="k">Курсы</h2>
             <div class="courses-holder">
-                <div class="course-wrapper" :class="course.style" v-for="course,i in courses.sort((a, b) => a.num > b.num ? 1: -1)" :key="i">
+                <div class="course-wrapper" :class="course.style" v-for="course,i in courses" :key="i">
                     <div class="image" :style="'background: url(\''+url+course.image.formats.small.url+'\') no-repeat center center / cover'"></div>
                     <h3>{{course.Name}}</h3>
                     <div class="space">
@@ -35,7 +35,74 @@
             </div>
             <div class="connect">Присоединяйтесь к нашей дружной команде и попробуйте создать свою первую картину уже сейчас!
             </div>
-            <button>Присоединиться</button>
+            <button @click="openReg">Присоединиться</button>
+            <el-dialog class="register" width="400px" :visible.sync="reg">
+                <h3>Регистрация</h3>
+                <el-form v-model="register">
+                    <el-form-item>
+                        <el-input placeholder="Имя Фамилия" v-model="register.name"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-input placeholder="@instagram" v-model="register.instagram"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-checkbox v-model="sogl">Я соглашаюсь на обработку <br> персональных данных</el-checkbox>
+                    </el-form-item>
+                    <el-button @click="registerSend" type="primary">Регистрация</el-button>
+                    <el-form-item>
+                        <p @click="openAuth"> Уже зарегистрированы? <br> Нажмите чтобы <span>войти</span></p>
+                    </el-form-item>
+                </el-form>
+            </el-dialog>
+            <el-dialog class="register" width="400px" :visible.sync="auth">
+                <h3>Войти</h3>
+                <el-form v-model="register">
+
+                    <el-form-item>
+                        <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
+                    </el-form-item>
+                    <el-form-item>
+                        <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
+                    </el-form-item>
+
+                    <el-button @click="authSend" type="primary">Войти</el-button>
+                    <el-form-item>
+                        <p @click="openReg"> Не зарегистрированы? <br> Нажмите чтобы <span>зарегистрироваться</span></p>
+                        <p @click="openForgot"> Забыли пароль? <br> Нажмите чтобы <span>восстановить</span></p>
+                    </el-form-item>
+
+                </el-form>
+            </el-dialog>
+            <el-dialog class="register" width="400px" :visible.sync="forgot">
+                <h3>Восстановить пароль</h3>
+                <el-form v-model="register">
+
+                    <el-form-item>
+                        <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
+                    </el-form-item>
+
+                    <el-button @click="forgotSend" type="primary">Восстановить</el-button>
+                    <el-form-item>
+                        <p @click="openReg"> Не зарегистрированы? <br> Нажмите чтобы <span>зарегистрироваться</span></p>
+                        <p @click="openAuth"> Вспомнили пароль? <br> Нажмите чтобы <span>войти</span></p>
+                    </el-form-item>
+
+                </el-form>
+            </el-dialog>
+            <el-dialog class="register" width="400px" :visible.sync="sended">
+                <h3>Письмо с инструкциями отправлено на почту</h3>
+                <el-form v-model="register">
+
+                    <el-button @click="sended=false" type="primary">Хорошо</el-button>
+
+                </el-form>
+            </el-dialog>
         </div>
     </section>
 </div>
@@ -43,21 +110,206 @@
 
 <script>
 import api from '../../constants'
+import axios from 'axios'
 export default {
-    computed:{
-        courses: function (){
+    computed: {
+        courses: function () {
             return this.$store.state.mainData.courses
         }
     },
+    methods: {
+        openAuth() {
+
+            this.reg = false;
+            this.forgot = false
+            this.auth = true;
+
+        },
+        openReg() {
+            if ( this.$cookie.get('jwt')) {
+                this.$store.commit('setJwt', this.$cookie.get('jwt'));
+                axios.get(api.me, {
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.jwt}`,
+                    }
+                }).then(response => {
+                    this.$store.commit('setUserData', response.data.user);
+                    this.$router.push({ path: '/lk' })
+                }).catch(error => {
+                    console.log(error.response)
+                    this.auth = false;
+                    this.forgot = false
+                    this.reg = true
+                })
+            } else {
+                this.auth = false;
+                this.forgot = false
+                this.reg = true
+            }
+
+        },
+        openForgot() {
+            this.auth = false;
+            this.forgot = true
+            this.reg = false
+        },
+        registerSend() {
+            axios.post(api.register, {
+                    username: this.register.name,
+                    email: this.register.mail,
+                    password: this.register.password,
+                    Instagram: this.register.instagram
+                })
+                .then(
+                    response => {
+                        this.$cookie.set('jwt', response.data.jwt, { expires: '1M' })
+                        this.$store.commit('setJwt', response.data.jwt);
+                        this.$store.commit('setUserData', response.data.user);
+                        this.$router.push({ path: '/lk' })
+                    }
+                ).catch(error => {
+                    console.log(error.response)
+                    this.$notify({
+                        title: 'Ошибка',
+                        message: 'данный адрес уже зарегистрирован',
+                        type: 'warning'
+                    });
+                })
+        },
+        authSend() {
+            axios.post(api.auth, {
+
+                    identifier: this.register.mail,
+                    password: this.register.password,
+
+                })
+                .then(
+                    response => {
+                        this.$cookie.set('jwt', response.data.jwt, { expires: '1M' })
+                        this.$store.commit('setJwt', response.data.jwt);
+                        this.$store.commit('setUserData', response.data.user);
+                        this.$router.push({ path: '/lk' })
+                    }
+                ).catch(error => {
+                    console.log(error.response)
+                    this.$notify({
+                        title: 'Ошибка',
+                        message: 'Неверный логин или пароль',
+                        type: 'warning'
+                    });
+                })
+        },
+        forgotSend() {
+            axios.post(api.forgot, {
+
+                    email: this.register.mail,
+
+                })
+                .then(
+                    response => {
+                        console.log(response.data)
+                        this.forgot = false;
+                        this.sended = true;
+                    }
+                ).catch(error => {
+                    console.log(error.response)
+                    
+                    this.$notify({
+                        title: 'Ошибка',
+                        message: 'Такой адрес не зарегистрирован',
+                        type: 'warning'
+                    });
+                })
+        },
+
+    },
     data() {
         return {
-            url: api.url
+            url: api.url,
+            reg: false,
+            auth: false,
+            forgot: false,
+            sogl: false,
+            sended: false,
+            register: {
+                name: '',
+                password: '',
+                mail: '',
+                Instagram: '',
+                sogl: ''
+            },
         }
     },
 }
 </script>
 
-<style lang="scss" scoped>
+<style>
+
+.el-notification__content {
+    text-align: left !important;
+}
+
+.el-dialog {
+    border-radius: 20px !important;
+
+}
+
+.el-dialog h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    word-break: keep-all;
+}
+
+.el-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.el-form button {
+    box-shadow: 0px 4px 20px #f66c17 !important;
+    ;
+}
+
+.el-form p {
+    line-height: 20px;
+    width: 100%;
+    text-align: center;
+
+}
+
+.el-form p:last-child {
+    margin-top: 10px;
+}
+
+.el-form p:first-child {
+    margin-top: 30px;
+}
+
+p span {
+    color: #FAA435;
+    cursor: pointer;
+}
+
+.el-input__inner {
+    padding: 5px 15px !important;
+    border-radius: 10px !important;
+    height: unset !important;
+
+}
+
+.el-checkbox-button__inner,
+.el-checkbox__input {
+    vertical-align: top !important;
+    margin-top: 10px;
+}
+
+input::placeholder {
+    color: #333333 !important;
+}
+</style><style lang="scss" scoped>
 .about {
     position: relative;
     padding-bottom: 195px;
@@ -664,14 +916,17 @@ export default {
     .courses-wrapper .courses-holder .course-wrapper:first-child .image {
         filter: drop-shadow(0px 0px 40px rgba(214, 53, 140, 0.8));
     }
-    .about::after{
+
+    .about::after {
         width: 100px;
         top: 70px;
     }
-    .about::before{
+
+    .about::before {
         width: 100px;
         bottom: 100px;
     }
+
     .about {
         h4 {
             font-weight: 500;
@@ -750,17 +1005,18 @@ export default {
         }
     }
 }
-.mobile{
-     .k::before {
-        left: -3px!important;
-        top: 0.5px!important;
-       
+
+.mobile {
+    .k::before {
+        left: -3px !important;
+        top: 0.5px !important;
+
     }
 
     .k::after {
-        left: -6px!important;
-        top: 0px!important;
-       
+        left: -6px !important;
+        top: 0px !important;
+
     }
 }
 </style>

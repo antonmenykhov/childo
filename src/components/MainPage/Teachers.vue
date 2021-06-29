@@ -2,7 +2,7 @@
 <section class="teachers">
     <h3>С творческой командой <span class="span-blue">«ChilDo»</span> у вас все получится, а каждый ваш рисунок станет настоящим <span class="span-orange">шедевром.</span></h3>
     <div class="row">
-        <div class="teacher" v-for="teacher in teachers.sort((a, b) => a.num > b.num ? 1: -1)" :key="teacher.name">
+        <div class="teacher" v-for="teacher in teachers" :key="teacher.name">
             <div class="image" :style="'background: url(\''+url+teacher.Avatar.formats.small.url+'\') no-repeat center center / cover'">
                 <div :class="teacher.color"></div>
             </div>

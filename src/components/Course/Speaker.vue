@@ -519,6 +519,15 @@ section {
         height: 150px;
         top: 0;
     }
+      .cs-2::before{
+        height: 150px;
+        left: -20px;
+        bottom: 50px;
+    }
+    .cs-2::after{
+        height: 150px;
+        top: 0;
+    }
 
 }
 .mobile{

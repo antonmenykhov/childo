@@ -49,7 +49,7 @@ export default {
         }
     },
     mounted() {
-        
+
     },
 }
 </script>
@@ -548,16 +548,40 @@ ul {
         height: 17px;
         width: 17px;
     }
-    .cs-1::before{
+
+    .cs-1::before {
         height: 250px;
         left: -24px;
         bottom: 0;
         transform: rotate(10deg);
     }
+     .cs-2::before {
+        height: 250px;
+        left: -24px;
+        bottom: 0;
+        transform: rotate(10deg);
+    }
+
     .tools {
         margin-left: 38px;
         margin-bottom: 51px;
         align-items: center;
+
+        .bonuses {
+            li::before {
+                top: 4px;
+            }
+
+            li {
+                text-indent: 15px;
+            }
+        }
+
+        h4 {
+            line-height: 20px;
+            font-size: 18px;
+            max-width: 70vw;
+        }
 
         ul {
             margin-right: 10px;
@@ -568,7 +592,8 @@ ul {
             font-size: 12px;
             line-height: 15px;
         }
-        li::before{
+
+        li::before {
             height: 10px;
             width: 10px;
             top: 2px;
@@ -578,24 +603,65 @@ ul {
             height: 225px;
             margin-right: -170px;
         }
-        .image::before{
+
+        .image::before {
             height: 150px;
             bottom: -60px;
             left: -140px;
         }
     }
+
+    .cs-2 {
+        button {
+            box-shadow: 0px 0px 15px #D6358C;
+            margin: 15px 0;
+            margin-left: -10px;
+            height: 40px;
+            width: 150px;
+            padding: unset;
+            border-radius: 10px;
+            top: 208px;
+            font-size: 10px;
+            line-height: 160.2%;
+        }
+
+        .bonuses {
+            padding-left: 10px;
+        }
+
+        .apple {
+            
+                margin-right: 10px;
+                max-width: 250px;
+                padding-left: 5px;
+            
+
+            li {
+                font-size: 12px;
+                line-height: 15px;
+                margin-bottom: 10px;
+            }
+
+            li::before {
+                height: 10px;
+                width: 10px;
+                top: 2px;
+            }
+        }
+    }
 }
-.mobile{
-     h2::before {
-        left: 57px!important;
-        top: 1px!important;
-       
+
+.mobile {
+    h2::before {
+        left: 57px !important;
+        top: 1px !important;
+
     }
 
     h2::after {
-        left: 57px!important;
-        top: 1px!important;
-       
+        left: 57px !important;
+        top: 1px !important;
+
     }
 }
 </style>

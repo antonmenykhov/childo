@@ -4,7 +4,7 @@
         <h2>Тарифы</h2>
         <p v-if="courseData.teacher.style=='cs-1'" class="subheader">Проанализируйте свое свободное время и подумайте, как часто вы сможете заниматься рисованием? </p>
         <ul v-if="courseData.teacher.style=='cs-1'">
-            <li >Если у вас достаточно свободного времени и вы можете много заниматься, вам подойдет тариф на 3 месяца</li>
+            <li>Если у вас достаточно свободного времени и вы можете много заниматься, вам подойдет тариф на 3 месяца</li>
             <li>Если у вас мало времени и у вас нет возможности часто заниматься, то мы предлагаем взять вам тариф на 6 или 12 месяцев</li>
         </ul>
         <div class="prices" v-if="courseData.teacher.style=='cs-1'">
@@ -39,8 +39,6 @@ export default {
     props: {
         courseData: Object
     },
-
-
 
 }
 </script>
@@ -453,18 +451,68 @@ section {
         line-height: 22px;
     }
 
-    .price-w {
-        margin: 0 17px;
-        height: 230px;
-        background: white;
+    .cs-1 {
+        .price-w {
+            margin: 0 17px;
+            height: 230px;
+            background: white;
+
+            button {
+                font-size: 16px;
+                line-height: 160.2%;
+                padding: 17px 57px;
+                top: 272px;
+            }
+
+        }
+    }
+
+    .cs-2 {
+        h4 {
+            font-size: 22px;
+            line-height: 27px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 20px;
+        }
 
         button {
             font-size: 16px;
             line-height: 160.2%;
-            padding: 17px 57px;
-            top: 272px;
+            padding: 17px 77px;
+            top: 530px;
+            width: unset;
         }
 
+        .certs {
+            margin-top: 171px;
+            padding: 0 17px;
+
+            p {
+                font-size: 16px;
+                line-height: 20px;
+                padding-right: 100px;
+                padding-left: 70px;
+            }
+
+            p::before {
+                height: 40px;
+                width: 40px;
+                top: 9px;
+                left: 10px;
+            }
+
+            button {
+                font-size: 16px;
+                line-height: 160.2%;
+                padding: 0;
+                height: unset;
+                width: 199.33px;
+                margin-right: unset;
+            }
+        }
     }
 
     .cs-1::after {
@@ -534,7 +582,7 @@ section {
     }
 
     h2::after {
-        top:3px;
+        top: 3px;
         height: 17px;
         width: 17px;
     }
@@ -570,102 +618,169 @@ section {
         top: -2px;
     }
 
-    .prices {
-        flex-wrap: wrap;
+    .cs-1 {
+        .prices {
+            flex-wrap: wrap;
 
-        .price-w {
-            flex: unset;
-            width: 178px;
-            height: 160px;
-            margin: 0 75px 150px
+            .price-w {
+                flex: unset;
+                width: 178px;
+                height: 160px;
+                margin: 0 75px 150px
+            }
+
+            h4 {
+                font-size: 14px;
+                line-height: 17px;
+                max-width: 100px;
+            }
+
+            p {
+                font-size: 12px;
+                line-height: 15px;
+            }
+
+            .price {
+                margin-bottom: 15px;
+            }
+
+            button {
+                height: 40px;
+                width: 150px;
+                padding: unset;
+                border-radius: 10px;
+                top: 208px;
+                font-size: 10px;
+                line-height: 160.2%;
+            }
         }
+    }
 
-        h4 {
-            font-size: 14px;
-            line-height: 17px;
-            max-width: 100px;
-        }
+    .cs-1 {
+        .certs {
+            margin-top: -34px;
+            margin-bottom: 69px;
+            flex-direction: column;
+            align-items: center;
 
-        p {
-            font-size: 12px;
-            line-height: 15px;
-        }
+            p {
+                max-width: 217px;
+                padding: unset;
+                font-size: 8px;
+                line-height: 10px;
+            }
 
-        .price {
-            margin-bottom: 15px;
-        }
+            p::before {
+                height: 25px;
+                width: 25px;
+                left: -35px;
+                top: -2px;
+            }
 
-        button {
-            height: 40px;
-            width: 150px;
-            padding: unset;
-            border-radius: 10px;
-            top: 208px;
-            font-size: 10px;
-            line-height: 160.2%;
+            button {
+                font-size: 10px;
+                line-height: 160.2%;
+                height: 40px;
+                width: 150px;
+                border-radius: 10px;
+                margin-top: 43px;
+            }
         }
     }
 
-    .certs {
-        margin-top: -34px;
-        margin-bottom: 69px;
-        flex-direction: column;
-        align-items: center;
-
-        p {
-            max-width: 217px;
-            padding: unset;
-            font-size: 8px;
-            line-height: 10px;
-        }
-
-        p::before {
-            height: 25px;
-            width: 25px;
-            left: -35px;
-            top: -2px;
-        }
-
-        button {
-            font-size: 10px;
-            line-height: 160.2%;
-            height: 40px;
-            width: 150px;
-            border-radius: 10px;
-            margin-top: 43px;
-        }
-    }
-    .cs-1::before{
+    .cs-1::before {
         height: 200px;
         bottom: 300px;
         transform: rotate(10deg);
     }
-    .cs-1::after{
+
+    .cs-1::after {
         height: 200px;
         top: 400px;
     }
-    .cs-2::before{
+
+    .cs-2::before {
         height: 200px;
         bottom: 300px;
         transform: rotate(10deg);
     }
-    .cs-2::after{
+
+    .cs-2::after {
         height: 200px;
         top: 400px;
+    }
+
+    .cs-2 {
+        .certs {
+            margin-top: 34px;
+            margin-bottom: 69px;
+            flex-direction: column;
+            align-items: center;
+
+            p {
+                max-width: 217px;
+                padding: unset;
+                font-size: 8px;
+                line-height: 10px;
+            }
+
+            p::before {
+                height: 25px;
+                width: 25px;
+                left: -35px;
+                top: -2px;
+            }
+
+            button {
+                font-size: 10px;
+                line-height: 160.2%;
+                height: 40px;
+                width: 150px;
+                border-radius: 10px;
+                margin-top: 43px;
+                margin-right: unset;
+            }
+        }
+
+        .prices {
+            flex-wrap: wrap;
+            .price-w {
+                flex: 1 1 250px;
+                 h4 {
+                font-size: 14px;
+                line-height: 17px;
+                max-width: 100px;
+            }
+
+            p {
+                font-size: 12px;
+                line-height: 15px;
+            }
+                margin-top: 50px;
+                margin-bottom: 100px;
+                padding: 12px 15px;
+                height: 350px;
+
+                button {
+                    top: 370px
+                }
+            }
+        }
     }
 
 }
-.mobile{
-     h2::before {
-        left: -3px!important;
-        top: 1px!important;
-       
+
+.mobile {
+    h2::before {
+        left: -3px !important;
+        top: 1px !important;
+
     }
 
     h2::after {
-        left: -6px!important;
-        top: 1px!important;
-       
+        left: -6px !important;
+        top: 1px !important;
+
     }
 }
 </style>

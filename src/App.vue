@@ -34,6 +34,7 @@ export default {
     beforeMount() {
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
+          
         })
     },
     mounted() {

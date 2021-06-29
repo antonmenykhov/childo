@@ -5,12 +5,26 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    mainData: {}
+    mainData: {},
+    teachers: [],
+    jwt: '',
+    userData: {}
+    
   },
   mutations: {
     setMainData(state, it){
       state.mainData = it
+    },
+    setTeachers(state, it){
+      state.teachers = it
+    },
+    setJwt(state,it){
+      state.jwt = it
+    },
+    setUserData(state, it){
+      state.userData = it
     }
+
   },
   actions: {
   },

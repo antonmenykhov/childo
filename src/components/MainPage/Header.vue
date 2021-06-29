@@ -73,8 +73,8 @@ export default {
 
     .video {
         position: relative;
-        height: 60vh;
-        width: 100vh;
+        height: 40vw;
+        width: 80vw;
         background: grey;
         border-radius: 20px;
 

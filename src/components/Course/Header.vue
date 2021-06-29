@@ -25,7 +25,7 @@
 export default {
     props: {
         courseData: Object,
-        id : null
+        id: null
     },
     data() {
         return {
@@ -400,8 +400,8 @@ header::before {
     }
 
     .cs-2::after {
-        height: 400px;
-        width: 400px;
+        height: 300px;
+        width: 300px;
         top: -70px;
         right: -50px;
         left: unset;
@@ -473,12 +473,23 @@ header::before {
                     margin-bottom: 20px;
                 }
 
-                .left {
-                    box-shadow: 0px 4px 20px #F66C17
-                }
+                .cs-1 {
+                    .left {
+                        box-shadow: 0px 4px 20px #F66C17
+                    }
 
-                .right {
-                    box-shadow: 0px 4px 20px #AACD40;
+                    .right {
+                        box-shadow: 0px 4px 20px #AACD40;
+                    }
+                }
+                .cs-2 {
+                    .left {
+                        box-shadow: 0px 4px 20px #F66C17;
+                    } 
+
+                    .right {
+                        box-shadow: 0px 4px 20px #45C6DD;;
+                    }
                 }
             }
         }
@@ -487,15 +498,15 @@ header::before {
 
 .mobile {
     .title::after {
-       
-        top: 1px!important;
-        
+
+        top: 1px !important;
+
     }
 
     .title::before {
-        
-        top: 1px!important;
-        
+
+        top: 1px !important;
+
     }
 }
 </style>

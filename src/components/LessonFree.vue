@@ -1,6 +1,6 @@
 <template>
 <section class="lesson" :class="style">
-     <div class="back-button" @click="$router.go(-1)">
+     <div class="back-button" @click="$router.push({path: '/'})">
         <div class="back-arrow"></div>
     </div>
     <div class="jiraf"></div>
