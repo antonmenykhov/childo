@@ -1,6 +1,6 @@
 <template>
 <section class="lesson" :class="lessonData.styleChild">
-    <div class="back-button" @click="$router.go(-1)">
+    <div class="back-button" @click="$router.push({path: '/lessons/'+(cid+1)})">
         <div class="back-arrow"></div>
     </div>
     <div class="jiraf"></div>
@@ -20,44 +20,133 @@
                 </ul>
                 <h6 class="dz-header">Домашнее задание</h6>
                 <ul class="dz">
-                    <li class="dz-li" >
+                    <li class="dz-li">
                         {{lessonData.dz}}
                     </li>
                 </ul>
-                <button class="dz-button">Загрузить дз</button>
+
+                <el-button v-if="!this.$store.state.userData.BuyedCourses[this.cid].lessonsData[id]"  :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
+                <input type="file" :id="'dz'" v-on:change="FileUpload()">
+                <el-button  @click="goNext" v-if="next || this.$store.state.userData.BuyedCourses[this.cid].lessonsData[id]" class="dz-button">Следующий урок</el-button>
+                <el-button @click="goLK" v-if="end" class="dz-button">В личный кабинет</el-button>
             </div>
         </div>
     </div>
- 
+
 </section>
 </template>
 
 <script>
 import api from '../constants'
+import axios from 'axios'
 export default {
+  
+    methods: {
+        goLK(){
+            this.$router.push({path: '/lk'})
+        },
+        goNext() {
+            this.$router.push({ path: '/lessonChild/' + (this.cid + 1) + '/' + (this.id + 2) })
+        },
+        FileUpload() {
+            this.file = document.getElementById('dz').files[0];
+            this.submitImage()
+        },
+        setDz(dz){
+            
+            let formData = new FormData;
+            formData.append('dz', dz)
+            formData.append('courseId', this.cid)
+            formData.append('lessonId', this.id)
+            axios.post(api.setDz, formData, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => console.log(response.data))
+        },
+        
+
+        submitImage() {
+            this.loading = true
+            this.textDz = ''
+            let formData = new FormData();
+            formData.append('files', this.file);
+            axios.post(api.upload,
+                formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${this.$store.state.jwt}` }, }
+            ).then(response => {
+                this.loading = false
+                setTimeout(this.setDz, 500, response.data[0].formats.small.url)
+                this.textDz = "ДЗ загружено"
+                if (this.id+1 <= this.$store.state.userData.BuyedCourses[this.cid].data.lessons.length-1) {
+                    this.next = true
+                } else{
+                    this.end=true
+                }
+            })
+
+        },
+    },
     data() {
         return {
-            cid: this.$route.params.cid-1,
-            id: this.$route.params.id-1,
+            cid: this.$route.params.cid - 1,
+            id: this.$route.params.id - 1,
             url: api.url,
-            
+            loading: false,
+            textDz: 'Загрузить дз',
+            next: false,
+            end: false
+
         }
     },
-    computed:{
-        lessonData: function (){
-            let data = this.$store.state.mainData.courses[this.cid].lessons[this.id]
+    computed: {
+        lessonData: function () {
+            let data = this.$store.state.userData.BuyedCourses[this.cid].data.lessons[this.id]
             return data
         }
     },
     mounted() {
-      window.scrollTo(0,0);
+        window.scrollTo(0, 0);
+        if ( this.$cookie.get('jwt')) {
+                this.$store.commit('setJwt', this.$cookie.get('jwt'));
+                axios.get(api.me, {
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.jwt}`,
+                    }
+                }).then(response => {
+                    this.$store.commit('setUserData', response.data);
+                    
+                }).catch(error => {
+                    console.log(error.response)
+                    
+                })
+            } 
     },
-    
+
 }
 </script>
 
 <style lang="scss" scoped>
-.back-button{
+#dz {
+    display: none;
+}
+
+.el-button {
+    position: relative;
+}
+
+label {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
     position: fixed;
     left: 15px;
     top: 15px;
@@ -71,19 +160,23 @@ export default {
     cursor: pointer;
     opacity: 0.4;
     transition: all .2s;
-    .back-arrow{
+
+    .back-arrow {
         background: url('/img/back.svg') no-repeat center center / contain;
         height: 30px;
         width: 30px;
         margin-left: -5px;
     }
 }
-.back-button:hover{
+
+.back-button:hover {
     opacity: 1;
 }
-section{
+
+section {
     overflow: hidden
 }
+
 .superSelect {
     top: 50px;
     position: absolute !important;
@@ -238,6 +331,8 @@ section{
         border: none;
         outline: none;
         margin-top: 60px;
+        color: #333333;
+        margin-right: 20px;
 
     }
 }
@@ -945,14 +1040,17 @@ section{
             height: 50px;
             width: 50px;
         }
-        .play::before{
+
+        .play::before {
             top: -15px;
             left: -20px;
             height: 80px;
             width: 80px;
         }
-        padding-top: 35px!important;
-        padding-bottom: 77px!important;
+
+        padding-top: 35px !important;
+        padding-bottom: 77px !important;
+
         h4 {
             font-size: 25px;
             line-height: 25px;
@@ -1063,8 +1161,8 @@ section{
     .ch-10::after,
     .ch-12::after,
     .ch-14::after {
-       right: unset;
-       bottom: -40px;
+        right: unset;
+        bottom: -40px;
         left: -60px;
         transform: rotateY(180deg);
         height: 300px;

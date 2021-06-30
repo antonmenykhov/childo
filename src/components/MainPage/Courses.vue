@@ -133,7 +133,7 @@ export default {
                         Authorization: `Bearer ${this.$store.state.jwt}`,
                     }
                 }).then(response => {
-                    this.$store.commit('setUserData', response.data.user);
+                    this.$store.commit('setUserData', response.data);
                     this.$router.push({ path: '/lk' })
                 }).catch(error => {
                     console.log(error.response)
@@ -162,7 +162,7 @@ export default {
                 })
                 .then(
                     response => {
-                        this.$cookie.set('jwt', response.data.jwt, { expires: '1M' })
+                        this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
                         this.$store.commit('setJwt', response.data.jwt);
                         this.$store.commit('setUserData', response.data.user);
                         this.$router.push({ path: '/lk' })
@@ -185,7 +185,7 @@ export default {
                 })
                 .then(
                     response => {
-                        this.$cookie.set('jwt', response.data.jwt, { expires: '1M' })
+                        this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
                         this.$store.commit('setJwt', response.data.jwt);
                         this.$store.commit('setUserData', response.data.user);
                         this.$router.push({ path: '/lk' })

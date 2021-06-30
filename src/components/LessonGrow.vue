@@ -21,7 +21,7 @@ import api from '../constants'
 export default {
     computed:{
         lessonData: function (){
-            let data = this.$store.state.mainData.courses[this.cid].lessons[this.id]
+             let data = this.$store.state.userData.BuyedCourses[this.cid].data.lessons[this.id]
             return data
         }
     },

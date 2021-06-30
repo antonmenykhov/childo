@@ -1,20 +1,20 @@
 <template>
 <section :class="style">
+    <div class="back-button" @click="$router.push({path: '/'})">
+        <div class="back-arrow"></div>
+    </div>
     <div class="container">
         <div class="main-info">
             <div class="info">
                 <div class="avatar">
-
+                    <div class="image" v-if="userData.avatarUrl" :style="'background: url(\''+url+userData.avatarUrl+'\') no-repeat center center / cover'"></div>
+                    <label for="avatar">Загрузить</label>
+                    <input type="file" :id="'avatar'" v-on:change="FileUpload()">
                 </div>
                 <div class="fullName">
-                    <div class="firstName">
-                        Фамилия
-                    </div>
-                    <div class="secondName">
-                        Имя
-                    </div>
+                    {{userData.username}}
                 </div>
-                <button>Выйти</button>
+                <button @click="exit">Выйти</button>
             </div>
             <div class="description">
                 Мы рады видеть вас в творческом проекте онлайн-курсов по рисованию «ChilDo»! Благодарим вас за приобретение курса. Давайте проведем небольшую экскурсию по нашему волшебному миру.<br>
@@ -28,8 +28,8 @@
         <div class="works">
             <h3>Мои работы</h3>
             <div class="works-wrapper">
-                <div class="work" v-for="item in worksNum" :key="item"></div>
-                <div class="more-button">
+                <div :style="'background: url(\''+url+works[i]+'\') no-repeat center center / cover'" class="work" v-for="item,i in worksNum" :key="item"></div>
+                <div v-if="!all" class="more-button" @click="all=true">
                     <div class="icon">+</div>
                     <p>Смотреть еще</p>
                 </div>
@@ -40,18 +40,19 @@
             </div>
         </div>
         <div class="sidebar">
-            <h3>Выбранный курс</h3>
-            <ul>
-                <li>Дата покупки: </li>
-                <li>Старт курса: </li>
-                <li>Конец курса: </li>
-            </ul>
-            <button @click="$router.push({
-              path:'/lessons'
+            <div class="course" v-for="item,i in userData.BuyedCourses" :key="i">
+                <h3>{{item.data.Name}}</h3>
+                <ul>
+                    <li>Дата покупки: {{item.courseStart}}</li>
+                    <li>Конец курса: {{item.CourseEnd}}</li>
+                </ul>
+                <button @click="$router.push({
+              path:'/lessons/'+(i+1)
             })">Перейти к урокам</button>
-            <h3>Просмотренно уроков:</h3>
-            <div class="progressbar">
-                <div class="progress" style="width: 60%">60%</div>
+                <h3>Просмотренно уроков:</h3>
+                <div class="progressbar">
+                    <div class="progress" :style="'width: '+lessonView(i)+'%'">{{lessonView(i)}}%</div>
+                </div>
             </div>
             <button>Дипломы</button>
             <h3>Мои сертификаты:</h3>
@@ -62,14 +63,93 @@
 </template>
 
 <script>
+import api from '../constants'
+import axios from 'axios'
 export default {
+    mounted() {
+        if ( this.$cookie.get('jwt')) {
+                this.$store.commit('setJwt', this.$cookie.get('jwt'));
+                axios.get(api.me, {
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.jwt}`,
+                    }
+                }).then(response => {
+                    this.$store.commit('setUserData', response.data);
+                    
+                }).catch(error => {
+                    console.log(error.response)
+                    
+                })
+            } 
+    },
     data() {
         return {
-
+           
             style: 'child',
+            userData: this.$store.state.userData,
+            url: api.url,
+            all: false
+        }
+    },
+    methods: {
+        FileUpload() {
+            this.file = document.getElementById('avatar').files[0];
+            this.submitImage()
+        },
+        submitImage() {
+            let formData = new FormData();
+            formData.append('files', this.file);
+            axios.post(api.upload,
+                formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${this.$store.state.jwt}` }, }
+            ).then(response => {
+                this.$set(this.userData, 'avatarUrl', response.data[0].formats.thumbnail.url)
+                setTimeout(this.setAvatar, 500)
+
+            })
+
+        },
+        setAvatar() {
+            let formData = new FormData;
+            formData.append('avatarLink', this.userData.avatarUrl)
+            axios.post(api.setAvatar, formData, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => console.log(response.data))
+        },
+        exit() {
+            this.$cookie.delete('jwt');
+            this.$router.push({ path: '/' });
+            this.$store.commut('setJwt', null)
+        },
+        lessonView(i) {
+            let lessNum = this.userData.BuyedCourses[i].data.lessons.length;
+            let view = 0;
+            if (this.userData.BuyedCourses[i].lessonsData) {
+                for (let key in this.userData.BuyedCourses[i].lessonsData){
+                   if (key){
+                        view += 1
+                   }
+                }
+            }
+            return Math.ceil((view / lessNum)*100)
         }
     },
     computed: {
+        works: function (){
+            let works = []
+
+            this.userData.BuyedCourses.forEach(elem =>{
+                if (elem.lessonsData[0]){
+                    for (let key in elem.lessonsData){
+                        
+                            works.push(elem.lessonsData[key])
+                      
+                    }
+                }
+            })
+            return works
+        },
         worksNum: function () {
             let width = window.innerWidth;
             let num = 0;
@@ -82,13 +162,44 @@ export default {
             if (width <= 800) {
                 num = 6
             }
+            if (this.all){
+                num=this.works.length
+            }
             return num
-        }
+        },
+
     }
 }
 </script>
 
 <style lang="scss" scoped>
+.back-button {
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    height: 50px;
+    width: 50px;
+    background: rgb(212, 212, 212);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all .2s;
+
+    .back-arrow {
+        background: url('/img/back.svg') no-repeat center center / contain;
+        height: 30px;
+        width: 30px;
+        margin-left: -5px;
+    }
+}
+
+.back-button:hover {
+    opacity: 1;
+}
+
 .child::before {
     content: '';
     position: absolute;
@@ -171,6 +282,28 @@ section {
             width: 120px;
             background-color: #D1D1D1;
             border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            input {
+                display: none;
+            }
+
+            label {
+                cursor: pointer;
+            }
+
+            .image {
+                left: 0;
+                right: 0;
+                position: absolute;
+                height: 120px;
+                width: 120px;
+
+            }
         }
 
         .fullName {
@@ -232,15 +365,17 @@ section {
 
     .works-wrapper {
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         margin-right: 23px;
 
         .work {
-            flex: 1 1 200px;
+            flex: 1 1 150px;
             height: 152px;
             background-color: #C4C4C4;
             border-radius: 20px;
             margin-right: 35px;
+            margin-bottom: 20px;
         }
 
         .more-button {
@@ -699,5 +834,4 @@ section {
         }
     }
 }
-
 </style>

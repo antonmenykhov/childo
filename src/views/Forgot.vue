@@ -35,7 +35,9 @@ export default {
                 password: this.password1,
                 passwordConfirmation: this.password2
             }).then(response => {
-                    console.log(response)
+                    this.$cookie.set('jwt', response.data.jwt, { expires: '1M' });
+                    this.$store.commit('setJwt', response.data.jwt);
+                    this.$store.commit('setUserData', response.data.user);
                     this.$notify({
                         title: 'Успешно',
                         message: 'Пароль изменен',

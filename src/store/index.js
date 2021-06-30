@@ -8,7 +8,7 @@ export default new Vuex.Store({
     mainData: {},
     teachers: [],
     jwt: '',
-    userData: {}
+    userData: null
     
   },
   mutations: {

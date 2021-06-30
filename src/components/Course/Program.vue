@@ -4,7 +4,7 @@
     <div class="container">
         <h2>Программа курса</h2>
         <div class="program-holder">
-            <div @click="goLesson(i)" class="program" :class="item.color" v-for="item,i in courseData.lessons" :key="i">
+            <div v-scroll-to="'#prices'" class="program" :class="item.color" v-for="item,i in courseData.lessons" :key="i">
                 <div class="image" :style="'background: url(\''+url+item.img.formats.thumbnail.url+'\') no-repeat center center / cover'"></div>
                 <h4>{{item.Name}}</h4>
                 <p>{{item.smallDescription}}</p>
@@ -26,16 +26,7 @@ export default {
         courseData: Object,
         id: null
     },
-    methods: {
-        goLesson(i){
-            if (this.courseData.style == 'child'){
-                this.$router.push({ path: '/lessonChild/'+this.id+'/'+(i*1+1)})
-            }
-            if (this.courseData.style == 'grow'){
-                this.$router.push({ path: '/lessonGrow/'+this.id+'/'+(i*1+1)})
-            }
-        }
-    },
+    
 }
 </script>
 

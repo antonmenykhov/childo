@@ -1,119 +1,140 @@
 <template>
-<section :class="style">
+<section :class="course.data.style">
+    <div class="back-button" @click="$router.push({path: '/lk'})">
+        <div class="back-arrow"></div>
+    </div>
     <div class="container">
         <h2>Доступные уроки</h2>
         <div class="lessons">
-            <div class="lesson" v-for="i in worksNum" :key="i">
-                <div class="image" :style="'background: url(\''+lessons[i-1].img+'\') no-repeat center center / cover'">
-                    <div class="play" v-if="lessons[i-1].status==1">
+            <div class="lesson" v-for="item,i in lessons" :key="i">
+                <div class="image" :style="'background: url(\''+url+item.img.formats.small.url+'\') no-repeat center center / cover'">
+
+                    <div @click="goLesson(i)" class="play" v-if="check(i)">
 
                     </div>
-                    <div class="locked" v-if="lessons[i-1].status==0">
+                    <div class="locked" v-if="!check(i)">
                         <div class="icon"></div>
                     </div>
-                    <div class="time">{{lessons[i-1].time}}</div>
-                    <div class="dz" v-if="lessons[i-1].dz">Есть домашнее задание</div>
+                    <div class="time">{{item.time}}</div>
+                    <div class="dz" v-if="item.dz">Есть домашнее задание</div>
                 </div>
-                <h4>{{lessons[i-1].name}}</h4>
-                <p>{{lessons[i-1].smallDescription}}</p>
+                <h4>{{item.Name}}</h4>
+                <p>{{item.smallDescription}}</p>
             </div>
-            <div class="more-button">
-                <div class="icon">+</div>
-                <p>Смотреть еще</p>
-            </div>
+
         </div>
     </div>
 </section>
 </template>
 
 <script>
+import api from '../constants'
+import axios from 'axios'
 export default {
+    mounted() {
+        if ( this.$cookie.get('jwt')) {
+                this.$store.commit('setJwt', this.$cookie.get('jwt'));
+                axios.get(api.me, {
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.jwt}`,
+                    }
+                }).then(response => {
+                    this.$store.commit('setUserData', response.data);
+                    
+                }).catch(error => {
+                    console.log(error.response)
+                    
+                })
+            } 
+    },
+    methods: {
+        check(i) {
+            if (i === 0) {
+                return true
+            }
+
+            if (this.course.lessonsData) {
+                if (this.course.lessonsData[i-1]) {
+
+                    return true
+
+                }
+            } else { return false }
+
+        },
+        goLesson(i) {
+            if (this.course.data.style == 'child') {
+                this.$router.push({ path: '/lessonChild/' + (this.id + 1) + '/' + (i * 1 + 1) })
+            }
+            if (this.course.data.style == 'grow') {
+                this.$router.push({ path: '/lessonGrow/' + (this.id + 1) + '/' + (i * 1 + 1) })
+            }
+        }
+    },
     computed: {
         worksNum: function () {
             let width = window.innerWidth;
             let num = 0;
             if (width >= 1250) {
-                num = 5
+                num = 5 * this.kol
             }
             if (width < 1250 && width > 800) {
-                num = 5
+                num = 5 * this.kol
             }
             if (width <= 800) {
-                num = 4
+                num = 4 * this.kol
             }
             if (width <= 500) {
-                num = 2
+                num = 2 * this.kol
             }
             return num
+        },
+        course: function () {
+            return this.$store.state.userData.BuyedCourses[this.id];
+        },
+        lessons: function () {
+            return this.course.data.lessons
         }
     },
     data() {
         return {
-
+            kol: 1,
+            url: api.url,
             style: 'grow',
-            lessons: [{
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 1,
-                    dz: 1,
-                    time: '18:32'
-                },
-                {
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 0,
-                    dz: 1,
-                    time: '18:32'
-                },
-                {
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 0,
-                    dz: 0,
-                    time: '18:32'
-                },
-                {
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 1,
-                    dz: 1,
-                    time: '18:32'
-                },
-                {
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 1,
-                    dz: 1,
-                    time: '18:32'
-                },
-                {
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 1,
-                    dz: 1,
-                    time: '18:32'
-                },
-                {
-                    name: '“Привет из антарктики”',
-                    smallDescription: 'Узнаем, что такое художественное пространство картины и нарисуем забавного пингвина.',
-                    img: '/img/lklessons/1.png',
-                    status: 1,
-                    dz: 1,
-                    time: '18:32'
-                },
-            ]
+            id: this.$route.params.id - 1
         }
     },
 }
 </script>
 
 <style lang="scss" scoped>
+.back-button {
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    height: 50px;
+    width: 50px;
+    background: rgb(212, 212, 212);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0.4;
+    transition: all .2s;
+
+    .back-arrow {
+        background: url('/img/back.svg') no-repeat center center / contain;
+        height: 30px;
+        width: 30px;
+        margin-left: -5px;
+    }
+}
+
+.back-button:hover {
+    opacity: 1;
+}
+
 .container {
     flex-direction: column;
     max-width: 800px;
@@ -416,17 +437,18 @@ p {
         transform: rotate(-30deg);
     }
 }
-.mobile{
-     h2::before {
-        left: -2px!important;
-        top: 1px!important;
-       
+
+.mobile {
+    h2::before {
+        left: -2px !important;
+        top: 1px !important;
+
     }
 
     h2::after {
-        left: -3px!important;
-        top: 1px!important;
-       
+        left: -3px !important;
+        top: 1px !important;
+
     }
 }
 </style>
