@@ -12,7 +12,7 @@
                     <input type="file" :id="'avatar'" v-on:change="FileUpload()">
                 </div>
                 <div class="fullName">
-                    {{userData.username}}
+                    {{userData.name}}
                 </div>
                 <button @click="exit">Выйти</button>
             </div>
@@ -124,7 +124,7 @@ export default {
         exit() {
             this.$cookie.delete('jwt');
             this.$router.push({ path: '/' });
-            this.$store.commut('setJwt', null)
+            this.$store.commit('setJwt', null)
         },
         lessonView(i) {
             let lessNum = this.userData.BuyedCourses[i].data.lessons.length;

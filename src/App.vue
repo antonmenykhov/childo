@@ -6,7 +6,7 @@
             <div class="logo" @click="$router.push({path: '/'})">
 
             </div>
-            <div class="burger-button"></div>
+            <div  @click="drawer=true" class="burger-button"></div>
             <div class="main-menu">
                 <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#courses'" class="menu-item">
                     Курсы
@@ -23,6 +23,25 @@
             </div>
         </div>
     </div>
+    <el-drawer size="100%" :visible.sync="drawer">
+        <div class="logo" @click="$router.push({path: '/'})">
+
+            </div>
+        <div class="side-menu">
+            <a href="#" @click="goRoute('/')" v-scroll-to="'#courses'" class="menu-item">
+                Курсы
+            </a>
+            <a href="#" @click="goRoute('/')" v-scroll-to="'#about'" class="menu-item">
+                О нас
+            </a>
+            <a @click="goRoute('/lessonFree')" class="menu-item">
+                Попробуй бесплатно
+            </a>
+            <a href="#" @click="goRoute('/')" v-scroll-to="'#plus'" class="menu-item">
+                Приемущества
+            </a>
+        </div>
+    </el-drawer>
     <router-view :key="$route.path"> </router-view>
 </div>
 </template>
@@ -31,9 +50,14 @@
 import axios from 'axios'
 import constants from './constants'
 export default {
-    
+    methods: {
+        goRoute(i){
+
+            this.$router.push({path: i})
+            this.drawer = false
+        }
+    },  
     beforeMount() {
-       
 
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
@@ -54,7 +78,7 @@ export default {
     data() {
         return {
             select: '/',
-
+            drawer: false,
             menu: [{
                     name: 'Курсы',
                     route: '#courses',
@@ -80,7 +104,6 @@ export default {
 
 <style lang="scss">
 
-
 @font-face {
     font-family: "Intro";
     src: url("/fonts/Intro-Black-Caps.eot") format("eot"),
@@ -95,9 +118,35 @@ export default {
     margin: 0;
     box-sizing: border-box;
 }
-.el-dialog__wrapper{
+
+.el-dialog__wrapper {
     z-index: 9999;
 }
+.el-drawer__body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .logo{
+        background: url('/img/logo.png') no-repeat center center / contain;
+        height: 47px;
+        width: 100px;
+    }
+    .side-menu{
+        padding: 20px 50px;
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+        .menu-item{
+            padding: 10px 0;
+            font-size: 22px;
+            color: #515151;
+            font-weight: 600;
+            text-decoration: none;
+            
+        }
+    }
+}
+
 section {
     width: 100%;
     overflow-x: hidden;
@@ -157,10 +206,11 @@ section::before {
 }
 
 @keyframes hey {
- 100%{
-     opacity: 1;
- }
+    100% {
+        opacity: 1;
+    }
 }
+
 .container {
     max-width: 1160px;
     margin: 0 auto;

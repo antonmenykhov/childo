@@ -34,21 +34,26 @@
     </div>
     <el-dialog class="register" width="400px" :visible.sync="reg">
         <h3>Регистрация</h3>
-        <el-form v-model="register">
-            <el-form-item>
+        <el-form ref="val" :model="register">
+            <el-form-item prop="name" :rules="[
+      { required: true, message: 'Введите имя и фамилию', trigger: 'blur' }]">
                 <el-input placeholder="Имя Фамилия" v-model="register.name"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="mail" :rules="[
+      { required: true, message: 'Введите адрес эл.почты', trigger: 'blur' },
+      { type: 'email', message: 'Введите корректный адрес почты', trigger: ['blur', 'change'] }
+    ]">
                 <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password" :rules="[
+      { required: true, message: 'Введите пароль', trigger: 'blur' }]">
                 <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
             </el-form-item>
             <el-form-item>
                 <el-input placeholder="@instagram" v-model="register.instagram"></el-input>
             </el-form-item>
-            <el-form-item>
-                <el-checkbox v-model="sogl">Я соглашаюсь на обработку <br> персональных данных</el-checkbox>
+            <el-form-item prop="sogl" :rules="[{ type: 'boolean', required: true, message: 'Нужно ваше согласие', trigger: 'change' }]">
+                <el-checkbox v-model="register.sogl">Я соглашаюсь на обработку <br> персональных данных</el-checkbox>
             </el-form-item>
             <el-button @click="registerSend" type="primary">Регистрация</el-button>
             <el-form-item>
@@ -58,12 +63,16 @@
     </el-dialog>
     <el-dialog class="register" width="400px" :visible.sync="auth">
         <h3>Войти</h3>
-        <el-form v-model="register">
+        <el-form ref="val" :model="register">
 
-            <el-form-item>
+            <el-form-item prop="mail" :rules="[
+      { required: true, message: 'Введите адрес эл.почты', trigger: 'blur' },
+      { type: 'email', message: 'Введите корректный адрес почты', trigger: ['blur', 'change'] }
+    ]">
                 <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password" :rules="[
+      { required: true, message: 'Введите пароль', trigger: 'blur' }]">
                 <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
             </el-form-item>
 
@@ -77,9 +86,12 @@
     </el-dialog>
     <el-dialog class="register" width="400px" :visible.sync="forgot">
         <h3>Восстановить пароль</h3>
-        <el-form v-model="register">
+        <el-form ref="val" :model="register">
 
-            <el-form-item>
+            <el-form-item prop="mail" :rules="[
+      { required: true, message: 'Введите адрес эл.почты', trigger: 'blur' },
+      { type: 'email', message: 'Введите корректный адрес почты', trigger: ['blur', 'change'] }
+    ]">
                 <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
             </el-form-item>
 
@@ -166,86 +178,98 @@ export default {
             this.reg = false
         },
         registerSend() {
-            axios.post(api.register, {
-                    username: this.register.name,
-                    email: this.register.mail,
-                    password: this.register.password,
-                    Instagram: this.register.instagram
-                })
-                .then(
-                    response => {
-                        this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
-                        this.$store.commit('setJwt', response.data.jwt);
-                        this.$store.commit('setUserData', response.data.user);
-                        this.$notify({
-                            title: 'Успешно',
-                            message: 'Вы зарегистрировались',
-                            type: 'success'
-                        });
-                        this.auth = false;
-                        this.forgot = false
-                        this.reg = false
-                    }
-                ).catch(error => {
-                    console.log(error.response)
-                    this.$notify({
-                        title: 'Ошибка',
-                        message: 'данный адрес уже зарегистрирован',
-                        type: 'warning'
-                    });
-                })
+            this.$refs.val.validate((valid) => {
+                if (valid) {
+                    axios.post(api.register, {
+                            username: this.register.name,
+                            email: this.register.mail,
+                            password: this.register.password,
+                            Instagram: this.register.instagram
+                        })
+                        .then(
+                            response => {
+                                this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
+                                this.$store.commit('setJwt', response.data.jwt);
+                                this.$store.commit('setUserData', response.data.user);
+                                this.$notify({
+                                    title: 'Успешно',
+                                    message: 'Вы зарегистрировались',
+                                    type: 'success'
+                                });
+                                this.auth = false;
+                                this.forgot = false
+                                this.reg = false
+                            }
+                        ).catch(error => {
+                            console.log(error.response)
+                            this.$notify({
+                                title: 'Ошибка',
+                                message: 'данный адрес уже зарегистрирован',
+                                type: 'warning'
+                            });
+                        })
+                }
+            })
         },
         authSend() {
-            axios.post(api.auth, {
+            this.$refs.val.validate((valid) => {
+                if (valid) {
+                    axios.post(api.auth, {
 
-                    identifier: this.register.mail,
-                    password: this.register.password,
+                            identifier: this.register.mail,
+                            password: this.register.password,
 
-                })
-                .then(
-                    response => {
-                        this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
-                        this.$store.commit('setJwt', response.data.jwt);
-                        this.$store.commit('setUserData', response.data.user);
-                        this.$notify({
-                            title: 'Успешно',
-                            message: 'Вы авторизовались',
-                            type: 'success'
-                        });
-                        this.auth = false;
-                        this.forgot = false
-                        this.reg = false
-                    }
-                ).catch(error => {
-                    console.log(error.response)
-                    this.$notify({
-                        title: 'Ошибка',
-                        message: 'Неверный логин или пароль',
-                        type: 'warning'
-                    });
-                })
+                        })
+                        .then(
+                            response => {
+                                this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
+                                this.$store.commit('setJwt', response.data.jwt);
+                                this.$store.commit('setUserData', response.data.user);
+                                this.$notify({
+                                    title: 'Успешно',
+                                    message: 'Вы авторизовались',
+                                    type: 'success'
+                                });
+                                this.auth = false;
+                                this.forgot = false
+                                this.reg = false
+                            }
+                        ).catch(error => {
+                            console.log(error.response)
+                            this.$notify({
+                                title: 'Ошибка',
+                                message: 'Неверный логин или пароль',
+                                type: 'warning'
+                            });
+                        })
+                }
+            })
         },
         forgotSend() {
-            axios.post(api.forgot, {
+            this.$refs.val.validate((valid) => {
+                if (valid) {
+                    axios.post(api.forgot, {
 
-                    email: this.register.mail,
+                            email: this.register.mail,
 
-                })
-                .then(
-                    response => {
-                        console.log(response.data)
-                        this.forgot = false;
-                        this.sended = true;
-                    }
-                ).catch(error => {
-                    console.log(error.response)
+                        })
+                        .then(
+                            response => {
+                                console.log(response.data)
+                                this.forgot = false;
+                                this.sended = true;
+                            }
+                        ).catch(error => {
+                            console.log(error.response)
 
-                    this.$notify({
-                        title: 'Ошибка',
-                        message: 'Такой адрес не зарегистрирован',
-                        type: 'warning'
-                    });
-                })
+                            this.$notify({
+                                title: 'Ошибка',
+                                message: 'Такой адрес не зарегистрирован',
+                                type: 'warning'
+                            });
+                        })
+                }
+            })
         },
         buyCourse(i) {
             let formData = new FormData;
