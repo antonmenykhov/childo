@@ -25,9 +25,9 @@
                     </li>
                 </ul>
 
-                <el-button v-if="!this.$store.state.userData.BuyedCourses[this.cid].lessonsData[id]"  :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
+                <el-button v-if="!check()"  :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
                 <input type="file" :id="'dz'" v-on:change="FileUpload()">
-                <el-button  @click="goNext" v-if="next || this.$store.state.userData.BuyedCourses[this.cid].lessonsData[id]" class="dz-button">Следующий урок</el-button>
+                <el-button  @click="goNext" v-if="next || check()" class="dz-button">Следующий урок</el-button>
                 <el-button @click="goLK" v-if="end" class="dz-button">В личный кабинет</el-button>
             </div>
         </div>
@@ -42,6 +42,15 @@ import axios from 'axios'
 export default {
   
     methods: {
+        check() {
+            if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData) {
+                if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData[this.id]) {
+                    return true
+                }
+            } else {
+                return false
+            }
+        },
         goLK(){
             this.$router.push({path: '/lk'})
         },

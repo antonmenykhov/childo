@@ -182,9 +182,9 @@ export default {
                             message: 'Вы зарегистрировались',
                             type: 'success'
                         });
-                         this.auth = false;
-                this.forgot = false
-                this.reg = false
+                        this.auth = false;
+                        this.forgot = false
+                        this.reg = false
                     }
                 ).catch(error => {
                     console.log(error.response)
@@ -213,8 +213,8 @@ export default {
                             type: 'success'
                         });
                         this.auth = false;
-                this.forgot = false
-                this.reg = false
+                        this.forgot = false
+                        this.reg = false
                     }
                 ).catch(error => {
                     console.log(error.response)
@@ -261,18 +261,20 @@ export default {
                     } else {
 
                         this.$notify.error({
-                            title: 'Error',
-                            message: 'This is an error message'
-                        })
+                            title: 'Что то пошло не так',
+                            message: 'Попробуйте позже',
+                            type: 'warning'
+                        });
 
                     }
                 }
 
             ).catch(error => {
-
+                console.log(error.response)
                 this.$notify.error({
-                    title: error.response,
-                    message: 'This is an error message'
+                    title: 'Что то пошло не так',
+                    message: 'Попробуйте позже',
+                    type: 'warning'
                 });
 
             })
@@ -300,26 +302,28 @@ export default {
     word-break: keep-all;
 }
 
-
-
 .el-dialog {
     .el-form button {
         box-shadow: 0px 4px 20px #f66c17 !important;
         ;
     }
-    *{
-    word-break: keep-all!important;}
+
+    * {
+        word-break: keep-all !important;
+    }
+
     .el-form {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-}
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
     .el-form p {
-        font-size: 16px!important;
+        font-size: 16px !important;
         line-height: 20px;
         width: 100%;
-        text-align: center!important;
+        text-align: center !important;
 
     }
 

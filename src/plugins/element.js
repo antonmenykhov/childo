@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Select, Option, Dialog, Form, FormItem, Input, InputNumber, Checkbox, Notification } from 'element-ui'
+import { Button, Select, Option, Dialog, Form, FormItem, Input, InputNumber, Checkbox, Notification, Loading } from 'element-ui'
 import lang from 'element-ui/lib/locale/lang/ru-RU'
 import locale from 'element-ui/lib/locale'
 
@@ -15,4 +15,6 @@ Vue.use(Input)
 Vue.use(InputNumber)
 Vue.use(Checkbox)
 Vue.use(Notification)
+
 Vue.prototype.$notify = Notification;
+Vue.prototype.$loading = Loading.service;

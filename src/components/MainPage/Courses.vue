@@ -594,16 +594,7 @@ input::placeholder {
     left: 4px;
 }
 
-.k::after {
-    content: '';
-    background: white;
-    width: 50.28px;
-    height: 55.04px;
-    position: absolute;
 
-    top: 5px;
-    left: 0px;
-}
 
 @media (max-width: 1500px) {
     .courses-wrapper .courses-holder .course-wrapper {
@@ -677,7 +668,7 @@ input::placeholder {
 
         .k::before {
             content: '';
-            background: url('/img/к.svg') no-repeat center center / contain;
+            background: url('/img/k.svg') no-repeat center center / contain;
             width: 30.28px;
             height: 32.04px;
             position: absolute;
@@ -686,16 +677,7 @@ input::placeholder {
             left: 0px;
         }
 
-        .k::after {
-            content: '';
-            background: white;
-            width: 30px;
-            height: 32px;
-            position: absolute;
-
-            top: 5px;
-            left: 0px;
-        }
+        
     }
 
     .courses-wrapper .courses-holder .course-wrapper .image {
@@ -845,12 +827,7 @@ input::placeholder {
             top: 3px;
         }
 
-        .k::after {
-            height: 17px;
-            width: 20px;
-            left: -5px;
-            top: 3px;
-        }
+        
 
         .courses-holder {
             flex-direction: column;
@@ -1018,10 +995,5 @@ input::placeholder {
 
     }
 
-    .k::after {
-        left: -6px !important;
-        top: 0px !important;
-
-    }
 }
 </style>

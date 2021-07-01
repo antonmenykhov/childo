@@ -1,6 +1,7 @@
 <template>
 <section class="lesson" :class="lessonData.styleGrow">
-     <div class="back-button" @click="$router.go(-1)">
+
+    <div class="back-button" @click="$router.push({path: '/lessons/'+(cid+1)})">
         <div class="back-arrow"></div>
     </div>
     <div class="container">
@@ -11,35 +12,133 @@
         <div class="thumb" :style="'background: url(\''+url+lessonData.img.formats.medium.url+'\') no-repeat center center / cover'">
             <div class="play"></div>
         </div>
-        <button class="dz-button">Загрузить дз</button>
+        <el-button v-if="!check()" :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
+        <input type="file" :id="'dz'" v-on:change="FileUpload()">
+        <el-button @click="goNext" v-if="next || check()" class="dz-button">Следующий урок</el-button>
+        <el-button @click="goLK" v-if="end" class="dz-button">В личный кабинет</el-button>
     </div>
 </section>
 </template>
 
 <script>
 import api from '../constants'
+import axios from 'axios'
 export default {
-    computed:{
-        lessonData: function (){
-             let data = this.$store.state.userData.BuyedCourses[this.cid].data.lessons[this.id]
-            return data
-        }
+
+    methods: {
+        check() {
+            if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData) {
+                if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData[this.id]) {
+                    return true
+                }
+            } else {
+                return false
+            }
+        },
+        goLK() {
+            this.$router.push({ path: '/lk' })
+        },
+        goNext() {
+            this.$router.push({ path: '/lessonGrow/' + (this.cid + 1) + '/' + (this.id + 2) })
+        },
+        FileUpload() {
+            this.file = document.getElementById('dz').files[0];
+            this.submitImage()
+        },
+        setDz(dz) {
+
+            let formData = new FormData;
+            formData.append('dz', dz)
+            formData.append('courseId', this.cid)
+            formData.append('lessonId', this.id)
+            axios.post(api.setDz, formData, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => console.log(response.data))
+        },
+
+        submitImage() {
+            this.loading = true
+            this.textDz = ''
+            let formData = new FormData();
+            formData.append('files', this.file);
+            axios.post(api.upload,
+                formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${this.$store.state.jwt}` }, }
+            ).then(response => {
+                this.loading = false
+                setTimeout(this.setDz, 500, response.data[0].formats.small.url)
+                this.textDz = "ДЗ загружено"
+                if (this.id + 1 <= this.$store.state.userData.BuyedCourses[this.cid].data.lessons.length - 1) {
+                    this.next = true
+                } else {
+                    this.end = true
+                }
+            })
+
+        },
     },
     data() {
         return {
-            id: this.$route.params.id-1,
-            cid: this.$route.params.cid-1,
-            url: api.url
+            id: this.$route.params.id - 1,
+            cid: this.$route.params.cid - 1,
+            url: api.url,
+            loading: false,
+            textDz: 'Загрузить дз',
+            next: false,
+            end: false,
+
         }
     },
     mounted() {
-      window.scrollTo(0,0);
+        window.scrollTo(0, 0);
+        if (this.$cookie.get('jwt')) {
+            this.$store.commit('setJwt', this.$cookie.get('jwt'));
+            axios.get(api.me, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => {
+                this.$store.commit('setUserData', response.data);
+
+            }).catch(error => {
+                console.log(error.response)
+
+            })
+        }
+
+    },
+    computed: {
+        lessonData: function () {
+            let data = this.$store.state.userData.BuyedCourses[this.cid].data.lessons[this.id]
+            return data
+        }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-.back-button{
+#dz {
+    display: none;
+}
+
+.el-button {
+    position: relative;
+}
+
+label {
+    cursor: pointer;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-button {
     position: fixed;
     left: 15px;
     top: 15px;
@@ -53,16 +152,19 @@ export default {
     cursor: pointer;
     opacity: 0.4;
     transition: all .2s;
-    .back-arrow{
+
+    .back-arrow {
         background: url('/img/back.svg') no-repeat center center / contain;
         height: 30px;
         width: 30px;
         margin-left: -5px;
     }
 }
-.back-button:hover{
+
+.back-button:hover {
     opacity: 1;
 }
+
 .superSelect {
     top: 50px !important;
     position: absolute !important;
@@ -173,6 +275,7 @@ export default {
         border: none;
         outline: none;
         color: white;
+        margin-bottom: 10px;
 
     }
 }

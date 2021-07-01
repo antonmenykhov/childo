@@ -42,7 +42,7 @@ export default {
         height: 300px;
         width: 447px;
 
-        transform: rotate(7.35deg);
+        
         z-index: 50;
         margin-left: 25px;
     }
@@ -68,7 +68,7 @@ export default {
 
         z-index: 1;
         top: 95px;
-        left: -15px;
+        left: 0px;
 
     }
 

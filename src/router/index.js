@@ -27,7 +27,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../components/LessonChild.vue')
   },
   {
-    path: '/lessongrow/:cid/:id',
+    path: '/lessonGrow/:cid/:id',
     name: 'LessonGrow',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route

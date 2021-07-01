@@ -122,10 +122,10 @@ header {
         position: absolute;
         right: 1%;
         content: "";
-        top: 11%;
+        top: -20%;
         height: auto;
-        bottom: 8%;
-        width: 35%;
+        bottom: -20%;
+        width: 45%;
         filter: drop-shadow(0px 4px 90px rgba(249, 150, 46, 0.5));
     }
 
@@ -457,6 +457,10 @@ header::after {
 }
 
 @media (max-width: 800px) {
+     header::before {
+        left: 00px;
+        width: 300px;
+    }
     header::after {
         transform: rotateY(180deg) rotateZ(-12deg);
         height: 350px;

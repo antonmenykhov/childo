@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    
+
     <div class="top-line">
         <div class="container">
             <div class="logo" @click="$router.push({path: '/'})">
@@ -8,16 +8,16 @@
             </div>
             <div class="burger-button"></div>
             <div class="main-menu">
-                <a href="#" @click="$router.push({path: '/'})"  v-scroll-to="'#courses'" class="menu-item"  >
+                <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#courses'" class="menu-item">
                     Курсы
                 </a>
-                <a href="#" @click="$router.push({path: '/'})"  v-scroll-to="'#about'" class="menu-item"  >
+                <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#about'" class="menu-item">
                     О нас
                 </a>
-                <a  @click="$router.push({path: '/lessonFree'})"  class="menu-item"  >
+                <a @click="$router.push({path: '/lessonFree'})" class="menu-item">
                     Попробуй бесплатно
                 </a>
-                <a href="#" @click="$router.push({path: '/'})"  v-scroll-to="'#plus'" class="menu-item"  >
+                <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#plus'" class="menu-item">
                     Приемущества
                 </a>
             </div>
@@ -31,30 +31,34 @@
 import axios from 'axios'
 import constants from './constants'
 export default {
+    
     beforeMount() {
+       
+
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
-          
+
         })
     },
     mounted() {
         let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
-        if (isMobile){
+        if (isMobile) {
             document.body.classList.add('mobile')
         }
+        document.getElementsByClassName('el-notification')[0].style.opacity = 0
 
-      window.scrollTo(0,0);
-  
+        window.scrollTo(0, 0);
+
     },
     name: 'app',
     data() {
         return {
             select: '/',
-            
+
             menu: [{
                     name: 'Курсы',
                     route: '#courses',
-                   
+
                 },
                 {
                     name: 'О нас',
@@ -75,12 +79,7 @@ export default {
 </script>
 
 <style lang="scss">
-.selectt {
 
-    position: absolute !important;
-    z-index: 3550;
-
-}
 
 @font-face {
     font-family: "Intro";
@@ -96,7 +95,9 @@ export default {
     margin: 0;
     box-sizing: border-box;
 }
-
+.el-dialog__wrapper{
+    z-index: 9999;
+}
 section {
     width: 100%;
     overflow-x: hidden;
@@ -155,6 +156,11 @@ section::before {
     }
 }
 
+@keyframes hey {
+ 100%{
+     opacity: 1;
+ }
+}
 .container {
     max-width: 1160px;
     margin: 0 auto;
@@ -164,19 +170,21 @@ section::before {
 .burger-button {
     display: none;
     width: 25px;
-    border-bottom: 5px solid #515151 ;
+    border-bottom: 5px solid #515151;
     position: relative;
 }
-.burger-button::before{
+
+.burger-button::before {
     width: 25px;
-    border-bottom: 5px solid #515151 ;
+    border-bottom: 5px solid #515151;
     position: absolute;
     content: '';
     top: -10px
 }
-.burger-button::after{
+
+.burger-button::after {
     width: 25px;
-    border-bottom: 5px solid #515151 ;
+    border-bottom: 5px solid #515151;
     position: absolute;
     content: '';
     top: -20px
@@ -238,15 +246,19 @@ section::before {
 @media (max-width: 800px) {
     .top-line {
         padding: 40px;
+
         .container {
             justify-content: space-between;
+
             .burger-button {
                 display: flex;
             }
-            .logo{
+
+            .logo {
                 margin-left: 70px;
                 opacity: 0;
             }
+
             .main-menu {
                 display: none;
             }

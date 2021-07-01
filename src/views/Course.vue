@@ -1,9 +1,9 @@
 <template>
 <div>
-   
-    <Header v-bind:courseData="courseData" v-bind:id="id"/>
+
+    <Header v-bind:courseData="courseData" v-bind:id="id" />
     <Features v-bind:courseData="courseData" />
-    <Program v-bind:courseData="courseData" v-bind:id="id"/>
+    <Program v-bind:courseData="courseData" v-bind:id="id" />
     <Tools v-bind:courseData="courseData" />
     <Prices v-bind:courseData="courseData" />
     <Speaker v-bind:courseData="courseData" />
@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import constants from '../constants'
 import Features from '../components/Course/Features.vue'
 import Header from '../components/Course/Header.vue'
 import Prices from '../components/Course/Prices.vue'
@@ -24,17 +26,24 @@ export default {
         return {
             id: this.$route.params.id,
             url: api.url,
-            
+            courseData: null
+
         }
     },
-    computed:{
-        courseData: function (){
-            let data = this.$store.state.mainData.courses[this.id-1]
-            return data
-        }
-    },
+
     mounted() {
-      window.scrollTo(0,0);
+        window.scrollTo(0, 0);
+    },
+    beforeMount() {
+
+        axios.get(constants.getData).then(response => {
+            this.$store.commit('setMainData', response.data)
+            if (response.data.courses[this.id - 1]) {
+                this.courseData = response.data.courses[this.id - 1]
+            } else {
+                this.$router.push({ path: '/' })
+            }
+        })
     },
 }
 </script>

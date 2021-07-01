@@ -32,6 +32,7 @@ import api from '../constants'
 import axios from 'axios'
 export default {
     mounted() {
+        window.scrollTo(0,0)
         if ( this.$cookie.get('jwt')) {
                 this.$store.commit('setJwt', this.$cookie.get('jwt'));
                 axios.get(api.me, {
