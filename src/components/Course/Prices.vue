@@ -377,7 +377,7 @@ h2::before {
     left: -15px;
     top: 9px;
     content: '';
-    background: url('/img/courses/1/prices/т.svg') no-repeat center center / contain;
+    background: url('/img/courses/1/prices/t.svg') no-repeat center center / contain;
     height: 56.72px;
     width: 70.5px;
     z-index: 2;

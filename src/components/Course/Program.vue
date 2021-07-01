@@ -59,7 +59,7 @@ h2::before {
     left: -10px;
     top: 10px;
     content: '';
-    background: url('/img/courses/1/prog/п.svg') no-repeat center center / contain;
+    background: url('/img/courses/1/prog/p.svg') no-repeat center center / contain;
     height: 56.72px;
     width: 70.5px;
     z-index: 2;
@@ -79,7 +79,7 @@ h2::after {
 
 .cs-2 {
     h2::before {
-        background: url('/img/courses/2/prog/п.svg') no-repeat center center / contain;
+        background: url('/img/courses/2/prog/p.svg') no-repeat center center / contain;
     }
 }
 

@@ -195,7 +195,7 @@ header {
         }
 
         .title::before {
-            background: url('/img/ш.svg') no-repeat center center / contain;
+            background: url('/img/sh.svg') no-repeat center center / contain;
             content: "";
             position: absolute;
             height: 112px;

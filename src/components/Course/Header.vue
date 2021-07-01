@@ -83,7 +83,7 @@ header {
         }
 
         .title::before {
-            background: url('/img/courses/1/к.svg') no-repeat center center / contain;
+            background: url('/img/courses/1/k.svg') no-repeat center center / contain;
             content: "";
             position: absolute;
             height: 122px;
@@ -188,7 +188,7 @@ header::before {
 
 .cs-2 {
     .title::before {
-        background: url('/img/courses/2/к.svg') no-repeat center center / contain !important;
+        background: url('/img/courses/2/k.svg') no-repeat center center / contain !important;
     }
 }
 

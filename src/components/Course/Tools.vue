@@ -79,7 +79,7 @@ h2::before {
     left: 194px;
     top: 9px;
     content: '';
-    background: url('/img/courses/1/prog/и.svg') no-repeat center center / contain;
+    background: url('/img/courses/1/prog/i.svg') no-repeat center center / contain;
     height: 57.72px;
     width: 70.5px;
     z-index: 2;

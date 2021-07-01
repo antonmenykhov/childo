@@ -136,7 +136,7 @@ h2::first-letter {
 
 h2::before {
     content: '';
-    background: url('/img/о.png') no-repeat center center / contain;
+    background: url('/img/o.png') no-repeat center center / contain;
     width: 50.26px;
     height: 57.08px;
     position: absolute;

@@ -183,7 +183,7 @@ h2::first-letter {
 
 h2::before {
     content: '';
-    background: url('/img/п.svg') no-repeat center center / contain;
+    background: url('/img/p.svg') no-repeat center center / contain;
     width: 42.28px;
     height: 60.04px;
     position: absolute;

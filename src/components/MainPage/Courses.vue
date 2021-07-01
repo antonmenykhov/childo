@@ -348,7 +348,7 @@ input::placeholder {
     }
 
     .img1 {
-        background: url('/img/desc1.jpg') no-repeat center center / cover;
+        background: url('/img/desc1.png') no-repeat center center / cover;
         height: 224px;
         width: 397px;
         border-radius: 15px;
@@ -356,7 +356,7 @@ input::placeholder {
     }
 
     .img2 {
-        background: url('/img/desc2.jpg') no-repeat center center / cover;
+        background: url('/img/desc2.png') no-repeat center center / cover;
         height: 224px;
         width: 397px;
         border-radius: 15px;
@@ -585,7 +585,7 @@ input::placeholder {
 
 .k::before {
     content: '';
-    background: url('/img/к.svg') no-repeat center center / contain;
+    background: url('/img/k.svg') no-repeat center center / contain;
     width: 42.28px;
     height: 54.04px;
     position: absolute;
