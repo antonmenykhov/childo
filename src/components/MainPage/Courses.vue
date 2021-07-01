@@ -244,7 +244,12 @@ export default {
 </script>
 
 <style>
-
+@media(max-width: 400px){
+    .el-dialog{
+        max-width: 400px!important;
+        width: unset!important;
+    }
+}
 .el-notification__content {
     text-align: left !important;
 }

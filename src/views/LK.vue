@@ -67,26 +67,27 @@ import api from '../constants'
 import axios from 'axios'
 export default {
     mounted() {
-        if ( this.$cookie.get('jwt')) {
-                this.$store.commit('setJwt', this.$cookie.get('jwt'));
-                axios.get(api.me, {
-                    headers: {
-                        Authorization: `Bearer ${this.$store.state.jwt}`,
-                    }
-                }).then(response => {
-                    this.$store.commit('setUserData', response.data);
-                    
-                }).catch(error => {
-                    console.log(error.response)
-                    
-                })
-            } 
+        if (this.$cookie.get('jwt')) {
+            this.$store.commit('setJwt', this.$cookie.get('jwt'));
+            axios.get(api.me, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => {
+                this.$store.commit('setUserData', response.data);
+                this.userData = response.data
+
+            }).catch(error => {
+                console.log(error.response)
+
+            })
+        }
     },
     data() {
         return {
-           
+
             style: 'child',
-            userData: this.$store.state.userData,
+            userData: {},
             url: api.url,
             all: false
         }
@@ -126,25 +127,27 @@ export default {
             let lessNum = this.userData.BuyedCourses[i].data.lessons.length;
             let view = 0;
             if (this.userData.BuyedCourses[i].lessonsData) {
-                for (let key in this.userData.BuyedCourses[i].lessonsData){
-                   if (key){
+                for (let key in this.userData.BuyedCourses[i].lessonsData) {
+                    if (key) {
                         view += 1
-                   }
+                    }
                 }
             }
-            return Math.ceil((view / lessNum)*100)
+            return Math.ceil((view / lessNum) * 100)
         }
     },
     computed: {
-        works: function (){
+        works: function () {
             let works = []
 
-            this.userData.BuyedCourses.forEach(elem =>{
-                if (elem.lessonsData[0]){
-                    for (let key in elem.lessonsData){
-                        
+            this.userData.BuyedCourses.forEach(elem => {
+                if (elem.lessonsData) {
+                    if (elem.lessonsData[0]) {
+                        for (let key in elem.lessonsData) {
+
                             works.push(elem.lessonsData[key])
-                      
+
+                        }
                     }
                 }
             })
@@ -162,8 +165,8 @@ export default {
             if (width <= 800) {
                 num = 6
             }
-            if (this.all){
-                num=this.works.length
+            if (this.all) {
+                num = this.works.length
             }
             return num
         },
@@ -262,6 +265,8 @@ section {
     display: grid;
     grid-template-areas:
         "main sidebar"
+        "works sidebar"
+        "works sidebar"
         "works sidebar";
     grid-template-columns: 73% 27%;
 }
@@ -269,6 +274,7 @@ section {
 .main-info {
     grid-area: main;
     margin-top: 60px;
+    height: fit-content;
 
     .info {
         display: flex;

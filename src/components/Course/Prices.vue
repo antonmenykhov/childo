@@ -8,20 +8,20 @@
             <li>Если у вас мало времени и у вас нет возможности часто заниматься, то мы предлагаем взять вам тариф на 6 или 12 месяцев</li>
         </ul>
         <div class="prices" v-if="courseData.teacher.style=='cs-1'">
-            <div class="price-w" v-for="item in courseData.prices" :key="item.name">
+            <div class="price-w" v-for="item,i in courseData.prices" :key="item.name">
                 <h4>{{item.name}}</h4>
                 <p class="price">{{item.price}} рублей</p>
                 <p class="pricePerM">{{item.pricePerM}} рублей/ месяц</p>
-                <button>Оплатить</button>
+                <button @click="openReg(i)">Оплатить</button>
             </div>
         </div>
         <div class="prices" v-if="courseData.teacher.style=='cs-2'">
-            <div class="price-w" v-for="item in courseData.prices" :key="item.name">
+            <div class="price-w" v-for="item,i in courseData.prices" :key="item.name">
                 <h4>{{item.name}}</h4>
                 <h4>{{item.time}}</h4>
                 <p class="price">{{item.price}} рублей</p>
                 <p class="description" v-html="item.description.split('\n').join('<br>')"></p>
-                <button>Оплатить</button>
+                <button @click="openReg(i)">Оплатить</button>
             </div>
         </div>
         <div class="certs">
@@ -30,20 +30,330 @@
                 его своим близким и друзьям</p>
             <button>Оформить сертификат</button>
         </div>
+
     </div>
+    <el-dialog class="register" width="400px" :visible.sync="reg">
+        <h3>Регистрация</h3>
+        <el-form v-model="register">
+            <el-form-item>
+                <el-input placeholder="Имя Фамилия" v-model="register.name"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-input placeholder="@instagram" v-model="register.instagram"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-checkbox v-model="sogl">Я соглашаюсь на обработку <br> персональных данных</el-checkbox>
+            </el-form-item>
+            <el-button @click="registerSend" type="primary">Регистрация</el-button>
+            <el-form-item>
+                <p @click="openAuth"> Уже зарегистрированы? <br> Нажмите чтобы <span>войти</span></p>
+            </el-form-item>
+        </el-form>
+    </el-dialog>
+    <el-dialog class="register" width="400px" :visible.sync="auth">
+        <h3>Войти</h3>
+        <el-form v-model="register">
+
+            <el-form-item>
+                <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
+            </el-form-item>
+            <el-form-item>
+                <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
+            </el-form-item>
+
+            <el-button @click="authSend" type="primary">Войти</el-button>
+            <el-form-item>
+                <p @click="openReg"> Не зарегистрированы? <br> Нажмите чтобы <span>зарегистрироваться</span></p>
+                <p @click="openForgot"> Забыли пароль? <br> Нажмите чтобы <span>восстановить</span></p>
+            </el-form-item>
+
+        </el-form>
+    </el-dialog>
+    <el-dialog class="register" width="400px" :visible.sync="forgot">
+        <h3>Восстановить пароль</h3>
+        <el-form v-model="register">
+
+            <el-form-item>
+                <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
+            </el-form-item>
+
+            <el-button @click="forgotSend" type="primary">Восстановить</el-button>
+            <el-form-item>
+                <p @click="openReg"> Не зарегистрированы? <br> Нажмите чтобы <span>зарегистрироваться</span></p>
+                <p @click="openAuth"> Вспомнили пароль? <br> Нажмите чтобы <span>войти</span></p>
+            </el-form-item>
+
+        </el-form>
+    </el-dialog>
+    <el-dialog class="register" width="400px" :visible.sync="sended">
+        <h3>Письмо с инструкциями отправлено на почту</h3>
+        <el-form v-model="register">
+
+            <el-button @click="sended=false" type="primary">Хорошо</el-button>
+
+        </el-form>
+    </el-dialog>
 </section>
 </template>
 
 <script>
+import api from '../../constants'
+import axios from 'axios'
 export default {
     props: {
         courseData: Object
+    },
+    data() {
+        return {
+            buyError: false,
+            url: api.url,
+            reg: false,
+            auth: false,
+            forgot: false,
+            sogl: false,
+            sended: false,
+            register: {
+                name: '',
+                password: '',
+                mail: '',
+                Instagram: '',
+                sogl: ''
+            },
+        }
+    },
+
+    methods: {
+        openAuth() {
+
+            this.reg = false;
+            this.forgot = false
+            this.auth = true;
+
+        },
+        openReg(i) {
+            if (this.$cookie.get('jwt')) {
+                this.$store.commit('setJwt', this.$cookie.get('jwt'));
+                axios.get(api.me, {
+                    headers: {
+                        Authorization: `Bearer ${this.$store.state.jwt}`,
+                    }
+                }).then(response => {
+                    this.$store.commit('setUserData', response.data);
+
+                    this.buyCourse(i)
+                }).catch(error => {
+                    console.log(error.response)
+                    this.auth = false;
+                    this.forgot = false
+                    this.reg = true
+                })
+            } else {
+                this.auth = false;
+                this.forgot = false
+                this.reg = true
+            }
+
+        },
+        openForgot() {
+            this.auth = false;
+            this.forgot = true
+            this.reg = false
+        },
+        registerSend() {
+            axios.post(api.register, {
+                    username: this.register.name,
+                    email: this.register.mail,
+                    password: this.register.password,
+                    Instagram: this.register.instagram
+                })
+                .then(
+                    response => {
+                        this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
+                        this.$store.commit('setJwt', response.data.jwt);
+                        this.$store.commit('setUserData', response.data.user);
+                        this.$notify({
+                            title: 'Успешно',
+                            message: 'Вы зарегистрировались',
+                            type: 'success'
+                        });
+                         this.auth = false;
+                this.forgot = false
+                this.reg = false
+                    }
+                ).catch(error => {
+                    console.log(error.response)
+                    this.$notify({
+                        title: 'Ошибка',
+                        message: 'данный адрес уже зарегистрирован',
+                        type: 'warning'
+                    });
+                })
+        },
+        authSend() {
+            axios.post(api.auth, {
+
+                    identifier: this.register.mail,
+                    password: this.register.password,
+
+                })
+                .then(
+                    response => {
+                        this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
+                        this.$store.commit('setJwt', response.data.jwt);
+                        this.$store.commit('setUserData', response.data.user);
+                        this.$notify({
+                            title: 'Успешно',
+                            message: 'Вы авторизовались',
+                            type: 'success'
+                        });
+                        this.auth = false;
+                this.forgot = false
+                this.reg = false
+                    }
+                ).catch(error => {
+                    console.log(error.response)
+                    this.$notify({
+                        title: 'Ошибка',
+                        message: 'Неверный логин или пароль',
+                        type: 'warning'
+                    });
+                })
+        },
+        forgotSend() {
+            axios.post(api.forgot, {
+
+                    email: this.register.mail,
+
+                })
+                .then(
+                    response => {
+                        console.log(response.data)
+                        this.forgot = false;
+                        this.sended = true;
+                    }
+                ).catch(error => {
+                    console.log(error.response)
+
+                    this.$notify({
+                        title: 'Ошибка',
+                        message: 'Такой адрес не зарегистрирован',
+                        type: 'warning'
+                    });
+                })
+        },
+        buyCourse(i) {
+            let formData = new FormData;
+            formData.append('courseId', this.courseData.id);
+            formData.append('tarif', i);
+
+            axios.post(api.buy,
+                formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${this.$store.state.jwt}` }, }
+            ).then(response => {
+                    if (response.status == 200) {
+
+                        this.$router.push({ path: '/lk' })
+                    } else {
+
+                        this.$notify.error({
+                            title: 'Error',
+                            message: 'This is an error message'
+                        })
+
+                    }
+                }
+
+            ).catch(error => {
+
+                this.$notify.error({
+                    title: error.response,
+                    message: 'This is an error message'
+                });
+
+            })
+
+        }
     },
 
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+.el-notification__content {
+    text-align: left !important;
+}
+
+.el-dialog {
+    border-radius: 20px !important;
+
+}
+
+.el-dialog h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    word-break: keep-all;
+}
+
+
+
+.el-dialog {
+    .el-form button {
+        box-shadow: 0px 4px 20px #f66c17 !important;
+        ;
+    }
+    *{
+    word-break: keep-all!important;}
+    .el-form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+    .el-form p {
+        font-size: 16px!important;
+        line-height: 20px;
+        width: 100%;
+        text-align: center!important;
+
+    }
+
+    .el-form p:last-child {
+        margin-top: 10px;
+    }
+
+    .el-form p:first-child {
+        margin-top: 30px;
+    }
+
+    p span {
+        color: #FAA435;
+        cursor: pointer;
+    }
+
+    .el-input__inner {
+        padding: 5px 15px !important;
+        border-radius: 10px !important;
+        height: unset !important;
+
+    }
+
+    .el-checkbox-button__inner,
+    .el-checkbox__input {
+        vertical-align: top !important;
+        margin-top: 10px;
+    }
+
+    input::placeholder {
+        color: #333333 !important;
+    }
+}
+</style><style lang="scss" scoped>
 h2 {
     margin-top: 125px;
     margin-bottom: 5px;
@@ -744,18 +1054,21 @@ section {
 
         .prices {
             flex-wrap: wrap;
+
             .price-w {
                 flex: 1 1 250px;
-                 h4 {
-                font-size: 14px;
-                line-height: 17px;
-                max-width: 100px;
-            }
 
-            p {
-                font-size: 12px;
-                line-height: 15px;
-            }
+                h4 {
+                    font-size: 14px;
+                    line-height: 17px;
+                    max-width: 100px;
+                }
+
+                p {
+                    font-size: 12px;
+                    line-height: 15px;
+                }
+
                 margin-top: 50px;
                 margin-bottom: 100px;
                 padding: 12px 15px;
