@@ -1,6 +1,46 @@
 <template>
 <div>
+<div class="top-line">
+        <div class="container">
+            <div class="logo" @click="$router.push({path: '/'})">
 
+            </div>
+            <div  @click="drawer=true" class="burger-button"></div>
+            <div class="main-menu">
+                <a href="/#courses"   class="menu-item">
+                    Курсы
+                </a>
+                <a href="/#about"   class="menu-item">
+                    О нас
+                </a>
+                <a @click="$router.push({path: '/lessonFree'})" class="menu-item">
+                    Попробуй бесплатно
+                </a>
+                <a href="/#plus"   class="menu-item">
+                    Приемущества
+                </a>
+            </div>
+        </div>
+    </div>
+    <el-drawer size="100%" :visible.sync="drawer">
+        <div class="logo" @click="goRoute('/')">
+
+            </div>
+        <div class="side-menu">
+            <a href="/#courses" class="menu-item">
+                Курсы
+            </a>
+            <a href="/#about" class="menu-item">
+                О нас
+            </a>
+            <a @click="goRoute('/lessonFree')" class="menu-item">
+                Попробуй бесплатно
+            </a>
+            <a href="/#plus"  class="menu-item">
+                Приемущества
+            </a>
+        </div>
+    </el-drawer>
     <Header v-bind:courseData="courseData" v-bind:id="id" />
     <Features v-bind:courseData="courseData" />
     <Program v-bind:courseData="courseData" v-bind:id="id" />
@@ -26,16 +66,14 @@ export default {
         return {
             id: this.$route.params.id,
             url: api.url,
-            courseData: null
+            courseData: null,
+            drawer: false
 
         }
     },
 
     mounted() {
         window.scrollTo(0, 0);
-    },
-    beforeMount() {
-
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
             if (response.data.courses[this.id - 1]) {
@@ -44,7 +82,18 @@ export default {
                 this.$router.push({ path: '/' })
             }
         })
+    
     },
+    methods: {
+        goRoute(i){
+
+            this.$router.push({path: i})
+            this.drawer = false
+        }
+    },
+    
+
+        
 }
 </script>
 

@@ -6,10 +6,12 @@ import './plugins/element.js'
 import './plugins/element.css'
 var VueScrollTo = require('vue-scrollto');
 import VueCookie from 'vue-cookie'
+import VuePageTransition from 'vue-page-transition'
 
 Vue.config.productionTip = false
 Vue.use(VueCookie);
 Vue.use(VueScrollTo)
+Vue.use(VuePageTransition)
 new Vue({
   router,
   store,

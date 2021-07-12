@@ -29,6 +29,7 @@
     <transition name="fade">
 
         <div v-if="aboutVideo" class="video-wrapper">
+            <iframe src="https://drive.google.com/file/d/1SdPo2JqnpoGBJTHb8_T_d8fUHsq_H3KD/preview" width="640" height="480" allow="autoplay"></iframe>
             <div class="video">
                 <div @click="aboutVideo = false" class="close-button">
                     +

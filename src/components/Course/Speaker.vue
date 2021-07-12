@@ -3,7 +3,9 @@
     <div class="container">
         <div class="center">
             <h2>Спикер</h2>
-            <div class="image" :style="'background: url(\''+url+courseData.teacher.Avatar.formats.medium.url+'\') no-repeat center center / cover'"></div>
+            <div class="image" :style="'background: url(\''+url+courseData.teacher.Avatar.formats.medium.url+'\') no-repeat center center / cover'">
+            <div  :class="courseData.teacher.color"></div>
+            </div>
             <h3 class="name">{{courseData.teacher.Name}}</h3>
         </div>
         <p class="description" v-html="courseDescription"></p>
@@ -20,6 +22,7 @@
         <div class="quote-2" v-if="courseData.teacher.quote2" v-html="quote2"></div>
         <h3 class="go">Присоединяйтесь!</h3>
         <button v-scroll-to="'#prices'">Выбрать тариф</button>
+       
     </div>
 </section>
 </template>
@@ -33,17 +36,69 @@ export default {
     data() {
         return {
             url: api.url,
-            achives: this.courseData.teacher.achives.split('\n'),
-            univer: this.courseData.teacher.school.split('\n'),
-            quote1:  this.courseData.teacher.quote1.split('\n').join('<br>'),
-            quote2:  this.courseData.teacher.quote2.split('\n').join('<br>'),
-            courseDescription: this.courseData.teacher.courseDescription.split('\n').join('<br>'),
+            
         }
     },
+    computed:{
+        courseDescription: function(){
+            return this.courseData.teacher.courseDescription.split('\n').join('<br>')
+        },
+         achives: function(){
+            return this.courseData.teacher.achives.split('\n')
+        },
+         univer: function(){
+            return  this.courseData.teacher.school.split('\n')
+        },
+         quote1: function(){
+            return  this.courseData.teacher.quote1.split('\n').join('<br>')
+        },
+         quote2: function(){
+            return this.courseData.teacher.quote2.split('\n').join('<br>')
+        },
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+.pink {
+    position: absolute;
+    z-index: -1;
+    height: 226px;
+    width: 234px;
+    background: url('/img/teachers/pink.svg') no-repeat center center / contain;
+    top: -17px;
+    right: -83.25px;
+}
+
+.green {
+    position: absolute;
+    z-index: -1;
+    height: 240px;
+    width: 210px;
+    background: url('/img/teachers/green.svg') no-repeat center center / contain;
+    bottom: -45px;
+    right: -60px;
+}
+
+.orange {
+    position: absolute;
+    z-index: -1;
+    height: 286px;
+    width: 283px;
+    background: url('/img/teachers/orange.svg') no-repeat center center / contain;
+    top: -20px;
+    left: -90px;
+}
+
+.blue {
+    position: absolute;
+    z-index: -1;
+    height: 202px;
+    width: 275px;
+    background: url('/img/teachers/blue.svg') no-repeat center center / contain;
+    bottom: -6px;
+    left: -79px;
+}
 .container {
     flex-direction: column;
     margin-top: 125px;
@@ -68,16 +123,7 @@ export default {
     position: relative;
 }
 
-.image::before {
-    right: -85px;
-    bottom: -40px;
-    content: '';
-    background: url('/img/courses/1/speaker/image.svg') no-repeat center center / contain;
-    height: 240px;
-    width: 240px;
-    z-index: -1;
-    position: absolute;
-}
+
 
 h3 {
     font-family: Intro;
@@ -297,6 +343,26 @@ section {
 }
 
 @media (max-width: 1250px) {
+     .pink {
+            height: 160px;
+            width: 130px;
+            right: -65px;
+            top: -20px
+        }
+
+        .green {
+            height: 160px;
+            bottom: -25px;
+        }
+
+        .orange {
+            height: 160px;
+        }
+
+        .blue {
+            height: 100px;
+            left: -120px;
+        }
     h3 {
         font-size: 20px;
         line-height: 20px;
@@ -385,11 +451,7 @@ section {
         margin-bottom: 0;
     }
 
-    .image::before {
-        height: 150px;
-        bottom: -20px;
-        right: -70px;
-    }
+  
 
     .name {
         font-size: 20px;
@@ -419,6 +481,25 @@ section {
 }
 
 @media (max-width: 800px) {
+    .pink {
+            height: 75px;
+            top: -15px;
+            right: -55px;
+        }
+        .green{
+            height: 75px;
+            right: -85px;
+            bottom: -5px;
+        }
+        .orange{
+            height: 75px;
+            top: -10px;
+            left: -130px;
+            right: unset;
+        }
+        .blue{
+            height: 75px;
+        }
     .container{
         margin-bottom: 58px;
     }
@@ -441,11 +522,7 @@ section {
         width: 90px;
     }
 
-    .image::before {
-        height: 70px;
-        right: -100px;
-        bottom: -10px;
-    }
+    
 
     .name {
         margin-top: 10px;

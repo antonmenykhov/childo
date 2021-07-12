@@ -274,14 +274,15 @@ export default {
         buyCourse(i) {
             let formData = new FormData;
             formData.append('courseId', this.courseData.id);
-            formData.append('tarif', i);
+            formData.append('priceId', i);
+            formData.append('jwt', this.$store.state.jwt);
 
-            axios.post(api.buy,
-                formData, { headers: { 'Content-Type': 'multipart/form-data', Authorization: `Bearer ${this.$store.state.jwt}` }, }
+            axios.post('https://pay.childo-art.ru',
+                formData
             ).then(response => {
                     if (response.status == 200) {
-
-                        this.$router.push({ path: '/lk' })
+                        
+                       alert(response.data)
                     } else {
 
                         this.$notify.error({

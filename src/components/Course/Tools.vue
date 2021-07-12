@@ -5,24 +5,24 @@
     </h2>
     <div class="tools">
         <ul v-if="courseData.teacher.style=='cs-1'">
-            <li v-for="item in tools" :key="item">{{item}}</li>
+            <li v-for="item,i in tools" :key="i">{{item}}</li>
         </ul>
         <div v-if="courseData.teacher.style=='cs-2'">
             <ul class="apple">
-                <li v-for="item in apple" :key="item" v-html="item"></li>
+                <li v-for="item,i in apple" :key="i" v-html="item"></li>
             </ul>
             <h4>
                 Программы для планшетов под Android
             </h4>
             <ul class="progs">
-                <li v-for="item in android" :key="item" v-html="item">
+                <li v-for="item,i in android" :key="i" v-html="item">
 
                 </li>
             </ul>
             <h4>В качестве бонуса, так же вам предоставляем:
             </h4>
             <ul class="bonuses">
-                <li v-for="item in courseData.bonus" :key="item">
+                <li v-for="item,i in courseData.bonus" :key="i">
                     <p>{{item.name}}</p>
                     <button>Скачать</button>
                 </li>
@@ -42,15 +42,21 @@ export default {
     },
     data() {
         return {
-            tools: this.courseData.tools.split('\n'),
-            android: this.courseData.android.split('\n'),
-            apple: this.courseData.apple.split('\n-'),
+          
             url: api.url
         }
     },
-    mounted() {
-
-    },
+   computed:{
+       android: function(){
+           return  this.courseData.android.split('\n')
+       },
+       tools: function(){
+           return   this.courseData.tools.split('\n')
+       },
+       apple: function(){
+           return  this.courseData.apple.split('\n-')
+       },
+   }
 }
 </script>
 

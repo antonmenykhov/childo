@@ -1,48 +1,12 @@
 <template>
 <div id="app">
 
-    <div class="top-line">
-        <div class="container">
-            <div class="logo" @click="$router.push({path: '/'})">
-
-            </div>
-            <div  @click="drawer=true" class="burger-button"></div>
-            <div class="main-menu">
-                <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#courses'" class="menu-item">
-                    Курсы
-                </a>
-                <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#about'" class="menu-item">
-                    О нас
-                </a>
-                <a @click="$router.push({path: '/lessonFree'})" class="menu-item">
-                    Попробуй бесплатно
-                </a>
-                <a href="#" @click="$router.push({path: '/'})" v-scroll-to="'#plus'" class="menu-item">
-                    Приемущества
-                </a>
-            </div>
-        </div>
-    </div>
-    <el-drawer size="100%" :visible.sync="drawer">
-        <div class="logo" @click="$router.push({path: '/'})">
-
-            </div>
-        <div class="side-menu">
-            <a href="#" @click="goRoute('/')" v-scroll-to="'#courses'" class="menu-item">
-                Курсы
-            </a>
-            <a href="#" @click="goRoute('/')" v-scroll-to="'#about'" class="menu-item">
-                О нас
-            </a>
-            <a @click="goRoute('/lessonFree')" class="menu-item">
-                Попробуй бесплатно
-            </a>
-            <a href="#" @click="goRoute('/')" v-scroll-to="'#plus'" class="menu-item">
-                Приемущества
-            </a>
-        </div>
-    </el-drawer>
+    
+  <vue-page-transition name="fade-in-down">
+    
+   
     <router-view :key="$route.path"> </router-view>
+  </vue-page-transition>
 </div>
 </template>
 
@@ -77,26 +41,9 @@ export default {
     name: 'app',
     data() {
         return {
-            select: '/',
+            
             drawer: false,
-            menu: [{
-                    name: 'Курсы',
-                    route: '#courses',
-
-                },
-                {
-                    name: 'О нас',
-                    route: '#about'
-                },
-                {
-                    name: 'Попробуй бесплатно',
-                    route: '#free'
-                },
-                {
-                    name: 'Преимущества',
-                    route: '#plus'
-                },
-            ]
+            
         }
     },
 }
@@ -118,6 +65,8 @@ export default {
     margin: 0;
     box-sizing: border-box;
 }
+
+
 
 .el-dialog__wrapper {
     z-index: 9999;
@@ -167,6 +116,7 @@ section::before {
     left: 0;
     z-index: 10;
     padding: 7vh;
+    
 
     .logo {
         background: url('/img/logo.png') no-repeat center center / contain;

@@ -11,7 +11,8 @@
         </p>
         <div class="q800">
             <div class="thumb" :style="'background: url(\'/img/lessons/free/'+lessonData.thumb+'\') no-repeat center top / cover'">
-                <div class="play"></div>
+                <div @click="play = true" v-if="!play" class="play"></div>
+              <iframe v-if="play" src="https://player.vimeo.com/video/571751886" height="100%" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
             </div>
             <div class="req">
                 <h6>Для урока потребуется:</h6>
@@ -32,6 +33,7 @@ export default {
     data() {
         return {
             style: 'free',
+            play: false,
             lessonData: {
                 upheader: 'бесплатный урок',
                 header: '“яркие краски!”',
@@ -56,6 +58,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ iframe{
+     height: 100%!important;
+     width: 100%;
+ }
 .back-button{
     position: fixed;
     left: 15px;
@@ -134,6 +140,7 @@ export default {
         position: relative;
         z-index: 1;
         cursor: pointer;
+        overflow: hidden;
     }
 
     .play {
