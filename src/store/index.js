@@ -8,7 +8,8 @@ export default new Vuex.Store({
     mainData: {},
     teachers: [],
     jwt: '',
-    userData: null
+    userData: null,
+    show: true,
     
   },
   mutations: {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     setUserData(state, it){
       state.userData = it
+    },
+    setShow(state, it){
+      state.show = it
     }
 
   },

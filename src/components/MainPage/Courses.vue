@@ -36,6 +36,7 @@
             <div class="connect">Присоединяйтесь к нашей дружной команде и попробуйте создать свою первую картину уже сейчас!
             </div>
             <button @click="openReg">Присоединиться</button>
+            
             <el-dialog class="register" width="400px" :visible.sync="reg">
                 <h3>Регистрация</h3>
                 <el-form ref="val" :model="register">
@@ -250,6 +251,7 @@ export default {
     },
     data() {
         return {
+            soglV: false,
             url: api.url,
             reg: false,
             auth: false,

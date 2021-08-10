@@ -9,8 +9,11 @@
         <div class="description">{{courseData.smallDescription}}
         </div>
         <div class="button-holder">
-            <button class="left" v-scroll-to="'#prices'">
+            <button v-if="show" class="left" v-scroll-to="'#prices'">
                 К тарифам
+            </button>
+            <button v-if="!show" class="left" @click="$router.push({path: '/lk'})">
+                В личный кабинет
             </button>
             <button class="right" v-scroll-to="'#more'">
                 Подробнее
@@ -22,14 +25,19 @@
 </template>
 
 <script>
+
 export default {
+   
+   
     props: {
         courseData: Object,
-        id: null
+        id: null,
+        show: Boolean
+        
     },
     data() {
         return {
-
+            data: null
         }
     },
 }

@@ -41,11 +41,11 @@
             </a>
         </div>
     </el-drawer>
-    <Header v-bind:courseData="courseData" v-bind:id="id" />
+    <Header v-bind:courseData="courseData" v-bind:id="id" v-bind:show="show" />
     <Features v-bind:courseData="courseData" />
     <Program v-bind:courseData="courseData" v-bind:id="id" />
     <Tools v-bind:courseData="courseData" />
-    <Prices v-bind:courseData="courseData" />
+    <Prices v-bind:courseData="courseData" v-bind:show="show"/>
     <Speaker v-bind:courseData="courseData" />
 </div>
 </template>
@@ -67,12 +67,14 @@ export default {
             id: this.$route.params.id,
             url: api.url,
             courseData: null,
-            drawer: false
+            drawer: false,
+            show: true
 
         }
     },
 
-    mounted() {
+    
+    beforeMount() {
         window.scrollTo(0, 0);
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
@@ -82,6 +84,28 @@ export default {
                 this.$router.push({ path: '/' })
             }
         })
+        if (this.$cookie.get('jwt')) {
+            this.$store.commit('setJwt', this.$cookie.get('jwt'));
+            axios.get(api.me, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => {
+                this.$store.commit('setUserData', response.data);
+                response.data.BuyedCourses.forEach(elem =>{
+                  console.log(elem.course.id)
+                    if (elem.course.id==this.courseData.id){
+                        this.show = false
+                        this.store.commit('setShow', false)
+                    } })
+                
+                
+                
+            }).catch(error => {
+                console.log(error.response)
+               
+            })
+        }
     
     },
     methods: {

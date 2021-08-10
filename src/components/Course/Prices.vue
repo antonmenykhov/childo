@@ -1,5 +1,5 @@
 <template>
-<section id="prices" :class="courseData.teacher.style">
+<section v-if="show" id="prices" :class="courseData.teacher.style">
     <div class="container">
         <h2>Тарифы</h2>
         <p v-if="courseData.teacher.style=='cs-1'" class="subheader">Проанализируйте свое свободное время и подумайте, как часто вы сможете заниматься рисованием? </p>
@@ -18,7 +18,7 @@
         <div class="prices" v-if="courseData.teacher.style=='cs-2'">
             <div class="price-w" v-for="item,i in courseData.prices" :key="item.name">
                 <h4>{{item.name}}</h4>
-                <h4>{{item.time}}</h4>
+                <h4>({{item.time}} дней)</h4>
                 <p class="price">{{item.price}} рублей</p>
                 <p class="description" v-html="item.description.split('\n').join('<br>')"></p>
                 <button @click="openReg(i)">Оплатить</button>
@@ -119,10 +119,13 @@ import api from '../../constants'
 import axios from 'axios'
 export default {
     props: {
-        courseData: Object
+        courseData: Object,
+        show: Boolean
     },
+   
     data() {
         return {
+         
             buyError: false,
             url: api.url,
             reg: false,
@@ -281,8 +284,8 @@ export default {
                 formData
             ).then(response => {
                     if (response.status == 200) {
-                        
-                       alert(response.data)
+
+                        document.location.href = response.data
                     } else {
 
                         this.$notify.error({
