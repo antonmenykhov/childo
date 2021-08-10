@@ -29,12 +29,15 @@
     <transition name="fade">
 
         <div v-if="aboutVideo" class="video-wrapper">
-          
-            <div class="video">
-                <div @click="aboutVideo = false" class="close-button">
-                    +
-                </div>
+            <div @click="aboutVideo = false" class="close-button">
+                +
             </div>
+            <vimeo-player class="video" :video-id='582144098'>
+
+                
+            </vimeo-player>
+            
+
         </div>
     </transition>
 </div>
@@ -49,17 +52,27 @@ export default {
     },
 }
 </script>
-
+<style>
+iframe{width: 100%!important;
+        height: 100%!important;}
+</style>
 <style lang="scss" scoped>
-.fade-enter-active, .fade-leave-active {
-    
-  transition: all .3s ease-in-out;
+.fade-enter-active,
+.fade-leave-active {
+
+    transition: all .3s ease-in-out;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+
+.fade-enter,
+.fade-leave-to
+
+/* .fade-leave-active до версии 2.1.8 */
+    {
     transition: all .3s;
-  opacity: 0;
-  transform: translateY(-150vh);
+    opacity: 0;
+    transform: translateY(-150vh);
 }
+
 .video-wrapper {
     position: fixed;
     top: 0;
@@ -71,17 +84,9 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    .video {
-        position: relative;
-        height: 40vw;
-        width: 80vw;
-        background: grey;
-        border-radius: 20px;
-
-        .close-button {
-            right: -30px;
-            top: -50px;
+    .close-button {
+            right: 4vw;
+            top: 2vw;
             color: white;
             position: absolute;
             font-size: 50px;
@@ -89,6 +94,15 @@ export default {
             transition: all .2s;
             cursor: pointer
         }
+    .video {
+        overflow: hidden;
+        position: relative;
+        height: 45vw;
+        width: 80vw;
+        background: grey;
+        border-radius: 20px;
+
+        
 
         .close-button:hover {
             color: orangered;
@@ -458,10 +472,11 @@ header::after {
 }
 
 @media (max-width: 800px) {
-     header::before {
+    header::before {
         left: 00px;
         width: 300px;
     }
+
     header::after {
         transform: rotateY(180deg) rotateZ(-12deg);
         height: 350px;
