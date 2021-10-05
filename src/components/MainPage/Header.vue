@@ -10,7 +10,7 @@
                         <img src="/img/play.svg" alt="play">
                     </div>
                     <div class="play-button-text">
-                        Dидео о нас
+                        Видео о нас
                     </div>
                 </div>
             </div>
@@ -26,20 +26,7 @@
             </div>
         </div>
     </header>
-    <transition name="fade">
-
-        <div v-if="aboutVideo" class="video-wrapper">
-            <div @click="aboutVideo = false" class="close-button">
-                +
-            </div>
-            <vimeo-player class="video" :video-id='582144098'>
-
-                
-            </vimeo-player>
-            
-
-        </div>
-    </transition>
+    
 </div>
 </template>
 

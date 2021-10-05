@@ -4,20 +4,20 @@
         <h2>О нас</h2>
         <h5>Давайте знакомиться!</h5>
         <div class="video-wrapper">
+            <vimeo-player class="video" :video-id='582144098'>
 
+            </vimeo-player>
         </div>
         <div class="about-holder">
             <div class="about-w about-1">
-                Наша команда — это творческая семья, которая поддерживает друг друга на пути к мечте. 
+                Наша команда — это творческая семья, которая поддерживает друг друга на пути к мечте.
             </div>
             <div class="about-w about-3">
-               Мы разработали авторскую методику, благодаря которой уровень вашего мастерства будет расти с каждым занятием — даже если вы никогда не рисовали раньше.
-
+                Мы разработали авторскую методику, благодаря которой уровень вашего мастерства будет расти с каждым занятием — даже если вы никогда не рисовали раньше.
 
             </div>
             <div class="about-w about-2">
                 С помощью рисования можно воплотить в жизнь самые яркие фантазии, создать собственную сказку, найти свое предназначение.
-
 
             </div>
         </div>
@@ -32,25 +32,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.video-wrapper{
-    background: #C4C4C4;
-;
-    height: 802px;
+.video-wrapper {
     width: 100%;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: black;
+    /* 16:9 Aspect Ratio */
+}
+
+.video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
 
 }
-.container{
+
+iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.container {
     flex-direction: column;
     align-items: center;
     width: 100%;
 }
+
 .about {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    
 
 }
 
@@ -62,7 +79,6 @@ export default {
     width: 100%;
     padding-left: 60px;
     padding-top: 100px;
-   
 
     .about-w {
         font-style: normal;
@@ -157,7 +173,7 @@ h2::first-letter {
 }
 
 h2::before {
-    
+
     background: url('/img/o.png') no-repeat center center / contain;
     width: 50.26px;
     height: 57.08px;
@@ -168,7 +184,7 @@ h2::before {
 }
 
 h2::after {
-    
+
     background: white;
     width: 52.26px;
     height: 57.08px;
@@ -184,7 +200,7 @@ h2::after {
     height: 684px;
     width: 358px;
     left: 0;
-   top: -200px;
+    top: -200px;
     position: absolute;
 
 }
@@ -198,8 +214,6 @@ h2::after {
     position: absolute;
     bottom: 100px;
 }
-
-
 
 .mobile {
     h2::before {

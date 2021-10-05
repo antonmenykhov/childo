@@ -102,6 +102,7 @@ export default {
 .teachers {
     width: 100%;
     margin-bottom: 100px;
+    position: relative;
     .container{
         
     margin-top: 200px;
@@ -165,7 +166,17 @@ export default {
     max-width: 463px;
     margin-bottom: 100px;
     display: flex;
+    
     flex-direction: column;
     align-items: flex-start;
+}
+.teachers::after{
+    content: "";
+    background: url('/img/coursesPink.svg') no-repeat right bottom / contain;
+    height: 654px;
+    width: 358px;
+    right: 0;
+    position: absolute;
+    bottom: -390px;
 }
 </style>

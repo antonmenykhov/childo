@@ -1,8 +1,9 @@
 <template>
 <header :class="courseData.teacher.style">
-    <div :class="courseData.girl"></div>
+    
     <div class="gradient"></div>
     <div class="header-container">
+        <div class="heaader-left">
         <div class="title">Курс {{id*1}}
 
         </div>
@@ -19,6 +20,8 @@
                 Подробнее
             </button>
         </div>
+        </div>
+        <div :class="courseData.girl"></div>
     </div>
 
 </header>
@@ -58,8 +61,8 @@ export default {
 
 header {
 
-    padding-top: 322px;
-    padding-bottom: 280px;
+    padding-top: 275px;
+    padding-bottom: 200px;
     width: 100%;
     position: relative;
     background: url('/img/HeaderPens.png') no-repeat left center /contain;
@@ -71,10 +74,11 @@ header {
     .header-container {
         width: 100%;
         height: fit-content;
-        max-width: 1160px;
+        max-width: 1058px;
         margin: 0 auto;
         position: relative;
         z-index: 3;
+        padding-top: auto;
 
         .title {
             width: 1047px;
@@ -103,7 +107,7 @@ header {
 
         .title::after {
             background: white;
-            content: "";
+           
             position: absolute;
             height: 122px;
             width: 100px;
@@ -119,11 +123,11 @@ header {
             font-family: Montserrat;
             font-style: normal;
             font-weight: normal;
-            font-size: 30px;
-            line-height: 37px;
-            width: 621px;
+            font-size: 25px;
+            line-height: 31px;
+            max-width: 540px;
             color: #333333;
-            margin-top: 38px;
+            margin-top: 50px;
         }
 
         .button-holder:hover {
@@ -134,7 +138,7 @@ header {
         .button-holder {
             display: flex;
             align-items: center;
-            margin-top: 76px;
+            margin-top: 50px;
 
             button {
 
@@ -148,7 +152,7 @@ header {
                 text-align: center;
                 line-height: 160.2%;
                 color: white;
-                padding: 20px 80px;
+                padding: 20px 83px;
                 cursor: pointer;
                 transition: all .2s ease-in-out;
             }
@@ -174,7 +178,7 @@ header::before {
 
 .cs-1::after {
     background: url('/img/courses/1/top.svg') no-repeat center top / contain;
-    content: '';
+   
     top: 0%;
     position: absolute;
     right: 9%;
@@ -185,7 +189,7 @@ header::before {
 
 .cs-2::after {
     background: url('/img/courses/2/top.svg') no-repeat center top / contain;
-    content: '';
+    
     top: 0%;
     position: absolute;
     right: 8.5%;
@@ -227,16 +231,16 @@ header::before {
 
 .masha {
     background: url('/img/courses/1/girl.png') no-repeat right center / contain;
-    height: 1158px;
+    height: 800px;
     position: absolute;
     width: 775px;
-    right: 35px;
-    top: 169px;
+    right: -155px;
+    top: -100px;
 
 }
 
 .masha::after {
-    content: '';
+    
     position: absolute;
     background: url('/img/courses/1/girl.svg') no-repeat center bottom / contain;
     height: 655px;
@@ -256,253 +260,7 @@ header::before {
     z-index: 2;
 }
 
-@media (max-width: 1500px) {
-    header::before {
-        left: 120px;
-    }
 
-    header {
-        overflow: hidden;
-        padding-top: 225px;
-
-        .header-container {
-            max-width: 1000px;
-            margin: 0 auto;
-
-            .button-holder {
-                button {
-                    font-size: 20px;
-                }
-
-                .button-description {
-                    font-size: 16px;
-                    max-width: 300px;
-                }
-            }
-
-            .title {
-                font-size: 90px;
-                line-height: 90px;
-
-            }
-
-            .title::before {
-                height: 70px;
-                width: 70px;
-                top: 14px;
-                left: 2px;
-            }
-
-            .title::after {
-                height: 80px;
-                width: 60px;
-                top: 10px;
-                left: 6px;
-                opacity: 0;
-            }
-
-            .description {
-                font-size: 24px;
-                line-height: 28px;
-                margin-top: 25px;
-            }
-        }
-    }
-
-    header::before {
-        left: 180px;
-    }
-
-    .masha {
-        height: 900px;
-    }
-
-    .tanya {
-        height: 700px;
-        top: 100px;
-        right: 0;
-    }
-}
-
-@media (max-width: 1250px) {
-    header::before {
-        left: 130px;
-    }
-
-    .masha {
-        height: 700px;
-        width: 500px;
-        right: -50px;
-        top: 100px;
-    }
-
-    .masha::after {
-        height: 350px;
-        left: -120px;
-    }
-
-    .tanya {
-        top: 0;
-        height: 700px;
-        width: 50%;
-    }
-
-    header {
-        padding-top: 219px;
-        padding-bottom: 87px;
-
-        .header-container {
-            max-width: 586px;
-
-            .title {
-                font-size: 80px;
-                line-height: 80px;
-            }
-
-            .title::after {
-                height: 65px;
-                left: -5px;
-                top: 12px;
-            }
-
-            .title::before {
-                height: 65px;
-                left: -5px;
-                top: 12px;
-            }
-
-            .description {
-                font-size: 16px;
-                line-height: 20px;
-                max-width: 320px;
-            }
-
-            .button-holder {
-                margin-top: 62px;
-
-                button {
-                    font-size: 16px;
-                    line-height: 160.2%;
-                    padding: 17px 65px;
-                }
-            }
-
-        }
-    }
-}
-
-@media (max-width: 800px) {
-    header::before {
-        left: 120px;
-        width: 130px;
-    }
-
-    .cs-1::after {
-        height: 400px;
-        width: 400px;
-        top: -70px;
-        right: -50px;
-        left: unset;
-        bottom: unset;
-        transform: rotate(45deg);
-    }
-
-    .cs-2::after {
-        height: 300px;
-        width: 300px;
-        top: -70px;
-        right: -50px;
-        left: unset;
-        bottom: unset;
-        transform: rotate(45deg);
-    }
-
-    .tanya,
-    .masha {
-        display: none;
-    }
-
-    header {
-        padding-top: 127px;
-        padding-bottom: 80px;
-
-        .header-container {
-            padding-bottom: 0;
-            flex-direction: column;
-            display: flex;
-            align-items: center;
-
-            .title {
-                font-size: 35px;
-                line-height: 35px;
-                max-width: 400px;
-                width: fit-content;
-                height: 40px;
-
-                text-align: center;
-
-            }
-
-            .title::after {
-                height: 30px;
-                width: 32px;
-                top: 5px;
-                left: -3px;
-            }
-
-            .title::before {
-                height: 30px;
-                width: 32px;
-                top: 5px;
-                left: -3px;
-            }
-
-            .description {
-                margin-top: 14px;
-                font-size: 12px;
-                line-height: 15px;
-                max-width: 194px;
-                text-align: center;
-            }
-
-            .button-holder {
-                margin-top: 17px;
-                align-items: center;
-                flex-direction: column;
-
-                button {
-                    font-size: 10px;
-                    line-height: 160.2%;
-                    border-radius: 10px;
-                    height: 40px;
-                    width: 150px;
-                    padding: unset;
-                    margin-right: 0;
-                    margin-bottom: 20px;
-                }
-
-                .cs-1 {
-                    .left {
-                        box-shadow: 0px 4px 20px #F66C17
-                    }
-
-                    .right {
-                        box-shadow: 0px 4px 20px #AACD40;
-                    }
-                }
-                .cs-2 {
-                    .left {
-                        box-shadow: 0px 4px 20px #F66C17;
-                    } 
-
-                    .right {
-                        box-shadow: 0px 4px 20px #45C6DD;;
-                    }
-                }
-            }
-        }
-    }
-}
 
 .mobile {
     .title::after {
