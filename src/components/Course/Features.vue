@@ -114,7 +114,7 @@ section {
         line-height: 43px;
         /* identical to box height */
         display: inline-block;
-        color: #000000;
+        color: #333333;
         position: relative;
     }
 
@@ -131,7 +131,7 @@ section {
         font-size: 25px;
         line-height: 30px;
         margin-top: 11px;
-        color: #000000;
+        color: #333333;
     }
 }
 

@@ -125,7 +125,7 @@ export default {
         line-height: 24px;
         text-align: center;
         max-width: 853px;
-        color: #000000;
+        color: #333333;
     }
 
     .thumb {
@@ -181,14 +181,14 @@ export default {
         line-height: 37px;
         /* identical to box height */
         margin-bottom: 20px;
-        color: #000000;
+        color: #333333;
     }
 
     li {
         font-size: 20px;
         line-height: 24px;
         max-width: 481px;
-        color: #000000;
+        color: #333333;
         list-style: none;
         position: relative;
     }

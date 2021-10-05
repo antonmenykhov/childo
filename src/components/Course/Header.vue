@@ -122,7 +122,7 @@ header {
             font-size: 30px;
             line-height: 37px;
             width: 621px;
-            color: #000000;
+            color: #333333;
             margin-top: 38px;
         }
 

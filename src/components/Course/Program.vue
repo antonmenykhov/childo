@@ -128,7 +128,7 @@ p {
     text-align: center;
     flex: 1;
     vertical-align: middle;
-    color: #000000;
+    color: #333333;
     display: flex;
     align-items: center;
 }

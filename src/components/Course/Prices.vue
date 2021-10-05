@@ -512,7 +512,7 @@ h4 {
     font-size: 30px;
     line-height: 37px;
     text-align: center;
-    color: #000000;
+    color: #333333;
     max-width: 180px;
     margin-top: 37px;
     margin-bottom: 25px;
@@ -524,7 +524,7 @@ p {
     line-height: 37px;
     text-align: center;
     padding: 0 18px;
-    color: #000000;
+    color: #333333;
 
 }
 
@@ -688,7 +688,7 @@ section {
         line-height: 37px;
         text-align: center;
         max-width: unset;
-        color: #000000;
+        color: #333333;
     }
 
     h4:first-child {

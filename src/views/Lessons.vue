@@ -255,7 +255,7 @@ p {
     font-size: 15px;
     line-height: 18px;
     margin-top: 5px;
-    color: #000000;
+    color: #333333;
 }
 
 .locked {
@@ -287,7 +287,7 @@ p {
     flex-direction: column;
     padding-top: 65px;
     align-items: center;
-    color: #000000;
+    color: #333333;
 
     p {
         font-size: 10px;

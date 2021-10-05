@@ -181,7 +181,7 @@ h2::after {
     font-size: 25px;
     line-height: 30px;
 
-    color: #000000;
+    color: #333333;
     margin-top: 75px;
     margin-bottom: 50px;
 }

@@ -28,7 +28,7 @@ export default {
 
         })
     },
-    mounted() {
+   /**  mounted() {
         let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
         if (isMobile) {
             document.body.classList.add('mobile')
@@ -37,7 +37,7 @@ export default {
 
         window.scrollTo(0, 0);
 
-    },
+    },*/
     name: 'app',
     data() {
         return {
@@ -77,8 +77,8 @@ export default {
     align-items: center;
     .logo{
         background: url('/img/logo.png') no-repeat center center / contain;
-        height: 47px;
-        width: 100px;
+        height: 70px;
+        width: 157px;
     }
     .side-menu{
         padding: 20px 50px;
@@ -98,7 +98,7 @@ export default {
 
 section {
     width: 100%;
-    overflow-x: hidden;
+    
 }
 
 section::after {
@@ -115,18 +115,18 @@ section::before {
     right: 0;
     left: 0;
     z-index: 10;
-    padding: 7vh;
+    padding: 100px;
     
 
     .logo {
         background: url('/img/logo.png') no-repeat center center / contain;
-        height: 46px;
-        width: 100px;
+        height: 70px;
+        width: 157px;
         margin-right: 40px;
     }
 
     .container {
-
+        max-width: 1058px;
         align-items: center;
 
         .main-menu {
@@ -190,82 +190,12 @@ section::before {
     top: -20px
 }
 
-@media (max-width: 1500px) {
-    .container {
-        max-width: 1000px;
-    }
 
-    .top-line .container .main-menu .menu-item {
-        font-size: 24px;
-        margin: 0
-    }
-
-    .top-line .container .main-menu {
-        flex: 1;
-        justify-content: space-between;
-    }
-}
-
-@media (max-width: 1250px) {
-    header .header-container {
-        padding-bottom: 64px;
-    }
-
-    .container {
-        max-width: 700px;
-    }
-
-    .top-line {
-        .container {
-            max-width: 586px;
-
-            .main-menu {
-                .menu-item {
-                    font-size: 16px;
-                    line-height: 20px;
-                }
-            }
-
-            .logo {
-                height: 34px;
-                width: 74px;
-            }
-        }
-    }
-
-    .top-line .container {
-        max-width: 586px;
-    }
-}
 
 .top-line .container .main-menu {
     flex: 1;
     justify-content: space-between;
 }
 
-@media (max-width: 800px) {
-    .top-line {
-        padding: 40px;
 
-        .container {
-            justify-content: space-between;
-
-            .burger-button {
-                display: flex;
-            }
-
-            .logo {
-                margin-left: 70px;
-                opacity: 0;
-            }
-
-            .main-menu {
-                display: none;
-            }
-
-            ;
-        }
-    }
-
-}
 </style>

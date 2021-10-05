@@ -395,7 +395,7 @@ section {
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            color: #000000;
+            color: #333333;
 
             p {
                 font-size: 10px;
@@ -472,7 +472,7 @@ section {
         line-height: 160.2%;
         /* identical to box height, or 32px */
         list-style: none;
-        color: #000000;
+        color: #333333;
         position: relative;
 
     }
