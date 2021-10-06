@@ -14,14 +14,14 @@
                 <div class="fullName">
                     {{userData.name}}
                 </div>
-                <button @click="exit">Выйти</button>
+                
             </div>
             <div class="description">
-                Мы рады видеть вас в творческом проекте онлайн-курсов по рисованию «ChilDo»! Благодарим вас за приобретение курса. Давайте проведем небольшую экскурсию по нашему волшебному миру.<br>
-                В «Личном кабинете» вы можете отслеживать прогресс и видеть доступные курсы. Если вы откроете блок «О нас», то познакомитесь с дружной командой нашего проекта — его создателем и художниками.<br>
-                На странице «Курсы» вас ждет описание всех курсов, список необходимых материалов для обучения и краткое описание каждого занятия. После просмотра каждого урока вам нужно будет выполнить домашнее задание — сфотографировать свою картину и загрузить ее в специальную форму на сайте. После этого вы сможете продолжить обучение.<br>
+                Мы рады видеть вас в творческом проекте онлайн-курсов по рисованию «ChilDo»! Благодарим вас за приобретение курса. Давайте проведем небольшую экскурсию по нашему волшебному миру.<br><br>
+                В «Личном кабинете» вы можете отслеживать прогресс и видеть доступные курсы. Если вы откроете блок «О нас», то познакомитесь с дружной командой нашего проекта — его создателем и художниками.<br><br>
+                На странице «Курсы» вас ждет описание всех курсов, список необходимых материалов для обучения и краткое описание каждого занятия. После просмотра каждого урока вам нужно будет выполнить домашнее задание — сфотографировать свою картину и загрузить ее в специальную форму на сайте. После этого вы сможете продолжить обучение.<br><br>
                 Изучив все уроки и техники, вы сможете создать собственные неповторимые шедевры. В конце курса вас ждет приятный бонус — сертификат о прохождении онлайн-курса по рисованию «ChilDo».
-                <br>Учитесь и творите вместе с «ChilDo»! Желаем удачи и вдохновения!
+                <br><br>Учитесь и творите вместе с «ChilDo»! <br><br>Желаем удачи и вдохновения!
 
             </div>
         </div>
@@ -40,6 +40,9 @@
             </div>
         </div>
         <div class="sidebar">
+            <div class="exit-wrapper">
+            <button class="exit" @click="exit">Выйти</button>
+            </div>
             <div class="course" v-for="item,i in userData.BuyedCourses" :key="i">
                 <h3>{{item.data.Name}}</h3>
                 <ul>
@@ -179,6 +182,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .back-button {
     position: fixed;
     left: 15px;
@@ -206,45 +210,7 @@ export default {
     opacity: 1;
 }
 
-.child::before {
-    content: '';
-    position: absolute;
-    background: url('/img/lk/left.svg') no-repeat left bottom / contain;
-    height: 600px;
-    width: 600px;
-    left: 0;
-    top: 132px
-}
 
-.child::after {
-    content: '';
-    position: absolute;
-    background: url('/img/lk/right.svg') no-repeat right bottom / contain;
-    height: 600px;
-    width: 600px;
-    right: 0;
-    bottom: 0;
-}
-
-.grow::before {
-    content: '';
-    position: absolute;
-    background: url('/img/lk/left2.svg') no-repeat left bottom / contain;
-    height: 600px;
-    width: 600px;
-    left: 0;
-    top: 132px
-}
-
-.grow::after {
-    content: '';
-    position: absolute;
-    background: url('/img/lk/right2.svg') no-repeat right bottom / contain;
-    height: 600px;
-    width: 600px;
-    right: 0;
-    bottom: 0;
-}
 
 h3 {
     font-family: Intro;
@@ -254,7 +220,7 @@ h3 {
     line-height: 30px;
     /* identical to box height */
 
-    color: #515151;
+    color: #333333;
 }
 
 section {
@@ -276,15 +242,17 @@ section {
 
 .main-info {
     grid-area: main;
-    margin-top: 60px;
+    margin-top: 200px;
     height: fit-content;
 
     .info {
         display: flex;
         justify-content: space-between;
+        flex-direction: column;
         padding-right: 60px;
-        align-items: center;
-        margin-bottom: 71px;
+        margin-left: 20px;
+        align-items: flex-start;
+        
 
         .avatar {
             height: 120px;
@@ -294,6 +262,7 @@ section {
             overflow: hidden;
             position: relative;
             display: flex;
+            margin-bottom: 20px;
             justify-content: center;
             align-items: center;
 
@@ -316,25 +285,14 @@ section {
         }
 
         .fullName {
-            flex: 1;
-            padding-left: 30px;
-            font-size: 20px;
-            line-height: 24px;
+        
+            margin-bottom: 60px;
+            font-size: 18px;
+            line-height: 22px;
 
         }
 
-        button {
-            background: linear-gradient(95.14deg, #FAA032 0%, #F96F11 100%);
-            box-shadow: 0px 0px 40px #F98923;
-            border-radius: 20px;
-            font-size: 20px;
-            line-height: 160.2%;
-            /* identical to box height, or 32px */
-            padding: 14px 66px;
-            color: #FFFFFF;
-            border: none;
-            outline: none;
-        }
+       
     }
 
     .description {
@@ -342,9 +300,9 @@ section {
         box-sizing: border-box;
         box-shadow: 0px 0px 20px rgba(69, 198, 221, 0.5);
         border-radius: 20px;
-        padding: 33px 46px 37px;
-        font-size: 20px;
-        line-height: 24px;
+        padding: 37px 21px 50px 43px;
+        font-size: 18px;
+        line-height: 22px;
         margin-left: 30px;
         margin-right: 60px;
         position: relative;
@@ -368,8 +326,9 @@ section {
     grid-area: works;
 
     h3 {
-        margin-top: 52px;
-        margin-bottom: 28px;
+        
+        margin-bottom: 20px;
+        margin-top: 60px;
     }
 
     .works-wrapper {
@@ -377,29 +336,33 @@ section {
         flex-wrap: wrap;
         align-items: center;
         margin-right: 23px;
+        position: relative;
+        margin-bottom: 100px;
 
         .work {
             flex: 1 1 150px;
             height: 152px;
             background-color: #C4C4C4;
-            border-radius: 20px;
+            
             margin-right: 35px;
             margin-bottom: 20px;
         }
 
         .more-button {
-            width: 56px;
+            
 
             text-align: center;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            
+            position: absolute;
+            bottom:-60px;
             align-items: center;
             color: #333333;
 
             p {
-                font-size: 10px;
-                line-height: 12px;
+                font-size: 18px;
+                line-height: 22px;
+                padding-left: 15px;
             }
 
             .icon {
@@ -413,7 +376,7 @@ section {
                 color: white;
                 font-size: 40px;
                 font-weight: 200;
-                margin-bottom: 5px;
+                
 
             }
         }
@@ -432,8 +395,8 @@ section {
 
         p {
             font-weight: 300;
-            font-size: 20px;
-            line-height: 24px;
+            font-size: 18px;
+            line-height: 22px;
             padding: 20px;
 
         }
@@ -443,10 +406,10 @@ section {
             border-radius: 10px;
             font-style: normal;
             font-weight: normal;
-            font-size: 10px;
-            line-height: 12px;
+            font-size: 20px;
+            line-height: 24px;
             text-align: center;
-            padding: 16px 19px;
+            padding: 10px 20px;
             margin-right: 20px;
             color: #FFFFFF;
             height: 44px;
@@ -463,12 +426,14 @@ section {
     padding-left: 42px;
 
     h3 {
-        margin-top: 90px;
-        margin-bottom: 30px;
+        font-size: 20px;
+        line-height: 20px;
+        margin-top: 50px;
+        margin-bottom: 20px;
     }
 
     li {
-        font-size: 20px;
+        font-size: 18px;
         line-height: 160.2%;
         /* identical to box height, or 32px */
         list-style: none;
@@ -478,7 +443,7 @@ section {
     }
 
     li::before {
-        content: '';
+        
         position: absolute;
         left: -20px;
         background: #7E7E7E;
@@ -489,7 +454,7 @@ section {
     }
 
     ul {
-        padding-left: 25px;
+        padding-left: 0;
     }
 
     button {
@@ -497,7 +462,7 @@ section {
         box-shadow: 0px 0px 60px #7DD7E7;
         border-radius: 20px;
         margin-top: 31px;
-        width: 245px;
+        width: 211px;
         height: 60px;
         color: white;
         border: none;
@@ -510,7 +475,7 @@ section {
         box-shadow: 0px 0px 30px rgba(252, 70, 169, 0.5);
         border-radius: 10px;
         height: 30px;
-        width: 230px;
+        width: 172px;
     }
 
     .progress {
@@ -525,322 +490,33 @@ section {
     }
 
     .cert {
-        height: 184px;
-        width: 261px;
+        height: 248px;
+        width: 360px;
         background: #c4c4c4;
-        border-radius: 15px;
+        
     }
+    .exit-wrapper{
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        margin-top: 100px;
+    }
+     .exit {
+            background: linear-gradient(95.14deg, #FAA032 0%, #F96F11 100%);
+            box-shadow: 0px 0px 40px #F98923;
+            border-radius: 20px;
+            font-size: 20px;
+            line-height: 32px;
+            /* identical to box height, or 32px */
+            padding: 14px 41px;
+            color: #FFFFFF;
+            border: none;
+            outline: none;
+            
+            width: unset;
+            
+        }
 }
 
-@media (max-width: 1250px) {
-    .child {
-        .container {}
-    }
 
-    h3 {
-        font-size: 25px;
-        line-height: 25px;
-        margin-top: 32px;
-        margin-bottom: 20px;
-    }
-
-    .works {
-        margin-top: 50px;
-
-        .works-wrapper {
-            .work {
-                height: 115px;
-            }
-        }
-
-        h3 {
-            margin-top: 0;
-        }
-
-        .support-wrapper {
-            margin-top: 30px;
-
-            p {
-                font-weight: 300;
-                font-size: 14px;
-                line-height: 17px;
-            }
-
-            button {
-                font-size: 10px;
-                line-height: 12px;
-                padding: 12px 6px;
-                width: 124px;
-                height: 36px;
-            }
-        }
-    }
-
-    .main-info {
-        .info {
-            .avatar {
-                height: 100px;
-                width: 100px;
-            }
-
-            .fullName {
-                font-size: 16px;
-                line-height: 20px;
-                padding-left: 20px;
-            }
-
-            button {
-                font-size: 14px;
-                line-height: 160.2%;
-                padding: 12px 54px;
-            }
-        }
-
-        .description {
-            font-size: 12px;
-            line-height: 15px;
-            padding: 18px 10px;
-        }
-
-        .description::before {
-            height: 70px;
-            left: -35px;
-        }
-    }
-
-    .sidebar {
-        h3 {
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        li {
-            font-size: 14px;
-            line-height: 160.2%;
-            margin-bottom: 10px;
-        }
-
-        li:last-child {
-            margin-bottom: 0;
-        }
-
-        button {
-            font-size: 14px;
-            line-height: 160.2%;
-            width: 181px;
-
-        }
-
-        .cert {
-            height: 150px;
-            width: 213px;
-        }
-    }
-
-    .child::after {
-        height: 300px;
-        right: -100px;
-    }
-
-    .child::before {
-        height: 300PX;
-    }
-
-    .grow::after {
-        height: 300px;
-        right: -100px;
-    }
-
-    .grow::before {
-        height: 300PX;
-    }
-}
-
-@media (max-width:900px) {
-    .child::after {}
-
-    .child::before {
-        transform: rotateY(180deg) rotateZ(-30deg);
-        height: 300px;
-        right: -80px;
-        width: 300px;
-        left: unset;
-        top: 300px;
-
-    }
-
-    .child::after {
-        transform: rotateY(180deg);
-        height: 200px;
-        left: -80px;
-        width: 300px;
-        right: unset;
-
-    }
-
-    .container {
-        grid-template-areas:
-            'main main'
-            'works sidebar'
-        ;
-        grid-template-columns: 50% 50%;
-    }
-
-    .main-info {
-        margin-top: 0;
-
-        .info {
-            margin-bottom: 26px;
-
-            .avatar {
-                height: 80px;
-                width: 80px;
-            }
-
-            .fullName {
-                padding-left: 15px;
-                font-size: 12px;
-                line-height: 15px;
-            }
-
-            button {
-                font-size: 14px;
-                line-height: 160.2%;
-                height: 38px;
-                width: 142px;
-                padding: unset;
-                box-shadow: 0px 0px 10px #F66C17;
-                border-radius: 15px;
-            }
-        }
-
-        .description {
-            font-size: 8px;
-            line-height: 10px;
-            margin-left: 43px;
-            margin-right: 30px;
-            padding: 28px 23px;
-        }
-    }
-
-    .info {
-        padding: 30px;
-    }
-
-    .sidebar {
-        padding-left: 20px;
-        max-width: 100%;
-
-        button {
-            font-size: 12px;
-            line-height: 160.2%;
-            height: 38px;
-            width: 142px;
-            border-radius: 10px;
-            padding: unset;
-            margin-top: 17px;
-            background: linear-gradient(94.82deg, #9EDFEB 0%, #5CC0D8 100%);
-            box-shadow: 0px 0px 10px #45C6DD;
-        }
-
-        .progressbar {
-            width: 142px;
-        }
-
-        .cert {
-            height: 97px;
-            width: 137px;
-            margin-bottom: 30px;
-        }
-
-        h3 {
-            font-size: 16px;
-            line-height: 16px;
-            margin-top: 29px;
-            margin-bottom: 14px;
-        }
-
-        li {
-            font-size: 8px;
-            line-height: 160.2%;
-        }
-
-        li::before {
-            height: 6px;
-            width: 6px;
-            top: 4px;
-            left: -10px;
-        }
-
-        ul {
-            padding-left: 10px;
-        }
-    }
-
-    .works {
-        margin-top: 29px;
-
-        h3 {
-            margin-left: 30px;
-            font-size: 16px;
-            line-height: 16px;
-        }
-
-        .support-wrapper {
-            margin-left: 30px;
-            padding-left: 3px;
-            margin-right: 8px;
-            border-radius: 5px;
-
-            p {
-                font-size: 6px;
-                line-height: 7px;
-                padding: unset;
-                margin: 10px 0;
-            }
-
-            button {
-                font-size: 6px;
-                line-height: 7px;
-                border-radius: 5px;
-                height: 17px;
-                width: 57px;
-                margin-right: 3px;
-                padding: unset;
-            }
-        }
-
-        .works-wrapper {
-            margin-right: 13px;
-            padding-left: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-
-            .more-button {
-                .icon {
-                    height: 17px;
-                    width: 17px;
-                    font-size: 20px;
-                }
-            }
-
-            .work {
-                height: 41px;
-                flex: 1 1 50px;
-                margin-right: 9px;
-                margin-bottom: 17px;
-                border-radius: 10px;
-            }
-        }
-
-    }
-}
-
-@media (max-width: 387px) {
-    .main-info {
-        .info {
-            padding-right: 10px;
-        }
-    }
-}
 </style>

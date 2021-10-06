@@ -88,7 +88,7 @@ export default {
         .menu-item{
             padding: 10px 0;
             font-size: 22px;
-            color: #515151;
+            color: #333333;
             font-weight: 600;
             text-decoration: none;
             
@@ -170,13 +170,13 @@ section::before {
 .burger-button {
     display: none;
     width: 25px;
-    border-bottom: 5px solid #515151;
+    border-bottom: 5px solid #333333;
     position: relative;
 }
 
 .burger-button::before {
     width: 25px;
-    border-bottom: 5px solid #515151;
+    border-bottom: 5px solid #333333;
     position: absolute;
     content: '';
     top: -10px
@@ -184,7 +184,7 @@ section::before {
 
 .burger-button::after {
     width: 25px;
-    border-bottom: 5px solid #515151;
+    border-bottom: 5px solid #333333;
     position: absolute;
     content: '';
     top: -20px

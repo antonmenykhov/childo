@@ -46,7 +46,9 @@
     <Program v-bind:courseData="courseData" v-bind:id="id" />
     <Tools v-bind:courseData="courseData" />
     <Prices v-bind:courseData="courseData" v-bind:show="show" />
+    <Cert />
     <Speaker v-bind:courseData="courseData" />
+    <Footer />
 </div>
 </template>
 
@@ -59,9 +61,11 @@ import Prices from '../components/Course/Prices.vue'
 import Program from '../components/Course/Program.vue'
 import Speaker from '../components/Course/Speaker.vue'
 import Tools from '../components/Course/Tools.vue'
+import Cert from '../components/MainPage/Cert.vue'
+import Footer from '../components/Footer.vue'
 import api from '../constants'
 export default {
-    components: { Header, Features, Program, Tools, Prices, Speaker },
+    components: { Header, Features, Program, Tools, Prices, Speaker, Cert, Footer },
     data() {
         return {
             id: this.$route.params.id,

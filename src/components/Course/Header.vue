@@ -89,7 +89,7 @@ header {
             line-height: 150px;
             /* identical to box height */
 
-            color: #515151;
+            color: #333333;
             position: relative;
 
         }
@@ -167,9 +167,9 @@ header {
 header::before {
     content: "";
     position: absolute;
-    width: 15%;
+    width: 300px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
-    left: 220px;
+    left: 120px;
     height: 100%;
     top: 0;
     z-index: -1;
@@ -252,11 +252,11 @@ header::before {
 
 .tanya {
     background: url('/img/courses/2/girl.png') no-repeat right center / contain;
-    height: 1104px;
+    height: 800px;
     position: absolute;
-    width: 934px;
-    right: 0;
-    top: 0px;
+    width: 560px;
+    right: -155px;
+    top: -170px;
     z-index: 2;
 }
 

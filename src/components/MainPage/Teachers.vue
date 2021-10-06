@@ -118,7 +118,7 @@ export default {
         text-align: center;
         max-width: 897px;
 
-        color: #515151;
+        color: #333333;
     }
 
    
@@ -139,7 +139,7 @@ export default {
         line-height: 40px;
         
         margin: 50px 0 30px;
-        color: #515151;
+        color: #333333;
     }
 
     .description {

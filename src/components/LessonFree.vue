@@ -3,10 +3,10 @@
      <div class="back-button" @click="$router.push({path: '/'})">
         <div class="back-arrow"></div>
     </div>
-    <div class="jiraf"></div>
+    
     <div class="container">
-        <h4>{{lessonData.upheader}}</h4>
-        <h2>{{lessonData.header}}</h2>
+    
+        <h2>Урок - {{lessonData.header}}</h2>
         <p class="description" v-html="lessonData.description">
         </p>
         <div class="q800">
@@ -20,6 +20,7 @@
                     <li v-for="item in lessonData.req" :key="item">{{item}}</li>
                 </ul>
             </div>
+            <div class="go">ПРИШЛИТЕ ВАШ РИСУНОК НАМ В ДИРЕКТ В ИНСТАГРАМ @childo.art, И ПОЛУЧИТЕ СКИДКУ 10% НА ЛЮБОЙ ИЗ НАШИХ ONLINE КУРСОВ</div>
         </div>
     </div>
 </section>
@@ -86,14 +87,27 @@ export default {
 .back-button:hover{
     opacity: 1;
 }
+.q800{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.go{
+    font-size: 30px;
+    line-height: 37px;
+    font-weight: 600;
+    margin-top: 155px;
+    margin-bottom: 100px;
+}
 .lesson {
     background: white;
     position: relative;
     z-index: 900;
+    padding: 0!important;
 
     .container {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
 
     h4 {
@@ -105,38 +119,36 @@ export default {
 
         text-align: center;
 
-        color: #515151;
+        color: #333333;
     }
 
     h2 {
-        margin-top: 14px;
-        margin-bottom: 42px;
+        margin-top: 100px;
+        margin-bottom: 50px;
         font-family: Intro;
         font-style: normal;
         font-weight: normal;
-        font-size: 70px;
-        line-height: 70px;
+        font-size: 60px;
+        line-height: 60px;
         text-align: center;
-        color: #515151;
+        color: #333333;
     }
 
     .description {
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
-        max-width: 853px;
+        font-size: 18px;
+        line-height: 22px;
         color: #333333;
     }
 
     .thumb {
-        border-radius: 20px;
+        align-self: center;
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 377px;
-        width: 600px;
-        margin-top: 84px;
-        margin-bottom: 30px;
+        height: 510px;
+        width: 800px;
+        margin-top: 50px;
+        margin-bottom: 50px;
         position: relative;
         z-index: 1;
         cursor: pointer;
@@ -177,17 +189,18 @@ export default {
     h6 {
         font-style: normal;
         font-weight: normal;
-        font-size: 30px;
-        line-height: 37px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
         /* identical to box height */
         margin-bottom: 20px;
         color: #333333;
     }
 
     li {
-        font-size: 20px;
-        line-height: 24px;
-        max-width: 481px;
+        font-size: 18px;
+        line-height: 22px;
+        
         color: #333333;
         list-style: none;
         position: relative;
@@ -236,7 +249,7 @@ export default {
 }
 
 .free::before {
-    content: '';
+    
     position: absolute;
     background: url('/img/lessons/free/left.svg') no-repeat left center / contain;
     height: 823px;
@@ -246,7 +259,7 @@ export default {
 }
 
 .free::after {
-    content: '';
+    
     position: absolute;
     background: url('/img/lessons/free/right.svg') no-repeat right top / contain;
     height: 650px;
@@ -254,124 +267,40 @@ export default {
     top: 0;
     right: 0;
 }
-
-@media (max-width:1700px) {
-    .free {
-        .jiraf {
-            width: 250px;
-            top: unset;
-            bottom: 100px;
-            height: 500px;
-            right: 0;
-        }
+li:nth-child(4)::before,
+    li:nth-child(8)::before,
+    li:nth-child(12)::before,
+    li:nth-child(16)::before,
+    li:nth-child(20)::before,
+    li:nth-child(24)::before {
+        background: #F7751C;
     }
 
-    .free::before {
-        height: 500px;
+    li:nth-child(3)::before,
+    li:nth-child(7)::before,
+    li:nth-child(11)::before,
+    li:nth-child(15)::before,
+    li:nth-child(19)::before,
+    li:nth-child(23)::before {
+        background: #A7CA3E;
     }
 
-    .free::after {
-        top: -80px;
-        right: -70px;
-        height: 600px;
-        transform: rotate(12deg);
-    }
-}
-
-@media (max-width: 800px) {
-    .jiraf {
-        display: none;
-    }
-    .q800{
-        max-width: 307px
-    }
-    .lesson {
-        .container {
-            padding-bottom: 101px;
-            padding-top: 31px;
-        }
-
-        padding-top: 35px !important;
-        padding-bottom: 77px !important;
-
-        h4 {
-            font-size: 25px;
-            line-height: 25px;
-        }
-
-        h2 {
-            max-width: 327px;
-            font-size: 35px;
-            line-height: 35px;
-            margin-top: 15px;
-            margin-bottom: 12px;
-        }
-
-        .description {
-            font-size: 12px;
-            line-height: 15px;
-            max-width: 373px;
-        }
-
-        .thumb {
-            margin-top: 60px;
-            margin-bottom: 50px;
-            max-width: 307px;
-            max-height: 193px;
-            margin-right: 0;
-        }
-
-        h6 {
-            font-size: 20px;
-            line-height: 24px;
-
-        }
-
-        li {
-            font-size: 15px;
-            line-height: 18px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li::before {
-            left: -20px;
-            height: 13px;
-            width: 13px;
-        }
+    li:nth-child(2)::before,
+    li:nth-child(6)::before,
+    li:nth-child(10)::before,
+    li:nth-child(14)::before,
+    li:nth-child(18)::before,
+    li:nth-child(22)::before {
+        background: #E757A5;
     }
 
-    .free::after {
-        top: unset;
-        bottom: 0;
-        height: 300px;
-        right: unset;
-        left: 0;
-        transform: rotateZ(180deg);
+    li:first-child::before,
+    li:nth-child(5)::before,
+    li:nth-child(9)::before,
+    li:nth-child(13)::before,
+    li:nth-child(17)::before,
+    li:nth-child(21)::before {
+        background: #45C6DD;
     }
 
-    .free::before {
-        bottom: unset;
-        height: 200px;
-        left: unset;
-        right: 0;
-        top: 0;
-        transform: rotateZ(180deg);
-    }
-
-    .lesson {
-        .play {
-            height: 50px;
-            width: 50px;
-        }
-        .play::before{
-            top: -15px;
-            left: -20px;
-            height: 80px;
-            width: 80px;
-        }
-    }
-}
 </style>

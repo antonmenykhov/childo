@@ -162,7 +162,7 @@ h2 {
     font-size: 70px;
     line-height: 70px;
     /* identical to box height */
-    color: #515151;
+    color: #333333;
     text-align: center;
     position: relative;
 

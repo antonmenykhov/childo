@@ -148,7 +148,7 @@ header {
             font-weight: normal;
             font-size: 120px;
             line-height: 120px;
-            color: #515151;
+            color: #333333;
             position: relative;
 
             .play-button-holder:hover {

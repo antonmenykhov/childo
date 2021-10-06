@@ -5,8 +5,8 @@
         <div class="back-arrow"></div>
     </div>
     <div class="container">
-        <h4>Урок {{id+1}}</h4>
-        <h2>{{lessonData.Name}}</h2>
+        
+        <h2>Урок {{id+1}} - {{lessonData.Name}}</h2>
         <p class="description" v-html="lessonData.Description">
         </p>
         <div class="thumb" :style="'background: url(\''+url+lessonData.img.formats.medium.url+'\') no-repeat center center / cover'">
@@ -165,12 +165,7 @@ label {
     opacity: 1;
 }
 
-.superSelect {
-    top: 50px !important;
-    position: absolute !important;
-    z-index: 1000;
 
-}
 
 .lesson {
     background: white;
@@ -180,57 +175,48 @@ label {
 
     .container {
         flex-direction: column;
-        align-items: center;
-        padding: 125px 0 118px;
-        max-width: 1920px;
+        align-items: flex-start;
     }
 
-    h4 {
-        font-family: Intro;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 50px;
-        line-height: 50px;
-        /* identical to box height */
-        color: #515151;
-        text-align: center;
-
-    }
+    
 
     h2 {
-        margin-top: 14px;
-        margin-bottom: 29px;
+        margin-top: 100px;
+        margin-bottom: 50px;
+        font-weight: 700;
         font-family: Intro;
         font-style: normal;
         font-weight: normal;
-        font-size: 70px;
-        line-height: 70px;
+
+        font-size: 60px;
+        line-height: 60px;
         /* identical to box height */
 
-        text-align: center;
+        
 
-        color: #515151;
+        color: #333333;
     }
 
     .description {
         font-family: Montserrat;
         font-style: normal;
         font-weight: normal;
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
+        font-size: 18px;
+        line-height: 22px;
+        
         max-width: 667px;
     }
 
     .thumb {
-        border-radius: 20px;
+        
         display: flex;
+        align-self: center;
         align-items: center;
         justify-content: center;
-        height: 377px;
-        width: 600px;
-        margin-top: 70px;
-        margin-bottom: 101px;
+        height: 510px;
+        width: 800px;
+        margin-top: 50px;
+        margin-bottom: 50px;
         position: relative;
         z-index: 1;
         cursor: pointer;
@@ -275,13 +261,13 @@ label {
         border: none;
         outline: none;
         color: white;
-        margin-bottom: 10px;
+        margin-bottom: 100px;
 
     }
 }
 
 .lesson::before {
-    content: '';
+    
     position: absolute;
     height: 700px;
     width: 600px;
@@ -290,7 +276,7 @@ label {
 }
 
 .lesson::after {
-    content: '';
+    
     position: absolute;
     height: 930px;
     width: 1000px;
@@ -489,110 +475,5 @@ label {
     background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
 }
 
-@media (max-width: 1300px) {
-    section::before {
-        left: -50px !important;
-        bottom: -100px !important;
-    }
 
-    section::after {
-
-        height: 700px !important;
-    }
-}
-
-@media (max-width: 900px) {
-    section {
-        overflow: hidden
-    }
-
-    section::before {
-        height: 400px !important;
-        bottom: 0px !important;
-    }
-
-    section::after {
-        height: 300px !important;
-        right: -30px !important;
-    }
-
-    .lesson {
-        .play {
-            height: 50px;
-            width: 50px;
-        }
-
-        .play::before {
-            top: -15px;
-            left: -20px;
-            height: 80px;
-            width: 80px;
-        }
-
-        .container {
-            padding-bottom: 101px;
-            padding-top: 31px;
-        }
-
-        padding-top: 35px !important;
-        padding-bottom: 77px !important;
-
-        h4 {
-            font-size: 25px;
-            line-height: 25px;
-        }
-
-        h2 {
-            max-width: 327px;
-            font-size: 35px;
-            line-height: 35px;
-            margin-top: 15px;
-            margin-bottom: 12px;
-        }
-
-        .description {
-            font-size: 12px;
-            line-height: 15px;
-            max-width: 290px;
-        }
-
-        .thumb {
-            margin-top: 60px;
-            margin-bottom: 50px;
-            max-width: 307px;
-            max-height: 193px;
-            margin-right: 0;
-        }
-
-        h6 {
-            font-size: 20px;
-            line-height: 24px;
-
-        }
-
-        li {
-            font-size: 15px;
-            line-height: 18px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li::before {
-            left: -20px;
-            height: 13px;
-            width: 13px;
-        }
-
-        .dz-button {
-            font-size: 12px;
-            line-height: 160.2%;
-            padding: unset;
-            height: 50px;
-            width: 202px;
-            border-radius: 10px;
-        }
-    }
-}
 </style>

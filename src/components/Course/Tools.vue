@@ -1,35 +1,37 @@
 <template>
 <section :class="courseData.teacher.style">
-    <h2>
-        ИНСТРУМЕНТЫ <br> И МАТЕРИАЛЫ ДЛЯ КУРСА
-    </h2>
-    <div class="tools">
-        <ul v-if="courseData.teacher.style=='cs-1'">
-            <li v-for="item,i in tools" :key="i">{{item}}</li>
-        </ul>
-        <div v-if="courseData.teacher.style=='cs-2'">
-            <ul class="apple">
-                <li v-for="item,i in apple" :key="i" v-html="item"></li>
+    <div class="container">
+        <h2>
+            ИНСТРУМЕНТЫ <br> И МАТЕРИАЛЫ ДЛЯ КУРСА
+        </h2>
+        <div class="tools">
+            <ul v-if="courseData.teacher.style=='cs-1'">
+                <li v-for="item,i in tools" :key="i">{{item}}</li>
             </ul>
-            <h4>
-                Программы для планшетов под Android
-            </h4>
-            <ul class="progs">
-                <li v-for="item,i in android" :key="i" v-html="item">
+            <div v-if="courseData.teacher.style=='cs-2'">
+                <ul class="apple">
+                    <li v-for="item,i in apple" :key="i" v-html="item"></li>
+                </ul>
+                <h4>
+                    Программы для планшетов под Android
+                </h4>
+                <ul class="progs">
+                    <li v-for="item,i in android" :key="i" v-html="item">
 
-                </li>
-            </ul>
-            <h4>В качестве бонуса, так же вам предоставляем:
-            </h4>
-            <ul class="bonuses">
-                <li v-for="item,i in courseData.bonus" :key="i">
-                    <p>{{item.name}}</p>
-                    <button>Скачать</button>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+                <h4>В качестве бонуса, так же вам предоставляем:
+                </h4>
+                <ul class="bonuses">
+                    <li v-for="item,i in courseData.bonus" :key="i">
+                        <p>{{item.name}}</p>
+                        <button>Скачать</button>
+                    </li>
+                </ul>
+            </div>
+            <div class="image" :style="'background: url(\''+url+courseData.toolsImage.formats.large.url+'\') no-repeat center center / cover'"></div>
+
         </div>
-        <div class="image" :style="'background: url(\''+url+courseData.toolsImage.formats.large.url+'\') no-repeat center center / cover'"></div>
-
     </div>
 </section>
 </template>
@@ -42,25 +44,31 @@ export default {
     },
     data() {
         return {
-          
+
             url: api.url
         }
     },
-   computed:{
-       android: function(){
-           return  this.courseData.android.split('\n')
-       },
-       tools: function(){
-           return   this.courseData.tools.split('\n')
-       },
-       apple: function(){
-           return  this.courseData.apple.split('\n-')
-       },
-   }
+    computed: {
+        android: function () {
+            return this.courseData.android.split('\n')
+        },
+        tools: function () {
+            return this.courseData.tools.split('\n')
+        },
+        apple: function () {
+            return this.courseData.apple.split('\n-')
+        },
+    }
 }
 </script>
 
 <style lang="scss" scoped>
+.container{
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    position: relative;
+}
 h2 {
     margin-top: 125px;
     margin-bottom: 74px;
@@ -73,7 +81,7 @@ h2 {
     position: relative;
     text-align: center;
     align-self: center;
-    color: #515151;
+    color: #333333;
     max-width: 1020px;
 }
 
@@ -111,8 +119,8 @@ section {
 }
 
 .tools {
-    margin-left: 22vw;
-    margin-bottom: 219px;
+    
+   
     display: flex;
     align-items: stretch;
 
@@ -120,8 +128,8 @@ section {
 
 ul {
     max-width: 673px;
-    margin-right: 119px;
-    flex: 1;
+    margin-right: 30px;
+    flex: 50 1 500px;
 }
 
 li {
@@ -130,77 +138,31 @@ li {
 }
 
 .image {
-    flex: 1 1;
+    flex: 1 1 100px;
     height: auto;
     margin: 0;
     content: '';
-    margin-right: -42px;
-    border-radius: 20px 20px;
+    margin-right: -15vw;
+    
     position: relative;
 }
 
 .cs-2 .image {
-    height: 814px;
+    height: 418px;
     margin: unset;
-    align-self: center;
-}
-
-.image::after {
-    position: absolute;
-    background: linear-gradient(89.98deg, rgba(255, 255, 255, 0.8) 0.02%, rgba(255, 255, 255, 0) 99.98%);
-    transform: matrix(-1, 0, 0, 1, 0, 0);
-    height: 100%;
-    width: 70%;
-    right: 0;
-    top: 0;
-    content: '';
-}
-
-.image::before {
-    position: absolute;
-    background: url('/img/courses/1/image.svg') no-repeat center center / contain;
-
-    height: 300px;
-    width: 300px;
-    left: -120px;
-    bottom: -150px;
-    content: '';
-    z-index: -1;
+    align-self: flex-start;
+    margin-right: -15vw;
 }
 
 section {
     position: relative;
 }
 
-.cs-1::before {
-    position: absolute;
-    background: url('/img/courses/1/left.svg') no-repeat left top / contain;
-
-    height: 600px;
-    width: 600px;
-    left: 0;
-    top: 250px;
-    content: '';
-
-}
-
-.cs-2::before {
-    position: absolute;
-    background: url('/img/courses/2/tools/left.svg') no-repeat left top / contain;
-
-    height: 600px;
-    width: 600px;
-    left: 0;
-    top: 250px;
-    content: '';
-
-}
-
 li {
-    font-size: 20px;
-    line-height: 24px;
-    max-width: 481px;
-    color: #1f1f1f;
+    font-size: 18px;
+    line-height: 22px;
+    
+    color: #333333;
     list-style: none;
     position: relative;
 }
@@ -209,12 +171,12 @@ li::before {
     content: '';
     background: black;
     border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     transition: all .2s;
     position: absolute;
-    left: -25px;
-    top: 3px
+    left: -20px;
+    top: 2px
 }
 
 li:hover::before {
@@ -279,10 +241,7 @@ ul {
         }
     }
 
-    .tools {
-        margin-bottom: 152px;
-    }
-
+   
     button {
         background: linear-gradient(94.07deg, #F574BA 0%, #CD237F 100%);
         box-shadow: 0px 0px 40px #D6358C;
@@ -302,23 +261,23 @@ ul {
     }
 
     h4 {
-        font-weight: 600;
-        font-size: 50px;
-        line-height: 61px;
-        margin-top: 74px;
-        margin-bottom: 21px;
-        color: #515151;
-        max-width: 673px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 21px;
+        margin-top: 50px;
+        margin-bottom: 30px;
+        color: #333333;
+        
     }
 
     li {
-        font-size: 30px;
-        line-height: 37px;
-        max-width: 673px;
+        font-size: 18px;
+        line-height: 22px;
+        
     }
 
     li::before {
-        top: 8px;
+        top: 4px;
     }
 
     .progs {
@@ -353,7 +312,7 @@ ul {
 
         li::before {
             left: 0;
-            top: 8px;
+            top: 4px;
         }
 
         li:nth-child(1)::before,
@@ -373,7 +332,7 @@ ul {
     }
 
     .apple {
-        margin-right: 0;
+        margin-right: 70px;
         padding-left: 0;
 
         li {
@@ -389,7 +348,7 @@ ul {
 
         li::before {
             left: 0;
-            top: 8px;
+            top: 4px;
         }
 
         li:nth-child(1)::before,
@@ -407,253 +366,6 @@ ul {
             background: #A7CA3E;
         }
 
-    }
-}
-
-@media (max-width: 1500px) {
-    li {
-        font-size: 18px;
-
-    }
-
-    li::before {
-        height: 16px;
-        width: 16px;
-        top: 5px
-    }
-}
-
-@media (max-width: 1250px) {
-    h2 {
-        font-size: 40px;
-        line-height: 40px;
-        margin-top: 40px;
-        margin-bottom: 90px;
-        max-width: 1020px;
-    }
-
-    h2::before {
-        top: 5.5px;
-        height: 35px;
-        width: 37px;
-        left: 112px;
-    }
-
-    h2::after {
-        top: 5.5px;
-        height: 35px;
-        width: 37px;
-        left: 112px;
-    }
-
-    ul {
-        max-width: 392px;
-        margin-right: 92px;
-    }
-
-    li {
-        font-size: 16px;
-        line-height: 20px;
-        max-width: 392px;
-    }
-
-    li::before {
-        height: 14px;
-        width: 14px;
-        top: 3px;
-        left: -18px;
-    }
-
-    .image::before {
-        height: 200px;
-        bottom: -100px;
-        left: -150px;
-    }
-
-    .tools {
-        margin-left: 162px;
-        margin-bottom: 179px;
-    }
-
-    .cs-1::before {
-        height: 400px;
-        top: 50px;
-    }
-
-    .cs-2::before {
-        height: 400px;
-        top: 50px;
-    }
-
-    .cs-2 {
-        .tools {
-            margin-bottom: 0;
-        }
-
-        button {
-            font-size: 16px;
-            line-height: 160.2%;
-            padding: 17px 65px;
-        }
-
-        .image {
-            height: 467px;
-        }
-
-        h4 {
-            font-size: 25px;
-            line-height: 30px;
-            margin-top: 30px;
-            margin-bottom: 12px;
-            max-width: 343px;
-        }
-
-        .apple {
-            li {
-                font-size: 16px;
-                line-height: 20px;
-                max-width: 398px;
-                text-indent: 20px;
-            }
-
-            li::before {
-                top: 3px;
-            }
-        }
-
-        li {
-            font-size: 16px;
-            line-height: 20px;
-        }
-
-        li::before {
-            top: 3px;
-        }
-    }
-}
-
-@media (max-width: 800px) {
-    h2 {
-        width: fit-content;
-        height: fit-content;
-        font-size: 20px;
-        line-height: 20px;
-        margin-bottom: 38px;
-    }
-
-    h2::before {
-        top: 3px;
-        left: 57px;
-        height: 17px;
-        width: 17px;
-    }
-
-    h2::after {
-        top: 3px;
-        left: 57px;
-        height: 17px;
-        width: 17px;
-    }
-
-    .cs-1::before {
-        height: 250px;
-        left: -24px;
-        bottom: 0;
-        transform: rotate(10deg);
-    }
-     .cs-2::before {
-        height: 250px;
-        left: -24px;
-        bottom: 0;
-        transform: rotate(10deg);
-    }
-
-    .tools {
-        margin-left: 38px;
-        margin-bottom: 51px;
-        align-items: center;
-
-        .bonuses {
-            li::before {
-                top: 4px;
-            }
-
-            li {
-                text-indent: 15px;
-            }
-        }
-
-        h4 {
-            line-height: 20px;
-            font-size: 18px;
-            max-width: 70vw;
-        }
-
-        ul {
-            margin-right: 10px;
-            max-width: 250px;
-        }
-
-        li {
-            font-size: 12px;
-            line-height: 15px;
-        }
-
-        li::before {
-            height: 10px;
-            width: 10px;
-            top: 2px;
-        }
-
-        .image {
-            height: 225px;
-            margin-right: -170px;
-        }
-
-        .image::before {
-            height: 150px;
-            bottom: -60px;
-            left: -140px;
-        }
-    }
-
-    .cs-2 {
-        button {
-            box-shadow: 0px 0px 15px #D6358C;
-            margin: 15px 0;
-            margin-left: -10px;
-            height: 40px;
-            width: 150px;
-            padding: unset;
-            border-radius: 10px;
-            top: 208px;
-            font-size: 10px;
-            line-height: 160.2%;
-        }
-
-        .bonuses {
-            padding-left: 10px;
-        }
-
-        .apple {
-            
-                margin-right: 10px;
-                max-width: 250px;
-                padding-left: 5px;
-            
-
-            li {
-                font-size: 12px;
-                line-height: 15px;
-                margin-bottom: 10px;
-            }
-
-            li::before {
-                height: 10px;
-                width: 10px;
-                top: 2px;
-            }
-        }
     }
 }
 

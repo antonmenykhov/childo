@@ -49,7 +49,7 @@ h2 {
     position: relative;
     text-align: center;
 
-    color: #515151;
+    color: #333333;
 }
 
 h2::first-letter {
@@ -122,7 +122,7 @@ h4 {
     line-height: 20px;
     
 
-    color: #515151;
+    color: #333333;
 }
 
 p {

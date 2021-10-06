@@ -5,11 +5,11 @@
     </div>
     <div class="jiraf"></div>
     <div class="container">
-        <h4>Урок {{id+1}}</h4>
-        <h2>{{lessonData.Name}}</h2>
+        
+        <h2>Урок {{id+1}} - {{lessonData.Name}}</h2>
         <p class="description" v-html="lessonData.Description">
         </p>
-        <div>
+        <div class="flex">
             <div class="thumb" :style="'background: url(\''+url+lessonData.img.formats.medium.url+'\') no-repeat center center / cover'">
                 <div class="play"></div>
             </div>
@@ -142,7 +142,11 @@ export default {
 .el-button {
     position: relative;
 }
-
+.flex{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 label {
     cursor: pointer;
     position: absolute;
@@ -183,15 +187,11 @@ label {
 }
 
 section {
-    overflow: hidden
+    overflow: hidden;
+    padding: 0!important;
 }
 
-.superSelect {
-    top: 50px;
-    position: absolute !important;
-    z-index: 1000;
 
-}
 
 .lesson {
     background: white;
@@ -200,50 +200,42 @@ section {
 
     .container {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        justify-content: flex-start;
     }
 
-    h4 {
-        font-family: Intro;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 50px;
-        line-height: 50px;
-
-        text-align: center;
-
-        color: #515151;
-    }
+    
 
     h2 {
-        margin-top: 14px;
-        margin-bottom: 29px;
+        margin-top: 100px;
+        margin-bottom: 50px;
         font-family: Intro;
         font-style: normal;
         font-weight: normal;
-        font-size: 70px;
-        line-height: 70px;
-        text-align: center;
-        color: #515151;
+        font-size: 55px;
+        line-height: 55px;
+        font-weight: 700;
+        color: #333333;
     }
 
     .description {
-        font-size: 20px;
-        line-height: 24px;
-        text-align: center;
-        max-width: 667px;
+        font-size: 18px;
+        line-height: 22px;
+        
+        max-width: 677px;
         color: #333333;
     }
 
     .thumb {
-        border-radius: 20px;
+        
         display: flex;
+        align-self: center;
         align-items: center;
         justify-content: center;
-        height: 377px;
-        width: 600px;
-        margin-top: 74px;
-        margin-bottom: 30px;
+        height: 510px;
+        width: 800px;
+        margin-top: 50px;
+        margin-bottom: 50px;
         cursor: pointer;
         position: relative;
         z-index: 1;
@@ -252,17 +244,18 @@ section {
     h6 {
         font-style: normal;
         font-weight: normal;
-        font-size: 30px;
-        line-height: 37px;
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
         /* identical to box height */
         margin-bottom: 20px;
         color: #333333;
     }
 
     li {
-        font-size: 20px;
-        line-height: 24px;
-        max-width: 481px;
+        font-size: 18px;
+        line-height: 22px;
+        
         color: #333333;
         list-style: none;
         position: relative;
@@ -281,6 +274,41 @@ section {
 
     ul {
         padding-left: 25px;
+    }
+    li:nth-child(4)::before,
+    li:nth-child(8)::before,
+    li:nth-child(12)::before,
+    li:nth-child(16)::before,
+    li:nth-child(20)::before,
+    li:nth-child(24)::before {
+        background: #F7751C;
+    }
+
+    li:nth-child(3)::before,
+    li:nth-child(7)::before,
+    li:nth-child(11)::before,
+    li:nth-child(15)::before,
+    li:nth-child(19)::before,
+    li:nth-child(23)::before {
+        background: #A7CA3E;
+    }
+
+    li:nth-child(2)::before,
+    li:nth-child(6)::before,
+    li:nth-child(10)::before,
+    li:nth-child(14)::before,
+    li:nth-child(18)::before,
+    li:nth-child(22)::before {
+        background: #E757A5;
+    }
+
+    li:first-child::before,
+    li:nth-child(5)::before,
+    li:nth-child(9)::before,
+    li:nth-child(13)::before,
+    li:nth-child(17)::before,
+    li:nth-child(21)::before {
+        background: #45C6DD;
     }
 
     .play {
@@ -315,7 +343,7 @@ section {
     }
 
     .dz-header {
-        margin-top: 26px;
+        margin-top: 100px;
         margin-bottom: 20px;
     }
 
@@ -324,7 +352,7 @@ section {
     }
 
     .dz-li {
-        max-width: 263px;
+       
     }
 
     .dz-li::before {
@@ -334,14 +362,17 @@ section {
 
     .dz-button {
         border-radius: 20px;
-        padding: 24px 94px;
+        
+        width: 320px;
+        height: 80px;
         font-size: 20px;
         line-height: 160.2%;
         border: none;
         outline: none;
-        margin-top: 60px;
+        margin-top: 50px;
         color: #333333;
         margin-right: 20px;
+        margin-bottom: 100px;
 
     }
 }
@@ -938,243 +969,7 @@ section {
     z-index: -1;
 }
 
-@media (max-width: 1700px) {
-
-    .ch-1 .jiraf,
-    .ch-3 .jiraf,
-    .ch-5 .jiraf,
-    .ch-7 .jiraf,
-    .ch-9 .jiraf,
-    .ch-11 .jiraf,
-    .ch-13 .jiraf {
-        width: 350px;
-        top: unset;
-        bottom: 100px;
-        height: 600px;
-        right: 0;
-    }
-
-    .ch-2 .jiraf,
-    .ch-4 .jiraf,
-    .ch-6 .jiraf,
-    .ch-8 .jiraf,
-    .ch-10 .jiraf,
-    .ch-12 .jiraf,
-    .ch-14 .jiraf {
-        width: 350px;
-        top: unset;
-        bottom: 100px;
-        height: 600px;
-        right: 0;
-        left: unset;
-        transform: rotateY(180deg);
-    }
-}
-
-@media (max-width: 1300px) {
-    .lesson {
-        h4 {
-            font-size: 50px;
-            line-height: 50px;
-        }
-
-        h2 {
-            font-size: 70px;
-            line-height: 70px;
-        }
-
-        .description {
-            font-size: 20px;
-            line-height: 24px;
-        }
-
-    }
-
-    .ch-1::before,
-    .ch-3::before,
-    .ch-5::before,
-    .ch-7::before,
-    .ch-9::before,
-    .ch-11::before,
-    .ch-13::before {
-        left: -20px;
-    }
-
-    .ch-1::after,
-    .ch-3::after,
-    .ch-5::after,
-    .ch-7::after,
-    .ch-9::after,
-    .ch-11::after,
-    .ch-13::after {
-        right: -200px;
-    }
-
-    .ch-2::before,
-    .ch-4::before,
-    .ch-6::before,
-    .ch-8::before,
-    .ch-10::before,
-    .ch-12::before,
-    .ch-14::before {
-        left: -100px;
-    }
-
-    .ch-2::after,
-    .ch-4::after,
-    .ch-6::after,
-    .ch-8::after,
-    .ch-10::after,
-    .ch-12::after,
-    .ch-14::after {
-        right: -00px;
-    }
-}
-
-@media (max-width: 950px) {
-    .lesson {
-        li {
-            max-width: 300px;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .container {
-        max-width: 307px;
-    }
-
-    .lesson {
-        .play {
-            height: 50px;
-            width: 50px;
-        }
-
-        .play::before {
-            top: -15px;
-            left: -20px;
-            height: 80px;
-            width: 80px;
-        }
-
-        padding-top: 35px !important;
-        padding-bottom: 77px !important;
-
-        h4 {
-            font-size: 25px;
-            line-height: 25px;
-        }
-
-        h2 {
-            max-width: 284px;
-            font-size: 35px;
-            line-height: 35px;
-            margin-top: 15px;
-            margin-bottom: 6px;
-        }
-
-        .description {
-            font-size: 12px;
-            line-height: 15px;
-            max-width: 373px;
-        }
-
-        .thumb {
-            margin-top: 36px;
-            margin-bottom: 20px;
-            max-width: 307px;
-            max-height: 193px;
-            margin-right: 0;
-        }
-
-        h6 {
-            font-size: 20px;
-            line-height: 24px;
-
-        }
-
-        li {
-            font-size: 15px;
-            line-height: 18px;
-        }
-
-        ul {
-            padding-left: 20px;
-        }
-
-        li::before {
-            left: -20px;
-            height: 13px;
-            width: 13px;
-        }
-
-        .dz-button {
-            height: 50px;
-            width: 202px;
-            padding: unset;
-            font-size: 12px;
-            line-height: 160.2%;
-        }
-
-        .jiraf {
-            display: none;
-        }
-
-    }
-
-    .ch-1::before,
-    .ch-3::before,
-    .ch-5::before,
-    .ch-7::before,
-    .ch-9::before,
-    .ch-11::before,
-    .ch-13::before {
-        transform: rotateY(180deg);
-        right: 0;
-        left: unset;
-        height: 300px;
-    }
-
-    .ch-1::after,
-    .ch-3::after,
-    .ch-5::after,
-    .ch-7::after,
-    .ch-9::after,
-    .ch-11::after,
-    .ch-13::after {
-        right: unset;
-        left: -60px;
-        transform: rotateY(180deg);
-        height: 300px;
-
-    }
-
-    .ch-2::before,
-    .ch-4::before,
-    .ch-6::before,
-    .ch-8::before,
-    .ch-10::before,
-    .ch-12::before,
-    .ch-14::before {
-        transform: rotateY(180deg);
-        right: -20px;
-        left: unset;
-        top: -50px;
-        height: 300px;
-    }
-
-    .ch-2::after,
-    .ch-4::after,
-    .ch-6::after,
-    .ch-8::after,
-    .ch-10::after,
-    .ch-12::after,
-    .ch-14::after {
-        right: unset;
-        bottom: -40px;
-        left: -60px;
-        transform: rotateY(180deg);
-        height: 300px;
-    }
+.jiraf, .lesson::after, .lesson::before{
+    display: none;
 }
 </style>

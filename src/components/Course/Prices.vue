@@ -7,29 +7,17 @@
             <li>Если у вас достаточно свободного времени и вы можете много заниматься, вам подойдет тариф на 3 месяца</li>
             <li>Если у вас мало времени и у вас нет возможности часто заниматься, то мы предлагаем взять вам тариф на 6 или 12 месяцев</li>
         </ul>
-        <div class="prices" v-if="courseData.teacher.style=='cs-1'">
+        <div class="prices" >
             <div class="price-w" v-for="item,i in courseData.prices" :key="item.name">
-                <h4>{{item.name}}</h4>
-                <p class="price">{{item.price}} рублей</p>
-                <p class="pricePerM">{{item.pricePerM}} рублей/ месяц</p>
+                <h4>Тариф No<span v-html="item.name"></span></h4>
+                <div class="descriptionp" v-html="item.description"></div>
+                <p class="old-price">{{item.oldprice}} Руб.</p>
+                <p class="price">{{item.price}} Руб.</p>
+
                 <button @click="openReg(i)">Оплатить</button>
             </div>
         </div>
-        <div class="prices" v-if="courseData.teacher.style=='cs-2'">
-            <div class="price-w" v-for="item,i in courseData.prices" :key="item.name">
-                <h4>{{item.name}}</h4>
-                <h4>({{item.time}} дней)</h4>
-                <p class="price">{{item.price}} рублей</p>
-                <p class="description" v-html="item.description.split('\n').join('<br>')"></p>
-                <button @click="openReg(i)">Оплатить</button>
-            </div>
-        </div>
-        <div class="certs">
-            <p>Напоминаем,что вы можете
-                оформить сертификат и подарить
-                его своим близким и друзьям</p>
-            <button>Оформить сертификат</button>
-        </div>
+        
 
     </div>
     <el-dialog class="register" width="400px" :visible.sync="reg">
@@ -122,10 +110,10 @@ export default {
         courseData: Object,
         show: Boolean
     },
-   
+
     data() {
         return {
-         
+
             buyError: false,
             url: api.url,
             reg: false,
@@ -385,10 +373,85 @@ export default {
         color: #333333 !important;
     }
 }
+.descriptionp {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    padding: 0 12px 0 25px;
+    width: 100%;
+    
+
+    li {
+        font-size: 18px;
+        line-height: 22px;
+
+        color: #333333;
+        list-style: none;
+        position: relative;
+    }
+
+    li::before {
+        content: '';
+        background: black;
+        border-radius: 50%;
+        width: 14px;
+        height: 14px;
+        transition: all .2s;
+        position: absolute;
+        left: -20px;
+        top: 6px
+    }
+
+    li:hover::before {
+        transform: scale(1.2);
+
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    li:nth-child(4)::before,
+    li:nth-child(8)::before,
+    li:nth-child(12)::before,
+    li:nth-child(16)::before,
+    li:nth-child(20)::before,
+    li:nth-child(24)::before {
+        background: #F7751C;
+    }
+
+    li:nth-child(3)::before,
+    li:nth-child(7)::before,
+    li:nth-child(11)::before,
+    li:nth-child(15)::before,
+    li:nth-child(19)::before,
+    li:nth-child(23)::before {
+        background: #A7CA3E;
+    }
+
+    li:nth-child(2)::before,
+    li:nth-child(6)::before,
+    li:nth-child(10)::before,
+    li:nth-child(14)::before,
+    li:nth-child(18)::before,
+    li:nth-child(22)::before {
+        background: #E757A5;
+    }
+
+    li:first-child::before,
+    li:nth-child(5)::before,
+    li:nth-child(9)::before,
+    li:nth-child(13)::before,
+    li:nth-child(17)::before,
+    li:nth-child(21)::before {
+        background: #45C6DD;
+    }
+
+}
 </style><style lang="scss" scoped>
 h2 {
-    margin-top: 125px;
-    margin-bottom: 5px;
+    margin-top: 200px;
+    margin-bottom: 50px;
     font-family: Intro;
     font-style: normal;
     font-weight: normal;
@@ -398,7 +461,7 @@ h2 {
     position: relative;
     text-align: center;
 
-    color: #515151;
+    color: #333333;
 }
 
 h2::first-letter {
@@ -431,23 +494,24 @@ h2::after {
 .container {
     flex-direction: column;
     align-items: center;
+    margin-bottom: 200px;
 }
 
 .subheader {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 22px;
     text-align: center;
-    max-width: 483px;
-    margin-bottom: 19px;
+    max-width: 536px;
+    margin-bottom: 50px;
     flex: 1;
     padding: 0;
 }
 
 li {
     list-style: none;
-    font-size: 20px;
-    line-height: 24px;
-    margin-top: 52px;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 50px;
     max-width: 598px;
     position: relative;
 }
@@ -459,7 +523,8 @@ li::before {
     position: absolute;
     content: '';
     border-radius: 50%;
-    left: -65px;
+    left: -95px;
+    top: -3px;
 }
 
 li:nth-child(2) {
@@ -471,8 +536,10 @@ li:nth-child(2)::before {
 }
 
 ul {
-    margin-bottom: 126px;
+    margin-bottom: 50px;
 }
+
+
 
 .prices {
     display: flex;
@@ -484,39 +551,43 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 329px;
-    max-width: 300px;
+    
+    height: 600px;
+    max-width: 350px;
     flex: 1;
-    margin: 0 35px 60px;
-    border-radius: 20px;
+    margin: 0 23px;
+
     position: relative;
 
     button {
         position: absolute;
-        top: 400px;
-        width: 100%;
-        font-size: 25px;
-        line-height: 160.2%;
+        bottom: -40px;
+        width: 300px;
+        font-size: 18px;
+        line-height: 28px;
         /* identical to box height, or 40px */
         border-radius: 25px;
         text-align: center;
         border: none;
         outline: none;
-        padding: 20px 80px;
+        padding: 25px 80px;
         color: #FFFFFF;
     }
 }
 
 h4 {
-    font-weight: 600;
-    font-size: 30px;
-    line-height: 37px;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 50px;
     text-align: center;
     color: #333333;
-    max-width: 180px;
-    margin-top: 37px;
-    margin-bottom: 25px;
 
+    margin-top: 53px;
+    margin-bottom: 17px;
+
+}
+h4 span{
+    text-transform: uppercase;
 }
 
 p {
@@ -529,7 +600,22 @@ p {
 }
 
 .price {
-    margin-bottom: 37px;
+    
+    
+    position: absolute;
+    font-size: 40px;
+    bottom: 81px;
+    line-height: 64px;
+    font-weight: 600;
+}
+.old-price{
+    font-weight: 600;
+    
+    position: absolute;
+    bottom: 150px;
+    font-size: 40px;
+    line-height: 64px;
+    text-decoration: line-through;
 }
 
 .pricePerM {
@@ -543,6 +629,10 @@ p {
         background: linear-gradient(94.07deg, #F574BA 0%, #CD237F 100%);
         box-shadow: 0px 0px 60px #D6358C;
     }
+    .price, h4 span{
+        color:  #C9287F;
+
+    }
 }
 
 .price-w:nth-child(2) {
@@ -551,6 +641,10 @@ p {
     button {
         background: linear-gradient(94.07deg, #FAA435 0%, #F96C0F 100%);
         box-shadow: 0px 0px 60px #F98923;
+    }
+    .price, h4 span{
+        color:  #F66C17;
+
     }
 }
 
@@ -561,52 +655,9 @@ p {
         background: linear-gradient(94.82deg, #CEF655 0%, #7B9723 100%);
         box-shadow: 0px 4px 60px #A5C73C;
     }
-}
+    .price, h4 span{
+        color:  #A5C73C;
 
-.certs {
-    margin-top: 268px;
-    margin-bottom: 132px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    max-width: 1040px;
-
-    p {
-        position: relative;
-        padding-left: 90px;
-        padding-right: 200px;
-        font-weight: normal;
-        font-size: 25px;
-        line-height: 30px;
-        flex: 1;
-        text-align: left;
-    }
-
-    p::before {
-        content: '';
-        position: absolute;
-        background: linear-gradient(135deg, #9BDEEA 0%, #60C2D9 100%);
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        left: 0;
-        top: 20px
-    }
-
-    button {
-        background: linear-gradient(93.43deg, #9EDFEB 0%, #5DC1D8 100%);
-        box-shadow: 0px 0px 60px #7DD7E7;
-        border-radius: 20px;
-
-        width: 300px;
-        border: none;
-        outline: none;
-        color: white;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 20px;
-        line-height: 160.2%;
-        height: 80px;
     }
 }
 
@@ -614,505 +665,37 @@ section {
     position: relative;
 }
 
-.cs-1::before {
-    position: absolute;
-    content: '';
-    left: 0;
-    bottom: 100px;
-    height: 600px;
-    width: 600px;
-    background: url('/img/courses/1/prices/left.svg') no-repeat left bottom / contain;
-}
-
-.cs-1::after {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 100px;
-    height: 600px;
-    width: 600px;
-    background: url('/img/courses/1/prices/right.svg') no-repeat right top / contain;
-}
-
-.cs-2::before {
-    position: absolute;
-    content: '';
-    left: 0;
-    bottom: 100px;
-    height: 600px;
-    width: 600px;
-    background: url('/img/courses/2/prices/left.svg') no-repeat left bottom / contain;
-}
-
-.cs-2::after {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 100px;
-    height: 600px;
-    width: 600px;
-    background: url('/img/courses/2/prices/right.svg') no-repeat right top /contain;
-}
-
 .cs-2 {
-    .certs {
-        max-width: 1070px;
 
-        p {
-            max-width: 550px;
-            font-size: 25px;
-            line-height: 30px;
-            padding-left: 75px;
-
-        }
-
-        button {
-            margin-right: 100px;
-        }
-    }
 
     .price-w {
         height: auto;
         background: white;
-        max-width: 500px;
+        max-width: 501px;
         flex: 1;
-        padding: 0 32px 20px;
-        margin-top: 146px;
+        
+        margin-top: 80px;
+        height: 593px;
+        margin: 0 22px;
     }
 
     h4 {
         font-family: Montserrat;
         font-style: normal;
-        font-weight: 600;
-        font-size: 30px;
-        line-height: 37px;
+        font-weight: 700;
+        font-size: 40px;
+        line-height: 40px;
         text-align: center;
         max-width: unset;
         color: #333333;
+        
     }
 
-    h4:first-child {
-        margin-bottom: 0;
-    }
+    
 
-    h4:nth-child(2) {
-        margin-top: 0;
-    }
+    
 
-    p {
-        font-size: 30px;
-        line-height: 37px;
-        text-align: left;
-        padding: 0;
-    }
-
-    .price {
-        text-align: left;
-        width: 100%;
-
-    }
-
-    button {
-        top: 783px;
-        width: 300px;
-    }
-}
-
-@media (max-width:1500px) {
-    h4 {
-        font-size: 25px;
-    }
-
-    p {
-        font-size: 22px;
-    }
-
-    .price-w button {
-        font-size: 20px;
-    }
-
-    .certs {
-        padding: 0 35px;
-    }
-
-    .certs p {
-        font-size: 20px;
-    }
-
-    .certs button {
-        font-size: 16px;
-        width: auto;
-        padding: 20px 35px;
-    }
-}
-
-@media (max-width: 1250px) {
-    h2 {
-        margin-top: 41px;
-        font-size: 40px;
-        line-height: 40px;
-        margin-bottom: 16px;
-    }
-
-    h2::before {
-        height: 35px;
-        width: 35px;
-        top: 6px;
-        left: -5px;
-    }
-
-    h2::after {
-        height: 35px;
-        width: 35px;
-    }
-
-    li {
-        font-size: 16px;
-        line-height: 20px;
-        max-width: 555px;
-    }
-
-    li:nth-child(2) {
-        max-width: 585px;
-    }
-
-    li::before {
-        height: 40px;
-        width: 40px;
-        left: -55px;
-    }
-
-    h4 {
-        font-size: 22px;
-        line-height: 27px;
-        margin-top: 26px;
-    }
-
-    p {
-        font-size: 18px;
-        line-height: 22px;
-    }
-
-    .cs-1 {
-        .price-w {
-            margin: 0 17px;
-            height: 230px;
-            background: white;
-
-            button {
-                font-size: 16px;
-                line-height: 160.2%;
-                padding: 17px 57px;
-                top: 272px;
-            }
-
-        }
-    }
-
-    .cs-2 {
-        h4 {
-            font-size: 22px;
-            line-height: 27px;
-        }
-
-        p {
-            font-size: 18px;
-            line-height: 20px;
-        }
-
-        button {
-            font-size: 16px;
-            line-height: 160.2%;
-            padding: 17px 77px;
-            top: 530px;
-            width: unset;
-        }
-
-        .certs {
-            margin-top: 171px;
-            padding: 0 17px;
-
-            p {
-                font-size: 16px;
-                line-height: 20px;
-                padding-right: 100px;
-                padding-left: 70px;
-            }
-
-            p::before {
-                height: 40px;
-                width: 40px;
-                top: 9px;
-                left: 10px;
-            }
-
-            button {
-                font-size: 16px;
-                line-height: 160.2%;
-                padding: 0;
-                height: unset;
-                width: 199.33px;
-                margin-right: unset;
-            }
-        }
-    }
-
-    .cs-1::after {
-        height: 350px;
-        right: -20px;
-        top: 20px;
-    }
-
-    .cs-1::before {
-        height: 400px;
-        left: -20px;
-        bottom: 20px;
-    }
-
-    .cs-2::after {
-        height: 350px;
-        right: -20px;
-        top: 20px;
-    }
-
-    .cs-2::before {
-        height: 400px;
-        left: -20px;
-        bottom: 20px;
-    }
-
-    .certs {
-        margin-top: 171px;
-        padding: 0 17px;
-
-        p {
-            font-size: 16px;
-            line-height: 20px;
-            padding-right: 100px;
-            padding-left: 70px;
-        }
-
-        p::before {
-            height: 40px;
-            width: 40px;
-            top: 9px;
-            left: 10px;
-        }
-
-        button {
-            font-size: 16px;
-            line-height: 160.2%;
-            padding: 0;
-            height: unset;
-            width: 199.33px;
-        }
-    }
-}
-
-@media (max-width: 800px) {
-    h2 {
-        font-size: 20px;
-        line-height: 20px;
-        margin-top: 39px;
-        margin-bottom: 10px;
-    }
-
-    h2::before {
-        top: 3px;
-        height: 17px;
-        width: 17px;
-    }
-
-    h2::after {
-        top: 3px;
-        height: 17px;
-        width: 17px;
-    }
-
-    .subheader {
-        max-width: 177px;
-        font-size: 6px;
-        line-height: 7px;
-        margin-bottom: 0;
-    }
-
-    ul {
-        margin-top: 41px;
-        margin-bottom: 56px;
-    }
-
-    li {
-        margin-bottom: 30px;
-        margin-top: 0;
-        font-size: 8px;
-        line-height: 10px;
-        max-width: 284px;
-    }
-
-    li:nth-child(2) {
-        max-width: 284px;
-    }
-
-    li::before {
-        height: 25px;
-        width: 25px;
-        left: -35px;
-        top: -2px;
-    }
-
-    .cs-1 {
-        .prices {
-            flex-wrap: wrap;
-
-            .price-w {
-                flex: unset;
-                width: 178px;
-                height: 160px;
-                margin: 0 75px 150px
-            }
-
-            h4 {
-                font-size: 14px;
-                line-height: 17px;
-                max-width: 100px;
-            }
-
-            p {
-                font-size: 12px;
-                line-height: 15px;
-            }
-
-            .price {
-                margin-bottom: 15px;
-            }
-
-            button {
-                height: 40px;
-                width: 150px;
-                padding: unset;
-                border-radius: 10px;
-                top: 208px;
-                font-size: 10px;
-                line-height: 160.2%;
-            }
-        }
-    }
-
-    .cs-1 {
-        .certs {
-            margin-top: -34px;
-            margin-bottom: 69px;
-            flex-direction: column;
-            align-items: center;
-
-            p {
-                max-width: 217px;
-                padding: unset;
-                font-size: 8px;
-                line-height: 10px;
-            }
-
-            p::before {
-                height: 25px;
-                width: 25px;
-                left: -35px;
-                top: -2px;
-            }
-
-            button {
-                font-size: 10px;
-                line-height: 160.2%;
-                height: 40px;
-                width: 150px;
-                border-radius: 10px;
-                margin-top: 43px;
-            }
-        }
-    }
-
-    .cs-1::before {
-        height: 200px;
-        bottom: 300px;
-        transform: rotate(10deg);
-    }
-
-    .cs-1::after {
-        height: 200px;
-        top: 400px;
-    }
-
-    .cs-2::before {
-        height: 200px;
-        bottom: 300px;
-        transform: rotate(10deg);
-    }
-
-    .cs-2::after {
-        height: 200px;
-        top: 400px;
-    }
-
-    .cs-2 {
-        .certs {
-            margin-top: 34px;
-            margin-bottom: 69px;
-            flex-direction: column;
-            align-items: center;
-
-            p {
-                max-width: 217px;
-                padding: unset;
-                font-size: 8px;
-                line-height: 10px;
-            }
-
-            p::before {
-                height: 25px;
-                width: 25px;
-                left: -35px;
-                top: -2px;
-            }
-
-            button {
-                font-size: 10px;
-                line-height: 160.2%;
-                height: 40px;
-                width: 150px;
-                border-radius: 10px;
-                margin-top: 43px;
-                margin-right: unset;
-            }
-        }
-
-        .prices {
-            flex-wrap: wrap;
-
-            .price-w {
-                flex: 1 1 250px;
-
-                h4 {
-                    font-size: 14px;
-                    line-height: 17px;
-                    max-width: 100px;
-                }
-
-                p {
-                    font-size: 12px;
-                    line-height: 15px;
-                }
-
-                margin-top: 50px;
-                margin-bottom: 100px;
-                padding: 12px 15px;
-                height: 350px;
-
-                button {
-                    top: 370px
-                }
-            }
-        }
-    }
-
+    
 }
 
 .mobile {

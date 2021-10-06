@@ -15,7 +15,7 @@
                     <div class="locked" v-if="!check(i)">
                         <div class="icon"></div>
                     </div>
-                    <div class="time">{{item.time}}</div>
+                    
                     <div class="dz" v-if="item.dz">Есть домашнее задание</div>
                 </div>
                 <h4>{{item.Name}}</h4>
@@ -138,7 +138,8 @@ export default {
 
 .container {
     flex-direction: column;
-    max-width: 800px;
+    align-items: flex-start;
+    max-width: 1200px;
 }
 
 section {
@@ -148,18 +149,19 @@ section {
 }
 
 h2 {
-    margin-top: 125px;
-    margin-bottom: 96px;
+    margin-top: 100px;
+    margin-bottom: 50px;
     font-family: Intro;
     font-style: normal;
     font-weight: normal;
-    font-size: 70px;
-    line-height: 70px;
+    font-size: 60px;
+    margin-left: 20px;
+    line-height: 60px;
     /* identical to box height */
     position: relative;
-    text-align: center;
-    align-self: center;
-    color: #515151;
+    
+
+    color: #333333;
     max-width: 1080px;
 }
 
@@ -172,39 +174,35 @@ h2::before {
     top: 10px;
     content: '';
     background: url('/img/lklessons/д.svg') no-repeat center center / contain;
-    height: 57.72px;
-    width: 70.5px;
+    height: 55.72px;
+    width: 60.5px;
     z-index: 2;
     position: absolute;
 }
 
-h2::after {
-    left: -10px;
-    top: 9px;
-    content: '';
-    background: white;
-    height: 57.72px;
-    width: 64.5px;
 
-    position: absolute;
-}
 
 .lessons {
     display: flex;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
 
 }
 
 .lesson {
-    flex: 1 1 200px;
-    margin: 22px 17px;
-    max-width: 230px;
+    flex: 1;
+    max-width: 360px;
+   margin-right: 20px;
+   margin-left: 20px;
+   margin-bottom: 70px;
+    
 
 }
 
 .image {
-    height: 152px;
-    border-radius: 20px;
+    height: 240px;
+    width: 360px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -234,27 +232,27 @@ h2::after {
     line-height: 12px;
     text-decoration-line: underline;
 
-    color: #515151;
+    color: #333333;
     position: absolute;
-    bottom: -20px;
+    bottom: -30px;
     left: 0;
 }
 
 h4 {
-    font-family: Intro;
+    margin-top: 53px;
     font-style: normal;
     font-weight: normal;
     font-size: 20px;
     line-height: 20px;
-
-    color: #515151;
+    font-weight: 700;
+    color: #333333;
 
 }
 
 p {
     font-size: 15px;
     line-height: 18px;
-    margin-top: 5px;
+    margin-top: 13px;
     color: #333333;
 }
 
@@ -310,134 +308,8 @@ p {
     }
 }
 
-.child::before {
-    position: absolute;
-    content: '';
-    left: 0;
-    bottom: 0px;
-    background: url('/img/lklessons/left.svg') no-repeat left bottom / contain;
-    height: 800px;
-    width: 500px;
-}
 
-.child::after {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 0px;
-    background: url('/img/lklessons/right.svg') no-repeat right top / contain;
-    height: 800px;
-    width: 500px;
-}
 
-.grow::before {
-    position: absolute;
-    content: '';
-    left: 0;
-    bottom: 0px;
-    background: url('/img/lklessons/left2.svg') no-repeat left bottom / contain;
-    height: 800px;
-    width: 500px;
-}
-
-.grow::after {
-    position: absolute;
-    content: '';
-    right: 0;
-    top: 0px;
-    background: url('/img/lklessons/right2.svg') no-repeat right top / contain;
-    height: 800px;
-    width: 500px;
-}
-
-@media (max-width: 1500px) {
-    .child::before {
-        width: 200px;
-    }
-
-    .child::after {
-        width: 200px;
-    }
-
-    .grow::after {
-        width: 200px;
-    }
-
-    .grow::before {
-        width: 200px;
-    }
-}
-
-@media (max-width: 800px) {
-    section {
-        overflow: hidden;
-    }
-
-    .lessons {
-        margin: 0 auto;
-        width: 100%;
-        justify-content: center;
-
-        .lesson {
-            .image {
-                height: 152px;
-                width: 230px;
-            }
-        }
-
-        .more-button {
-            width: 300px;
-            margin-bottom: 30px;
-
-            p {
-                max-width: 56px;
-            }
-        }
-    }
-
-    h2 {
-        font-size: 30px;
-        line-height: 30px;
-        margin-top: 60px;
-        margin-bottom: 79px;
-    }
-
-    h2::before,
-    h2::after {
-        height: 28px;
-        width: 26px;
-        top: 4px;
-        left: -2px;
-    }
-
-    .child::after {
-        top: 250px;
-        right: -200px;
-        width: 200px;
-        transform: rotate(-30deg);
-    }
-
-    .child::before {
-        left: -150px;
-        width: 400px;
-        bottom: -150px;
-        transform: rotate(-30deg);
-    }
-
-    .grow::after {
-        top: 250px;
-        right: -200px;
-        width: 200px;
-        transform: rotate(-30deg);
-    }
-
-    .grow::before {
-        left: -150px;
-        width: 400px;
-        bottom: -150px;
-        transform: rotate(-30deg);
-    }
-}
 
 .mobile {
     h2::before {
