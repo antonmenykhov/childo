@@ -15,7 +15,7 @@
                     <div class="locked" v-if="!check(i)">
                         <div class="icon"></div>
                     </div>
-                    
+
                     <div class="dz" v-if="item.dz">Есть домашнее задание</div>
                 </div>
                 <h4>{{item.Name}}</h4>
@@ -32,21 +32,21 @@ import api from '../constants'
 import axios from 'axios'
 export default {
     mounted() {
-        window.scrollTo(0,0)
-        if ( this.$cookie.get('jwt')) {
-                this.$store.commit('setJwt', this.$cookie.get('jwt'));
-                axios.get(api.me, {
-                    headers: {
-                        Authorization: `Bearer ${this.$store.state.jwt}`,
-                    }
-                }).then(response => {
-                    this.$store.commit('setUserData', response.data);
-                    
-                }).catch(error => {
-                    console.log(error.response)
-                    
-                })
-            } 
+        window.scrollTo(0, 0)
+        if (this.$cookie.get('jwt')) {
+            this.$store.commit('setJwt', this.$cookie.get('jwt'));
+            axios.get(api.me, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => {
+                this.$store.commit('setUserData', response.data);
+
+            }).catch(error => {
+                console.log(error.response)
+
+            })
+        }
     },
     methods: {
         check(i) {
@@ -55,7 +55,7 @@ export default {
             }
 
             if (this.course.lessonsData) {
-                if (this.course.lessonsData[i-1]) {
+                if (this.course.lessonsData[i - 1]) {
 
                     return true
 
@@ -159,7 +159,6 @@ h2 {
     line-height: 60px;
     /* identical to box height */
     position: relative;
-    
 
     color: #333333;
     max-width: 1080px;
@@ -180,8 +179,6 @@ h2::before {
     position: absolute;
 }
 
-
-
 .lessons {
     display: flex;
     flex-wrap: wrap;
@@ -191,12 +188,11 @@ h2::before {
 }
 
 .lesson {
-    flex: 1;
+    flex: 1 1 300px;
     max-width: 360px;
-   margin-right: 20px;
-   margin-left: 20px;
-   margin-bottom: 70px;
-    
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 70px;
 
 }
 
@@ -308,8 +304,52 @@ p {
     }
 }
 
+@media (max-width:1250px) {
+    .container {
+        padding: 0 40px;
+    }
 
+    h2 {
+        font-size: 50px;
+        line-height: 50px;
+    }
 
+    h2::before {
+        left: -5px;
+        top: 7px;
+        height: 45.72px;
+        width: 50.5px;
+    }
+
+}
+
+@media (max-width:500px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    h2 {
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 0;
+        
+    }
+
+    h2::before {
+        left: -2px;
+        top: 2px;
+        height: 18.72px;
+        width: 20.5px;
+    }
+    .image{
+        width: calc(100vw - 20px);
+        height: 62vw;
+    }
+    .lesson{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
 
 .mobile {
     h2::before {

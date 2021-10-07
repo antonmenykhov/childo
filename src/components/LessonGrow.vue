@@ -262,6 +262,7 @@ label {
         outline: none;
         color: white;
         margin-bottom: 100px;
+        font-weight: 400;
 
     }
 }
@@ -474,6 +475,61 @@ label {
 .gr-10::after {
     background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
 }
-
-
+.lesson .thumb{
+    box-shadow: none!important;
+}
+@media (max-width:1200px){
+    .container{
+        padding: 0 40px;
+    }
+    .lesson h2{
+        font-size: 50px;
+        line-height: 50px;
+    }
+}
+@media (max-width: 880px){
+    
+    .lesson .thumb{
+        width: calc(100vw - 80px);
+        height: calc(66vw - 80px);
+    }
+}
+@media (max-width: 500px){
+    .lesson .thumb{
+        width: calc(100vw - 40px);
+        height: calc(66vw - 40px);
+    }
+    .container{
+        padding: 0 20px;
+    }
+    .lesson h2{
+        font-size: 20px;
+        line-height: 20px;
+        
+    }
+    .lesson .description{
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .lesson li{
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 0;
+    }
+    .lesson li::before{
+        height: 12px;
+        width: 12px;
+        left: -15px;
+        top: 2px;
+    }
+    .lesson ul{
+        padding-left: 15px;
+    }
+    .lesson .dz-button{
+        height: 75px;
+        width: 240px;
+        padding: unset;
+    }
+   
+}
 </style>
