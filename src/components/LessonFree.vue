@@ -302,5 +302,61 @@ li:nth-child(4)::before,
     li:nth-child(21)::before {
         background: #45C6DD;
     }
-
+@media (max-width:1200px){
+    .container{
+        padding: 0 40px;
+    }
+    .lesson h2{
+        font-size: 50px;
+        line-height: 50px;
+    }
+    .go{
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+@media (max-width: 880px){
+    
+    .lesson .thumb{
+        width: calc(100vw - 80px);
+        height: calc(66vw - 80px);
+    }
+}
+@media (max-width: 500px){
+    .lesson .thumb{
+        width: calc(100vw - 40px);
+        height: calc(66vw - 40px);
+    }
+    .container{
+        padding: 0 20px;
+    }
+    .lesson h2{
+        font-size: 20px;
+        line-height: 20px;
+        
+    }
+    .lesson .description{
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .lesson li{
+        font-size: 14px;
+        line-height: 17px;
+        padding-left: 0;
+    }
+    .lesson li::before{
+        height: 12px;
+        width: 12px;
+        left: -15px;
+        top: 2px;
+    }
+    .lesson ul{
+        padding-left: 15px;
+    }
+    .lesson .dz-button{
+        height: 75px;
+        width: 240px;
+    }
+   
+}
 </style>

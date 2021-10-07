@@ -14,7 +14,7 @@
                 <div class="fullName">
                     {{userData.name}}
                 </div>
-                
+
             </div>
             <div class="description">
                 Мы рады видеть вас в творческом проекте онлайн-курсов по рисованию «ChilDo»! Благодарим вас за приобретение курса. Давайте проведем небольшую экскурсию по нашему волшебному миру.<br><br>
@@ -41,7 +41,7 @@
         </div>
         <div class="sidebar">
             <div class="exit-wrapper">
-            <button class="exit" @click="exit">Выйти</button>
+                <button class="exit" @click="exit">Выйти</button>
             </div>
             <div class="course" v-for="item,i in userData.BuyedCourses" :key="i">
                 <h3>{{item.data.Name}}</h3>
@@ -70,7 +70,7 @@ import api from '../constants'
 import axios from 'axios'
 export default {
     mounted() {
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
         if (this.$cookie.get('jwt')) {
             this.$store.commit('setJwt', this.$cookie.get('jwt'));
             axios.get(api.me, {
@@ -86,7 +86,7 @@ export default {
 
             })
         } else {
-            this.$router.push({path: '/'})
+            this.$router.push({ path: '/' })
         }
     },
     data() {
@@ -182,7 +182,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .back-button {
     position: fixed;
     left: 15px;
@@ -210,8 +209,6 @@ export default {
     opacity: 1;
 }
 
-
-
 h3 {
     font-family: Intro;
     font-style: normal;
@@ -237,7 +234,7 @@ section {
         "works sidebar"
         "works sidebar"
         "works sidebar";
-    grid-template-columns: 73% 27%;
+    grid-template-columns: 63% 37%;
 }
 
 .main-info {
@@ -252,7 +249,6 @@ section {
         padding-right: 60px;
         margin-left: 20px;
         align-items: flex-start;
-        
 
         .avatar {
             height: 120px;
@@ -285,14 +281,13 @@ section {
         }
 
         .fullName {
-        
+
             margin-bottom: 60px;
             font-size: 18px;
             line-height: 22px;
 
         }
 
-       
     }
 
     .description {
@@ -304,7 +299,7 @@ section {
         font-size: 18px;
         line-height: 22px;
         margin-left: 30px;
-        margin-right: 60px;
+        margin-right: 30px;
         position: relative;
         background: white;
 
@@ -326,7 +321,7 @@ section {
     grid-area: works;
 
     h3 {
-        
+
         margin-bottom: 20px;
         margin-top: 60px;
     }
@@ -343,19 +338,18 @@ section {
             flex: 1 1 150px;
             height: 152px;
             background-color: #C4C4C4;
-            
+
             margin-right: 35px;
             margin-bottom: 20px;
         }
 
         .more-button {
-            
 
             text-align: center;
             display: flex;
-            
+
             position: absolute;
-            bottom:-60px;
+            bottom: -60px;
             align-items: center;
             color: #333333;
 
@@ -376,7 +370,6 @@ section {
                 color: white;
                 font-size: 40px;
                 font-weight: 200;
-                
 
             }
         }
@@ -423,7 +416,7 @@ section {
 .sidebar {
     grid-area: sidebar;
     border-left: 3px solid #7E7E7E;
-    padding-left: 42px;
+    padding-left: 35px;
 
     h3 {
         font-size: 20px;
@@ -443,7 +436,7 @@ section {
     }
 
     li::before {
-        
+
         position: absolute;
         left: -20px;
         background: #7E7E7E;
@@ -492,31 +485,141 @@ section {
     .cert {
         height: 248px;
         width: 360px;
+        max-width: 100%;
         background: #c4c4c4;
-        
+
     }
-    .exit-wrapper{
+
+    .exit-wrapper {
         display: flex;
         justify-content: end;
         width: 100%;
         margin-top: 100px;
     }
-     .exit {
-            background: linear-gradient(95.14deg, #FAA032 0%, #F96F11 100%);
-            box-shadow: 0px 0px 40px #F98923;
-            border-radius: 20px;
-            font-size: 20px;
-            line-height: 32px;
-            /* identical to box height, or 32px */
-            padding: 14px 41px;
-            color: #FFFFFF;
-            border: none;
-            outline: none;
-            
-            width: unset;
-            
-        }
+
+    .exit {
+        background: linear-gradient(95.14deg, #FAA032 0%, #F96F11 100%);
+        box-shadow: 0px 0px 40px #F98923;
+        border-radius: 20px;
+        font-size: 20px;
+        line-height: 32px;
+        /* identical to box height, or 32px */
+        padding: 14px 41px;
+        color: #FFFFFF;
+        border: none;
+        outline: none;
+
+        width: unset;
+
+    }
 }
 
+@media (max-width: 1220px) {
+    .container {
+        padding: 0 40px;
+    }
+}
 
+@media (max-width: 1024px) {}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-areas:
+            "main"
+            "works"
+            "sidebar";
+        grid-template-columns: 100%;
+    }
+
+    .sidebar {
+        border-left: 0;
+        padding-left: 0;
+
+        .exit {
+            position: absolute;
+            top: 100px;
+            font-size: 16px;
+            line-height: 20px;
+        }
+    }
+
+    .main-info {
+        margin-top: 244px;
+    }
+
+    .description {
+        font-size: 15px;
+        line-height: 17px;
+        padding: 37px 13px 31px 12px;
+        margin: 0 !important;
+    }
+
+    .works {
+        h3 {
+            font-size: 20px;
+            line-height: 20px;
+        }
+
+        .works-wrapper .work {
+            height: 140px;
+            width: 140px;
+            flex: unset;
+            margin-right: 20px;
+        }
+    }
+
+    .sidebar .exit-wrapper {
+        margin-top: 0;
+    }
+
+    .sidebar li {
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 20px;
+    }
+    .sidebar button{
+        font-size: 16px;
+        height: 60px;
+        width: 211px;
+    }
+    .sidebar .cert{
+        height: 216px;
+        margin-bottom: 50px;
+    }
+    @media (max-width: 500px){
+        .works .works-wrapper .more-button p{
+            font-size: 14px;
+            line-height: 17px;
+        }
+        .container{
+            padding:  0 10px;
+        }
+        .description::before{
+            display: none;
+        }
+        .main-info
+        .description{
+            padding: 37px 13px 31px 12px;
+        }
+        .works{
+            .support-wrapper{
+                position: relative;
+                
+                width: 100%;
+                p{
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+                button{
+                    width: auto;
+                    padding: 12px 14px;
+                    position: absolute;
+                    bottom: -70px;
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+}
 </style>
