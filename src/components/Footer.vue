@@ -2,6 +2,7 @@
 <footer>
     <div class="container">
         <div class="links">
+            <div class="logo"></div>
             <div class="link">
 
                 ИП Кармацких Е.С. <br><br>
@@ -57,7 +58,8 @@ export default {
     flex-direction: column;
 
 }
-.links{
+
+.links {
     display: flex;
     justify-content: space-between;
     flex: 1;
@@ -82,5 +84,49 @@ footer::after {
     width: 300px;
     height: 400px;
     background: url('../../public/img/footerjiraf.png') no-repeat right center / contain;
+}
+
+.logo {
+    display: none;
+}
+
+@media (max-width:1200px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width:900px) {
+
+    .jiraf,
+    footer::after {
+        display: none;
+    }
+
+    footer {
+        padding: 85px 0;
+    }
+
+    .logo {
+        display: flex;
+        height: 38px;
+        width: 100px;
+        background: url('../../public/img/logo.png') no-repeat left center / contain;
+        margin-bottom: 50px;
+    }
+
+    .container {
+        .links {
+            flex-direction: column;
+
+            .link {
+                flex: unset;
+                font-size: 18px;
+                line-height: 22px;
+                margin: 0;
+            }
+
+        }
+    }
 }
 </style>

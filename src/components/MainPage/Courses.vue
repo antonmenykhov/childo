@@ -276,6 +276,12 @@ export default {
 </script>
 
 <style>
+@media(max-width: 500px){
+    .container, .header-container{
+            padding-left: 10px!important;
+            padding-right: 10px!important;
+        }
+}
 @media(max-width: 400px) {
     .el-dialog {
         max-width: 400px !important;
@@ -632,5 +638,174 @@ input::placeholder {
 
     }
 
+}
+
+@media (max-width:1350px) {
+    .courses-wrapper .courses-holder .course-wrapper:last-child .image::after {
+        content: unset !important;
+    }
+}
+
+@media (max-width: 1200px) {
+
+    .courses-wrapper .courses-holder .course-wrapper .image,
+    .about .img1,
+    .about .img2 {
+        width: 430px;
+        height: 270px;
+    }
+
+    .container {
+        padding: 0 40px;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper {
+        max-width: 430px;
+    }
+
+    .about .img-text {
+        max-width: 430px;
+    }
+
+    .courses-wrapper::after {
+        left: -100px;
+        bottom: -150px;
+    }
+
+    .about::after {
+        right: -100px;
+    }
+
+    section {
+        overflow: hidden;
+
+    }
+}
+
+@media (max-width: 986px) {
+    .courses-wrapper .courses-holder {
+        flex-direction: column;
+    }
+
+    .courses-wrapper .courses-holder .course-wrapper {
+        margin-bottom: 100px;
+        margin-left: 0 !important;
+    }
+}
+
+@media (max-width: 900px) {
+    .k::before {
+        display: none;
+    }
+
+    .k::after {
+        display: none;
+    }
+
+    h2::first-letter {
+        opacity: 1 !important;
+    }
+    .courses-wrapper::after{
+        display: none;
+    }
+    .courses-wrapper {
+        padding-bottom: 0!important;
+        h2 {
+            font-size: 40px;
+            line-height: 40px;
+            text-align: left;
+            align-self: flex-start;
+            margin-top: 100px;
+        }
+
+        .courses-holder {
+            .course-wrapper {
+                h3 {
+                    font-size: 20px;
+                    line-height: 24px;
+                    margin-top: 30px;
+                }
+
+                p {
+                    margin-top: 30px;
+                    font-size: 14px;
+                    line-height: 17px;
+                }
+
+                button {
+                    padding: 0;
+                    height: 55px;
+                    width: 160px;
+                    font-size: 14px;
+                    line-height: 17px;
+                    border-radius: 60px;
+                    margin-top: 50px;
+                }
+
+            }
+        }
+    }
+    .about h4{
+        margin-top: 0;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: left;
+        align-self: flex-start;
+    }
+    .about .text{
+        font-size: 14px;
+        line-height: 17px;
+    }
+    .about .img-text{
+        margin-bottom: 50px;
+    }
+    .about::after{
+        display: none;
+    }
+    .about .quote{
+        width: unset;
+        align-self: flex-start;
+        text-align: left;
+        font-size: 18px;
+        line-height: 22px;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .about .quote::after ,.about .quote::before{
+        display: none;
+    }
+    .about .connect{
+        margin-top: 50px;
+        text-align: left;
+        font-size: 18px;
+        line-height: 22px;
+        height: unset;
+    }
+    .about button{
+        padding: 0;
+        font-size: 14px;
+        line-height: 22px;
+        height: 55px;
+        width: 222px;
+        margin-top: 30px;
+        align-self: flex-start;
+    }
+    .about{
+        padding-bottom: 100px;
+    }
+    @media (max-width: 500px) {
+        .courses-wrapper .courses-holder .course-wrapper{
+            max-width: unset;
+            margin-right: 0!important;
+        }
+        .container{
+            padding-left: 10px!important;
+            padding-right: 10px!important;
+        }
+        .courses-wrapper .courses-holder .course-wrapper .image, .about .img1, .about .img2{
+            width: 100%;
+            height: calc(63vw - 20px);
+        }
+    }
 }
 </style>

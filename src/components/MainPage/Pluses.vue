@@ -35,6 +35,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+section{
+    overflow: hidden;
+}
 .container {
     flex-direction: column;
     align-items: center;
@@ -192,6 +195,54 @@ h2::after {
         left: -3px !important;
         top: 1px !important;
 
+    }
+}
+@media (max-width:1200px) {
+    .container{
+        padding: 0 40px;
+    }
+}
+@media (max-width: 900px){
+    h2::before, h2::after{
+        display: none;
+    }
+    h2::first-letter{
+        opacity: 1;
+    }
+    .pluses::before{
+        display: none;
+    }
+    h2{
+        font-size: 35px;
+        line-height: 35px;
+        margin-bottom: 50px;
+        
+    }
+    .container{
+        align-items: flex-start
+    }
+    .pluses{
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+    .pluses-wrapper{
+        align-items: flex-start;
+        .row{
+            align-items: flex-start;
+            flex-direction: column;
+            margin-bottom: 0;
+        }
+    }
+    .plus{
+        align-items: flex-start;
+        margin-bottom: 50px;
+        .img::after{
+            left: 0;
+        }
+        p{
+            font-size: 14px;
+            line-height: 17px;
+        }
     }
 }
 </style>

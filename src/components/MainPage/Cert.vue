@@ -21,12 +21,11 @@ export default {
     max-width: 1160px;
     align-items: center;
     display: flex;
-    
+
 }
 
 .img {
-    
-    
+
     width: 640px;
     height: 400px;
     background: url('/img/cert.jpg') no-repeat center center / cover;
@@ -40,8 +39,6 @@ export default {
     margin-left: 61px;
 }
 
-
-
 .cert {
     position: relative;
     padding: 32px 0;
@@ -52,68 +49,33 @@ export default {
     z-index: -2;
 }
 
-@media (max-width: 1500px) {
-    .text {
-        font-size: 20px;
+@media (max-width:1200px) {
+    .container {
+        padding: 0 40px;
     }
-
 }
 
-@media (max-width: 1250px) {
-    .cert {
-        padding: 41px 0;
-    }
-
-    .container {
-        max-width: 798px;
-    }
-
+@media (max-width:910px) {
     .img {
-        height: 130px;
-        width: 180px;
+        width: 100%;
+        height: calc(63vw - 80px);
     }
 
-    .img::before {
-        height: 60px;
-        width: 60px;
-        right: -30px;
-        top: -30px
-    }
-
-    .text {
-        font-size: 12px;
-        line-height: 15px;
-        max-width: 480px;
-    }
-}
-
-@media (max-width:800px) {
     .container {
-        max-width: 366px;
+        flex-direction: column;
     }
 
     .text {
-        font-size: 7px;
-        line-height: 9px;
-        width: unset;
+        margin-left: 0;
+        margin-top: 30px;
         flex: unset;
-        margin-left: 15px;
-        color: #000;
-        max-width: 246px;
+        font-size: 14px;
+        line-height: 17px;
     }
 
-    .img {
-        height: 70px;
-        width: 99px;
-        border-radius: 10px;
-
+    .raskraska .img::after {
+        width: 200px !important;
     }
 
-    .img::before {
-        height: 40px;
-        width: 40px;
-        right: 0;
-        top: -30px;
-    }
 }
 </style>

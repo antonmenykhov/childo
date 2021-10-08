@@ -259,7 +259,11 @@ header::before {
     top: -170px;
     z-index: 2;
 }
-
+@media (max-width:1350px) {
+    header{
+        background: none;
+    }
+}
 
 
 .mobile {

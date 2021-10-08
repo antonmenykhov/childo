@@ -80,4 +80,57 @@ button {
     flex: 1 1;
     max-width: 889px;
 }
+@media (max-width: 1280px) {
+    .raskraska .img{
+        width: 350px;
+    }
+    .container{
+        width: 100%;
+        padding: 0 40px;
+        margin: 0;
+        justify-content: space-between;
+    }
+    .raskraska{
+        padding: 50px 0;
+    }
+}
+@media (max-width: 900px){
+    .container{
+        flex-direction: column;
+    }
+    .text{
+        margin-top: 40px;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    button{
+        font-size: 14px;
+        line-height: 17px;
+        padding: 0;
+        height: 55px;
+        width: 160px;
+        margin-top: 40px;
+    }
+    .raskraska{
+        overflow: hidden;
+    }
+    .raskraska .img::after {
+        width: 400px;
+        height: 250px;
+        right: -90px;
+        top: 90px;
+    }
+}
+@media (max-width: 500px) {
+    .images{
+        width: 100%;
+    }
+    .raskraska .img{
+        width: 100%;
+    }
+    .raskraska .img::after{
+        width: 100%;
+        right: -70px;
+    }
+}
 </style>

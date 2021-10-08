@@ -228,4 +228,43 @@ h2::after {
 
     }
 }
+@media (max-width:1200px) {
+    .container{
+        padding: 0 40px;
+    }
+}
+@media (max-width: 900px){
+    .about::after, .about::before{
+        display: none;
+    }
+    .container{
+        align-items: flex-start;
+    }
+    h2{
+        font-size: 35px;
+        line-height: 35px;
+        margin-bottom: 30px;
+    }
+    h5{
+        display: none;
+    }
+    .about-2, .about-3{
+        align-self: flex-start;
+    }
+    .about-holder .about-w{
+        font-size: 14px;
+        line-height: 17px;
+        width: unset!important;
+    }
+    .about-1::before, .about-2::before, .about-3::before{
+        height: 50px;
+        width: 50px;
+        left: -25px;
+        top: -25px
+    }
+    .about-holder{
+        padding-left: 25px;
+        padding-top: 75px;
+    }
+}
 </style>

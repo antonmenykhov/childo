@@ -103,31 +103,31 @@ export default {
     width: 100%;
     margin-bottom: 100px;
     position: relative;
-    .container{
-        
-    margin-top: 200px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    .container {
+
+        margin-top: 200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+
     h3 {
         font-weight: 400;
         font-size: 30px;
         line-height: 37px;
         text-align: center;
         max-width: 897px;
-
+        margin-bottom: 70px;
         color: #333333;
     }
-
-   
 
     .image {
         height: 300px;
         width: 300px;
         border-radius: 50%;
-        
+
         position: relative;
     }
 
@@ -137,7 +137,7 @@ export default {
         font-weight: normal;
         font-size: 40px;
         line-height: 40px;
-        
+
         margin: 50px 0 30px;
         color: #333333;
     }
@@ -147,7 +147,6 @@ export default {
         font-weight: normal;
         font-size: 18px;
         line-height: 22px;
-        
 
         color: #333333;
 
@@ -166,11 +165,12 @@ export default {
     max-width: 463px;
     margin-bottom: 100px;
     display: flex;
-    
+
     flex-direction: column;
     align-items: flex-start;
 }
-.teachers::after{
+
+.teachers::after {
     content: "";
     background: url('/img/coursesPink.svg') no-repeat right bottom / contain;
     height: 654px;
@@ -178,5 +178,92 @@ export default {
     right: 0;
     position: absolute;
     bottom: -390px;
+}
+
+@media (max-width:1200px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .row {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .teacher {
+        max-width: unset;
+    }
+
+    .orange {
+        left: unset;
+        right: -90px;
+        top: unset;
+        bottom: -40px;
+    }
+
+    .blue {
+        left: unset;
+        right: -90px;
+    }
+
+    .teachers::after {
+        bottom: 50px;
+    }
+}
+
+@media (max-width: 900px) {
+    .teachers {
+        margin-bottom: 50px;
+        overflow: hidden;
+
+        .container {
+            margin-top: 100px;
+
+        }
+
+        h3 {
+            text-align: left;
+            font-size: 18px;
+            line-height: 22px;
+            margin-bottom: 50px;
+        }
+
+        .image {
+            height: 200px;
+            width: 200px;
+        }
+
+        .name {
+            font-size: 20px;
+            line-height: 20px;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 17px;
+        }
+
+        .teacher {
+            margin-bottom: 50px;
+        }
+    }
+
+    .teachers::after {
+        display: none;
+    }
+
+    .pink {
+        top: 20px;
+        height: 200px;
+    }
+
+    .orange {
+        height: 200px;
+        left: 40px;
+    }
 }
 </style>

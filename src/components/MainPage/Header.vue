@@ -4,7 +4,7 @@
         <div class="jiraff"></div>
         <div class="gradient"></div>
         <div class="header-container">
-            <div class="title">Школа <br> рисования <br> childo
+            <div class="title">Школа <br> рисования <br> <span>c</span><span>h</span><span>i</span><span>l</span><span>d</span><span>o</span>
                 <div @click="aboutVideo=true" class="play-button-holder">
                     <div class="play-button">
                         <img src="/img/play.svg" alt="play">
@@ -26,7 +26,7 @@
             </div>
         </div>
     </header>
-    
+
 </div>
 </template>
 
@@ -39,11 +39,37 @@ export default {
     },
 }
 </script>
+
 <style>
-iframe{width: 100%!important;
-        height: 100%!important;}
-</style>
-<style lang="scss" scoped>
+iframe {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+@media (max-width: 1200px) {
+    .top-line {
+        padding: 100px 0;
+    }
+
+    .top-line .container {
+        padding: 0 40px;
+        max-width: unset;
+    }
+
+    .header-container {
+        padding: 0 40px;
+    }
+
+    .top-line .logo {
+        height: 56px;
+        width: 131px;
+    }
+
+    .top-line .container .main-menu .menu-item {
+        margin: 0;
+    }
+}
+</style><style lang="scss" scoped>
 .fade-enter-active,
 .fade-leave-active {
 
@@ -71,16 +97,18 @@ iframe{width: 100%!important;
     display: flex;
     justify-content: center;
     align-items: center;
+
     .close-button {
-            right: 4vw;
-            top: 2vw;
-            color: white;
-            position: absolute;
-            font-size: 50px;
-            transform: rotate(45deg);
-            transition: all .2s;
-            cursor: pointer
-        }
+        right: 4vw;
+        top: 2vw;
+        color: white;
+        position: absolute;
+        font-size: 50px;
+        transform: rotate(45deg);
+        transition: all .2s;
+        cursor: pointer
+    }
+
     .video {
         overflow: hidden;
         position: relative;
@@ -88,8 +116,6 @@ iframe{width: 100%!important;
         width: 80vw;
         background: grey;
         border-radius: 20px;
-
-        
 
         .close-button:hover {
             color: orangered;
@@ -139,7 +165,6 @@ header {
         position: relative;
         z-index: 3;
         padding-top: auto;
-        
 
         .title {
             max-width: 1047px;
@@ -150,6 +175,15 @@ header {
             line-height: 120px;
             color: #333333;
             position: relative;
+
+            span {
+                font-family: Intro;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 120px;
+                line-height: 120px;
+                color: #333333;
+            }
 
             .play-button-holder:hover {
                 cursor: pointer;
@@ -188,7 +222,7 @@ header {
                     font-weight: normal;
                     font-size: 15px;
                     line-height: 160.2%;
-                    
+
                     margin-left: 12px;
                     text-decoration: underline solid white;
                     transition: all .2s ease-in-out;
@@ -206,8 +240,6 @@ header {
             left: 8px;
             z-index: 2;
         }
-
-        
 
         .title::first-letter {
             opacity: 0;
@@ -248,7 +280,7 @@ header {
                 font-weight: normal;
                 font-size: 18px;
                 line-height: 140.2%;
-                
+
                 margin-top: 30px;
                 text-decoration: underline solid white;
                 transition: all .2s ease-in-out;
@@ -281,7 +313,7 @@ header::before {
     position: absolute;
     width: 300px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
-    left:100px;
+    left: 100px;
     height: 100%;
     top: 0;
 
@@ -289,7 +321,7 @@ header::before {
 
 header::after {
     background: url('/img/VectorBlue.png') no-repeat top center / contain;
-   
+
     top: 0;
     position: absolute;
     right: 1%;
@@ -297,6 +329,156 @@ header::after {
     height: 60%;
 }
 
+@media (max-width:1350px) {
+    header {
+        background: none;
+    }
+
+    header::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+
+        left: 000px;
+        z-index: 3;
+        top: 0;
+    }
+
+    header::after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 666px;
+        left: 000px;
+        background: url('/img/PensTablet.png') no-repeat left center /contain;
+        top: 0;
+
+    }
+
+    .gradient {
+        bottom: unset;
+        top: 200px;
+        z-index: 3;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    header {
+        padding-top: 225px;
+    }
+
+    header .header-container .description {
+        margin-top: 40px;
+    }
+
+    header .jiraff {
+        top: unset;
+        bottom: -50px;
+        height: 500px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    header::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        height: 31vw;
+        width: 100%;
+        left: 000px;
+        background: url('/img/PensMob.png') no-repeat center center /cover;
+        top: 0;
+
+    }
+
+    header::before {
+        display: none;
+    }
+
+    .gradient {
+        transform: none;
+        height: 200px;
+        width: 100%;
+        top: calc(31vw - 160px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.001) 0%, #FFFFFF 100%);
+    }
+
+    header {
+        .jiraff {
+            display: none;
+        }
+
+        .header-container {
+            .title {
+                font-size: 40px;
+                line-height: 40px;
+                margin-top: 17vw;
+
+                .play-button-holder {
+                    display: none;
+                }
+                span{
+                   font-size: 40px;
+                line-height: 40px; 
+                }
+                span:nth-of-type(1){
+                    color: #E757A5;
+                }
+                span:nth-of-type(2){
+                    color: #CD237F;
+                }
+                span:nth-of-type(3){
+                    color: #F98923;
+                }
+                span:nth-of-type(4){
+                    color: #FC3939;
+                }
+                span:nth-of-type(5){
+                    color: #A5C73C;
+                }
+                span:nth-of-type(6){
+                    color: #59BFD7;
+                }
+            }
+
+            .title::first-letter {
+                opacity: 1;
+            }
+
+            .title::before {
+                display: none;
+            }
+
+            .description {
+                margin-top: 30px;
+                font-size: 14px;
+                line-height: 17px;
+                width: unset;
+            }
+
+            .button-holder {
+                margin-top: 30px;
+
+                .button-description {
+                    display: none;
+                }
+
+                button {
+                    font-size: 14px;
+                    line-height: 22px;
+                    padding: 0;
+                    height: 55px;
+                    width: 160px;
+                    border-radius: 60px;
+                }
+            }
+
+        }
+    }
+}
 
 .mobile {
     .title::before {
@@ -310,5 +492,6 @@ header::after {
         top: 1px !important;
 
     }
+
 }
 </style>
