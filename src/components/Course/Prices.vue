@@ -697,7 +697,62 @@ section {
 
     
 }
+@media (max-width:1200px) {
+    .container{
+        padding: 0 40px;
+        
+    }
 
+    .cs-2 .price-w, .cs-1 .price-w{
+        width: 350px;
+        margin: 50px;
+        min-width: 350px;
+    }
+    .prices{
+        flex-wrap: wrap;
+    }
+    h4{
+        word-wrap: break-word ;
+        width: 100%;
+    }
+    
+}
+@media (max-width:900px) {
+    h2::before, h2::after{
+        display: none;
+    }
+    h2::first-letter{
+        opacity: 1;
+    }
+    h2{
+        font-size: 35px;
+        line-height: 35px;
+        margin-top: 100px;
+        margin-bottom: 55px;
+    }
+    .subheader{
+        text-align: left;
+        width: 100%;
+        max-width: unset;
+        font-size: 14px;
+        line-height: 17px;
+        margin-bottom: 30px;
+    }
+    li{
+        font-size: 14px;
+        line-height: 17px;
+        max-width: unset;
+    }
+    li::before{
+        height: 30px;
+        width: 30px;
+        left: -50px;
+    }
+    ul{
+        padding-left: 50px;
+        margin-bottom: 0;
+    }
+}
 .mobile {
     h2::before {
         left: -3px !important;

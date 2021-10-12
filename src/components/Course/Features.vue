@@ -87,7 +87,32 @@ section {
         color: #333333;
     }
 }
-
+@media (max-width: 1200px){
+    .container{
+        padding:  0 40px;
+    }
+    .img{
+        height: 300px;
+        width: 460px;
+       
+    }
+    .feature:nth-child(even){
+        .img{
+            margin-left: 20px;
+        }
+    }
+    .feature:nth-child(odd){
+        .img{
+            margin-right: 20px;
+        }
+    }
+}
+@media (max-width: 900px) {
+    .img{
+        width: 300px;
+        height: 195px;
+    }
+}
 
 
 

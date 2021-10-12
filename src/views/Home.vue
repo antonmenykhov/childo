@@ -110,7 +110,11 @@ footer {
     margin: 20px;
     cursor: pointer
 }
-
+@media (max-width: 1200px){
+    .top-line .container{
+        max-width: 1058px;
+    }
+}
 @media (max-width: 900px) {
     .top-line .logo {
         height: 38px;

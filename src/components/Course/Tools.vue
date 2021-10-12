@@ -90,7 +90,7 @@ h2::first-letter {
 }
 
 h2::before {
-    left: 194px;
+    left: 192px;
     top: 9px;
     content: '';
     background: url('/img/courses/1/prog/i.svg') no-repeat center center / contain;
@@ -100,16 +100,7 @@ h2::before {
     position: absolute;
 }
 
-h2::after {
-    left: 194px;
-    top: 9px;
-    content: '';
-    background: white;
-    height: 57.72px;
-    width: 64.5px;
 
-    position: absolute;
-}
 
 section {
     display: flex;
@@ -257,7 +248,7 @@ ul {
         border: none;
         outline: none;
         margin: 40px 0;
-        margin-left: -25px;
+        
     }
 
     h4 {
@@ -368,7 +359,50 @@ ul {
 
     }
 }
-
+@media (max-width:1200px) {
+    .container{
+        padding: 0 40px;
+    }
+    h2::first-letter{
+        opacity: 1;
+    }
+    h2::before{
+        display: none;
+    }
+    .cs-2 .image, .cs-1 .image{
+        margin-right: -40px;
+        flex: 1 1 700px;
+    }
+}
+@media (max-width: 900px) {
+     h2::before, h2::after{
+        display: none;
+    }
+    h2::first-letter{
+        opacity: 1;
+    }
+    h2{
+        font-size: 35px;
+        line-height: 35px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .cs-2 .image, .cs-1 .image{
+        display: none;
+    }
+    li{
+        font-size: 14px;
+        line-height: 17px;
+    }
+    li::before{
+        height: 12px;
+        width: 12px;
+        left: -15px;
+    }
+    ul{
+        padding-left: 15px;
+    }
+}
 .mobile {
     h2::before {
         left: 57px !important;

@@ -112,6 +112,7 @@ h2::after {
     top: -50px;
     border-radius: 50%;
     left: 125px;
+    box-shadow: none!important;
 }
 
 h4 {
@@ -168,8 +169,38 @@ p {
     }
 }
 
-
-
+@media (max-width:1200px) {
+    .container{
+        padding: 0 30px;
+        
+    }
+    .program{
+        height: 300px;
+        width: 300px;
+        padding: 94px 10px 10px 25px;
+        margin: 50px 10px;
+    }
+    .image{
+        left: 100px;
+    }
+    .program-holder{
+        justify-content: center;
+    }
+}
+@media (max-width:900px) {
+    h2::before, h2::after{
+        display: none;
+    }
+    h2::first-letter{
+        opacity: 1;
+    }
+    h2{
+        font-size: 35px;
+        line-height: 35px;
+        margin-top: 0;
+        margin-bottom: 66px;
+    }
+}
 .mobile{
      h2::before {
         left: -3px!important;

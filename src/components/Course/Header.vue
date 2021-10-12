@@ -1,25 +1,25 @@
 <template>
 <header :class="courseData.teacher.style">
-    
+
     <div class="gradient"></div>
     <div class="header-container">
         <div class="heaader-left">
-        <div class="title">Курс {{id*1}}
+            <div class="title">Курс {{id*1}}
 
-        </div>
-        <div class="description">{{courseData.smallDescription}}
-        </div>
-        <div class="button-holder">
-            <button v-if="show" class="left" v-scroll-to="'#prices'">
-                К тарифам
-            </button>
-            <button v-if="!show" class="left" @click="$router.push({path: '/lk'})">
-                В личный кабинет
-            </button>
-            <button class="right" v-scroll-to="'#more'">
-                Подробнее
-            </button>
-        </div>
+            </div>
+            <div class="description">{{courseData.smallDescription}}
+            </div>
+            <div class="button-holder">
+                <button v-if="show" class="left" v-scroll-to="'#prices'">
+                    К тарифам
+                </button>
+                <button v-if="!show" class="left" @click="$router.push({path: '/lk'})">
+                    В личный кабинет
+                </button>
+                <button class="right" v-scroll-to="'#more'">
+                    Подробнее
+                </button>
+            </div>
         </div>
         <div :class="courseData.girl"></div>
     </div>
@@ -28,15 +28,13 @@
 </template>
 
 <script>
-
 export default {
-   
-   
+
     props: {
         courseData: Object,
         id: null,
         show: Boolean
-        
+
     },
     data() {
         return {
@@ -60,7 +58,7 @@ export default {
 }
 
 header {
-
+    overflow: hidden;
     padding-top: 275px;
     padding-bottom: 200px;
     width: 100%;
@@ -107,7 +105,7 @@ header {
 
         .title::after {
             background: white;
-           
+
             position: absolute;
             height: 122px;
             width: 100px;
@@ -178,7 +176,7 @@ header::before {
 
 .cs-1::after {
     background: url('/img/courses/1/top.svg') no-repeat center top / contain;
-   
+
     top: 0%;
     position: absolute;
     right: 9%;
@@ -189,7 +187,7 @@ header::before {
 
 .cs-2::after {
     background: url('/img/courses/2/top.svg') no-repeat center top / contain;
-    
+
     top: 0%;
     position: absolute;
     right: 8.5%;
@@ -240,7 +238,7 @@ header::before {
 }
 
 .masha::after {
-    
+
     position: absolute;
     background: url('/img/courses/1/girl.svg') no-repeat center bottom / contain;
     height: 655px;
@@ -259,12 +257,119 @@ header::before {
     top: -170px;
     z-index: 2;
 }
+
 @media (max-width:1350px) {
-    header{
+    header {
         background: none;
+    }
+
+    header::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+
+        left: 000px;
+        z-index: 3;
+        top: 0;
+    }
+
+    .cs-1::after,
+    .cs-2::after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 666px;
+        left: 000px;
+        background: url('/img/PensTablet.png') no-repeat left center /contain;
+        top: 0;
+
+    }
+
+    .gradient {
+        bottom: unset;
+        top: 200px;
+        z-index: 3;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    .header-container {
+        padding: 0 40px;
+    }
+    .masha{
+        height: 600px;
+        width: 400px;
+        right: 0;
+        top: -50px
+    }
+    .tanya{
+        height: 600px;
+        width: 400px;
+        right: 0;
+        top: -50px
     }
 }
 
+@media (max-width: 900px) {
+
+    .cs-1::after, .cs-2::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        height: 31vw;
+        width: 100%;
+        left: 000px;
+        background: url('/img/PensMob.png') no-repeat center center /cover;
+        top: 0;
+
+    }
+
+    header::before {
+        display: none;
+    }
+
+    .gradient {
+        transform: none;
+        height: 200px;
+        width: 100%;
+        top: calc(31vw - 160px);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.001) 0%, #FFFFFF 100%);
+    }
+    header{
+        padding-bottom: 85px;
+        .header-container{
+            .title{
+                font-size: 40px;
+                line-height: 40px;
+                margin-top: 13vh;
+            }
+            .title::after, .title::before{
+                display: none!important;
+            }
+            .title::first-letter{
+                opacity: 1;
+            }
+            .description{
+                margin-top: 30px;
+                font-size: 20px;
+                line-height: 24px;
+            }
+            .tanya, .masha{
+                display: none;
+            }
+            .button-holder{
+                button{
+                    font-size: 18px;
+                    line-height: 29px;
+                    padding: 0;
+                    height: 55px;
+                    width: 160px;
+                }
+            }
+        }
+    }
+}
 
 .mobile {
     .title::after {

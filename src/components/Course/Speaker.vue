@@ -335,7 +335,98 @@ section {
         max-width: 676px;
     }
 }
+@media (max-width:1200px) {
+    .container{
+        padding: 0 40px
+    }
+    .quotes{
+        flex-direction: column;
+    }
+    .quote-1{
+        width: 482px;
+    }
+    .quote-2{
+        align-self: flex-end;
+        width: 482px;
+    }
+}
+@media (max-width: 900px) {
+     h2::before, h2::after{
+        display: none;
+    }
+    h2::first-letter{
+        opacity: 1;
+    }
+    h2{
+        font-size: 35px;
+        line-height: 35px;
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+    .container{
+        margin-top: 0;
+        margin-bottom: 0;
+        align-items: flex-start;
+    }
+    .center{
+        align-items: flex-start;
+    }
+    .image{
+        height: 200px;
+        width: 200px;
+        margin-bottom: 50px;
+    }
+     h3, h4{
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 30px;
+    }
+    .description{
+        margin-top: 0;
+        font-size: 14px;
+        line-height: 17px;
+    }
+    ul{
+        padding-top: 0;
+    }
+    li{
+        font-size: 14px;
+        text-indent: 15px;
+        line-height: 17px;
+    }
+    li::before{
+        height: 12px;
+        width: 12px;
+        top: 2px;
+        left: 0px;
+        
+    }
+    .quote-2{
+        align-self: flex-start;
+    }
+    .quote-1, .quote-2{
+        font-size: 14px;
+        line-height: 17px;
+        padding: 19px 15px 24px 14px;
+        width: fit-content;
+        max-width: unset;
+        min-width: none;
+    }
+    .go{
+        font-size: 25px;
+        line-height: 25px;
+        margin-bottom: 30px;
+    }
+    button{
+        font-size: 18px;
+        line-height: 28px;
+        width: 300px;
+        height: 80px;
+        padding: 0;
+    }
 
+    
+}
 .mobile {
     h2::before {
         left: -3px !important;
