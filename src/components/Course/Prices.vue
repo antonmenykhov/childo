@@ -753,6 +753,16 @@ section {
         margin-bottom: 0;
     }
 }
+@media (max-width: 500px) {
+    .cs-1 .price-w, .cs-2 .price-w{
+        margin: 50px 0;
+    }
+}
+@media (max-width: 350px) {
+    .cs-1 .price-w, .cs-2 .price-w{
+        min-width: 100vw;
+    }
+}
 .mobile {
     h2::before {
         left: -3px !important;

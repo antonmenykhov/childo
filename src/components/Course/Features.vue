@@ -77,6 +77,7 @@ section {
         display: inline-block;
         color: #333333;
         position: relative;
+        text-transform: uppercase;
     }
 
     
@@ -113,7 +114,32 @@ section {
         height: 195px;
     }
 }
-
+@media (max-width: 650px) {
+    .feature:nth-child(even){
+        flex-direction: column;
+    }
+    .feature:nth-child(odd){
+        flex-direction: column;
+    }
+    .img{
+        width: calc(100vw - 80px);
+        height: calc(64vw - 80px);
+        margin: 0!important;
+    }
+    .text{
+        margin-top: 30px;
+    }
+    .feature{
+        margin-bottom: 60px;
+    }
+}
+@media (max-width: 500px) {
+    .img{
+        width: calc(100vw - 20px);
+        height: calc(64vw - 20px);
+       
+    }
+}
 
 
 </style>

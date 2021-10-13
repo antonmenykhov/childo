@@ -297,13 +297,15 @@ header::before {
     .header-container {
         padding: 0 40px;
     }
-    .masha{
+
+    .masha {
         height: 600px;
         width: 400px;
         right: 0;
         top: -50px
     }
-    .tanya{
+
+    .tanya {
         height: 600px;
         width: 400px;
         right: 0;
@@ -313,7 +315,8 @@ header::before {
 
 @media (max-width: 900px) {
 
-    .cs-1::after, .cs-2::after {
+    .cs-1::after,
+    .cs-2::after {
         content: "";
         position: absolute;
         right: 0;
@@ -336,30 +339,39 @@ header::before {
         top: calc(31vw - 160px);
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.001) 0%, #FFFFFF 100%);
     }
-    header{
+
+    header {
         padding-bottom: 85px;
-        .header-container{
-            .title{
+
+        .header-container {
+            .title {
                 font-size: 40px;
                 line-height: 40px;
                 margin-top: 13vh;
             }
-            .title::after, .title::before{
-                display: none!important;
+
+            .title::after,
+            .title::before {
+                display: none !important;
             }
-            .title::first-letter{
+
+            .title::first-letter {
                 opacity: 1;
             }
-            .description{
+
+            .description {
                 margin-top: 30px;
                 font-size: 20px;
                 line-height: 24px;
             }
-            .tanya, .masha{
+
+            .tanya,
+            .masha {
                 display: none;
             }
-            .button-holder{
-                button{
+
+            .button-holder {
+                button {
                     font-size: 18px;
                     line-height: 29px;
                     padding: 0;
@@ -368,6 +380,23 @@ header::before {
                 }
             }
         }
+    }
+}
+
+@media (max-width: 500px) {
+    header .header-container .title {
+        margin-top: 0 !important;
+    }
+    header {
+        padding-top: 240px;
+    }
+
+    
+}
+
+@media (max-width: 400px) {
+    header {
+        padding-top: 200px;
     }
 }
 

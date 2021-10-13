@@ -479,7 +479,21 @@ header::after {
         }
     }
 }
-
+@media (max-width: 550px) {
+    header .header-container .title{
+        margin-top: 30px;
+    }
+}
+@media (max-width: 450px) {
+    header .header-container .title{
+        margin-top: 0px;
+    }
+}
+@media (max-width: 350px) {
+    header {
+        padding-top: 175px;
+    }
+}
 .mobile {
     .title::before {
         left: 48px !important;

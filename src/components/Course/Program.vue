@@ -214,4 +214,9 @@ p {
        
     }
 }
+@media (max-width: 500px) {
+    .program{
+        margin: 50px 0;
+    }
+}
 </style>
