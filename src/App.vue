@@ -22,6 +22,9 @@ export default {
         }
     },  
     beforeMount() {
+        document.getElementsByClassName('el-notification')[0].style.opacity = 0
+
+        window.scrollTo(0, 0);
 
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
@@ -33,10 +36,7 @@ export default {
         if (isMobile) {
             document.body.classList.add('mobile')
         }
-        document.getElementsByClassName('el-notification')[0].style.opacity = 0
-
-        window.scrollTo(0, 0);
-
+        
     },*/
     name: 'app',
     data() {

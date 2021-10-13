@@ -1,5 +1,5 @@
 <template>
-<footer>
+<footer id="footer">
     <div class="container">
         <div class="links">
             <div class="logo"></div>
@@ -69,7 +69,19 @@ footer {
     overflow: hidden;
     position: relative;
 }
+footer {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
 
+.link {
+    margin: 20px;
+    cursor: pointer
+}
 footer::after {
     content: '';
     position: absolute;

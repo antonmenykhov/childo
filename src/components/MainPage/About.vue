@@ -3,7 +3,7 @@
     <div class="container">
         <h2>О нас</h2>
         <h5>Давайте знакомиться!</h5>
-        <div class="video-wrapper">
+        <div id="video" class="video-wrapper">
             <vimeo-player class="video" :video-id='582144098'>
 
             </vimeo-player>

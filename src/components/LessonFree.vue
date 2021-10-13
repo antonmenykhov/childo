@@ -20,7 +20,7 @@
                     <li v-for="item in lessonData.req" :key="item">{{item}}</li>
                 </ul>
             </div>
-            <div class="go">ПРИШЛИТЕ ВАШ РИСУНОК НАМ В ДИРЕКТ В ИНСТАГРАМ @childo.art, И ПОЛУЧИТЕ СКИДКУ 10% НА ЛЮБОЙ ИЗ НАШИХ ONLINE КУРСОВ</div>
+            <div class="go">ПРИШЛИТЕ ВАШ РИСУНОК НАМ В ДИРЕКТ В ИНСТАГРАМ <a target="blank" href="https://www.instagram.com/childo.art/">@childo.art</a>, И ПОЛУЧИТЕ СКИДКУ 10% НА ЛЮБОЙ ИЗ НАШИХ ONLINE КУРСОВ</div>
         </div>
     </div>
 </section>
@@ -39,7 +39,7 @@ export default {
                 upheader: 'бесплатный урок',
                 header: '“яркие краски!”',
                 description: 'Перед вами — первый пробный урок онлайн-курса по рисованию «ChilDo»! Сегодня мы будем рисовать попугая Ара и узнаем несколько интересных фактов об этой тропической птице. <br> <br> Также на занятии мы познакомимся с основными правилами расположения предмета на формате и разберемся, чем акриловые краски, которые мы будем использовать, отличаются от других типов.',
-                thumb: 'free.jpg',
+                thumb: 'free.png',
                 req: [
                     'Цвета: красный, зеленый, желтый, синий, черный, белый',
                     'Холст на картоне 30х40 см или лист бумаги для гуаши 30х40 см, плотность от 150 гр/м2',
@@ -98,6 +98,11 @@ export default {
     font-weight: 600;
     margin-top: 155px;
     margin-bottom: 100px;
+     a{
+            
+            text-decoration: none;
+            text-transform: uppercase;
+        }
 }
 .lesson {
     background: white;
@@ -313,6 +318,7 @@ li:nth-child(4)::before,
     .go{
         font-size: 20px;
         line-height: 24px;
+       
     }
 }
 @media (max-width: 880px){

@@ -10,11 +10,15 @@ export default new Vuex.Store({
     jwt: '',
     userData: null,
     show: true,
+    lessons: []
     
   },
   mutations: {
     setMainData(state, it){
-      state.mainData = it
+      state.mainData = it;
+      it.courses.forEach(course => {
+        state.lessons = state.lessons.concat(course.lessons)
+      })
     },
     setTeachers(state, it){
       state.teachers = it
@@ -33,5 +37,6 @@ export default new Vuex.Store({
   actions: {
   },
   modules: {
-  }
+  },
+ 
 })

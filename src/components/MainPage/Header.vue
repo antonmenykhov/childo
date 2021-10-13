@@ -5,8 +5,8 @@
         <div class="gradient"></div>
         <div class="header-container">
             <div class="title">Школа <br> рисования <br> <span>c</span><span>h</span><span>i</span><span>l</span><span>d</span><span>o</span>
-                <div @click="aboutVideo=true" class="play-button-holder">
-                    <div class="play-button">
+                <div v-scroll-to="'#video'" class="play-button-holder">
+                    <div  class="play-button">
                         <img src="/img/play.svg" alt="play">
                     </div>
                     <div class="play-button-text">
