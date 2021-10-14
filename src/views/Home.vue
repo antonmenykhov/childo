@@ -1,6 +1,6 @@
 <template>
 <div class="home">
-    
+
     <Topline />
     <Header />
     <Courses />
@@ -23,9 +23,17 @@ import About from '../components/MainPage/About.vue'
 import Teachers from '../components/MainPage/Teachers.vue'
 import Raskras from '../components/MainPage/Raskras.vue'
 import Footer from '../components/Footer.vue'
+import {scroller} from 'vue-scrollto/src/scrollTo'
 export default {
     mounted() {
-        window.scrollTo(0, 0);
+        let path = (window.location.href.split('#'))
+        if (path[1]) {
+            const scroll = scroller();
+            scroll('#'+path[1])
+            
+        } else {
+            window.scrollTo(0,0)
+        }
     },
     data() {
         return {
@@ -61,6 +69,5 @@ export default {
 </script>
 
 <style lang="scss">
-
 
 </style>

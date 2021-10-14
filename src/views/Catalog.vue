@@ -176,9 +176,9 @@ header {
 header::before {
     content: "";
     position: absolute;
-    width: 300px;
+    width: 350px;
     background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, #FFFFFF 100%);
-    left: 120px;
+    left: 0px;
     height: 100%;
     top: 0;
     z-index: -1;

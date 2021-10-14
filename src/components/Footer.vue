@@ -11,7 +11,7 @@
                 <div @click="dialog=true">Пользовательское соглашение</div>
                 <div @click="sogle=true">Политика конфиденциальности</div>
                 <br><br>
-                <div>Инстаграм @instagram</div>
+                <a target="blank" href="https://www.instagram.com/childo.art/">Инстаграм @childo.art</a>
                 <div>E-mail name@domain.zone</div>
             </div>
         </div>
@@ -81,6 +81,11 @@ footer {
 .link {
     margin: 20px;
     cursor: pointer
+    
+}
+a{
+    color: inherit;
+    text-decoration: none;
 }
 footer::after {
     content: '';

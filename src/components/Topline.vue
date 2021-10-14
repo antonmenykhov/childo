@@ -6,16 +6,16 @@
             </div>
             <div @click="drawer=true" class="burger-button"></div>
             <div class="main-menu">
-                <a href="#" @click="$router.push({path: '/#courses'})" v-scroll-to="'#courses'" class="menu-item">
+                <a href="#courses" @click="$router.push({name: 'Home', params: {tag: '#courses'}})" v-scroll-to="'#courses'" class="menu-item">
                     Курсы
                 </a>
-                <a href="#" @click="$router.push({path: '/#about'})" v-scroll-to="'#about'" class="menu-item">
+                <a href="#about" @click="$router.push({path: '/', params: {tag: '#about'}})" v-scroll-to="'#about'" class="menu-item">
                     О нас
                 </a>
                 <a @click="$router.push({path: '/catalog'})" class="menu-item">
                     Каталог уроков
                 </a>
-                <a href="#" @click="$router.push({path: '/#footer'})" v-scroll-to="'#footer'" class="menu-item">
+                <a href="#footer" @click="$router.push({path: '/', params: {tag: '#footer'}})" v-scroll-to="'#footer'" class="menu-item">
                     Контакты
                 </a>
             </div>
