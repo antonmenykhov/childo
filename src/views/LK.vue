@@ -29,14 +29,14 @@
             <h3>Мои работы</h3>
             <div class="works-wrapper">
                 <div :style="'background: url(\''+url+works[i]+'\') no-repeat center center / cover'" class="work" v-for="item,i in worksNum" :key="item"></div>
-                <div v-if="!all" class="more-button" @click="all=true">
+                <div v-if="!all && works !=0" class="more-button" @click="all=true">
                     <div class="icon">+</div>
                     <p>Смотреть еще</p>
                 </div>
             </div>
             <div class="support-wrapper">
                 <p>Воспользуйся чатом поддержки</p>
-                <button>Открыть</button>
+                <button @click="openChat">Открыть</button>
             </div>
         </div>
         <div class="sidebar">
@@ -49,9 +49,7 @@
                     <li>Дата покупки: {{item.courseStart}}</li>
                     <li>Конец курса: {{item.CourseEnd}}</li>
                 </ul>
-                <button @click="$router.push({
-              path:'/lessons/'+(i+1)
-            })">Перейти к урокам</button>
+                <router-link class="btn" :to="{path:'/lessons/'+(i+1)}" target="_blank">Перейти к урокам</router-link>
                 <h3>Просмотренно уроков:</h3>
                 <div class="progressbar">
                     <div class="progress" :style="'width: '+lessonView(i)+'%'">{{lessonView(i)}}%</div>
@@ -80,6 +78,7 @@ export default {
             }).then(response => {
                 this.$store.commit('setUserData', response.data);
                 this.userData = response.data
+                
 
             }).catch(error => {
                 console.log(error.response)
@@ -99,6 +98,10 @@ export default {
         }
     },
     methods: {
+        openChat() {
+            // eslint-disable-next-line
+            jivo_api.open({ start: 'chat' });
+        },
         FileUpload() {
             this.file = document.getElementById('avatar').files[0];
             this.submitImage()
@@ -450,7 +453,7 @@ section {
         padding-left: 0;
     }
 
-    button {
+    button, a {
         background: linear-gradient(93.43deg, #A1E0EC 0%, #59BFD7 100%);
         box-shadow: 0px 0px 60px #7DD7E7;
         border-radius: 20px;
@@ -460,6 +463,9 @@ section {
         color: white;
         border: none;
         outline: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         font-size: 20px;
     }
 
@@ -520,7 +526,6 @@ section {
     }
 }
 
-@media (max-width: 1024px) {}
 
 @media (max-width: 768px) {
     .container {
@@ -577,40 +582,48 @@ section {
         line-height: 17px;
         margin-bottom: 20px;
     }
-    .sidebar button{
+
+    .sidebar button, .btn {
         font-size: 16px;
         height: 60px;
         width: 211px;
     }
-    .sidebar .cert{
+
+    .sidebar .cert {
         height: 216px;
         margin-bottom: 50px;
     }
-    @media (max-width: 500px){
-        .works .works-wrapper .more-button p{
+
+    @media (max-width: 500px) {
+        .works .works-wrapper .more-button p {
             font-size: 14px;
             line-height: 17px;
         }
-        .container{
-            padding:  0 10px;
+
+        .container {
+            padding: 0 10px;
         }
-        .description::before{
+
+        .description::before {
             display: none;
         }
-        .main-info
-        .description{
+
+        .main-info .description {
             padding: 37px 13px 31px 12px;
         }
-        .works{
-            .support-wrapper{
+
+        .works {
+            .support-wrapper {
                 position: relative;
-                
+
                 width: 100%;
-                p{
+
+                p {
                     font-size: 16px;
                     line-height: 20px;
                 }
-                button{
+
+                button {
                     width: auto;
                     padding: 12px 14px;
                     position: absolute;

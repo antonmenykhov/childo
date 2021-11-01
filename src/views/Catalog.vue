@@ -6,8 +6,10 @@
         <div class="gradient"></div>
         <div class="header-container">
             <div class="heaader-left">
-                <div class="cart">
-                    <div class="cart-icon"></div>
+                <div @click="openCartAuth" class="cart">
+                    <div class="cart-icon">
+                        <div v-if="cart.length > 0" class="cart-counter">{{cart.length}}</div>
+                    </div>
                 </div>
                 <div class="title">
                     ВЫБЕРИТЕ, ЧТО ВЫ ХОТИТЕ СЕГОДНЯ НАРИСОВАТЬ
@@ -22,8 +24,9 @@
         </div>
 
     </header>
-    <CatProgram />
+    <CatProgram :cart="cart"/>
     <Cert />
+    <Cart :cart="cart"/>
     <Footer />
 </div>
 </template>
@@ -33,12 +36,31 @@ import Topline from '../components/Topline.vue'
 import CatProgram from '../components/CatProgram.vue'
 import Cert from '../components/MainPage/Cert.vue'
 import Footer from '../components/Footer.vue'
+import {eventBus} from '../main'
+import Cart from '../components/Cart.vue'
 export default {
-    components: { Topline, CatProgram, Cert, Footer },
+    components: { Topline, CatProgram, Cert, Footer, Cart },
+    created() {
+        eventBus.$on('refreshCart', data =>{
+            this.cart = data
+        })
+        eventBus.$on('openCart', () => {
+            this.openCart()
+        })
+    },
     data() {
 
         return {
-            data: null
+            cart: [],
+            cartOpened: true
+        }
+    },
+    methods: {
+        openCart(){
+            eventBus.$emit('cartOpened')
+        },
+        openCartAuth(){
+            eventBus.$emit('openRegCart')
         }
     },
 }
@@ -88,10 +110,13 @@ header {
         padding-top: auto;
 
         .cart {
+            position: absolute;
+            z-index: 210;
+            cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            position: absolute;
+           
             right: 0;
             top: 0;
             height: 100px;
@@ -105,6 +130,20 @@ header {
             height: 50px;
             width: 50px;
             background: url('/img/cart.png') no-repeat center center / contain;
+            position: relative;
+        }
+        .cart-counter{
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -30px;
+            right: -30px;
+            font-size: 18px;
         }
 
         .title {

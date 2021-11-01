@@ -4,11 +4,12 @@
     <div class="container">
 
         <div class="program-holder">
-            <div v-scroll-to="'#prices'" class="program" :class="item.color" v-for="item,i in lessons" :key="i">
+            <div class="program" :class="item.color" v-for="item,i in lessons" :key="i">
                 <div class="image" :style="'background: url(\''+url+item.img.formats.thumbnail.url+'\') no-repeat center center / cover'"></div>
                 <h4>{{item.Name}}</h4>
                 <p>{{item.smallDescription}}</p>
-                <button>Выбрать</button>
+                <button :id="item.id" @click="addToCart(item)">Выбрать</button>
+                <button style="display:none" :id="'d'+item.id" @click="delFromCart(item)">Убрать</button>
             </div>
         </div>
     </div>
@@ -16,12 +17,36 @@
 </template>
 
 <script>
+import { eventBus } from '../main'
 import api from '../constants'
 export default {
+    props:{
+        cart: Array
+    },
     data() {
         return {
             url: api.url,
+            
+        }
+    },
+    methods: {
+        addToCart(item) {
+            document.getElementById(item.id).style.display = 'none'
+            document.getElementById('d' + item.id).style.display = 'block';
+            let cart = Object.assign([],this.cart)
+            cart.push(item)
+            this.refreshCart(cart)
+        },
+        delFromCart(item) {
+            document.getElementById(item.id).style.display = 'block'
+            document.getElementById('d' + item.id).style.display = 'none';
+            let cart = this.cart.filter(value => value.id != item.id)
 
+            this.refreshCart(cart)
+        },
+        refreshCart(cart) {
+
+            eventBus.$emit('refreshCart', cart)
         }
     },
 
@@ -84,8 +109,6 @@ h2::after {
     position: absolute;
 }
 
-
-
 .program-holder {
     display: flex;
     flex-wrap: wrap;
@@ -118,6 +141,7 @@ button {
     color: white;
     font-weight: 300;
     bottom: -40px;
+    cursor: pointer;
 }
 
 .image {
@@ -148,7 +172,7 @@ p {
 
     color: #333333;
     display: flex;
-    
+
 }
 
 .orange {
@@ -226,7 +250,7 @@ p {
 }
 
 @media (max-width:900px) {
-    
+
     h2::before,
     h2::after {
         display: none;

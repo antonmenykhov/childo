@@ -6,10 +6,10 @@
     <div class="container">
         <h2>Доступные уроки</h2>
         <div class="lessons">
-            <div class="lesson" v-for="item,i in lessons" :key="i">
+            <div @click="goLesson(i)" class="lesson" v-for="item,i in lessons" :key="i">
                 <div class="image" :style="'background: url(\''+url+item.img.formats.small.url+'\') no-repeat center center / cover'">
 
-                    <div @click="goLesson(i)" class="play" v-if="check(i)">
+                    <div class="play" v-if="check(i)">
 
                     </div>
                     <div class="locked" v-if="!check(i)">
@@ -40,7 +40,7 @@ export default {
                     Authorization: `Bearer ${this.$store.state.jwt}`,
                 }
             }).then(response => {
-                this.$store.commit('setUserData', response.data);
+                this.course = response.data.BuyedCourses[this.id];
 
             }).catch(error => {
                 console.log(error.response)
@@ -64,11 +64,21 @@ export default {
 
         },
         goLesson(i) {
-            if (this.course.data.style == 'child') {
-                this.$router.push({ path: '/lessonChild/' + (this.id + 1) + '/' + (i * 1 + 1) })
-            }
-            if (this.course.data.style == 'grow') {
-                this.$router.push({ path: '/lessonGrow/' + (this.id + 1) + '/' + (i * 1 + 1) })
+            if (this.check(i)) {
+                if (this.course.data.style == 'child') {
+                    window.open('/lessonChild/' + (this.id + 1) + '/' + (i * 1 + 1), '_blank')
+                    
+                }
+                if (this.course.data.style == 'grow') {
+                    window.open('/lessonGrow/' + (this.id + 1) + '/' + (i * 1 + 1), '_blank')
+                    
+                }
+            } else{
+                this.$notify({
+                                title: 'Доступ закрыт',
+                                message: 'Вы не прошли предыдущий урок',
+                                type: 'warning'
+                            });
             }
         }
     },
@@ -90,15 +100,14 @@ export default {
             }
             return num
         },
-        course: function () {
-            return this.$store.state.userData.BuyedCourses[this.id];
-        },
+
         lessons: function () {
             return this.course.data.lessons
         }
     },
     data() {
         return {
+            course: {},
             kol: 1,
             url: api.url,
             style: 'grow',
@@ -193,6 +202,7 @@ h2::before {
     margin-right: 20px;
     margin-left: 20px;
     margin-bottom: 70px;
+    cursor: pointer;
 
 }
 
@@ -263,7 +273,6 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
 
     .icon {
         background: url('/img/lklessons/lock.svg') no-repeat center center / contain;
@@ -332,7 +341,7 @@ p {
         font-size: 20px;
         line-height: 20px;
         margin-left: 0;
-        
+
     }
 
     h2::before {
@@ -341,11 +350,13 @@ p {
         height: 18.72px;
         width: 20.5px;
     }
-    .image{
+
+    .image {
         width: calc(100vw - 20px);
         height: 62vw;
     }
-    .lesson{
+
+    .lesson {
         margin-left: 0;
         margin-right: 0;
     }

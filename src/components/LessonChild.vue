@@ -1,11 +1,12 @@
 <template>
 <section class="lesson" :class="lessonData.styleChild">
-    <div class="back-button" @click="$router.push({path: '/lessons/'+(cid+1)})">
+<div class="back-button" @click="$router.push({path: '/lessons/'+(cid+1)})">
         <div class="back-arrow"></div>
     </div>
+
     <div class="jiraf"></div>
     <div class="container">
-        
+
         <h2>Урок {{id+1}} - {{lessonData.Name}}</h2>
         <p class="description" v-html="lessonData.Description">
         </p>
@@ -25,10 +26,11 @@
                     </li>
                 </ul>
 
-                <el-button v-if="!check()"  :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
+                <el-button v-if="!check() && !next && !end" :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
                 <input type="file" :id="'dz'" v-on:change="FileUpload()">
-                <el-button  @click="goNext" v-if="next || check()" class="dz-button">Следующий урок</el-button>
+                <el-button @click="goNext" v-if="next || check()" class="dz-button">Следующий урок</el-button>
                 <el-button @click="goLK" v-if="end" class="dz-button">В личный кабинет</el-button>
+
             </div>
         </div>
     </div>
@@ -40,19 +42,56 @@
 import api from '../constants'
 import axios from 'axios'
 export default {
-  
+    mounted() {
+        window.scrollTo(0, 0);
+        if (this.$cookie.get('jwt')) {
+            this.$store.commit('setJwt', this.$cookie.get('jwt'));
+            axios.get(api.me, {
+                headers: {
+                    Authorization: `Bearer ${this.$store.state.jwt}`,
+                }
+            }).then(response => {
+                this.$set(this.responseData, 'lessonData', response.data.BuyedCourses[this.cid].data.lessons[this.id])
+                this.$set(this.responseData, 'full', response.data)
+                
+
+            }).catch(error => {
+                console.log(error.response)
+
+            })
+        }
+    },
+    computed: {
+       
+        lessonData: function () {
+            return this.responseData.lessonData//[this.cid]//.data.lessons[this.id]
+        }
+    },
+     data() {
+        return {
+            cid: this.$route.params.cid - 1,
+            id: this.$route.params.id - 1,
+            url: api.url,
+            loading: false,
+            textDz: 'Загрузить дз',
+            next: false,
+            end: false,
+            responseData: {lessonData: {}},
+
+        }
+    },
     methods: {
         check() {
-            if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData) {
-                if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData[this.id]) {
+            if (this.responseData.full.BuyedCourses[this.cid].lessonsData) {
+                if (this.responseData.full.BuyedCourses[this.cid].lessonsData[this.id]) {
                     return true
                 }
             } else {
                 return false
             }
         },
-        goLK(){
-            this.$router.push({path: '/lk'})
+        goLK() {
+            this.$router.push({ path: '/lk' })
         },
         goNext() {
             this.$router.push({ path: '/lessonChild/' + (this.cid + 1) + '/' + (this.id + 2) })
@@ -61,8 +100,8 @@ export default {
             this.file = document.getElementById('dz').files[0];
             this.submitImage()
         },
-        setDz(dz){
-            
+        setDz(dz) {
+
             let formData = new FormData;
             formData.append('dz', dz)
             formData.append('courseId', this.cid)
@@ -73,7 +112,6 @@ export default {
                 }
             }).then(response => console.log(response.data))
         },
-        
 
         submitImage() {
             this.loading = true
@@ -86,50 +124,16 @@ export default {
                 this.loading = false
                 setTimeout(this.setDz, 500, response.data[0].formats.small.url)
                 this.textDz = "ДЗ загружено"
-                if (this.id+1 <= this.$store.state.userData.BuyedCourses[this.cid].data.lessons.length-1) {
+                if (this.id + 1 <= this.responseData.full.BuyedCourses[this.cid].data.lessons.length - 1) {
                     this.next = true
-                } else{
-                    this.end=true
+                } else {
+                    this.end = true
                 }
             })
 
         },
     },
-    data() {
-        return {
-            cid: this.$route.params.cid - 1,
-            id: this.$route.params.id - 1,
-            url: api.url,
-            loading: false,
-            textDz: 'Загрузить дз',
-            next: false,
-            end: false
-
-        }
-    },
-    computed: {
-        lessonData: function () {
-            let data = this.$store.state.userData.BuyedCourses[this.cid].data.lessons[this.id]
-            return data
-        }
-    },
-    mounted() {
-        window.scrollTo(0, 0);
-        if ( this.$cookie.get('jwt')) {
-                this.$store.commit('setJwt', this.$cookie.get('jwt'));
-                axios.get(api.me, {
-                    headers: {
-                        Authorization: `Bearer ${this.$store.state.jwt}`,
-                    }
-                }).then(response => {
-                    this.$store.commit('setUserData', response.data);
-                    
-                }).catch(error => {
-                    console.log(error.response)
-                    
-                })
-            } 
-    },
+   
 
 }
 </script>
@@ -142,11 +146,13 @@ export default {
 .el-button {
     position: relative;
 }
-.flex{
+
+.flex {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
 label {
     cursor: pointer;
     position: absolute;
@@ -188,10 +194,8 @@ label {
 
 section {
     overflow: hidden;
-    padding: 0!important;
+    padding: 0 !important;
 }
-
-
 
 .lesson {
     background: white;
@@ -203,8 +207,6 @@ section {
         align-items: flex-start;
         justify-content: flex-start;
     }
-
-    
 
     h2 {
         margin-top: 100px;
@@ -221,13 +223,13 @@ section {
     .description {
         font-size: 18px;
         line-height: 22px;
-        
+
         max-width: 677px;
         color: #333333;
     }
 
     .thumb {
-        
+
         display: flex;
         align-self: center;
         align-items: center;
@@ -255,7 +257,7 @@ section {
     li {
         font-size: 18px;
         line-height: 22px;
-        
+
         color: #333333;
         list-style: none;
         position: relative;
@@ -275,6 +277,7 @@ section {
     ul {
         padding-left: 25px;
     }
+
     li:nth-child(4)::before,
     li:nth-child(8)::before,
     li:nth-child(12)::before,
@@ -351,10 +354,6 @@ section {
         padding: 0;
     }
 
-    .dz-li {
-       
-    }
-
     .dz-li::before {
         display: none;
 
@@ -362,7 +361,7 @@ section {
 
     .dz-button {
         border-radius: 20px;
-        
+
         width: 320px;
         height: 80px;
         font-size: 20px;
@@ -970,63 +969,77 @@ section {
     z-index: -1;
 }
 
-.jiraf, .lesson::after, .lesson::before{
+.jiraf,
+.lesson::after,
+.lesson::before {
     display: none;
 }
-.thumb{
-    box-shadow: none!important;
+
+.thumb {
+    box-shadow: none !important;
 }
-@media (max-width:1200px){
-    .container{
+
+@media (max-width:1200px) {
+    .container {
         padding: 0 40px;
     }
-    .lesson h2{
+
+    .lesson h2 {
         font-size: 50px;
         line-height: 50px;
     }
 }
-@media (max-width: 880px){
-    
-    .lesson .thumb{
+
+@media (max-width: 880px) {
+
+    .lesson .thumb {
         width: calc(100vw - 80px);
         height: calc(66vw - 80px);
     }
 }
-@media (max-width: 500px){
-    .lesson .thumb{
+
+@media (max-width: 500px) {
+    .lesson .thumb {
         width: calc(100vw - 40px);
         height: calc(66vw - 40px);
     }
-    .container{
+
+    .container {
         padding: 0 20px;
     }
-    .lesson h2{
+
+    .lesson h2 {
         font-size: 20px;
         line-height: 20px;
-        
+
     }
-    .lesson .description{
+
+    .lesson .description {
         font-size: 14px;
         line-height: 17px;
     }
-    .lesson li{
+
+    .lesson li {
         font-size: 14px;
         line-height: 17px;
         padding-left: 0;
     }
-    .lesson li::before{
+
+    .lesson li::before {
         height: 12px;
         width: 12px;
         left: -15px;
         top: 2px;
     }
-    .lesson ul{
+
+    .lesson ul {
         padding-left: 15px;
     }
-    .lesson .dz-button{
+
+    .lesson .dz-button {
         height: 75px;
         width: 240px;
     }
-   
+
 }
 </style>

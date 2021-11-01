@@ -12,7 +12,7 @@
         <div class="thumb" :style="'background: url(\''+url+lessonData.img.formats.medium.url+'\') no-repeat center center / cover'">
             <div class="play"></div>
         </div>
-        <el-button v-if="!check()" :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
+        <el-button v-if="!check() && !next && !end" :loading="loading" class="dz-button">{{textDz}}<label for="dz">{{textDz}}</label></el-button>
         <input type="file" :id="'dz'" v-on:change="FileUpload()">
         <el-button @click="goNext" v-if="next || check()" class="dz-button">Следующий урок</el-button>
         <el-button @click="goLK" v-if="end" class="dz-button">В личный кабинет</el-button>
@@ -27,8 +27,8 @@ export default {
 
     methods: {
         check() {
-            if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData) {
-                if (this.$store.state.userData.BuyedCourses[this.cid].lessonsData[this.id]) {
+            if (this.responseData.full.BuyedCourses[this.cid].lessonsData) {
+                if (this.responseData.full.BuyedCourses[this.cid].lessonsData[this.id]) {
                     return true
                 }
             } else {
@@ -69,8 +69,9 @@ export default {
                 this.loading = false
                 setTimeout(this.setDz, 500, response.data[0].formats.small.url)
                 this.textDz = "ДЗ загружено"
-                if (this.id + 1 <= this.$store.state.userData.BuyedCourses[this.cid].data.lessons.length - 1) {
+                if (this.id + 1 <= this.responseData.full.BuyedCourses[this.cid].data.lessons.length - 1) {
                     this.next = true
+                    console.log('fdsf')
                 } else {
                     this.end = true
                 }
@@ -87,10 +88,11 @@ export default {
             textDz: 'Загрузить дз',
             next: false,
             end: false,
+            responseData: {lessonData: {}},
 
         }
     },
-    mounted() {
+     mounted() {
         window.scrollTo(0, 0);
         if (this.$cookie.get('jwt')) {
             this.$store.commit('setJwt', this.$cookie.get('jwt'));
@@ -99,19 +101,20 @@ export default {
                     Authorization: `Bearer ${this.$store.state.jwt}`,
                 }
             }).then(response => {
-                this.$store.commit('setUserData', response.data);
+                this.$set(this.responseData, 'lessonData', response.data.BuyedCourses[this.cid].data.lessons[this.id])
+                this.$set(this.responseData, 'full', response.data)
+                
 
             }).catch(error => {
                 console.log(error.response)
 
             })
         }
-
     },
     computed: {
+       
         lessonData: function () {
-            let data = this.$store.state.userData.BuyedCourses[this.cid].data.lessons[this.id]
-            return data
+            return this.responseData.lessonData//[this.cid]//.data.lessons[this.id]
         }
     },
 }

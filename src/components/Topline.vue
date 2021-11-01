@@ -1,64 +1,60 @@
 <template>
-  <div class="top-line">
-        <div class="container">
-            <div class="logo" @click="$router.push({path: '/'})">
+<div class="top-line">
+    <div class="container">
 
-            </div>
-            <div @click="drawer=true" class="burger-button"></div>
-            <div class="main-menu">
-                <a href="#courses" @click="$router.push({name: 'Home', params: {tag: '#courses'}})" v-scroll-to="'#courses'" class="menu-item">
-                    Курсы
-                </a>
-                <a href="#about" @click="$router.push({path: '/', params: {tag: '#about'}})" v-scroll-to="'#about'" class="menu-item">
-                    О нас
-                </a>
-                <a @click="$router.push({path: '/catalog'})" class="menu-item">
-                    Каталог уроков
-                </a>
-                <a href="#footer" @click="$router.push({path: '/', params: {tag: '#footer'}})" v-scroll-to="'#footer'" class="menu-item">
-                    Контакты
-                </a>
-            </div>
-        </div>
-        <el-drawer size="100%" :visible.sync="drawer">
-        <div class="logo" @click="goRoute('/')">
+        <router-link class="logo" to='/' target="_blank"></router-link>
+
+        <div @click="drawer=true" class="burger-button"></div>
+        <div class="main-menu">
+            <router-link target="_blank" :to="{path: '/#courses'}" class="menu-item">Курсы</router-link>
+            <router-link target="_blank" :to="{path: '/#about'}" class="menu-item">О нас</router-link>
+            <router-link target="_blank" :to="{path: '/catalog'}" class="menu-item">Каталог уроков</router-link>
+            <router-link target="_blank" :to="{path: '/#footer'}" class="menu-item">Контакты</router-link>
+            <a target="_blank" @click="openReg" class="menu-item">Личный кабинет</a>
 
         </div>
+    </div>
+    <el-drawer size="100%" :visible.sync="drawer">
+        <router-link class="logo" to='/' target="_blank"></router-link>
+
+        
         <div class="side-menu">
-            <a href="#" @click="goRoute('/courses')" v-scroll-to="'#courses'" class="menu-item">
-                Курсы
-            </a>
-            <a href="#" @click="goRoute('/about')" v-scroll-to="'#about'" class="menu-item">
-                О нас
-            </a>
-            <a @click="goRoute('/catalog')" class="menu-item">
-                Каталог уроков
-            </a>
-            <a href="#" @click="goRoute('/footer')" v-scroll-to="'#footer'" class="menu-item">
-                Контакты
-            </a>
+            <router-link target="_blank" :to="{path: '/#courses'}" class="menu-item">Курсы</router-link>
+            <router-link target="_blank" :to="{path: '/#about'}" class="menu-item">О нас</router-link>
+            <router-link target="_blank" :to="{path: '/catalog'}" class="menu-item">Каталог уроков</router-link>
+            <router-link target="_blank" :to="{path: '/#footer'}" class="menu-item">Контакты</router-link>
+            <router-link target="_blank" :to="{path: '/lk'}" class="menu-item">Личный кабинет</router-link>
         </div>
     </el-drawer>
-    </div>
-    
+</div>
 </template>
 
 <script>
+import {eventBus} from '../main'
 export default {
-data() {
-    return {
-        drawer: false,
-    }
-},
+    data() {
+        return {
+            drawer: false,
+        }
+    },
+    methods: {
+        openReg(){
+            eventBus.$emit('openRegLk')
+        }
+    },
 }
 </script>
 
 <style lang="scss">
-@media (max-width: 1200px){
-    .top-line .container{
+.top-line{
+    z-index: 2;
+}
+@media (max-width: 1200px) {
+    .top-line .container {
         max-width: 1058px;
     }
 }
+
 @media (max-width: 900px) {
     .top-line .logo {
         height: 38px;
@@ -70,10 +66,12 @@ data() {
 
         .container {
             justify-content: space-between;
+
             .main-menu {
                 display: none;
             }
-            .burger-button{
+
+            .burger-button {
                 display: flex;
             }
         }

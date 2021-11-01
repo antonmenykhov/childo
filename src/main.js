@@ -1,4 +1,6 @@
 import Vue from 'vue'
+import VueJivoSite from '@bchteam/vue-jivosite'
+export const eventBus = new Vue(); 
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -14,6 +16,7 @@ Vue.use(VueCookie);
 Vue.use(VueScrollTo)
 Vue.use(VuePageTransition)
 Vue.use(vueVimeoPlayer)
+Vue.use(VueJivoSite, {widgetId: '09qm97FjaG'})
 new Vue({
   router,
   store,

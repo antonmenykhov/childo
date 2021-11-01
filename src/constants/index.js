@@ -1,4 +1,4 @@
-let url = "https://api.menukhov.ru:1339"
+let url = "https://api.childo-art.ru"
 let getData = url+"/getData"
 let register = url +'/auth/local/register'
 let auth  = url + '/auth/local'

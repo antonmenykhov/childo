@@ -9,7 +9,8 @@
                     <h3>{{course.Name}}</h3>
                     <div class="space">
                         <p>{{course.description}}</p>
-                        <button @click="$router.push({path: '/course/'+(i*1+1)})">Подробнее</button>
+                        <router-link class="btn" :to="{path: '/course/'+(i*1+1)}" target="_blank"> Подробнее</router-link>
+
                     </div>
                 </div>
             </div>
@@ -41,247 +42,49 @@
             </div>
             <button @click="openReg">Присоединиться</button>
 
-            <el-dialog class="register" width="400px" :visible.sync="reg">
-                <h3>Регистрация</h3>
-                <el-form ref="val" :model="register">
-                    <el-form-item prop="name" :rules="[
-      { required: true, message: 'Введите имя и фамилию', trigger: 'blur' }]">
-                        <el-input placeholder="Имя Фамилия" v-model="register.name"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="mail" :rules="[
-      { required: true, message: 'Введите адрес эл.почты', trigger: 'blur' },
-      { type: 'email', message: 'Введите корректный адрес почты', trigger: ['blur', 'change'] }
-    ]">
-                        <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="password" :rules="[
-      { required: true, message: 'Введите пароль', trigger: 'blur' }]">
-                        <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
-                    </el-form-item>
-                    <el-form-item>
-                        <el-input placeholder="@instagram" v-model="register.instagram"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="sogl" :rules="[{ type: 'boolean', required: true, message: 'Нужно ваше согласие', trigger: 'change' }]">
-                        <el-checkbox v-model="register.sogl">Я соглашаюсь на обработку <br> персональных данных</el-checkbox>
-                    </el-form-item>
-                    <el-button @click="registerSend" type="primary">Регистрация</el-button>
-                    <el-form-item>
-                        <p @click="openAuth"> Уже зарегистрированы? <br> Нажмите чтобы <span>войти</span></p>
-                    </el-form-item>
-                </el-form>
-            </el-dialog>
-            <el-dialog class="register" width="400px" :visible.sync="auth">
-                <h3>Войти</h3>
-                <el-form ref="val" :model="register">
-
-                    <el-form-item prop="mail" :rules="[
-      { required: true, message: 'Введите адрес эл.почты', trigger: 'blur' },
-      { type: 'email', message: 'Введите корректный адрес почты', trigger: ['blur', 'change'] }
-    ]">
-                        <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="password" :rules="[
-      { required: true, message: 'Введите пароль', trigger: 'blur' }]">
-                        <el-input type="password" placeholder="Пароль" v-model="register.password"></el-input>
-                    </el-form-item>
-
-                    <el-button @click="authSend" type="primary">Войти</el-button>
-                    <el-form-item>
-                        <p @click="openReg"> Не зарегистрированы? <br> Нажмите чтобы <span>зарегистрироваться</span></p>
-                        <p @click="openForgot"> Забыли пароль? <br> Нажмите чтобы <span>восстановить</span></p>
-                    </el-form-item>
-
-                </el-form>
-            </el-dialog>
-            <el-dialog class="register" width="400px" :visible.sync="forgot">
-                <h3>Восстановить пароль</h3>
-                <el-form ref="val" :model="register">
-
-                    <el-form-item prop="mail" :rules="[
-      { required: true, message: 'Введите адрес эл.почты', trigger: 'blur' },
-      { type: 'email', message: 'Введите корректный адрес почты', trigger: ['blur', 'change'] }
-    ]">
-                        <el-input placeholder="Адрес эл. почты" v-model="register.mail"></el-input>
-                    </el-form-item>
-
-                    <el-button @click="forgotSend" type="primary">Восстановить</el-button>
-                    <el-form-item>
-                        <p @click="openReg"> Не зарегистрированы? <br> Нажмите чтобы <span>зарегистрироваться</span></p>
-                        <p @click="openAuth"> Вспомнили пароль? <br> Нажмите чтобы <span>войти</span></p>
-                    </el-form-item>
-
-                </el-form>
-            </el-dialog>
-            <el-dialog class="register" width="400px" :visible.sync="sended">
-                <h3>Письмо с инструкциями отправлено на почту</h3>
-                <el-form v-model="register">
-
-                    <el-button @click="sended=false" type="primary">Хорошо</el-button>
-
-                </el-form>
-            </el-dialog>
+            
         </div>
+   
     </section>
 </div>
 </template>
 
 <script>
-import api from '../../constants'
-import axios from 'axios'
+import api from '../../constants/index.js'
+
+import {eventBus} from '../../main.js'
 export default {
+  
     computed: {
         courses: function () {
             return this.$store.state.mainData.courses
         }
     },
-    methods: {
-        openAuth() {
-
-            this.reg = false;
-            this.forgot = false
-            this.auth = true;
-
-        },
-        openReg() {
-            if (this.$cookie.get('jwt')) {
-                this.$store.commit('setJwt', this.$cookie.get('jwt'));
-                axios.get(api.me, {
-                    headers: {
-                        Authorization: `Bearer ${this.$store.state.jwt}`,
-                    }
-                }).then(response => {
-                    this.$store.commit('setUserData', response.data);
-                    this.$router.push({ path: '/lk' })
-                }).catch(error => {
-                    console.log(error.response)
-                    this.auth = false;
-                    this.forgot = false
-                    this.reg = true
-                })
-            } else {
-                this.auth = false;
-                this.forgot = false
-                this.reg = true
-            }
-
-        },
-        openForgot() {
-            this.auth = false;
-            this.forgot = true
-            this.reg = false
-        },
-        registerSend() {
-            this.$refs.val.validate((valid) => {
-                if (valid) {
-                    axios.post(api.register, {
-                            username: this.register.name + ((Math.random() * 100) + 1),
-                            email: this.register.mail,
-                            password: this.register.password,
-                            Instagram: this.register.instagram,
-                            name: this.register.name
-                        })
-                        .then(
-                            response => {
-                                this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
-                                this.$store.commit('setJwt', response.data.jwt);
-                                this.$store.commit('setUserData', response.data.user);
-                                this.$router.push({ path: '/lk' })
-                            }
-                        ).catch(error => {
-                            console.log(error.response)
-                            this.$notify({
-                                title: 'Ошибка',
-                                message: 'данный адрес уже зарегистрирован',
-                                type: 'warning'
-                            });
-                        })
-                }
-            })
-        },
-        authSend() {
-            this.$refs.val.validate((valid) => {
-                if (valid) {
-                    axios.post(api.auth, {
-
-                            identifier: this.register.mail,
-                            password: this.register.password,
-
-                        })
-                        .then(
-                            response => {
-                                this.$cookie.set('jwt', response.data.jwt, { expires: '1D' })
-                                this.$store.commit('setJwt', response.data.jwt);
-                                this.$store.commit('setUserData', response.data.user);
-                                this.$router.push({ path: '/lk' })
-                            }
-                        ).catch(error => {
-                            console.log(error.response)
-                            this.$notify({
-                                title: 'Ошибка',
-                                message: 'Неверный логин или пароль',
-                                type: 'warning'
-                            });
-                        })
-                }
-            })
-        },
-        forgotSend() {
-            this.$refs.val.validate((valid) => {
-                if (valid) {
-                    axios.post(api.forgot, {
-
-                            email: this.register.mail,
-
-                        })
-                        .then(
-                            response => {
-                                console.log(response.data)
-                                this.forgot = false;
-                                this.sended = true;
-                            }
-                        ).catch(error => {
-                            console.log(error.response)
-
-                            this.$notify({
-                                title: 'Ошибка',
-                                message: 'Такой адрес не зарегистрирован',
-                                type: 'warning'
-                            });
-                        })
-                }
-            })
-        },
-
-    },
     data() {
         return {
-            soglV: false,
-            url: api.url,
-            reg: false,
-            auth: false,
-            disabled: false,
-            forgot: false,
-            sogl: false,
-            sended: false,
-            register: {
-                name: '',
-                password: '',
-                mail: '',
-                Instagram: '',
-                sogl: ''
-            },
+            url: api.url
         }
     },
+    methods: {
+        openReg(){
+            eventBus.$emit('openRegLk')
+            
+        }
+    },
+    
 }
 </script>
 
 <style>
-@media(max-width: 500px){
-    .container, .header-container{
-            padding-left: 10px!important;
-            padding-right: 10px!important;
-        }
+@media(max-width: 500px) {
+
+    .container,
+    .header-container {
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
 }
+
 @media(max-width: 400px) {
     .el-dialog {
         max-width: 400px !important;
@@ -448,6 +251,7 @@ input::placeholder {
     }
 
     button {
+        cursor: pointer;
         background: linear-gradient(94.82deg, #FBAD3A 0%, #F66A16 100%);
         box-shadow: 0px 4px 60px #F66C17;
         border-radius: 25px;
@@ -519,7 +323,7 @@ input::placeholder {
 
             }
 
-            button {
+            .btn {
 
                 border-radius: 25px;
                 border: none;
@@ -535,7 +339,7 @@ input::placeholder {
                 will-change: auto;
             }
 
-            button:hover {
+            .btn:hover {
                 transform: translateY(-5px);
             }
         }
@@ -543,7 +347,7 @@ input::placeholder {
         .course-wrapper:first-child {
             margin-right: 23px;
 
-            button {
+            .btn {
                 background: linear-gradient(94.07deg, #F574BA 0%, #CD237F 100%);
                 box-shadow: 0px 0px 60px #D6358C;
             }
@@ -557,7 +361,7 @@ input::placeholder {
         .course-wrapper:last-child {
             margin-left: 23px;
 
-            button {
+            .btn {
                 background: linear-gradient(94.07deg, #FAA435 0%, #F96C0F 100%);
                 box-shadow: 0px 0px 60px #F98923;
             }
@@ -705,11 +509,14 @@ input::placeholder {
     h2::first-letter {
         opacity: 1 !important;
     }
-    .courses-wrapper::after{
+
+    .courses-wrapper::after {
         display: none;
     }
+
     .courses-wrapper {
-        padding-bottom: 0!important;
+        padding-bottom: 0 !important;
+
         h2 {
             font-size: 40px;
             line-height: 40px;
@@ -732,7 +539,7 @@ input::placeholder {
                     line-height: 17px;
                 }
 
-                button {
+                .btn {
                     padding: 0;
                     height: 55px;
                     width: 160px;
@@ -745,24 +552,29 @@ input::placeholder {
             }
         }
     }
-    .about h4{
+
+    .about h4 {
         margin-top: 0;
         font-size: 18px;
         line-height: 22px;
         text-align: left;
         align-self: flex-start;
     }
-    .about .text{
+
+    .about .text {
         font-size: 14px;
         line-height: 17px;
     }
-    .about .img-text{
+
+    .about .img-text {
         margin-bottom: 50px;
     }
-    .about::after{
+
+    .about::after {
         display: none;
     }
-    .about .quote{
+
+    .about .quote {
         width: unset;
         align-self: flex-start;
         text-align: left;
@@ -771,17 +583,21 @@ input::placeholder {
         margin-top: 0;
         margin-bottom: 0;
     }
-    .about .quote::after ,.about .quote::before{
+
+    .about .quote::after,
+    .about .quote::before {
         display: none;
     }
-    .about .connect{
+
+    .about .connect {
         margin-top: 50px;
         text-align: left;
         font-size: 18px;
         line-height: 22px;
         height: unset;
     }
-    .about button{
+
+    .about button {
         padding: 0;
         font-size: 14px;
         line-height: 22px;
@@ -790,19 +606,25 @@ input::placeholder {
         margin-top: 30px;
         align-self: flex-start;
     }
-    .about{
+
+    .about {
         padding-bottom: 100px;
     }
+
     @media (max-width: 500px) {
-        .courses-wrapper .courses-holder .course-wrapper{
+        .courses-wrapper .courses-holder .course-wrapper {
             max-width: unset;
-            margin-right: 0!important;
+            margin-right: 0 !important;
         }
-        .container{
-            padding-left: 10px!important;
-            padding-right: 10px!important;
+
+        .container {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
         }
-        .courses-wrapper .courses-holder .course-wrapper .image, .about .img1, .about .img2{
+
+        .courses-wrapper .courses-holder .course-wrapper .image,
+        .about .img1,
+        .about .img2 {
             width: 100%;
             height: calc(63vw - 20px);
         }

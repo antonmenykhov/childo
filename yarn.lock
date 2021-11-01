@@ -920,6 +920,13 @@
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
 
+"@bchteam/vue-jivosite@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@bchteam/vue-jivosite/-/vue-jivosite-1.0.0.tgz#c6b43d7bb0f659151168f87bb85be025280a35f7"
+  integrity sha512-fyeYT36Rx7uXqZYEDKxzfgksqTYjNHbKUOYPadW7kTbk20f8HS00RlCtxFmrqrb42oSuNDRKKfT0V7/y9et1QQ==
+  dependencies:
+    vue "^2.5.22"
+
 "@hapi/address@2.x.x":
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/@hapi/address/-/address-2.1.4.tgz#5d67ed43f3fd41a69d4b9ff7b56e7c0d1d0a81e5"
@@ -8309,7 +8316,7 @@ vue-vimeo-player@^0.2.2:
     "@vimeo/player" "^2.14.1"
     object-assign "^4.1.1"
 
-vue@^2.6.11:
+vue@^2.5.22, vue@^2.6.11:
   version "2.6.14"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.14.tgz#e51aa5250250d569a3fbad3a8a5a687d6036e235"
   integrity sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ==

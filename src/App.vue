@@ -1,19 +1,24 @@
 <template>
 <div id="app">
 
-    
+    <AuthPopUp />
   <vue-page-transition name="fade-in-down">
     
-   
+      
     <router-view :key="$route.path"> </router-view>
   </vue-page-transition>
+    
 </div>
 </template>
 
 <script>
 import axios from 'axios'
 import constants from './constants'
+import AuthPopUp from './components/AuthPopUp.vue'
 export default {
+    components:{
+        AuthPopUp
+    },
     methods: {
         goRoute(i){
 
@@ -31,6 +36,7 @@ export default {
 
         })
     },
+ 
    /**  mounted() {
         let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
         if (isMobile) {
@@ -65,8 +71,12 @@ export default {
     margin: 0;
     box-sizing: border-box;
 }
-
-
+.hidden{
+    display: none!important;
+}
+a{
+    text-decoration: none;
+}
 
 .el-dialog__wrapper {
     z-index: 9999;
@@ -137,7 +147,7 @@ section::before {
                 font-weight: normal;
                 font-size: 25px;
                 line-height: 30px;
-                margin: 0 40px;
+                margin: 0 10px;
                 transition: all .2s;
                 color: black;
                 cursor: pointer;

@@ -6,7 +6,7 @@
         <div class="header-container">
             <div class="title">Школа <br> рисования <br> <span>c</span><span>h</span><span>i</span><span>l</span><span>d</span><span>o</span>
                 <div v-scroll-to="'#video'" class="play-button-holder">
-                    <div  class="play-button">
+                    <div class="play-button">
                         <img src="/img/play.svg" alt="play">
                     </div>
                     <div class="play-button-text">
@@ -16,14 +16,14 @@
             </div>
             <div class="description">Привет! Приглашаем вас отправиться в увлекательное путешествие в мир творчества с онлайн-курсами рисования от «ChilDo»
             </div>
-            <div class="button-holder" @click="$router.push({path: 'lessonFree'})">
-                <button>
+            <router-link target="_blank" class="button-holder" :to="{path: 'lessonFree'}"> <button>
                     Пробный урок
                 </button>
                 <div class="button-description">
                     Попробуйте бесплатный урок прямо сейчас!
                 </div>
-            </div>
+            </router-link>
+
         </div>
     </header>
 
@@ -258,6 +258,7 @@ header {
 
         .button-holder:hover {
             cursor: pointer;
+            color: inherit
 
             button {
                 box-shadow: 0px 8px 80px #F66C17;
@@ -265,6 +266,7 @@ header {
 
             .button-description {
                 text-decoration: underline solid black;
+                color: #333333;
             }
         }
 
@@ -280,7 +282,7 @@ header {
                 font-weight: normal;
                 font-size: 18px;
                 line-height: 140.2%;
-
+                color: #333333;
                 margin-top: 30px;
                 text-decoration: underline solid white;
                 transition: all .2s ease-in-out;
@@ -420,26 +422,33 @@ header::after {
                 .play-button-holder {
                     display: none;
                 }
-                span{
-                   font-size: 40px;
-                line-height: 40px; 
+
+                span {
+                    font-size: 40px;
+                    line-height: 40px;
                 }
-                span:nth-of-type(1){
+
+                span:nth-of-type(1) {
                     color: #E757A5;
                 }
-                span:nth-of-type(2){
+
+                span:nth-of-type(2) {
                     color: #CD237F;
                 }
-                span:nth-of-type(3){
+
+                span:nth-of-type(3) {
                     color: #F98923;
                 }
-                span:nth-of-type(4){
+
+                span:nth-of-type(4) {
                     color: #FC3939;
                 }
-                span:nth-of-type(5){
+
+                span:nth-of-type(5) {
                     color: #A5C73C;
                 }
-                span:nth-of-type(6){
+
+                span:nth-of-type(6) {
                     color: #59BFD7;
                 }
             }
@@ -479,21 +488,25 @@ header::after {
         }
     }
 }
+
 @media (max-width: 550px) {
-    header .header-container .title{
+    header .header-container .title {
         margin-top: 30px;
     }
 }
+
 @media (max-width: 450px) {
-    header .header-container .title{
+    header .header-container .title {
         margin-top: 0px;
     }
 }
+
 @media (max-width: 350px) {
     header {
         padding-top: 175px;
     }
 }
+
 .mobile {
     .title::before {
         left: 48px !important;

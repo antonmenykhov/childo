@@ -68,6 +68,7 @@ export default {
     align-items: stretch;
     width: 100%;
     position: relative;
+    margin-bottom: 200px;
 }
 h2 {
     margin-top: 125px;
@@ -375,6 +376,9 @@ ul {
     }
 }
 @media (max-width: 900px) {
+    .container{
+        margin-bottom: 100px;
+    }
      h2::before, h2::after{
         display: none;
     }

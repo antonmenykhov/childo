@@ -5,7 +5,7 @@
         <div class="text">Не знаете, что подарить? Выбирайте подарочный сертификат на онлайн-курс по рисованию «ChilDo»!
             <br>
             <br>
-            Чтобы оформить сертификат, напишите в Директ нашего Инстаграм! </div>
+            Чтобы оформить сертификат, напишите в Директ нашего Инстаграм! <a target="blank" href="https://www.instagram.com/childo.art/">@childo.art</a> </div>
     </div>
 </section>
 </template>
@@ -46,7 +46,7 @@ export default {
     display: flex;
     align-items: center;
     background: #9EDFEB;
-    z-index: -2;
+    z-index: 1
 }
 
 @media (max-width:1200px) {
