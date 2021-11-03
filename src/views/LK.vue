@@ -44,10 +44,10 @@
                 <button class="exit" @click="exit">Выйти</button>
             </div>
             <div class="course" v-for="item,i in userData.BuyedCourses" :key="i">
-                <h3>{{item.data.Name}}</h3>
+                <h3 v-html="item.courseMainData.name"></h3>
                 <ul>
-                    <li>Дата покупки: {{item.courseStart}}</li>
-                    <li>Конец курса: {{item.CourseEnd}}</li>
+                    <li>Дата покупки: {{(new Date(item.courseStart*1)).toLocaleString("ru", {year: 'numeric', month: 'long', day: 'numeric'})}}</li>
+                    <li>Конец курса: {{(new Date(item.CourseEnd*1)).toLocaleString("ru", {year: 'numeric', month: 'long', day: 'numeric'})}}</li>
                 </ul>
                 <router-link class="btn" :to="{path:'/lessons/'+(i+1)}" target="_blank">Перейти к урокам</router-link>
                 <h3>Просмотренно уроков:</h3>
@@ -68,7 +68,8 @@ import api from '../constants'
 import axios from 'axios'
 export default {
     mounted() {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
+        document.title="Личный кабинет | CHILDO"
         if (this.$cookie.get('jwt')) {
             this.$store.commit('setJwt', this.$cookie.get('jwt'));
             axios.get(api.me, {
@@ -133,7 +134,7 @@ export default {
             this.$store.commit('setJwt', null)
         },
         lessonView(i) {
-            let lessNum = this.userData.BuyedCourses[i].data.lessons.length;
+            let lessNum = this.userData.BuyedCourses[i].courseMainData.lessons.length;
             let view = 0;
             if (this.userData.BuyedCourses[i].lessonsData) {
                 for (let key in this.userData.BuyedCourses[i].lessonsData) {
@@ -498,7 +499,7 @@ section {
 
     .exit-wrapper {
         display: flex;
-        justify-content: end;
+        justify-content: flex-end;
         width: 100%;
         margin-top: 100px;
     }

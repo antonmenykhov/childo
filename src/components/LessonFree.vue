@@ -29,6 +29,7 @@
 <script>
 export default {
     mounted() {
+     document.title="Бесплатный урок \"Яркие краски\" | CHILDO"
       window.scrollTo(0,0);
     },
     data() {

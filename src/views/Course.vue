@@ -39,13 +39,16 @@ export default {
     },
 
     beforeMount() {
+        
         window.scrollTo(0, 0);
         axios.get(constants.getData).then(response => {
             this.$store.commit('setMainData', response.data)
             if (response.data.courses[this.id - 1]) {
                 this.courseData = response.data.courses[this.id - 1]
+                document.title=this.courseData.Name+" | CHILDO"
             } else {
                 this.$router.push({ path: '/' })
+                
             }
         })
         if (this.$cookie.get('jwt')) {

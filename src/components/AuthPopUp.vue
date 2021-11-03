@@ -4,7 +4,11 @@
         <h3>Регистрация</h3>
         <el-form ref="val" :model="register">
             <el-form-item prop="name" :rules="[
-      { required: true, message: 'Введите имя и фамилию', trigger: 'blur' }]">
+                 { 
+                  required: true,
+                  message: 'Введите имя и фамилию', 
+                  trigger: 'blur' 
+                  }]">
                 <el-input placeholder="Имя Фамилия" v-model="register.name"></el-input>
             </el-form-item>
             <el-form-item prop="mail" :rules="[
@@ -95,7 +99,7 @@ export default {
         eventBus.$on('openRegBuy', data => {
             this.openRegBuy(data.priceId)
         })
-         eventBus.$on('openRegCart', () => {
+        eventBus.$on('openRegCart', () => {
             this.openCart()
         })
     },
@@ -132,7 +136,7 @@ export default {
             }
 
         },
-        openCart(){
+        openCart() {
             if (this.$cookie.get('jwt')) {
                 this.$store.commit('setJwt', this.$cookie.get('jwt'));
                 axios.get(api.me, {

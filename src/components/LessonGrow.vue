@@ -26,6 +26,18 @@ import axios from 'axios'
 export default {
 
     methods: {
+        checkForPath() {
+            if (this.id == 0) {
+                return true
+            } else
+            if (this.responseData.full.BuyedCourses[this.cid].lessonsData) {
+                if (this.responseData.full.BuyedCourses[this.cid].lessonsData[this.id - 1]) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        },
         check() {
             if (this.responseData.full.BuyedCourses[this.cid].lessonsData) {
                 if (this.responseData.full.BuyedCourses[this.cid].lessonsData[this.id]) {
@@ -39,7 +51,12 @@ export default {
             this.$router.push({ path: '/lk' })
         },
         goNext() {
-            this.$router.push({ path: '/lessonGrow/' + (this.cid + 1) + '/' + (this.id + 2) })
+            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].style == "child") {
+                this.$router.push({ path: '/lessonChild/' + (this.cid + 1) + '/' + (this.id + 2) })
+            }
+            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].style == "grow") {
+                this.$router.push({ path: '/lessonGrow/' + (this.cid + 1) + '/' + (this.id + 2) })
+            }
         },
         FileUpload() {
             this.file = document.getElementById('dz').files[0];
@@ -69,7 +86,7 @@ export default {
                 this.loading = false
                 setTimeout(this.setDz, 500, response.data[0].formats.small.url)
                 this.textDz = "ДЗ загружено"
-                if (this.id + 1 <= this.responseData.full.BuyedCourses[this.cid].data.lessons.length - 1) {
+                if (this.id + 1 <= this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons.length - 1) {
                     this.next = true
                     console.log('fdsf')
                 } else {
@@ -93,6 +110,7 @@ export default {
         }
     },
      mounted() {
+       
         window.scrollTo(0, 0);
         if (this.$cookie.get('jwt')) {
             this.$store.commit('setJwt', this.$cookie.get('jwt'));
@@ -101,9 +119,12 @@ export default {
                     Authorization: `Bearer ${this.$store.state.jwt}`,
                 }
             }).then(response => {
-                this.$set(this.responseData, 'lessonData', response.data.BuyedCourses[this.cid].data.lessons[this.id])
+                this.$set(this.responseData, 'lessonData', response.data.BuyedCourses[this.cid].courseMainData.lessons[this.id])
                 this.$set(this.responseData, 'full', response.data)
-                
+                 document.title=this.responseData.lessonData.Name.toUpperCase()+" | CHILDO"
+                if (!this.checkForPath()) {
+                    this.goLK()
+                }
 
             }).catch(error => {
                 console.log(error.response)

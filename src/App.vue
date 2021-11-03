@@ -1,13 +1,12 @@
 <template>
 <div id="app">
 
+    <vue-page-transition name="fade-in-down">
+
+        <router-view :key="$route.path"> </router-view>
+    </vue-page-transition>
     <AuthPopUp />
-  <vue-page-transition name="fade-in-down">
-    
-      
-    <router-view :key="$route.path"> </router-view>
-  </vue-page-transition>
-    
+
 </div>
 </template>
 
@@ -16,16 +15,16 @@ import axios from 'axios'
 import constants from './constants'
 import AuthPopUp from './components/AuthPopUp.vue'
 export default {
-    components:{
+    components: {
         AuthPopUp
     },
     methods: {
-        goRoute(i){
+        goRoute(i) {
 
-            this.$router.push({path: i})
+            this.$router.push({ path: i })
             this.drawer = false
         }
-    },  
+    },
     beforeMount() {
         document.getElementsByClassName('el-notification')[0].style.opacity = 0
 
@@ -36,27 +35,26 @@ export default {
 
         })
     },
- 
-   /**  mounted() {
-        let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
-        if (isMobile) {
-            document.body.classList.add('mobile')
-        }
-        
-    },*/
+
+    /**  mounted() {
+         let isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
+         if (isMobile) {
+             document.body.classList.add('mobile')
+         }
+
+     },*/
     name: 'app',
     data() {
         return {
-            
+
             drawer: false,
-            
+
         }
     },
 }
 </script>
 
 <style lang="scss">
-
 @font-face {
     font-family: "Intro";
     src: url("/fonts/Intro-Black-Caps.eot") format("eot"),
@@ -71,44 +69,50 @@ export default {
     margin: 0;
     box-sizing: border-box;
 }
-.hidden{
-    display: none!important;
+
+.hidden {
+    display: none !important;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
 .el-dialog__wrapper {
     z-index: 9999;
 }
-.el-drawer__body{
+
+.el-drawer__body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    .logo{
+
+    .logo {
         background: url('/img/logo.png') no-repeat center center / contain;
         height: 70px;
         width: 157px;
     }
-    .side-menu{
+
+    .side-menu {
         padding: 20px 50px;
         display: flex;
         align-items: stretch;
         flex-direction: column;
-        .menu-item{
+
+        .menu-item {
             padding: 10px 0;
             font-size: 22px;
             color: #333333;
             font-weight: 600;
             text-decoration: none;
-            
+
         }
     }
 }
 
 section {
     width: 100%;
-    
+
 }
 
 section::after {
@@ -126,7 +130,6 @@ section::before {
     left: 0;
     z-index: 10;
     padding: 100px;
-    
 
     .logo {
         background: url('/img/logo.png') no-repeat center center / contain;
@@ -200,12 +203,8 @@ section::before {
     top: -20px
 }
 
-
-
 .top-line .container .main-menu {
     flex: 1;
     justify-content: space-between;
 }
-
-
 </style>

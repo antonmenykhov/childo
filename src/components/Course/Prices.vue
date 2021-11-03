@@ -343,7 +343,7 @@ ul {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    background: white;
     height: 600px;
     max-width: 350px;
     flex: 1;

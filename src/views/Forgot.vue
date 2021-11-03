@@ -20,6 +20,9 @@
 import axios from 'axios'
 import api from '../constants'
 export default {
+    mounted() {
+        document.title="Восстановление пароля CHILDO"
+    },
     data() {
         return {
             password1: '',

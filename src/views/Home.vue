@@ -26,6 +26,7 @@ import Footer from '../components/Footer.vue'
 import {scroller} from 'vue-scrollto/src/scrollTo'
 export default {
     mounted() {
+        document.title='Онлайн школа рисования CHILDO'
         let path = (window.location.href.split('#'))
         if (path[1]) {
             const scroll = scroller();

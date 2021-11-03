@@ -1,5 +1,5 @@
 <template>
-<section :class="course.data.style">
+<section>
     <div class="back-button" @click="$router.push({path: '/lk'})">
         <div class="back-arrow"></div>
     </div>
@@ -32,6 +32,7 @@ import api from '../constants'
 import axios from 'axios'
 export default {
     mounted() {
+        document.title="Доступные уроки | CHILDO"
         window.scrollTo(0, 0)
         if (this.$cookie.get('jwt')) {
             this.$store.commit('setJwt', this.$cookie.get('jwt'));
@@ -65,11 +66,12 @@ export default {
         },
         goLesson(i) {
             if (this.check(i)) {
-                if (this.course.data.style == 'child') {
+
+                if (this.lessons[i].style == 'child') {
                     window.open('/lessonChild/' + (this.id + 1) + '/' + (i * 1 + 1), '_blank')
                     
                 }
-                if (this.course.data.style == 'grow') {
+                if (this.lessons[i].style == 'grow') {
                     window.open('/lessonGrow/' + (this.id + 1) + '/' + (i * 1 + 1), '_blank')
                     
                 }
@@ -101,12 +103,16 @@ export default {
             return num
         },
 
-        lessons: function () {
-            return this.course.data.lessons
+        
+    },
+    watch: {
+        course: function(){
+            this.lessons = this.course.courseMainData.lessons
         }
     },
     data() {
         return {
+            lessons: [],
             course: {},
             kol: 1,
             url: api.url,
@@ -252,6 +258,7 @@ h4 {
     line-height: 20px;
     font-weight: 700;
     color: #333333;
+    text-transform: uppercase;
 
 }
 

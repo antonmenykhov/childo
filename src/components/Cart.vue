@@ -22,12 +22,13 @@
         </tbody>
     </table>
 
-    <button>Перейти к оплате</button>
+    <button @click="goPay">Перейти к оплате</button>
 </el-dialog>
 </template>
 
 <script>
 import { eventBus } from '../main'
+import axios from 'axios'
 export default {
     created() {
         eventBus.$on('cartOpened', () => {
@@ -49,6 +50,15 @@ export default {
             document.getElementById('d' + item.id).style.display = 'none';
             let cart = this.cart.filter(value => value.id != item.id);
             eventBus.$emit('refreshCart', cart)
+        },
+        goPay(){
+            let formdata = new FormData;
+            let jwt = this.$store.state.jwt
+            formdata.append('lessons', JSON.stringify(this.cart))
+            formdata.append('jwt', jwt)
+            axios.post('https://pay.childo-art.ru/buyLessons/', formdata).then(response=> {
+               window.location.href = response.data
+            })
         }
     },
 }
@@ -98,12 +108,31 @@ export default {
     td {
         text-transform: capitalize;
         padding: 10px 5px;
+        word-break: keep-all;
     }
 
     tr:nth-child(even) {
         background: rgb(248, 248, 248);
 
     }
+    .remove{
+        font-size: 18px;
+        font-weight: 900;
+        transform: rotate(45deg);
+        cursor: pointer;
+        transition: all .2s;
+    }
+    .remove:hover{
+        color: #F66A16;
+    }
 
+}
+@media (max-width: 500px) {
+    .el-dialog{
+        width: 100vw!important;
+    }
+    th:last-child{
+        display: none;
+    }
 }
 </style>

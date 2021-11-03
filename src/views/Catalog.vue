@@ -41,6 +41,7 @@ import Cart from '../components/Cart.vue'
 export default {
     components: { Topline, CatProgram, Cert, Footer, Cart },
     created() {
+        document.title="Каталог уроков | CHILDO"
         eventBus.$on('refreshCart', data =>{
             this.cart = data
         })
@@ -262,13 +263,22 @@ header::before {
     .header-container {
         padding: 0 40px;
     }
+    header{
+        .header-container{
+            .cart{
+                position: fixed;
+                bottom: 40px;
+                right: 40px;
+                top: unset;
+                z-index: 2000;
+            }
+        }
+    }
 
 }
 
 @media (max-width: 900px) {
-    header .header-container .cart{
-        display: none;
-    }
+    
     header::after {
         content: "";
         position: absolute;
@@ -347,9 +357,26 @@ header::before {
     header {
         padding-top: 240px;
 
-        .header-container {
-            .cart {
-                display: none;
+        
+    }
+    header{
+        .header-container{
+            .cart{
+                bottom: 20px;
+                right: 20px;
+                height: 60px;
+                width: 60px;
+                .cart-icon{
+                    height: 30px;
+                    width: 30px;
+                }
+                .cart-counter{
+                    height: 20px;
+                    width: 20px;
+                    right: -20px;
+                    top: -20px;
+                    font-size: 16px;
+                }
             }
         }
     }

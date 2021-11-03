@@ -40,7 +40,6 @@ export default {
 }
 
 .cert {
-    position: relative;
     padding: 32px 0;
     width: 100%;
     display: flex;

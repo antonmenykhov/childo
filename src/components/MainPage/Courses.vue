@@ -324,7 +324,9 @@ input::placeholder {
             }
 
             .btn {
-
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 border-radius: 25px;
                 border: none;
                 outline: none;

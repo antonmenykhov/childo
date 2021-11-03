@@ -14,7 +14,9 @@
 <script>
 
 export default {
-    
+    mounted() {
+        document.title = 'Произошла ошибка | CHILDO'
+    },
 }
 </script>
 
