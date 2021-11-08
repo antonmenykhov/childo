@@ -67,11 +67,11 @@ export default {
         goLesson(i) {
             if (this.check(i)) {
 
-                if (this.lessons[i].style == 'child') {
+                if (this.lessons[i].styleChild.length > 2) {
                     window.open('/lessonChild/' + (this.id + 1) + '/' + (i * 1 + 1), '_blank')
                     
                 }
-                if (this.lessons[i].style == 'grow') {
+                if (this.lessons[i].styleGrow.length > 2) {
                     window.open('/lessonGrow/' + (this.id + 1) + '/' + (i * 1 + 1), '_blank')
                     
                 }

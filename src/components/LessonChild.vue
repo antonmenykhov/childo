@@ -110,10 +110,10 @@ export default {
             this.$router.push({ path: '/lk' })
         },
         goNext() {
-            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].style == "child") {
+            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].styleChild.length > 2) {
                 this.$router.push({ path: '/lessonChild/' + (this.cid + 1) + '/' + (this.id + 2) })
             }
-            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].style == "grow") {
+            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].styleGrow.length > 2) {
                 this.$router.push({ path: '/lessonGrow/' + (this.cid + 1) + '/' + (this.id + 2) })
             }
         },

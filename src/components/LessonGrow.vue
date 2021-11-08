@@ -5,7 +5,7 @@
         <div class="back-arrow"></div>
     </div>
     <div class="container">
-        
+
         <h2>Урок {{id+1}} - {{lessonData.Name}}</h2>
         <p class="description" v-html="lessonData.Description">
         </p>
@@ -51,10 +51,10 @@ export default {
             this.$router.push({ path: '/lk' })
         },
         goNext() {
-            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].style == "child") {
+            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].styleChild.length > 2) {
                 this.$router.push({ path: '/lessonChild/' + (this.cid + 1) + '/' + (this.id + 2) })
             }
-            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].style == "grow") {
+            if (this.responseData.full.BuyedCourses[this.cid].courseMainData.lessons[this.id + 1].styleGrow.length > 2) {
                 this.$router.push({ path: '/lessonGrow/' + (this.cid + 1) + '/' + (this.id + 2) })
             }
         },
@@ -105,12 +105,12 @@ export default {
             textDz: 'Загрузить дз',
             next: false,
             end: false,
-            responseData: {lessonData: {}},
+            responseData: { lessonData: {} },
 
         }
     },
-     mounted() {
-       
+    mounted() {
+
         window.scrollTo(0, 0);
         if (this.$cookie.get('jwt')) {
             this.$store.commit('setJwt', this.$cookie.get('jwt'));
@@ -121,7 +121,7 @@ export default {
             }).then(response => {
                 this.$set(this.responseData, 'lessonData', response.data.BuyedCourses[this.cid].courseMainData.lessons[this.id])
                 this.$set(this.responseData, 'full', response.data)
-                 document.title=this.responseData.lessonData.Name.toUpperCase()+" | CHILDO"
+                document.title = this.responseData.lessonData.Name.toUpperCase() + " | CHILDO"
                 if (!this.checkForPath()) {
                     this.goLK()
                 }
@@ -133,9 +133,9 @@ export default {
         }
     },
     computed: {
-       
+
         lessonData: function () {
-            return this.responseData.lessonData//[this.cid]//.data.lessons[this.id]
+            return this.responseData.lessonData //[this.cid]//.data.lessons[this.id]
         }
     },
 }
@@ -189,8 +189,6 @@ label {
     opacity: 1;
 }
 
-
-
 .lesson {
     background: white;
     position: relative;
@@ -201,8 +199,6 @@ label {
         flex-direction: column;
         align-items: flex-start;
     }
-
-    
 
     h2 {
         margin-top: 100px;
@@ -216,8 +212,6 @@ label {
         line-height: 60px;
         /* identical to box height */
 
-        
-
         color: #333333;
     }
 
@@ -227,12 +221,12 @@ label {
         font-weight: normal;
         font-size: 18px;
         line-height: 22px;
-        
+
         max-width: 667px;
     }
 
     .thumb {
-        
+
         display: flex;
         align-self: center;
         align-items: center;
@@ -292,7 +286,7 @@ label {
 }
 
 .lesson::before {
-    
+
     position: absolute;
     height: 700px;
     width: 600px;
@@ -301,7 +295,7 @@ label {
 }
 
 .lesson::after {
-    
+
     position: absolute;
     height: 930px;
     width: 1000px;
@@ -499,61 +493,73 @@ label {
 .gr-10::after {
     background: url('/img/lessons/gr/9/right.svg') no-repeat right top / contain;
 }
-.lesson .thumb{
-    box-shadow: none!important;
+
+.lesson .thumb {
+    box-shadow: none !important;
 }
-@media (max-width:1200px){
-    .container{
+
+@media (max-width:1200px) {
+    .container {
         padding: 0 40px;
     }
-    .lesson h2{
+
+    .lesson h2 {
         font-size: 50px;
         line-height: 50px;
     }
 }
-@media (max-width: 880px){
-    
-    .lesson .thumb{
+
+@media (max-width: 880px) {
+
+    .lesson .thumb {
         width: calc(100vw - 80px);
         height: calc(66vw - 80px);
     }
 }
-@media (max-width: 500px){
-    .lesson .thumb{
+
+@media (max-width: 500px) {
+    .lesson .thumb {
         width: calc(100vw - 40px);
         height: calc(66vw - 40px);
     }
-    .container{
+
+    .container {
         padding: 0 20px;
     }
-    .lesson h2{
+
+    .lesson h2 {
         font-size: 20px;
         line-height: 20px;
-        
+
     }
-    .lesson .description{
+
+    .lesson .description {
         font-size: 14px;
         line-height: 17px;
     }
-    .lesson li{
+
+    .lesson li {
         font-size: 14px;
         line-height: 17px;
         padding-left: 0;
     }
-    .lesson li::before{
+
+    .lesson li::before {
         height: 12px;
         width: 12px;
         left: -15px;
         top: 2px;
     }
-    .lesson ul{
+
+    .lesson ul {
         padding-left: 15px;
     }
-    .lesson .dz-button{
+
+    .lesson .dz-button {
         height: 75px;
         width: 240px;
         padding: unset;
     }
-   
+
 }
 </style>
